@@ -15,6 +15,7 @@
     "sanity"
   ],
   "dependencies": {
+    "@sanity/google-maps-input": "^4.1.0",
     "@sanity/vision": "^3.81.0",
     "nanoid": "^5.1.5",
     "react": "^18.2.0",
@@ -27,13 +28,20 @@
     "@sanity/eslint-config-studio": "^5.0.2",
     "@types/react": "^18.0.25",
     "eslint": "^9.9.0",
-    "prettier": "^3.0.2",
+    "prettier": "^3.5.3",
     "typescript": "^5.1.6"
   },
   "prettier": {
-    "semi": false,
-    "printWidth": 100,
-    "bracketSpacing": false,
-    "singleQuote": true
+    "semi": true,
+    "trailingComma": "all",
+    "singleQuote": true,
+    "printWidth": 80,
+    "tabWidth": 2,
+    "useTabs": false,
+    "bracketSpacing": true,
+    "arrowParens": "always",
+    "endOfLine": "lf",
+    "quoteProps": "as-needed",
+    "jsxSingleQuote": true
   }
 }
