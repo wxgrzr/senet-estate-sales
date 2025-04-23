@@ -1,4 +1,6 @@
-import {defineField, defineType} from 'sanity'
+import { nanoid } from 'nanoid';
+import { defineField, defineType } from 'sanity';
+import unitedStates from '../lib/unitedStates';
 
 export const postType = defineType({
   name: 'post',
@@ -12,24 +14,80 @@ export const postType = defineType({
     }),
     defineField({
       name: 'slug',
+      title: 'Slug',
       type: 'slug',
-      options: {source: 'title'},
+      options: {
+        source: 'title',
+        // slugify: (value) => (value ? nanoid() : ''),
+        isUnique: (value, context) => context.defaultIsUnique(value, context),
+      },
+      validation: (rule) =>
+        rule.required().error(`Required to generate a page on the website.`),
+      hidden: ({ document }) => !document?.title,
+    }),
+    defineField({
+      name: 'coverImage',
+      title: 'Cover Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
+      name: 'gallery',
+      type: 'array',
+      of: [{ type: 'image' }],
+      options: {
+        layout: 'grid',
+      },
+    }),
+    defineField({
+      title: 'Location',
+      name: 'location',
+      type: 'object',
+      fields: [
+        { name: 'streetAddress', type: 'string', title: 'Address' },
+        { name: 'city', type: 'string', title: 'City' },
+        {
+          name: 'state',
+          type: 'string',
+          options: {
+            list: [...unitedStates],
+          },
+        },
+        { name: 'zip', type: 'string', title: 'ZIP' },
+      ],
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'publishedAt',
+      title: 'Date / Time',
+      name: 'dateTime',
       type: 'datetime',
       initialValue: () => new Date().toISOString(),
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'image',
-      type: 'image',
-    }),
-    defineField({
       name: 'body',
       type: 'array',
-      of: [{type: 'block'}],
+      of: [{ type: 'block' }],
+    }),
+    defineField({
+      name: 'category',
+      type: 'string',
+      initialValue: 'upcoming',
+      options: {
+        list: [
+          { title: 'Upcoming', value: 'upcoming' },
+          { title: 'Completed', value: 'completed' },
+        ],
+        layout: 'dropdown',
+      },
+      validation: (rule) =>
+        rule
+          .required()
+          .error(
+            `If no category is selected, the post won't show up on the website.`,
+          ),
     }),
   ],
-})
+});
