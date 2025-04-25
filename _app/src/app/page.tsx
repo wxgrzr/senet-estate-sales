@@ -4,11 +4,10 @@ import { client } from '@/sanity/client';
 import Image from 'next/image';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import { sanityFetch } from '@/sanity/live';
-import CoverImage from '@/app/_components/cover-image';
 import Container from '@/app/_components/container';
 import Header from '@/app/_components/header';
 import Hero from '@/app/_components/hero';
-import ContainerColored from '@/app/_components/container-colored';
+import { MoreEstateSales } from '@/app/_components/more-estate-sales';
 
 export type Post = {
   _id: string;
@@ -37,8 +36,8 @@ export default async function IndexPage() {
 
   const postImageUrl = (post: Post) =>
     post?.coverImage
-      ? urlFor(post.coverImage)?.width(550).height(310).url()
-      : null;
+      ? urlFor(post.coverImage)?.width(550).height(310).url() || ''
+      : '';
 
   return (
     <main>
@@ -48,7 +47,7 @@ export default async function IndexPage() {
       <Container>
         {/* Info Section 1 */}
         <section className='py-16'>
-          <div className='items-center gap-8 grid md:grid-cols-2 mx-auto px-4 max-w-7xl'>
+          <div className='items-center gap-8 grid md:grid-cols-2 mx-auto px-4'>
             <div>
               <Image
                 src='https://placehold.co/600x400/png'
@@ -71,14 +70,22 @@ export default async function IndexPage() {
                 href='/contact'
                 className='bg-blue-600 hover:bg-blue-700 px-5 py-2 rounded-lg font-medium text-white transition'
               >
-                Contact Us
+                Schedule a Consultation
               </Link>
             </div>
           </div>
         </section>
-      </Container>
-      {/* Info Section 2 (Mirrored) */}
-      <ContainerColored>
+
+        {/* More estate sales */}
+        <section className='py-16'>
+          <ul className='flex flex-col gap-y-2'>
+            {posts.length > 0 && (
+              <MoreEstateSales posts={posts} postImageUrl={postImageUrl} />
+            )}
+          </ul>
+        </section>
+
+        {/* Info Section 2 (Mirrored) */}
         <section className='py-16'>
           <div className='items-center gap-8 grid md:grid-cols-2 mx-auto px-4 max-w-7xl'>
             <div className='md:order-2'>
@@ -106,28 +113,7 @@ export default async function IndexPage() {
             </div>
           </div>
         </section>
-      </ContainerColored>
-
-      {/* TODO: add MoreEstateSales section below */}
-      <section className='py-16'>
-        <h1 className='mb-8 font-bold text-4xl'>Current Estate Sales</h1>
-        <ul className='flex flex-col gap-y-4'>
-          {posts.map((post: Post) => (
-            <li className='hover:underline' key={post._id}>
-              <Link href={`/${post.slug.current}`}>
-                {postImageUrl && (
-                  <CoverImage
-                    src={postImageUrl(post) as string}
-                    title={post?.title}
-                  />
-                )}
-                <h2 className='font-semibold text-xl'>{post.title}</h2>
-                <p>{new Date(post._createdAt).toLocaleDateString()}</p>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
+      </Container>
 
       {/* Footer */}
       <footer className='mt-auto py-8'>
@@ -154,12 +140,12 @@ export default async function IndexPage() {
               </li>
               <li>
                 <a href='/contact' className='hover:underline'>
-                  Contact
+                  Schedule a Consultation
                 </a>
               </li>
               <li>
                 <a href='/about' className='hover:underline'>
-                  About
+                  About Us
                 </a>
               </li>
             </ul>

@@ -94,19 +94,25 @@ export default function Header() {
               className='focus:outline-hidden font-medium text-gray-600 hover:text-gray-400 focus:text-gray-400'
               href='/contact'
             >
-              Contact
+              Schedule a Consultation
             </Link>
             <Link
               className='focus:outline-hidden font-medium text-gray-600 hover:text-gray-400 focus:text-gray-400'
               href='/about'
             >
-              About
+              About Us
             </Link>
             <Link
               className='focus:outline-hidden font-medium text-gray-600 hover:text-gray-400 focus:text-gray-400'
               href='#listings'
             >
-              Listings
+              Current Estate Sales
+            </Link>
+            <Link
+              className='focus:outline-hidden font-medium text-gray-600 hover:text-gray-400 focus:text-gray-400'
+              href='/FAQ'
+            >
+              FAQ
             </Link>
           </div>
         </div>

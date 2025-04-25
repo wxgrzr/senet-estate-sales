@@ -1,8 +1,8 @@
-import {defineConfig} from 'sanity'
-import {structureTool} from 'sanity/structure'
-import {visionTool} from '@sanity/vision'
-import {schemaTypes} from './schemaTypes'
-import {slugOnSave} from './actions/slugOnSave'
+import { defineConfig } from 'sanity';
+import { structureTool } from 'sanity/structure';
+import { visionTool } from '@sanity/vision';
+import { schemaTypes } from './schemaTypes';
+import FullAddressInput from './components/FullAddressInput';
 
 export default defineConfig({
   name: 'default',
@@ -16,11 +16,4 @@ export default defineConfig({
   schema: {
     types: schemaTypes,
   },
-  // Slugify on save capability
-  // document: {
-  //   actions: (prev) =>
-  //     prev.map((originalAction) =>
-  //       originalAction.action === 'publish' ? slugOnSave(originalAction) : originalAction,
-  //     ),
-  // },
-})
+});

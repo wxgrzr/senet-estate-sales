@@ -1,6 +1,7 @@
 import { nanoid } from 'nanoid';
 import { defineField, defineType } from 'sanity';
 import unitedStates from '../lib/unitedStates';
+import FullAddressInput from '../components/FullAddressInput';
 
 export const postType = defineType({
   name: 'post',
@@ -42,29 +43,72 @@ export const postType = defineType({
       },
     }),
     defineField({
-      title: 'Location',
       name: 'location',
+      title: 'Location',
       type: 'object',
       fields: [
-        { name: 'streetAddress', type: 'string', title: 'Address' },
+        {
+          name: 'fullAddress',
+          type: 'string',
+          title: 'Full Address (for display)',
+          description: 'Auto-generated using the address fields below.',
+          components: {
+            input: FullAddressInput,
+          },
+          initialValue: ({
+            document,
+          }: {
+            document: {
+              location?: {
+                streetAddress?: string;
+                city?: string;
+                state?: string;
+                zip?: string;
+              };
+            };
+          }) => {
+            const { streetAddress, city, state, zip } =
+              document?.location || {};
+            return `${streetAddress || ''}, ${city || ''}, ${state || ''} ${zip || ''}`;
+          },
+        },
+        { name: 'streetAddress', type: 'string', title: 'Street Address' },
         { name: 'city', type: 'string', title: 'City' },
         {
           name: 'state',
           type: 'string',
+          title: 'State',
           options: {
             list: [...unitedStates],
           },
         },
         { name: 'zip', type: 'string', title: 'ZIP' },
+        {
+          name: 'coordinates',
+          type: 'geopoint',
+          title: 'Map Location',
+          description: 'For google maps integration',
+        },
       ],
       validation: (rule) => rule.required(),
     }),
     defineField({
-      title: 'Date / Time',
-      name: 'dateTime',
-      type: 'datetime',
-      initialValue: () => new Date().toISOString(),
-      validation: (rule) => rule.required(),
+      name: 'eventDates',
+      title: 'Event Dates',
+      type: 'array',
+      of: [
+        {
+          type: 'datetime',
+          title: 'Date / Time',
+        },
+      ],
+      description: 'Add multiple dates and times for the estate sale event.',
+      validation: (rule) =>
+        rule
+          .min(1)
+          .error('At least one event date is required.')
+          .unique()
+          .error('Event dates must be unique.'),
     }),
     defineField({
       name: 'body',

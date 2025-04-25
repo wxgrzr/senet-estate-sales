@@ -20,7 +20,7 @@ const Hero = () => {
             </div>
             <a
               href='#sales'
-              className='bg-blue-600 hover:bg-blue-700 px-5 py-2 rounded-full font-semibold text-white transition'
+              className='bg-blue-600 hover:bg-blue-700 px-5 py-2 rounded-lg font-medium text-white transition'
             >
               View Current Sales
             </a>

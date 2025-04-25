@@ -1,29 +1,42 @@
 import { Post } from '@/app/page';
 import { PostPreview } from './post-preview';
+import Link from 'next/link';
+import CoverImage from '@/app/_components/cover-image';
+import DateFormatter from '@/app/_components/date-formatter';
 
 type Props = {
   posts: Post[];
+  postImageUrl: (post: Post) => string;
 };
 
-export function MoreEstateSales({ posts }: Props) {
+export function MoreEstateSales({ posts, postImageUrl }: Props) {
   return (
     <section>
-      <h2 className='mb-8 text-5xl md:text-7xl font-bold tracking-tighter leading-tight'>
-        More Stories
+      <h2 className='mb-8 font-bold text-5xl md:text-7xl leading-tight tracking-tighter'>
+        More Estate Sales
       </h2>
-      <div className='grid grid-cols-1 md:grid-cols-2 md:gap-x-16 lg:gap-x-32 gap-y-20 md:gap-y-32 mb-32'>
-        {posts.map((post) => (
-          <PostPreview
-            key={post._id}
-            title={post.title}
-            coverImage={post.coverImage}
-            // date={post.date}
-            // author={post.author}
-            slug={post.slug.current}
-            // excerpt={post.excerpt}
-          />
+      <ul className='gap-y-16 sm:gap-x-6 md:gap-x-10 md:gap-y-24 lg:gap-x-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4'>
+        {posts.map((post: Post) => (
+          <li className='hover:underline' key={post._id}>
+            <Link href={`/${post.slug.current}`}>
+              {postImageUrl && (
+                <div className='mb-5'>
+                  <CoverImage
+                    src={postImageUrl(post) as string}
+                    title={post?.title}
+                  />
+                </div>
+              )}
+              <h3 className='mb-1 font-semibold text-2xl leading-snug'>
+                {post.title}
+              </h3>
+              <div className='mb-4 text-lg'>
+                <DateFormatter dateString={post._createdAt} />
+              </div>
+            </Link>
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   );
 }
