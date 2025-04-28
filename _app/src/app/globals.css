@@ -48,6 +48,10 @@ body {
     color 0.3s ease; /* Smooth transition */
 }
 
+.btn {
+  @apply rounded-lg bg-blue-600 px-5 py-2 text-white hover:bg-blue-700;
+}
+
 .max-w-7xl-plus {
   max-width: 1360px;
 }

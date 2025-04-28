@@ -8,6 +8,10 @@ import Container from '@/app/_components/container';
 import Header from '@/app/_components/header';
 import Hero from '@/app/_components/hero';
 import { MoreEstateSales } from '@/app/_components/more-estate-sales';
+import Section from '@/app/_components/section';
+import LinkButton from '@/app/_components/link-button';
+import ConsultationForm from '@/app/_components/consultation-form';
+import ContainerColored from '@/app/_components/container-colored';
 
 export type Post = {
   _id: string;
@@ -42,11 +46,10 @@ export default async function IndexPage() {
   return (
     <main>
       <Header />
-
       <Hero />
       <Container>
-        {/* Info Section 1 */}
-        <section className='py-16'>
+        {/* Ready to Sell With Us? */}
+        <Section>
           <div className='items-center gap-8 grid md:grid-cols-2 mx-auto px-4'>
             <div>
               <Image
@@ -58,36 +61,35 @@ export default async function IndexPage() {
               />
             </div>
             <div>
-              <h2 className='mb-4 font-semibold text-3xl'>
+              <h2 className='mb-5 font-extrabold text-3xl md:text-4xl lg:text-5xl tracking-tight'>
                 Ready to Sell With Us?
               </h2>
-              <p className='mb-6 text-gray-400'>
+              <p className='mb-8 text-gray-500 text-sm md:text-base lg:text-lg'>
                 We make hosting your estate sale easy, organized, and
                 profitable. Let us handle the hard part so you can focus on what
                 matters most.
               </p>
-              <Link
-                href='/contact'
-                className='bg-blue-600 hover:bg-blue-700 px-5 py-2 rounded-lg font-medium text-white transition'
-              >
-                Schedule a Consultation
-              </Link>
+              <LinkButton href='/contact'>Schedule a Consultation</LinkButton>
             </div>
           </div>
-        </section>
+        </Section>
+      </Container>
 
-        {/* More estate sales */}
-        <section className='py-16'>
+      {/* More estate sales */}
+      <ContainerColored>
+        <section className='py-14' id='sales'>
           <ul className='flex flex-col gap-y-2'>
             {posts.length > 0 && (
               <MoreEstateSales posts={posts} postImageUrl={postImageUrl} />
             )}
           </ul>
         </section>
+      </ContainerColored>
 
-        {/* Info Section 2 (Mirrored) */}
-        <section className='py-16'>
-          <div className='items-center gap-8 grid md:grid-cols-2 mx-auto px-4 max-w-7xl'>
+      {/* Info Section 2 (Mirrored) */}
+      <Container>
+        <Section>
+          <div className='items-center gap-8 grid md:grid-cols-2 mx-auto px-4'>
             <div className='md:order-2'>
               <Image
                 src='https://placehold.co/600x400/png'
@@ -98,23 +100,21 @@ export default async function IndexPage() {
               />
             </div>
             <div className='md:order-1'>
-              <h2 className='mb-4 font-semibold text-3xl'>Who We Are</h2>
-              <p className='mb-6'>
-                EstateFinds is a locally rooted team passionate about giving new
+              <h2 className='mb-5 font-extrabold text-3xl md:text-4xl lg:text-5xl tracking-tight'>
+                Who We Are
+              </h2>
+              <p className='mb-8 text-gray-500 text-sm md:text-base lg:text-lg'>
+                We&apos;re a locally rooted team passionate about giving new
                 life to old treasures. With years of experience, we connect
                 stories and collectors.
               </p>
-              <Link
-                href='/about'
-                className='bg-blue-600 hover:bg-blue-700 px-5 py-2 rounded-lg font-medium text-white transition'
-              >
-                Learn More
-              </Link>
+              <LinkButton href='/about'>Learn More</LinkButton>
             </div>
           </div>
-        </section>
+        </Section>
       </Container>
 
+      <ConsultationForm />
       {/* Footer */}
       <footer className='mt-auto py-8'>
         <div className='gap-6 grid md:grid-cols-3 mx-auto px-4 max-w-7xl'>
@@ -129,24 +129,32 @@ export default async function IndexPage() {
             <h4 className='mb-2 font-semibold'>Quick Links</h4>
             <ul className='space-y-1 text-sm'>
               <li>
-                <a href='#hero' className='hover:underline'>
+                <Link href='#hero' className='hover:underline'>
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href='#sales' className='hover:underline'>
+                <Link href='#sales' className='hover:underline'>
                   Current Sales
-                </a>
+                </Link>
               </li>
               <li>
-                <a href='/contact' className='hover:underline'>
+                <Link
+                  href='/schedule-a-consultation'
+                  className='hover:underline'
+                >
                   Schedule a Consultation
-                </a>
+                </Link>
               </li>
               <li>
-                <a href='/about' className='hover:underline'>
+                <Link href='/about' className='hover:underline'>
                   About Us
-                </a>
+                </Link>
+              </li>
+              <li>
+                <Link href='/faq' className='hover:underline'>
+                  FAQ
+                </Link>
               </li>
             </ul>
           </div>
@@ -157,7 +165,10 @@ export default async function IndexPage() {
               <br />
               Phoenix, AZ 85001
               <br />
-              (555) 123-4567
+              <br />
+              <a href='tel' className='text-gray-800 hover:underline'>
+                (555) 123-4567
+              </a>
             </p>
           </div>
         </div>
