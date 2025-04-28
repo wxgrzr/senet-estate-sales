@@ -29,9 +29,13 @@
     "@types/react": "^18.0.25",
     "eslint": "^9.9.0",
     "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "typescript": "^5.1.6"
   },
   "prettier": {
+    "plugins": [
+      "prettier-plugin-tailwindcss"
+    ],
     "semi": true,
     "trailingComma": "all",
     "singleQuote": true,
