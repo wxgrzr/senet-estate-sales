@@ -8,10 +8,8 @@ import Container from '@/app/_components/container';
 import Header from '@/app/_components/header';
 import Hero from '@/app/_components/hero';
 import { MoreEstateSales } from '@/app/_components/more-estate-sales';
-import Section from '@/app/_components/section';
 import LinkButton from '@/app/_components/link-button';
 import ConsultationForm from '@/app/_components/consultation-form';
-import ContainerColored from '@/app/_components/container-colored';
 
 export type Post = {
   _id: string;
@@ -47,63 +45,24 @@ export default async function IndexPage() {
     <main>
       <Header />
       <Hero />
+      {/* Ready to Sell With Us? */}
       <Container>
-        {/* Ready to Sell With Us? */}
-        <Section>
-          <div className='items-center gap-8 grid md:grid-cols-2 mx-auto px-4'>
+        <section className='my-24'>
+          <div className='mx-auto grid items-center gap-8 px-4 md:grid-cols-2'>
             <div>
               <Image
                 src='https://placehold.co/600x400/png'
                 width='600'
                 height='400'
                 alt='Contact'
-                className='shadow-lg rounded-xl'
+                className='rounded-xl shadow-lg'
               />
             </div>
             <div>
-              <h2 className='mb-5 font-extrabold text-3xl md:text-4xl lg:text-5xl tracking-tight'>
-                Ready to Sell With Us?
-              </h2>
-              <p className='mb-8 text-gray-500 text-sm md:text-base lg:text-lg'>
-                We make hosting your estate sale easy, organized, and
-                profitable. Let us handle the hard part so you can focus on what
-                matters most.
-              </p>
-              <LinkButton href='/contact'>Schedule a Consultation</LinkButton>
-            </div>
-          </div>
-        </Section>
-      </Container>
-
-      {/* More estate sales */}
-      <ContainerColored>
-        <section className='py-14' id='sales'>
-          <ul className='flex flex-col gap-y-2'>
-            {posts.length > 0 && (
-              <MoreEstateSales posts={posts} postImageUrl={postImageUrl} />
-            )}
-          </ul>
-        </section>
-      </ContainerColored>
-
-      {/* Info Section 2 (Mirrored) */}
-      <Container>
-        <Section>
-          <div className='items-center gap-8 grid md:grid-cols-2 mx-auto px-4'>
-            <div className='md:order-2'>
-              <Image
-                src='https://placehold.co/600x400/png'
-                width='600'
-                height='400'
-                alt='Contact'
-                className='shadow-lg rounded-xl'
-              />
-            </div>
-            <div className='md:order-1'>
-              <h2 className='mb-5 font-extrabold text-3xl md:text-4xl lg:text-5xl tracking-tight'>
+              <h2 className='mb-5 text-3xl font-extrabold tracking-tight md:text-4xl lg:text-5xl'>
                 Who We Are
               </h2>
-              <p className='mb-8 text-gray-500 text-sm md:text-base lg:text-lg'>
+              <p className='mb-8 text-sm text-gray-500 md:text-base lg:text-lg'>
                 We&apos;re a locally rooted team passionate about giving new
                 life to old treasures. With years of experience, we connect
                 stories and collectors.
@@ -111,13 +70,61 @@ export default async function IndexPage() {
               <LinkButton href='/about'>Learn More</LinkButton>
             </div>
           </div>
-        </Section>
+        </section>
       </Container>
 
-      <ConsultationForm />
+      {/* More estate sales */}
+      {/* <div className='bg-blue-600/80 text-blue-50'> */}
+      <Container>
+        <div className='my-14'>
+          <ul className='flex flex-col gap-y-2'>
+            {posts.length > 0 && (
+              <MoreEstateSales posts={posts} postImageUrl={postImageUrl} />
+            )}
+          </ul>
+        </div>
+      </Container>
+      {/* </div> */}
+
+      {/* Info Section 2 (Mirrored) */}
+      <Container>
+        <section className='my-24'>
+          <div className='mx-auto grid items-center gap-8 px-4 md:grid-cols-2'>
+            <div className='md:order-2'>
+              <Image
+                src='https://placehold.co/600x400/png'
+                width='600'
+                height='400'
+                alt='Contact'
+                className='rounded-xl shadow-lg'
+              />
+            </div>
+            <div className='md:order-1'>
+              <h2 className='mb-5 text-3xl font-extrabold tracking-tight md:text-4xl lg:text-5xl'>
+                Ready to Sell With Us?
+              </h2>
+              <p className='mb-8 text-sm text-gray-500 md:text-base lg:text-lg'>
+                We make hosting your estate sale easy, organized, and
+                profitable. Let us handle the hard part so you can focus on what
+                matters most.
+              </p>
+              <LinkButton href='/contact'>Schedule a Consultation</LinkButton>
+            </div>
+          </div>
+        </section>
+      </Container>
+
+      <div className=''>
+        <Container>
+          <div className='my-14'>
+            <ConsultationForm />
+          </div>
+        </Container>
+      </div>
+
       {/* Footer */}
       <footer className='mt-auto py-8'>
-        <div className='gap-6 grid md:grid-cols-3 mx-auto px-4 max-w-7xl'>
+        <div className='mx-auto grid max-w-7xl gap-6 px-4 md:grid-cols-3'>
           <div>
             <h3 className='mb-2 font-semibold'>Senet Estate Sales</h3>
             <p className='text-sm'>

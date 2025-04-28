@@ -2,7 +2,8 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #18181b;
+  --foreground: #04080f;
+  /* --foreground: #18181b; */
 
   --ship-cove-50: #f8fafc;
   --ship-cove-100: #d7deec;
@@ -17,7 +18,17 @@
   --ship-cove-950: #1c222c;
 }
 
+@theme {
+  --color-platinum: #d3dae3;
+  --color-indigodye: #18406b;
+  --color-dimgray: #6d6a75;
+  --color-richblack: #04080f;
+  /* --color- */
+}
+
 @theme inline {
+  --color-black: #04080f;
+  --color-white: #ffffff;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
@@ -35,21 +46,20 @@
   --color-blue-950: var(--ship-cove-950);
 }
 
-[data-theme='dark'] {
-  --background: #18181b;
-  --foreground: #ededed;
-}
-
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: #ffffff;
+  color: #04080f;
   transition:
     background-color 0.3s ease,
     color 0.3s ease; /* Smooth transition */
 }
 
 .btn {
-  @apply rounded-lg bg-blue-600 px-5 py-2 text-white hover:bg-blue-700;
+  @apply rounded border border-blue-600 bg-transparent px-5 py-2 font-semibold text-blue-600 hover:cursor-pointer hover:border-transparent hover:bg-blue-600/80 hover:text-white;
+}
+
+.btn-alternate {
+  @apply border-indigodye text-indigodye hover:bg-indigodye/60 hover:text-platinum rounded border bg-transparent px-5 py-2 font-semibold hover:cursor-pointer hover:border-transparent;
 }
 
 .max-w-7xl-plus {

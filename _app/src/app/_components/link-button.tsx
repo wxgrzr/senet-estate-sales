@@ -10,9 +10,9 @@ const LinkButton = ({
   variant?: 'button' | 'text';
 }) => {
   const baseStyles = 'transition font-medium';
-  const buttonStyles =
-    'bg-blue-600 hover:bg-blue-700 px-5 py-2 rounded-lg text-white';
-  const textStyles = 'hover:underline text-blue-600';
+  const buttonStyles = 'btn';
+  const textStyles =
+    'focus:outline-hidden text-gray-600 hover:text-gray-400 focus:text-gray-400';
 
   return (
     <Link
