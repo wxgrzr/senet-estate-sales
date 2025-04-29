@@ -10,20 +10,12 @@ import Hero from '@/app/_components/hero';
 import { MoreEstateSales } from '@/app/_components/more-estate-sales';
 import LinkButton from '@/app/_components/link-button';
 import ConsultationForm from '@/app/_components/consultation-form';
-
-export type Post = {
-  _id: string;
-  title: string;
-  slug: { current: string };
-  coverImage: string;
-  _createdAt: string;
-  image: string;
-};
+import { Post } from '@/lib/types';
 
 const POSTS_QUERY = `*[
   _type == "post"
   && defined(slug.current)
-]|order(_createdAt desc)[0...12]{_id, title, slug, coverImage, _createdAt}`;
+]|order(_createdAt desc)[0...12]{_id, title, slug, coverImage, location, eventDates}`;
 
 const { projectId, dataset } = client.config();
 const urlFor = (source: SanityImageSource) =>
@@ -74,17 +66,17 @@ export default async function IndexPage() {
       </Container>
 
       {/* More estate sales */}
-      {/* <div className='bg-blue-600/80 text-blue-50'> */}
-      <Container>
-        <div className='my-14'>
-          <ul className='flex flex-col gap-y-2'>
-            {posts.length > 0 && (
-              <MoreEstateSales posts={posts} postImageUrl={postImageUrl} />
-            )}
-          </ul>
-        </div>
-      </Container>
-      {/* </div> */}
+      <div className='bg-platinum'>
+        <Container>
+          <div className='my-14'>
+            <ul className='flex flex-col gap-y-2'>
+              {posts.length > 0 && (
+                <MoreEstateSales posts={posts} postImageUrl={postImageUrl} />
+              )}
+            </ul>
+          </div>
+        </Container>
+      </div>
 
       {/* Info Section 2 (Mirrored) */}
       <Container>
@@ -114,7 +106,7 @@ export default async function IndexPage() {
         </section>
       </Container>
 
-      <div className=''>
+      <div className='bg-platinum'>
         <Container>
           <div className='my-14'>
             <ConsultationForm />
