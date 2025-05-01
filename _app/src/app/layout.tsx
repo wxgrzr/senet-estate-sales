@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { SanityLive } from '@/sanity/live';
 import { HOME_OG_IMAGE_URL } from '@/lib/constants';
+import Header from '@/app/_components/header';
+import Footer from '@/app/_components/footer';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -86,8 +88,12 @@ export default function RootLayout({
         <link rel='alternate' type='application/rss+xml' href='/feed.xml' />
       </head>
       <body className={cn(inter.variable, 'antialiased')}>
-        <div className='min-h-screen'>{children}</div>
-        <SanityLive />
+        <div className='min-h-screen'>
+          <Header />
+          {children}
+          <Footer />
+        </div>
+        {/* <SanityLive /> */}
       </body>
     </html>
   );
