@@ -19,7 +19,7 @@ export function PostPreview({
   slug,
 }: Props) {
   return (
-    <div className='flex flex-col overflow-hidden rounded-lg bg-white shadow-md transition-shadow duration-300 hover:shadow-lg'>
+    <div className='flex flex-col overflow-hidden rounded-md bg-white shadow-md transition-shadow duration-300 hover:shadow-lg'>
       {/* Cover Image */}
       <div className='relative h-auto'>
         <CoverImage slug={slug} title={title} src={coverImage} />

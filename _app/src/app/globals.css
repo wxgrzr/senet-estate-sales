@@ -1,4 +1,33 @@
 @import 'tailwindcss';
+@import './_css/carousel.css';
+
+/* * {
+  background-color: rgba(255, 0, 0, 0.2);
+}
+* * {
+  background-color: rgba(0, 255, 0, 0.2);
+}
+* * * {
+  background-color: rgba(0, 0, 255, 0.2);
+}
+* * * * {
+  background-color: rgba(255, 0, 255, 0.2);
+}
+* * * * * {
+  background-color: rgba(0, 255, 255, 0.2);
+}
+* * * * * * {
+  background-color: rgba(255, 255, 0, 0.2);
+}
+* * * * * * * {
+  background-color: rgba(255, 0, 0, 0.2);
+}
+* * * * * * * * {
+  background-color: rgba(0, 255, 0, 0.2);
+}
+* * * * * * * * * {
+  background-color: rgba(0, 0, 255, 0.2);
+} */
 
 :root {
   --background: #ffffff;
@@ -40,7 +69,7 @@ body {
 }
 
 .btn {
-  @apply rounded border border-blue-600 bg-transparent px-5 py-2 font-semibold text-blue-600 hover:cursor-pointer hover:border-transparent hover:bg-blue-600/80 hover:text-white;
+  @apply border-ship-cove-600 text-ship-cove-600 hover:bg-ship-cove-600/80 rounded border bg-transparent px-5 py-2 font-semibold hover:cursor-pointer hover:border-transparent hover:text-white;
 }
 
 .btn-alternate {
