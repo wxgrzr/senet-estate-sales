@@ -1,26 +1,17 @@
-import {defineConfig} from 'sanity'
-import {structureTool} from 'sanity/structure'
-import {visionTool} from '@sanity/vision'
-import {schemaTypes} from './schemaTypes'
-import {slugOnSave} from './actions/slugOnSave'
+import { defineConfig } from 'sanity';
+import { structureTool } from 'sanity/structure';
+import { visionTool } from '@sanity/vision';
+import { schemaTypes } from './schemaTypes';
 
 export default defineConfig({
-  name: 'default',
-  title: 'senet-estate-sales_web',
-
-  projectId: 'lc0v2d89',
-  dataset: 'production',
-
+  title: process.env.SANITY_STUDIO_TITLE || '',
+  projectId: process.env.SANITY_STUDIO_PROJECT_ID || '',
+  dataset: process.env.SANITY_STUDIO_DATASET || '',
   plugins: [structureTool(), visionTool()],
-
+  project: {
+    basePath: '/studio',
+  },
   schema: {
     types: schemaTypes,
   },
-  // Slugify on save capability
-  // document: {
-  //   actions: (prev) =>
-  //     prev.map((originalAction) =>
-  //       originalAction.action === 'publish' ? slugOnSave(originalAction) : originalAction,
-  //     ),
-  // },
-})
+});
