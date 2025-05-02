@@ -4,14 +4,12 @@ import { visionTool } from '@sanity/vision';
 import { schemaTypes } from './schemaTypes';
 
 export default defineConfig({
-  name: 'default',
-  title: 'senet-estate-sales_web',
-
-  projectId: 'lc0v2d89',
-  dataset: 'production',
-
+  // title: 'senet-estate-sales_web',
+  // projectId: 'lc0v2d89',
+  // dataset: 'production',
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'lc0v2d89',
   plugins: [structureTool(), visionTool()],
-
   schema: {
     types: schemaTypes,
   },
