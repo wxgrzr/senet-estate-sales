@@ -2,17 +2,15 @@ import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { visionTool } from '@sanity/vision';
 import { schemaTypes } from './schemaTypes';
-import FullAddressInput from './components/FullAddressInput';
 
 export default defineConfig({
-  name: 'default',
-  title: 'senet-estate-sales_web',
-
-  projectId: 'lc0v2d89',
-  dataset: 'production',
-
+  title: process.env.SANITY_STUDIO_TITLE || '',
+  projectId: process.env.SANITY_STUDIO_PROJECT_ID || '',
+  dataset: process.env.SANITY_STUDIO_DATASET || '',
   plugins: [structureTool(), visionTool()],
-
+  project: {
+    basePath: '/studio',
+  },
   schema: {
     types: schemaTypes,
   },
