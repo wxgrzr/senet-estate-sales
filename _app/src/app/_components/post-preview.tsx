@@ -19,31 +19,31 @@ export function PostPreview({
   slug,
 }: Props) {
   return (
-    <div className='flex flex-col overflow-hidden rounded-md bg-white shadow-md transition-shadow duration-300 hover:shadow-lg'>
+    <div className='flex h-full flex-col overflow-hidden rounded-md bg-white shadow-md transition-shadow duration-300 hover:shadow-lg'>
       {/* Cover Image */}
       <div className='relative h-auto'>
         <CoverImage slug={slug} title={title} src={coverImage} />
       </div>
 
       {/* Content */}
-      <div className='flex flex-col p-4'>
+      <div className='flex h-full flex-col justify-evenly p-4'>
         {/* Title */}
-        <h3 className='text-indigodye mb-2 text-lg font-semibold leading-tight tracking-tight md:text-xl lg:text-2xl'>
+        <h3 className='mb-2 text-xl font-semibold leading-tight tracking-tight md:text-lg'>
           <Link
             href={`/${slug}`}
-            className='hover:text-indigodye/60 transition-colors duration-200'
+            className='transition-colors duration-200 hover:opacity-50'
           >
             {title}
           </Link>
         </h3>
 
         {/* Address */}
-        <p className='mb-3 text-sm leading-snug text-gray-600 md:text-base lg:text-lg'>
+        <p className='text-md text-richblack/55 mb-3 font-normal leading-tight md:text-base'>
           {fullAddress}
         </p>
 
         {/* Dates */}
-        <div className='mt-auto text-sm text-gray-700 md:text-base lg:text-lg'>
+        <div className='text-richblack/80 mt-auto text-base font-medium md:text-base'>
           <DateRangeFormatter dateStrings={dates} />
         </div>
       </div>

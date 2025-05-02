@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { MenuIcon, CloseIcon } from '@sanity/icons';
 import Image from 'next/image';
-import logoLight from '../../../public/Vector-light-mode.png';
+import logoLight from '../../../public/se-logo-richblack.png';
 import LinkButton from '@/app/_components/link-button';
 
 export default function Header() {
