@@ -23,7 +23,9 @@ const Hero = () => {
                 </p>
               </div>
               <div className='flex justify-center lg:justify-start'>
-                <LinkButton href='#sales'>View Current Sales</LinkButton>
+                <LinkButton href='/upcoming-estate-sales'>
+                  View Upcoming Estate Sales
+                </LinkButton>
               </div>
             </div>
           </div>

@@ -8,11 +8,11 @@ type Props = {
   postImageUrl: (post: Post) => string;
 };
 
-export function MoreEstateSales({ posts, postImageUrl }: Props) {
+function UpcomingEstateSales({ posts, postImageUrl }: Props) {
   return (
     <section className='relative mx-5'>
       <h2 className='mb-8 text-5xl font-bold leading-tight tracking-tighter md:text-7xl'>
-        Our Estate Sales
+        Upcoming Estate Sales
       </h2>
       <div className='mb-8 grid grid-cols-1 gap-y-16 sm:grid-cols-2 sm:gap-x-6 md:gap-x-10 lg:grid-cols-3 lg:gap-x-12 lg:gap-y-24'>
         {posts.map((post: Post) => {
@@ -45,3 +45,5 @@ export function MoreEstateSales({ posts, postImageUrl }: Props) {
     </section>
   );
 }
+
+export default UpcomingEstateSales;

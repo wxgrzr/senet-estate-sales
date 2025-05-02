@@ -6,6 +6,8 @@ import { SanityLive } from '@/sanity/live';
 import { HOME_OG_IMAGE_URL } from '@/lib/constants';
 import Header from '@/app/_components/header';
 import Footer from '@/app/_components/footer';
+import Container from '@/app/_components/container';
+import ConsultationForm from '@/app/_components/consultation-form';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -91,6 +93,15 @@ export default function RootLayout({
         <div className='min-h-screen'>
           <Header />
           {children}
+
+          {/* Consultation Form */}
+          <div className='bg-platinum'>
+            <Container>
+              <section className='py-16 md:py-20 lg:py-24'>
+                <ConsultationForm />
+              </section>
+            </Container>
+          </div>
           <Footer />
         </div>
         {/* <SanityLive /> */}

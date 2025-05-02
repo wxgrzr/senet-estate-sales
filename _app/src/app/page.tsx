@@ -1,18 +1,15 @@
-import Link from 'next/link';
 import imageUrlBuilder from '@sanity/image-url';
 import { client } from '@/sanity/client';
-import Image from 'next/image';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import { sanityFetch } from '@/sanity/live';
 import Container from '@/app/_components/container';
-import Header from '@/app/_components/header';
 import Hero from '@/app/_components/hero';
-import { MoreEstateSales } from '@/app/_components/more-estate-sales';
+
 import LinkButton from '@/app/_components/link-button';
-import ConsultationForm from '@/app/_components/consultation-form';
 import { Post } from '@/lib/types';
 import Carousel from '@/app/_components/carousel';
 import WhatWeDoBest from '@/app/_components/what-we-do-best';
+import UpcomingEstateSales from '@/app/_components/upcoming-estate-sales';
 
 const POSTS_QUERY = `*[
   _type == "post"
@@ -69,7 +66,7 @@ export default async function IndexPage() {
       <div className='bg-platinum'>
         <Container>
           <div className='pb-12 pt-16'>
-            <MoreEstateSales posts={posts} postImageUrl={postImageUrl} />
+            <UpcomingEstateSales posts={posts} postImageUrl={postImageUrl} />
           </div>
         </Container>
       </div>
@@ -103,15 +100,6 @@ export default async function IndexPage() {
       </Container>
 
       <WhatWeDoBest />
-
-      {/* Consultation Form */}
-      <div className='bg-platinum'>
-        <Container>
-          <section className='py-16 md:py-20 lg:py-24'>
-            <ConsultationForm />
-          </section>
-        </Container>
-      </div>
     </main>
   );
 }

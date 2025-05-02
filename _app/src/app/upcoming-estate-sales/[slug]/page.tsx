@@ -17,7 +17,7 @@ const urlFor = (source: SanityImageSource) =>
 
 const options = { next: { revalidate: 30 } };
 
-export default async function PostPage({
+export default async function UpcomingEstateSale({
   params,
 }: {
   params: { slug: string };
@@ -28,8 +28,6 @@ export default async function PostPage({
   });
 
   const { gallery } = post;
-
-  console.log(gallery);
 
   const postImageUrl = post?.gallery
     ? urlFor(post.gallery[0])?.width(550).height(310).url()
@@ -92,22 +90,24 @@ export default async function PostPage({
         <section>
           <h2 className='mb-4 text-2xl font-semibold'>Gallery</h2>
           <div className='grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4'>
-            {gallery.map((img: any, i: number) => {
-              const imgUrl = urlFor(img)?.width(400).height(300).url();
-              return (
-                imgUrl && (
-                  <Image
-                    key={i}
-                    src={imgUrl}
-                    alt={`Gallery image ${i + 1}`}
-                    className='rounded-lg object-cover'
-                    width={400}
-                    height={300}
-                    loading='lazy'
-                  />
-                )
-              );
-            })}
+            {gallery.map(
+              (img: { _id: string; asset: SanityImageSource }, i: number) => {
+                const imgUrl = urlFor(img)?.width(400).height(300).url();
+                return (
+                  imgUrl && (
+                    <Image
+                      key={i}
+                      src={imgUrl}
+                      alt={`Gallery image ${i + 1}`}
+                      className='rounded-lg object-cover'
+                      width={400}
+                      height={300}
+                      loading='lazy'
+                    />
+                  )
+                );
+              },
+            )}
           </div>
         </section>
       )}

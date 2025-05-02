@@ -70,18 +70,18 @@ export default function Header() {
             <LinkButton variant='text' href='/'>
               Home
             </LinkButton>
-            <LinkButton variant='text' href='/about'>
+            <LinkButton variant='text' href='/about-us'>
               About Us
             </LinkButton>
-            <LinkButton variant='text' href='#listings'>
+            <LinkButton variant='text' href='/upcoming-estate-sales'>
               Estate Sales
             </LinkButton>
-            <LinkButton variant='text' href='/FAQ'>
+            <LinkButton variant='text' href='/faq'>
               FAQ
             </LinkButton>
             <LinkButton
               variant={isOpen ? 'text' : 'button'}
-              href='/contact'
+              href='/schedule-consultation'
               className={isOpen ? '' : 'md:ml-2'}
             >
               Schedule a Consultation
