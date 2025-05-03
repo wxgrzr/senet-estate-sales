@@ -2,12 +2,12 @@ import cn from 'classnames';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import { SanityLive } from '@/sanity/live';
 import { HOME_OG_IMAGE_URL } from '@/lib/constants';
 import Header from '@/app/_components/header';
 import Footer from '@/app/_components/footer';
 import Container from '@/app/_components/container';
 import ConsultationForm from '@/app/_components/consultation-form';
+import { SanityLive } from '@/sanity/live';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -104,7 +104,7 @@ export default function RootLayout({
           </div>
           <Footer />
         </div>
-        {/* <SanityLive /> */}
+        <SanityLive />
       </body>
     </html>
   );
