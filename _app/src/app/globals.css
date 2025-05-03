@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import './_css/carousel.css';
+@config "../../tailwind.config.js";
 
 /* * {
   background-color: rgba(255, 0, 0, 0.2);
@@ -66,14 +67,6 @@ body {
   transition:
     background-color 0.3s ease,
     color 0.3s ease; /* Smooth transition */
-}
-
-.btn {
-  @apply border-ship-cove-600 text-ship-cove-600 hover:bg-ship-cove-600/80 rounded border bg-transparent px-5 py-2 font-semibold hover:cursor-pointer hover:border-transparent hover:text-white;
-}
-
-.btn-alternate {
-  @apply border-indigodye text-indigodye hover:bg-indigodye/60 hover:text-platinum rounded border bg-transparent px-5 py-2 font-semibold hover:cursor-pointer hover:border-transparent;
 }
 
 .max-w-7xl-plus {

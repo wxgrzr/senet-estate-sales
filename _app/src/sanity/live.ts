@@ -3,4 +3,7 @@ import { client } from '@/sanity/client';
 
 export const { sanityFetch, SanityLive } = defineLive({
   client: client.withConfig({ apiVersion: 'vX' }),
+  fetchOptions: {
+    revalidate: 30,
+  },
 });

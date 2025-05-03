@@ -1,29 +1,20 @@
+import type { Post } from '../../../sanity.types';
 import { PostPreview } from './_components/post-preview';
 import { ArrowRightIcon } from '@sanity/icons';
 import GridContainer from '@/app/_components/grid-container';
-import imageUrlBuilder from '@sanity/image-url';
-import { client } from '@/sanity/client';
-import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import { sanityFetch } from '@/sanity/live';
 import Container from '@/app/_components/container';
 import Hero from '@/app/_components/hero';
 
-import LinkButton from '@/app/_components/link-button';
-import { Post } from '@/lib/types';
+import { LinkButton } from '@/app/_components/link-button';
 import Carousel from '@/app/_components/carousel';
 import WhatWeDoBest from '@/app/_components/what-we-do-best';
+import { urlFor } from '@/utils/urlFor';
 
 const POSTS_QUERY = `*[
   _type == "post"
   && defined(slug.current) && category == "upcoming"
 ]|order(_createdAt desc)[0...4]{_id, title, slug, coverImage, location, eventDates}`;
-
-const { projectId, dataset } = client.config();
-
-const urlFor = (source: SanityImageSource) =>
-  projectId && dataset
-    ? imageUrlBuilder({ projectId, dataset }).image(source)
-    : null;
 
 export default async function IndexPage() {
   const { data: posts } = await sanityFetch({
@@ -58,7 +49,14 @@ export default async function IndexPage() {
                 life to old treasures. With years of experience, we connect
                 stories and collectors.
               </p>
-              <LinkButton href='/about'>Learn More</LinkButton>
+              <LinkButton
+                href='/about-us'
+                variant='button'
+                colors='secondary'
+                subvariant='solid'
+              >
+                Learn More
+              </LinkButton>
             </div>
           </div>
         </section>
@@ -73,36 +71,33 @@ export default async function IndexPage() {
                 <h2 className='mb-8 text-4xl font-bold leading-[0.9] tracking-tighter md:text-6xl'>
                   Upcoming Estate Sales
                 </h2>
-                <div className='inline-flex justify-end'>
-                  <LinkButton
-                    variant='text'
-                    href='/upcoming-estate-sales'
-                    className='inline-flex items-center'
-                  >
-                    View all upcoming estate sales
-                    <ArrowRightIcon width={24} height={24} />
-                  </LinkButton>
-                </div>
               </div>
               <div className='mb-12'>
                 <GridContainer>
                   {posts.map((post: Post) => {
-                    const eventDates = post.eventDates
-                      ? Object.values(post.eventDates)
-                      : [];
                     return (
                       <div key={post._id}>
                         <PostPreview
-                          title={post.title}
+                          title={post.title || ''}
                           coverImage={postImageUrl(post) as string}
-                          slug={post.slug.current}
-                          dates={eventDates}
-                          fullAddress={post.location.fullAddress}
+                          slug={post.slug?.current || ''}
+                          dates={post?.eventDates || []}
+                          fullAddress={post.location?.fullAddress || ''}
                         />
                       </div>
                     );
                   })}
                 </GridContainer>
+                <div className='mt-8 flex justify-end'>
+                  <LinkButton
+                    variant='text'
+                    href='/upcoming-estate-sales'
+                    className='inline-flex'
+                  >
+                    View all upcoming estate sales
+                    <ArrowRightIcon width={24} height={24} />
+                  </LinkButton>
+                </div>
               </div>
             </section>
           </div>
@@ -133,7 +128,13 @@ export default async function IndexPage() {
                 profitable. Let us handle the hard part so you can focus on what
                 matters most.
               </p>
-              <LinkButton href='/contact'>Schedule a Consultation</LinkButton>
+              <LinkButton
+                href='/schedule-consultation'
+                subvariant='solid'
+                colors='secondary'
+              >
+                Schedule a Consultation
+              </LinkButton>
             </div>
           </div>
         </section>

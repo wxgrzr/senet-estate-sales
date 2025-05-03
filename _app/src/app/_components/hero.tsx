@@ -1,4 +1,4 @@
-import LinkButton from '@/app/_components/link-button';
+import { LinkButton } from '@/app/_components/link-button';
 
 const Hero = () => {
   return (
@@ -7,7 +7,7 @@ const Hero = () => {
       className='relative flex h-[50vh] w-full items-center md:h-[60vh] lg:h-[70vh]'
     >
       {/* Background Image */}
-      <div className='absolute bottom-0 left-0 right-0 top-0 bg-[url(https://images.unsplash.com/photo-1523217582562-09d0def993a6?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] bg-cover bg-left opacity-80 lg:left-[45%] lg:bg-left lg:[clip-path:polygon(0_0,100%_0,100%_100%,30%_100%)]'></div>
+      <div className='absolute bottom-0 left-0 right-0 top-0 bg-[url(https://images.unsplash.com/photo-1523217582562-09d0def993a6?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] bg-cover bg-left lg:left-[45%] lg:bg-left lg:[clip-path:polygon(0_0,100%_0,100%_100%,30%_100%)]'></div>
 
       {/* Content */}
       <div className='flex h-full w-full items-center lg:items-end'>
@@ -23,7 +23,11 @@ const Hero = () => {
                 </p>
               </div>
               <div className='flex justify-center lg:justify-start'>
-                <LinkButton href='/upcoming-estate-sales'>
+                <LinkButton
+                  href='/upcoming-estate-sales'
+                  subvariant='solid'
+                  colors='secondary'
+                >
                   View Upcoming Estate Sales
                 </LinkButton>
               </div>
