@@ -13,8 +13,9 @@ export default function WhatWeDoBest() {
               What We Do Best
             </h2>
             <p className='mx-auto max-w-2xl pb-8 text-gray-600'>
-              With compassion and care, we help you navigate life's transitions
-              through comprehensive estate solutions tailored to your needs.
+              With compassion and care, we help you navigate life&#39;s
+              transitions through comprehensive estate solutions tailored to
+              your needs.
             </p>
           </div>
         </Container>
@@ -46,9 +47,9 @@ export default function WhatWeDoBest() {
                 Downsizing Help
               </h3>
               <p className='text-gray-600'>
-                Whether you're moving or simplifying, we help sort, sell, and
-                rehome your belongings with care and efficiency, reducing your
-                stress during transitions.
+                Whether you&#39;re moving or simplifying, we help sort, sell,
+                and rehome your belongings with care and efficiency, reducing
+                your stress during transitions.
               </p>
             </div>
 

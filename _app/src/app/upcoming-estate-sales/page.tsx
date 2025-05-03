@@ -5,7 +5,6 @@ import { Post } from '@/lib/types';
 import { client } from '@/sanity/client';
 import { sanityFetch } from '@/sanity/live';
 import Container from '@/app/_components/container';
-import GridContainer from '@/app/_components/grid-container';
 
 const POSTS_QUERY = `*[
   _type == "post"

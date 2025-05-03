@@ -1,5 +1,5 @@
 import { AddToCalendarButton } from 'add-to-calendar-button-react';
-import { PortableText, type SanityDocument } from 'next-sanity';
+import { PortableText } from 'next-sanity';
 import imageUrlBuilder from '@sanity/image-url';
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import { client } from '@/sanity/client';
@@ -15,7 +15,7 @@ const urlFor = (source: SanityImageSource) =>
     ? imageUrlBuilder({ projectId, dataset }).image(source)
     : null;
 
-const options = { next: { revalidate: 30 } };
+// const options = { next: { revalidate: 30 } };
 
 export default async function UpcomingEstateSale({
   params,
