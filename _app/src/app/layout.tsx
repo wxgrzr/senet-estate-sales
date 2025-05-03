@@ -12,6 +12,7 @@ import { SanityLive } from '@/sanity/live';
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
+  weight: 'variable',
   display: 'swap',
 });
 
