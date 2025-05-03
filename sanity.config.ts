@@ -3,12 +3,15 @@ import { structureTool } from 'sanity/structure';
 import { visionTool } from '@sanity/vision';
 import { schemaTypes } from './schemaTypes';
 
+// Environment variables for project configuration
+const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'your-projectID';
+const dataset = process.env.SANITY_STUDIO_DATASET || 'production';
+
 export default defineConfig({
-  // title: 'senet-estate-sales_web',
-  // projectId: 'lc0v2d89',
-  // dataset: 'production',
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'lc0v2d89',
+  name: 'default',
+  title: 'senet-estate-sales-web',
+  projectId,
+  dataset,
   plugins: [structureTool(), visionTool()],
   schema: {
     types: schemaTypes,
