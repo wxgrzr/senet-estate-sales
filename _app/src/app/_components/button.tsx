@@ -1,12 +1,12 @@
-import { ButtonProps } from '@/types/types';
-import { ButtonStyles } from '@/lib/constants';
-import cn from 'classnames';
+import { ButtonStyles } from "@/lib/constants";
+import { ButtonProps } from "@/lib/types";
+import cn from "classnames";
 
 export const Button = ({
   type,
   children,
-  colors = 'primary',
-  subvariant = 'solid',
+  colors = "primary",
+  subvariant = "solid",
   className,
 }: ButtonProps) => {
   return (
@@ -16,7 +16,7 @@ export const Button = ({
         ButtonStyles.baseStyles,
         ButtonStyles.subvariantStyles[subvariant],
         ButtonStyles.colorStyles[colors][subvariant],
-        className,
+        className
       )}
     >
       {children}

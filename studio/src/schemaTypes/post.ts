@@ -1,4 +1,3 @@
-import { nanoid } from 'nanoid';
 import { defineField, defineType } from 'sanity';
 import unitedStates from '../lib/unitedStates';
 import FullAddressInput from '../components/FullAddressInput';
@@ -19,7 +18,6 @@ export const postType = defineType({
       type: 'slug',
       options: {
         source: 'title',
-        // slugify: (value) => (value ? nanoid() : ''),
         isUnique: (value, context) => context.defaultIsUnique(value, context),
       },
       validation: (rule) =>
