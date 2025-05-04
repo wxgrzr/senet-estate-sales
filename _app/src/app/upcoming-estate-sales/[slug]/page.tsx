@@ -6,18 +6,23 @@ import { sanityFetch } from '@/sanity/live';
 import { urlFor } from '@/utils/urlFor';
 import { Breadcrumbs } from '@/app/_components/breadcrumbs';
 import { LinkButton } from '@/app/_components/link-button';
+import { notFound } from 'next/navigation';
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
 
-export default async function UpcomingEstateSale({
+export default async function Page({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
   const { data: post } = await sanityFetch({
     query: POST_QUERY,
-    params: params,
+    params: await params,
   });
+
+  if (!post) {
+    notFound();
+  }
 
   const { gallery } = post;
 

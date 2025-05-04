@@ -1,7 +1,4 @@
 module.exports = {
-  content: [
-    './src/**/*.{js,ts,jsx,tsx,mdx}',
-    // Do NOT include node_modules here!
-  ],
+  content: ["./app/**/*.{ts,tsx}", "./sanity/**/*.{ts,tsx}"],
   // ...rest of config
 };
