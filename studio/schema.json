@@ -328,7 +328,7 @@
         "value": {
           "type": "string"
         },
-        "optional": true
+        "optional": false
       },
       "slug": {
         "type": "objectAttribute",
@@ -336,7 +336,7 @@
           "type": "inline",
           "name": "slug"
         },
-        "optional": true
+        "optional": false
       },
       "coverImage": {
         "type": "objectAttribute",
@@ -742,7 +742,7 @@
             }
           }
         },
-        "optional": true
+        "optional": false
       },
       "eventDates": {
         "type": "objectAttribute",
@@ -948,7 +948,7 @@
             }
           ]
         },
-        "optional": true
+        "optional": false
       }
     }
   },
@@ -1344,7 +1344,7 @@
           "value": {
             "type": "string"
           },
-          "optional": true
+          "optional": false
         },
         "source": {
           "type": "objectAttribute",
