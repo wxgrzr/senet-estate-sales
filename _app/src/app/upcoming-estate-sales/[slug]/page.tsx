@@ -1,31 +1,28 @@
 import { AddToCalendarButton } from 'add-to-calendar-button-react';
 import { PortableText } from 'next-sanity';
-import imageUrlBuilder from '@sanity/image-url';
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
-import { client } from '@/sanity/client';
-import Link from 'next/link';
 import Image from 'next/image';
 import { sanityFetch } from '@/sanity/live';
+import { urlFor } from '@/utils/urlFor';
+import { Breadcrumbs } from '@/app/_components/breadcrumbs';
+import { LinkButton } from '@/app/_components/link-button';
+import { notFound } from 'next/navigation';
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
 
-const { projectId, dataset } = client.config();
-const urlFor = (source: SanityImageSource) =>
-  projectId && dataset
-    ? imageUrlBuilder({ projectId, dataset }).image(source)
-    : null;
-
-// const options = { next: { revalidate: 30 } };
-
-export default async function UpcomingEstateSale({
+export default async function Page({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
   const { data: post } = await sanityFetch({
     query: POST_QUERY,
-    params: params,
+    params: await params,
   });
+
+  if (!post) {
+    notFound();
+  }
 
   const { gallery } = post;
 
@@ -37,10 +34,21 @@ export default async function UpcomingEstateSale({
   const saleDates = post?.dates || 'TBD';
 
   return (
-    <main className='container mx-auto flex min-h-screen max-w-6xl flex-col gap-8 p-4'>
-      <Link href='/' className='text-sm hover:underline'>
-        ← Back to posts
-      </Link>
+    <div>
+      <div className='hidden md:block'>
+        <Breadcrumbs
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'Upcoming Estate Sales', href: '/upcoming-estate-sales' },
+            { label: post?.title || 'Estate Sale' },
+          ]}
+        />
+      </div>
+      <div className='mb-4 md:hidden'>
+        <LinkButton href='/upcoming-estate-sales' variant='text'>
+          ← Back to Upcoming Estate Sales
+        </LinkButton>
+      </div>
 
       {/* Header */}
       <div className='flex flex-col justify-between gap-6 md:flex-row'>
@@ -111,6 +119,6 @@ export default async function UpcomingEstateSale({
           </div>
         </section>
       )}
-    </main>
+    </div>
   );
 }

@@ -30,7 +30,7 @@ export function PostPreview({
         {/* Title */}
         <h3 className='mb-2 text-xl font-semibold leading-tight tracking-tight md:text-lg'>
           <Link
-            href={`/${slug}`}
+            href={`/upcoming-estate-sales/${slug}`}
             className='transition-colors duration-200 hover:opacity-50'
           >
             {title}

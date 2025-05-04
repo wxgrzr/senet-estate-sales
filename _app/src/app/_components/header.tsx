@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { MenuIcon, CloseIcon } from '@sanity/icons';
 import Image from 'next/image';
 import logoLight from '../../../public/se-logo-richblack.png';
-import LinkButton from '@/app/_components/link-button';
+import { LinkButton } from '@/app/_components/link-button';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,7 +34,7 @@ export default function Header() {
             className='focus:outline-hidden flex-none text-xl font-semibold focus:opacity-80'
             aria-label='Brand'
           >
-            <div className='inline-flex items-center gap-x-2 py-2 text-xl font-bold'>
+            <div className='inline-flex h-auto w-[100px] items-center gap-x-2 py-2 text-xl font-bold'>
               <Image
                 className='w-35 h-auto'
                 src={logoLight}
@@ -51,14 +51,14 @@ export default function Header() {
               onClick={() => setIsOpen(!isOpen)}
               aria-expanded={isOpen}
               aria-controls='navbar-collapse'
-              aria-label='Toggle navigation'
+              aria-label='Toggle navigation menu'
             >
               {isOpen ? (
                 <CloseIcon className='size-4' />
               ) : (
                 <MenuIcon className='size-4' />
               )}
-              <span className='sr-only'>Toggle navigation</span>
+              <span className='sr-only'>Toggle navigation menu</span>
             </button>
           </div>
         </div>
@@ -81,6 +81,8 @@ export default function Header() {
             </LinkButton>
             <LinkButton
               variant={isOpen ? 'text' : 'button'}
+              subvariant='solid'
+              colors='secondary'
               href='/schedule-consultation'
               className={isOpen ? '' : 'md:ml-2'}
             >
