@@ -1,19 +1,17 @@
-export type Post = {
-  _id: string;
-  title: string;
-  slug: { current: string };
-  coverImage: string;
-  _createdAt: string;
-  image: string;
-  eventDates: string[];
-  location: {
-    state: string;
-    zip: string;
-    city: string;
-    streetAddress: string;
-    coordinates: {
-      alt: number;
-    };
-    fullAddress: string;
-  };
+import { ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react';
+
+export type BtnStyleProps = {
+  colors?: 'primary' | 'secondary' | 'indigodye';
+  variant?: 'button' | 'text';
+  subvariant?: 'solid' | 'outline';
+  className?: string;
+  children?: React.ReactNode;
 };
+
+export type ButtonProps = BtnStyleProps &
+  ButtonHTMLAttributes<HTMLButtonElement>;
+
+export type LinkButtonProps = BtnStyleProps &
+  AnchorHTMLAttributes<HTMLAnchorElement> & {
+    href: string;
+  };

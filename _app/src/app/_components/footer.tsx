@@ -22,7 +22,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href='/estate-sales' className='hover:underline'>
+                <Link href='/upcoming-estate-sales' className='hover:underline'>
                   Current Sales
                 </Link>
               </li>

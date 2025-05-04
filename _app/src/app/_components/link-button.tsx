@@ -1,28 +1,30 @@
+import { LinkButtonProps } from '@/types/types';
+import { ButtonStyles } from '@/lib/constants';
+import cn from 'classnames';
 import Link from 'next/link';
 
-const LinkButton = ({
+export const LinkButton = ({
   href,
   children,
-  variant = 'button', // 'button' or 'text'
+  variant = 'button',
+  colors = 'primary',
+  subvariant = 'solid',
   className,
-}: {
-  href: string;
-  children: React.ReactNode;
-  variant?: 'button' | 'text';
-  className?: string | undefined;
-}) => {
-  const baseStyles = 'hover:cursor-pointer transition font-medium';
-  const textStyles =
-    'focus:outline-hidden text-gray-600 hover:text-gray-400 focus:text-gray-400';
-
+}: LinkButtonProps) => {
   return (
     <Link
       href={href}
-      className={`${baseStyles} ${variant === 'button' ? 'btn' : textStyles} ${className ? className : ''}`}
+      className={cn(
+        variant === 'button' && ButtonStyles.baseStyles,
+        ButtonStyles.variantStyles[variant],
+        variant === 'button' ? ButtonStyles.subvariantStyles[subvariant] : '',
+        variant === 'button'
+          ? ButtonStyles.colorStyles[colors][subvariant]
+          : '',
+        className,
+      )}
     >
       {children}
     </Link>
   );
 };
-
-export default LinkButton;
