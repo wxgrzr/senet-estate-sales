@@ -1,4 +1,4 @@
-import { ButtonStyles } from "@/lib/constants";
+import { ButtonStyles } from "@/lib/buttonStyles";
 import { LinkButtonProps } from "@/lib/types";
 import cn from "classnames";
 import Link from "next/link";

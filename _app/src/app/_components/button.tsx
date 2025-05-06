@@ -1,5 +1,5 @@
-import { ButtonStyles } from "@/lib/constants";
 import { ButtonProps } from "@/lib/types";
+import { ButtonStyles } from "@/lib/buttonStyles";
 import cn from "classnames";
 
 export const Button = ({
