@@ -14,6 +14,7 @@ export const LinkButton = ({
   return (
     <Link
       href={href}
+      role={variant === "button" ? "button" : ""}
       className={cn(
         variant === "button" && ButtonStyles.baseStyles,
         ButtonStyles.variantStyles[variant],

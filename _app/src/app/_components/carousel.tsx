@@ -1,13 +1,14 @@
-'use client';
-import classNames from 'classnames';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
+"use client";
+import classNames from "classnames";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 type CarouselProps = {
   srcs: object;
+  altPrefix: string;
 };
 
-const Carousel = ({ srcs }: CarouselProps) => {
+const Carousel = ({ srcs, altPrefix }: CarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const items = Object.values(srcs);
 
@@ -19,17 +20,17 @@ const Carousel = ({ srcs }: CarouselProps) => {
   }, [items.length]);
 
   return (
-    <div className='relative h-[400px] max-w-[600px] overflow-hidden rounded-lg'>
+    <div className="relative h-[400px] max-w-[600px] overflow-hidden rounded-lg">
       {items.map((item, index) => (
         <Image
           key={index}
           src={item}
-          width='600'
-          height='400'
-          alt='Contact'
+          width="600"
+          height="400"
+          alt={`${altPrefix} carousel image #${index}`}
           className={classNames(
-            'absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-in-out',
-            index === currentIndex ? 'z-10 opacity-100' : 'z-0 opacity-0',
+            "absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-in-out",
+            index === currentIndex ? "z-10 opacity-100" : "z-0 opacity-0"
           )}
         />
       ))}

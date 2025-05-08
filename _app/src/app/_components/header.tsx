@@ -89,27 +89,6 @@ export default function Header() {
                 </LinkButton>
               );
             })}
-            {/* <LinkButton variant='text' href='/'>
-              Home
-            </LinkButton>
-            <LinkButton variant='text' href='/about-us'>
-              About Us
-            </LinkButton>
-            <LinkButton variant='text' href='/upcoming-estate-sales'>
-              Estate Sales
-            </LinkButton>
-            <LinkButton variant='text' href='/faq'>
-              FAQ
-            </LinkButton>
-            <LinkButton
-              variant={isOpen ? 'text' : 'button'}
-              subvariant='solid'
-              colors='secondary'
-              href='/schedule-consultation'
-              className={isOpen ? '' : 'md:ml-2'}
-            >
-              Schedule a Consultation
-            </LinkButton> */}
           </div>
         </div>
       </nav>
