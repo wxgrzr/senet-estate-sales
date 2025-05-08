@@ -3,7 +3,7 @@ export const baseStyles =
   "rounded px-5 py-2 font-medium transition-colors duration-100";
 
 export const variantStyles = {
-  button: "",
+  button: "cursor-pointer",
   text: "focus:outline-hidden text-gray-600 hover:text-gray-400 focus:text-gray-400",
 };
 

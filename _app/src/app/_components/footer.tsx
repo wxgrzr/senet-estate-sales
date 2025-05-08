@@ -1,6 +1,8 @@
 import Container from "@/app/_components/container";
 import { LinkButton } from "@/app/_components/link-button";
 import { PAGES } from "@/lib/constants";
+import logoLight from "../../../public/se-logo-richblack.png";
+import Image from "next/image";
 import Link from "next/link";
 
 const Footer = () => {
@@ -9,7 +11,11 @@ const Footer = () => {
       <Container>
         <div className="grid gap-8 md:grid-cols-3">
           <div>
-            <h3 className="mb-4 text-lg font-semibold">Senet Estate Sales</h3>
+            <div className="mb-4">
+              <Link href="/" aria-label="Brand">
+                <Image src={logoLight} alt="Logo" width={100} />
+              </Link>
+            </div>
             <p className="text-sm text-gray-600">
               Your trusted partner for estate sales and vintage finds in&nbsp;
               <b>Southeastern Michigan.</b>
@@ -26,33 +32,6 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-            {/* <ul className='space-y-2 text-sm text-gray-600'>
-              <li>
-                <Link href='/' className='hover:underline'>
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href='/upcoming-estate-sales' className='hover:underline'>
-                  Current Sales
-                </Link>
-              </li>
-              <li>
-                <Link href='/consultation' className='hover:underline'>
-                  Schedule a Consultation
-                </Link>
-              </li>
-              <li>
-                <Link href='/about' className='hover:underline'>
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href='/faq' className='hover:underline'>
-                  FAQ
-                </Link>
-              </li>
-            </ul> */}
           </div>
           <div>
             <h4 className="mb-4 text-lg font-semibold">Contact Info</h4>

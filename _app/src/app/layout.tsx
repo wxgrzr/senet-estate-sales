@@ -95,14 +95,6 @@ export default function RootLayout({
           <Header />
           {children}
 
-          {/* Consultation Form */}
-          <div className="bg-platinum">
-            <Container>
-              <section className="py-16 md:py-20 lg:py-24">
-                <ConsultationForm />
-              </section>
-            </Container>
-          </div>
           <Footer />
         </div>
         <SanityLive />
