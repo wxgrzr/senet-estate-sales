@@ -37,6 +37,8 @@ export default async function IndexPage() {
           <section className="py-16 md:py-20 lg:py-24">
             <div className="grid items-center gap-8 md:grid-cols-2">
               <Carousel
+                className="h-[250px] min-h-[300px] max-w-[600px]"
+                altPrefix="who-we-are-section"
                 srcs={{
                   0: "https://b2670080.smushcdn.com/2670080/wp-content/uploads/2022/03/2018-kleinerteam.jpg?lossy=0&strip=1&webp=1",
                   1: "https://images.unsplash.com/photo-1739813914275-a0952d33477b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -68,10 +70,10 @@ export default async function IndexPage() {
 
       <div className="bg-platinum" id="upcoming-estate-sales">
         <Container>
-          <div className="pb-12 pt-16">
+          <div className="pt-16 pb-12">
             <section className="relative m-5">
               <div className="flex justify-between">
-                <h2 className="mb-8 text-4xl font-bold leading-[0.9] tracking-tighter md:text-6xl">
+                <h2 className="mb-8 text-4xl leading-[0.9] font-bold tracking-tighter md:text-6xl">
                   Upcoming Estate Sales
                 </h2>
               </div>
@@ -113,6 +115,8 @@ export default async function IndexPage() {
             <div className="grid items-center gap-8 md:grid-cols-2">
               <div className="md:order-2">
                 <Carousel
+                  className="h-[250px] min-h-[300px] max-w-[600px]"
+                  altPrefix="ready-to-sell-with-us-section"
                   srcs={{
                     0: "https://images.unsplash.com/photo-1511737561643-649a082cd8a2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                     1: "https://images.unsplash.com/photo-1526714777143-799b30a29fdb?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
