@@ -13,10 +13,10 @@ export const Button = ({
     <button
       type={type}
       className={cn(
+        className ? className : "",
         ButtonStyles.baseStyles,
         ButtonStyles.subvariantStyles[subvariant],
         ButtonStyles.colorStyles[colors][subvariant],
-        className
       )}
     >
       {children}
