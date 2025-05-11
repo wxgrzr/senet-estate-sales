@@ -98,7 +98,57 @@ export type Post = {
     fullAddress?: string;
     streetAddress?: string;
     city?: string;
-    state?: "AL" | "AK" | "AZ" | "AR" | "CA" | "CO" | "CT" | "DE" | "FL" | "GA" | "HI" | "ID" | "IL" | "IN" | "IA" | "KS" | "KY" | "LA" | "ME" | "MD" | "MA" | "MI" | "MN" | "MS" | "MO" | "MT" | "NE" | "NV" | "NH" | "NJ" | "NM" | "NY" | "NC" | "ND" | "OH" | "OK" | "OR" | "PA" | "RI" | "SC" | "SD" | "TN" | "TX" | "UT" | "VT" | "VA" | "WA" | "WV" | "WI" | "WY";
+    state?:
+      | "AL"
+      | "AK"
+      | "AZ"
+      | "AR"
+      | "CA"
+      | "CO"
+      | "CT"
+      | "DE"
+      | "FL"
+      | "GA"
+      | "HI"
+      | "ID"
+      | "IL"
+      | "IN"
+      | "IA"
+      | "KS"
+      | "KY"
+      | "LA"
+      | "ME"
+      | "MD"
+      | "MA"
+      | "MI"
+      | "MN"
+      | "MS"
+      | "MO"
+      | "MT"
+      | "NE"
+      | "NV"
+      | "NH"
+      | "NJ"
+      | "NM"
+      | "NY"
+      | "NC"
+      | "ND"
+      | "OH"
+      | "OK"
+      | "OR"
+      | "PA"
+      | "RI"
+      | "SC"
+      | "SD"
+      | "TN"
+      | "TX"
+      | "UT"
+      | "VT"
+      | "VA"
+      | "WA"
+      | "WV"
+      | "WI"
+      | "WY";
     zip?: string;
     coordinates?: Geopoint;
   };
@@ -194,5 +244,17 @@ export type Slug = {
   source?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Post | Geopoint | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
+export type AllSanitySchemaTypes =
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityFileAsset
+  | Post
+  | Geopoint
+  | SanityImageCrop
+  | SanityImageHotspot
+  | SanityImageAsset
+  | SanityAssetSourceData
+  | SanityImageMetadata
+  | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
