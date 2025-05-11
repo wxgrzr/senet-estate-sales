@@ -21,7 +21,7 @@ const Carousel = ({ srcs, altPrefix, className }: CarouselProps) => {
   }, [items.length]);
 
   return (
-    <div className={cn("relative overflow-hidden rounded-lg ", className ? className : "")}>
+    <div className={cn("relative overflow-hidden rounded-lg", className)}>
       {items.map((item, index) => (
         <Image
           key={index}
