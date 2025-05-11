@@ -18,7 +18,7 @@ const Hero = () => {
                 <h2 className="leading-tighter text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
                   SENET ESTATE SALES
                 </h2>
-                <p className="leading-tighter mb-4 text-sm text-gray-500 sm:text-base md:text-lg lg:text-xl">
+                <p className="leading-tighter mb-4 text-sm text-gray-500 sm:text-base md:text-lg lg:text-xl text-pretty">
                   Professional liquidation services in <b>Southeastern MI</b>
                 </p>
               </div>
