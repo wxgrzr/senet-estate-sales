@@ -1,10 +1,10 @@
-import { defineField, defineType } from 'sanity';
+import { defineArrayMember, defineField, defineType } from 'sanity';
 import unitedStates from '../lib/unitedStates';
 import FullAddressInput from '../components/FullAddressInput';
 
-export const postType = defineType({
+export default defineType({
   name: 'post',
-  title: 'Post',
+  title: 'Estate Sale Listing',
   type: 'document',
   fields: [
     defineField({
@@ -35,7 +35,7 @@ export const postType = defineType({
     defineField({
       name: 'gallery',
       type: 'array',
-      of: [{ type: 'image' }],
+      of: [defineArrayMember({ type: 'image' })],
       options: {
         layout: 'grid',
       },
@@ -95,10 +95,10 @@ export const postType = defineType({
       title: 'Event Dates',
       type: 'array',
       of: [
-        {
+        defineArrayMember({
           type: 'datetime',
           title: 'Date / Time',
-        },
+        }),
       ],
       description: 'Add multiple dates and times for the estate sale event.',
       validation: (rule) =>
@@ -111,7 +111,7 @@ export const postType = defineType({
     defineField({
       name: 'body',
       type: 'array',
-      of: [{ type: 'block' }],
+      of: [defineArrayMember({ type: 'block' })],
     }),
     defineField({
       name: 'category',
