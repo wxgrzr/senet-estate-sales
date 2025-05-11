@@ -30,7 +30,8 @@ Now you can do the following things:
 - [ ] Estate Sale Post page:
   - [ ] Dates
   - [ ] Add to calendar (?)
-  - [ ] Max height description
+  - [ ] Description scroll 
   - [ ] Gallery zoom/fullscreen
+  - [ ] Pagination (load more...)
 - [x] Consultation page:
   - [x] Make form inputs darker for white bg

@@ -1,7 +1,8 @@
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { visionTool } from '@sanity/vision';
-import { schemaTypes } from './src/schemaTypes';
+import { schemaTypes } from './src/schemas';
+import { deskStructure } from './structure';
 
 // Environment variables for project configuration
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'lc0v2d89';
@@ -12,7 +13,7 @@ export default defineConfig({
   title: 'senet-estate-sales-web',
   projectId,
   dataset,
-  plugins: [structureTool(), visionTool()],
+  plugins: [structureTool({structure: deskStructure}), visionTool()],
   schema: {
     types: schemaTypes,
   },
