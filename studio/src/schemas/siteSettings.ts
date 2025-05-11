@@ -1,8 +1,11 @@
 import { defineField, defineType } from 'sanity';
+import {CogIcon} from '@sanity/icons'
 
-export const footerType = defineType({
-  name: 'footer',
-  title: 'Footer content',
+
+export default defineType({
+  name: 'siteSettings',
+  title: 'Site Settings',
+  icon: CogIcon,
   type: 'document',
   fields: [
     defineField({
@@ -24,7 +27,7 @@ export const footerType = defineType({
         {
           name: 'addressLine2',
           type: 'string',
-          title: 'Address line 1',
+          title: 'Address line 2',
           description: `Format: "City, State ZIP"`,
         },
       ],
@@ -32,7 +35,18 @@ export const footerType = defineType({
     defineField({
       name: 'emailAddress',
       type: 'string',
-      title: 'Email address (optional)',
+      title: 'Email address',
     }),
+    // defineField({
+    //   name: 'title',
+    //   title: 'Site Title',
+    //   type: 'string',
+    // }),
+    // defineField({
+    //   name: 'description',
+    //   title: 'Site Description',
+    //   type: 'text',
+    // }),
+    // TODO: Add more (e.g., social links, logo, etc.)
   ],
 });
