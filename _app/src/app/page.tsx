@@ -68,44 +68,42 @@ export default async function IndexPage() {
         </Container>
       </div>
 
-      <div className="bg-platinum" id="upcoming-estate-sales">
+      <div className="bg-platinum py-12" id="upcoming-estate-sales">
         <Container>
-          <div className="pt-16 pb-12">
-            <section className="relative m-5">
-              <div className="flex justify-between">
-                <h2 className="mb-8 text-4xl leading-[0.9] font-bold tracking-tighter md:text-6xl">
-                  Upcoming Estate Sales
-                </h2>
-              </div>
-              <div className="mb-12">
-                <GridContainer>
-                  {posts.map((post: Post) => {
-                    return (
-                      <div key={post._id}>
-                        <PostPreview
-                          title={post.title || ""}
-                          coverImage={postImageUrl(post) as string}
-                          slug={post.slug?.current || ""}
-                          dates={post?.eventDates || []}
-                          fullAddress={post.location?.fullAddress || ""}
-                        />
-                      </div>
-                    );
-                  })}
-                </GridContainer>
-                <div className="mt-8 flex justify-end">
-                  <LinkButton
-                    variant="text"
-                    href="/upcoming-estate-sales"
-                    className="inline-flex"
-                  >
-                    View all upcoming estate sales
-                    <ArrowRightIcon width={24} height={24} />
-                  </LinkButton>
-                </div>
-              </div>
-            </section>
-          </div>
+          <section className="relative">
+            <div className="flex justify-between">
+              <h2 className="mb-8 text-4xl leading-[0.9] font-bold tracking-tighter md:text-6xl">
+                Upcoming Estate Sales
+              </h2>
+            </div>
+            <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 lg:gap-6">
+              {posts.map((post: Post) => {
+                return (
+                  <div key={post._id}>
+                    <PostPreview
+                      title={post.title || ""}
+                      coverImage={postImageUrl(post) as string}
+                      slug={post.slug?.current || ""}
+                      dates={post?.eventDates || []}
+                      fullAddress={post.location?.fullAddress || ""}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+            <div className="mt-8 flex justify-end">
+              <LinkButton
+                variant="text"
+                href="/upcoming-estate-sales"
+                className="inline-flex group"
+              >
+                View all upcoming estate sales
+                <span className="arrow-animate ml-1 transition-transform duration-200 group-hover:translate-x-1">
+                  <ArrowRightIcon width={24} height={24} />
+                </span>
+              </LinkButton>
+            </div>
+          </section>
         </Container>
       </div>
 

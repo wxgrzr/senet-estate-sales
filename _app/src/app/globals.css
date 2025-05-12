@@ -1,6 +1,5 @@
 @import 'tailwindcss';
-@import './_css/carousel.css';
-@config "../../tailwind.config.js";
+/* @config "../../tailwind.config.js"; */
 
 /* * {
   background-color: rgba(255, 0, 0, 0.2);
@@ -71,4 +70,61 @@ body {
 
 .max-w-7xl-plus {
   max-width: 1360px;
+}
+
+.carousel {
+  @apply inline-flex overflow-x-scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    @apply hidden;
+  }
+}
+
+.carousel-vertical {
+  @apply flex-col overflow-y-scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.carousel-horizontal {
+  @apply flex-row overflow-x-scroll;
+  scroll-snap-type: x mandatory;
+}
+
+.carousel-item {
+  @apply box-content flex flex-none;
+  scroll-snap-align: start;
+}
+
+.carousel-start {
+  .carousel-item {
+    scroll-snap-align: start;
+  }
+}
+
+.carousel-center {
+  .carousel-item {
+    scroll-snap-align: center;
+  }
+}
+
+.carousel-end {
+  .carousel-item {
+    scroll-snap-align: end;
+  }
+}
+
+@keyframes arrow-bounce {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(2px)
+  }
+}
+.group:hover .arrow-animate {
+  will-change: transform;
+  animation: arrow-bounce 0.5s forwards;
 }
