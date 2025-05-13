@@ -22,7 +22,7 @@ export const LinkButton = ({
         variant === "button"
           ? ButtonStyles.colorStyles[colors][subvariant]
           : "",
-        className
+        className ? className : ""
       )}
     >
       {children}

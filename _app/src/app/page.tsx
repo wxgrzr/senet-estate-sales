@@ -1,7 +1,6 @@
 import type { Post } from "../../../studio/sanity.types";
 import { PostPreview } from "./_components/post-preview";
 import { ArrowRightIcon } from "@sanity/icons";
-import GridContainer from "@/app/_components/grid-container";
 import Container from "@/app/_components/container";
 import Hero from "@/app/_components/hero";
 
@@ -37,7 +36,7 @@ export default async function IndexPage() {
           <section className="py-16 md:py-20 lg:py-24">
             <div className="grid items-center gap-8 md:grid-cols-2">
               <Carousel
-                className="h-[250px] min-h-[300px] max-w-[600px]"
+                className="min-h-[380px]"
                 altPrefix="who-we-are-section"
                 srcs={{
                   0: "https://b2670080.smushcdn.com/2670080/wp-content/uploads/2022/03/2018-kleinerteam.jpg?lossy=0&strip=1&webp=1",
@@ -95,7 +94,7 @@ export default async function IndexPage() {
               <LinkButton
                 variant="text"
                 href="/upcoming-estate-sales"
-                className="inline-flex group"
+                className="group inline-flex"
               >
                 View all upcoming estate sales
                 <span className="arrow-animate ml-1 transition-transform duration-200 group-hover:translate-x-1">
@@ -113,7 +112,7 @@ export default async function IndexPage() {
             <div className="grid items-center gap-8 md:grid-cols-2">
               <div className="md:order-2">
                 <Carousel
-                  className="h-[250px] min-h-[300px] max-w-[600px]"
+                  className="min-h-[380px]"
                   altPrefix="ready-to-sell-with-us-section"
                   srcs={{
                     0: "https://images.unsplash.com/photo-1511737561643-649a082cd8a2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
