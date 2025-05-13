@@ -4,6 +4,6 @@ export const HOME_OG_IMAGE_URL =
 export const PAGES = [
   { label: "Home", href: "/" },
   { label: "Estate Sales", href: "/upcoming-estate-sales" },
-  { label: "FAQ", href: "/faq" },
+  { label: "FAQs", href: "/faq" },
   { label: "Schedule a Consultation", href: "/schedule-a-consultation" },
 ];
