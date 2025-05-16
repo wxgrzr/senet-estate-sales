@@ -21,10 +21,12 @@ export default function ScheduleConsultation() {
               </div>
               <Carousel
                 className='min-h-72 lg:mr-8 lg:w-3/4 lg:self-end'
-                altPrefix='consultation-page'
-                srcs={{
-                  0: 'https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                }}
+                images={[
+                  {
+                    url: 'https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                    alt: 'Traditional style home in neighborhood',
+                  },
+                ]}
               />
             </div>
             <div className='m-auto flex w-full flex-1/2 flex-col justify-center py-8'>

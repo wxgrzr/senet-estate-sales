@@ -57,7 +57,7 @@ export default async function IndexPage() {
               <div className='relative flex h-[21rem] w-[14rem] md:h-[28rem] md:w-[40rem]'>
                 <Image
                   style={{ objectFit: 'cover' }}
-                  src={'/heroimg/heroimg@3x.png'}
+                  src={'/heroimg/heroimg@3x.webp'}
                   fill
                   alt=''
                   className='rounded-2xl'
@@ -76,23 +76,38 @@ export default async function IndexPage() {
             <div className='grid items-center gap-8 md:grid-cols-2'>
               <Carousel
                 className='min-h-96'
-                altPrefix='who-we-are-section'
-                srcs={{
-                  0: 'https://b2670080.smushcdn.com/2670080/wp-content/uploads/2022/03/2018-kleinerteam.jpg?lossy=0&strip=1&webp=1',
-                  1: 'https://images.unsplash.com/photo-1739813914275-a0952d33477b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                  2: 'https://images.unsplash.com/photo-1584738766473-61c083514bf4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                }}
+                images={[
+                  {
+                    alt: 'Focused image of woman checking out at estate sale',
+                    url: '/large/estatesale28.jpeg',
+                  },
+                  {
+                    alt: 'Active estate sale checkout table',
+                    url: '/large/estate36.jpeg',
+                  },
+                  {
+                    alt: 'People carrying items to checkout at estate sale',
+                    url: '/large/estatesale31.jpeg',
+                  },
+                  {
+                    alt: 'People viewing items at estate sale',
+                    url: '/large/estate34.jpeg',
+                  },
+                ]}
               />
               <div>
                 <h2 className='mb-6 text-4xl font-extrabold tracking-tight'>
-                  What We Carry
+                  Who We Are
                 </h2>
                 <p className='mb-6 text-lg text-gray-700'>
-                  Senet Estate Sales helps people move through life&#39;s
-                  transitions with care, attention, and quiet respect. Every
-                  home holds a story—told through furniture worn smooth by years
-                  of touch, shelves lined with books that shaped a mind, or
-                  dishes that served a hundred quiet meals.
+                  We’re a small but passionate team proudly serving Southeastern
+                  Michigan through thoughtfully run estate sales. From the front
+                  door greeting to the final checkout, our hands-on staff is
+                  organized, friendly, and committed to making the process
+                  easy—for both families and buyers. Whether we’re setting up
+                  jewelry displays, helping customers discover one-of-a-kind
+                  pieces, or answering questions at the register, we bring care
+                  and transparency to every sale.
                 </p>
                 <LinkButton
                   href='#our-services'
@@ -162,28 +177,44 @@ export default async function IndexPage() {
               <div className='md:order-2'>
                 <Carousel
                   className='min-h-96'
-                  altPrefix='ready-to-sell-with-us-section'
-                  srcs={{
-                    0: 'https://images.unsplash.com/photo-1511737561643-649a082cd8a2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                    1: 'https://images.unsplash.com/photo-1526714777143-799b30a29fdb?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                    2: 'https://images.unsplash.com/photo-1642415314611-3439fb991d14?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                    3: 'https://images.unsplash.com/photo-1641443631464-e2a3928b3f9c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                    4: 'https://images.unsplash.com/photo-1619984827929-a056b71e4a3b?q=80&w=2037&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                  }}
+                  images={[
+                    {
+                      alt: 'Old film cameras on table',
+                      url: 'https://images.unsplash.com/photo-1511737561643-649a082cd8a2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                    },
+                    {
+                      alt: 'Records in crate',
+                      url: 'https://images.unsplash.com/photo-1526714777143-799b30a29fdb?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                    },
+                    {
+                      alt: 'Misc. jewelry items',
+                      url: 'https://images.unsplash.com/photo-1642415314611-3439fb991d14?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                    },
+                    {
+                      alt: 'Christmas decor',
+                      url: 'https://images.unsplash.com/photo-1641443631464-e2a3928b3f9c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                    },
+                    {
+                      alt: 'Collection of pins',
+                      url: 'https://images.unsplash.com/photo-1619984827929-a056b71e4a3b?q=80&w=2037&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                    },
+                  ]}
                 />
               </div>
               <div className='space-y-4 md:order-1'>
                 <h2 className='mb-6 text-4xl font-extrabold tracking-tight text-pretty'>
-                  Letting Go Starts Here
+                  Start the Process with Confidence
                 </h2>
                 <p className='mb-6 text-lg text-gray-700'>
-                  We understand the emotions wrapped up in every object and
-                  room. Our role isn&#39;t to move fast—it&#39;s to move
-                  thoughtfully. Let us walk the space with you, understand what
-                  matters most, and carry the process with grace.
+                  Thinking about hosting a sale but not sure where to start?
+                  Schedule a free consultation and let us take a look. Whether
+                  it’s vintage records, collectibles, or rooms full of
+                  well-loved items, we’ll walk through the space with you, talk
+                  through your goals, and explain how we can help organize,
+                  price, and sell it all with care.
                 </p>
                 <LinkButton
-                  href='/schedule-consultation'
+                  href='/schedule-a-consultation'
                   subvariant='solid'
                   colors='secondary'
                 >

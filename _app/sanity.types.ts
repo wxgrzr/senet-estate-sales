@@ -61,6 +61,41 @@ export type SanityFileAsset = {
   source?: SanityAssetSourceData;
 };
 
+export type ContactInfo = {
+  _id: string;
+  _type: 'contactInfo';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  phoneNumber?: string;
+  address?: {
+    addressLine1?: string;
+    addressLine2?: string;
+  };
+  emailAddress?: string;
+};
+
+export type Settings = {
+  _id: string;
+  _type: 'settings';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  description?: string;
+};
+
+export type Faq = {
+  _id: string;
+  _type: 'faq';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  question: string;
+  answer: string;
+  order: number;
+};
+
 export type Post = {
   _id: string;
   _type: 'post';
@@ -249,6 +284,9 @@ export type AllSanitySchemaTypes =
   | SanityImagePalette
   | SanityImageDimensions
   | SanityFileAsset
+  | ContactInfo
+  | Settings
+  | Faq
   | Post
   | Geopoint
   | SanityImageCrop
