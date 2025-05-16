@@ -1,8 +1,8 @@
-import { defineLive } from "next-sanity";
-import { client } from "./client";
+import { defineLive } from 'next-sanity';
+import { client } from './client';
 
 export const { sanityFetch, SanityLive } = defineLive({
-  client: client.withConfig({ apiVersion: "vX" }),
+  client: client.withConfig({ apiVersion: 'vX' }),
   fetchOptions: {
     revalidate: 30,
   },
