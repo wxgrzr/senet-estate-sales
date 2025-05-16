@@ -14,16 +14,16 @@ Now you can do the following things:
 - [ ] Social buttons
 - [ ] Add photos from client
 - [ ] Animations (?)
-- [ ] Menu closes on navigation
-- [ ] Verify links
+- [x] Menu closes on navigation
+- [x] Verify links
 - [ ] Swap in dynamic content
 - Pages:
 - [ ] Privacy policy
-- [ ] FAQ page
+- [x] FAQ page
 - [ ] Home page:
-  - [ ] Update with longer content and better styles
-  - [ ] Add client feedback section
-- [ ] FAQ page
+  - [x] Update with longer content and better styles
+  - [x] Add client feedback section
+- [x] FAQ page
 - [ ] Estate sales page:
   - [ ] Map area (?)
   - [ ] Perfect styles
