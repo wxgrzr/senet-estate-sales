@@ -1,7 +1,7 @@
-"use client";
-import cn from "classnames";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+'use client';
+import cn from 'classnames';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 type CarouselProps = {
   srcs: object;
@@ -21,17 +21,22 @@ const Carousel = ({ srcs, altPrefix, className }: CarouselProps) => {
   }, [items.length]);
 
   return (
-    <div className={cn("relative overflow-hidden rounded-lg", className ? className : "")}>
+    <div
+      className={cn(
+        'relative overflow-hidden rounded-lg',
+        className ? className : '',
+      )}
+    >
       {items.map((item, index) => (
         <Image
           key={index}
           src={item}
-          width="600"
-          height="400"
+          width='600'
+          height='400'
           alt={`${altPrefix} carousel image #${index}`}
           className={cn(
-            "absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-in-out",
-            index === currentIndex ? "z-10 opacity-100" : "z-0 opacity-0"
+            'absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-in-out',
+            index === currentIndex ? 'z-10 opacity-100' : 'z-0 opacity-0',
           )}
         />
       ))}

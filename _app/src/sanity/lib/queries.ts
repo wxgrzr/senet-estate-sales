@@ -1,7 +1,16 @@
 // TODO: generate queries using these examples
-import { defineQuery } from "next-sanity";
+import { defineQuery } from 'next-sanity';
 
 export const settingsQuery = defineQuery(`*[_type == "settings"][0]`);
+
+// const postPreviewFields = /* groq */ `
+//   _id,
+//   title,
+//   slug,
+//   coverImage,
+//   location,
+//   eventDates,
+// `;
 
 const postFields = /* groq */ `
   _id,
