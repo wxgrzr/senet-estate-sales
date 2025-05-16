@@ -28,7 +28,7 @@ export function PostPreview({
       {/* Content */}
       <div className='flex h-full flex-col justify-evenly p-4'>
         {/* Title */}
-        <h3 className='mb-2 text-xl font-semibold leading-tight tracking-tight md:text-lg'>
+        <h3 className='mb-2 text-xl leading-tight font-semibold tracking-tight md:text-lg'>
           <Link
             href={`/upcoming-estate-sales/${slug}`}
             className='transition-colors duration-200 hover:opacity-50'
@@ -38,7 +38,7 @@ export function PostPreview({
         </h3>
 
         {/* Address */}
-        <p className='text-md text-richblack/55 mb-3 font-normal leading-tight md:text-base'>
+        <p className='text-md text-richblack/55 mb-3 leading-tight font-normal md:text-base'>
           {fullAddress}
         </p>
 

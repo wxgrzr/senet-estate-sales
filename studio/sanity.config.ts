@@ -13,7 +13,7 @@ export default defineConfig({
   title: 'senet-estate-sales-web',
   projectId,
   dataset,
-  plugins: [structureTool({structure: deskStructure}), visionTool()],
+  plugins: [structureTool({ structure: deskStructure }), visionTool()],
   schema: {
     types: schemaTypes,
   },

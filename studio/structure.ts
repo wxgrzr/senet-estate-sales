@@ -13,9 +13,10 @@ export const deskStructure = (S: StructureBuilder) =>
       S.listItem()
         .icon(CogIcon)
         .title('Site Settings')
-          .child(
-            S.editor()
-              .title('Site Settings')
-              .schemaType('siteSettings')
-              .documentId('siteSettings'))
+        .child(
+          S.editor()
+            .title('Site Settings')
+            .schemaType('siteSettings')
+            .documentId('siteSettings'),
+        ),
     ]);
