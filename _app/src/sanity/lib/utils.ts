@@ -1,25 +1,29 @@
-import createImageUrlBuilder from "@sanity/image-url";
+import createImageUrlBuilder from '@sanity/image-url';
 // import { Link } from "@/sanity.types";
-import { dataset, projectId, studioUrl } from "@/sanity/lib/api";
-import { createDataAttribute, CreateDataAttributeProps } from "next-sanity";
+import { dataset, projectId, studioUrl } from '@/sanity/lib/api';
+import { createDataAttribute, CreateDataAttributeProps } from 'next-sanity';
 
 const imageBuilder = createImageUrlBuilder({
-  projectId: projectId || "",
-  dataset: dataset || "",
+  projectId: projectId || '',
+  dataset: dataset || '',
 });
 
-export const urlForImage = (source: any) => {
+export const urlForImage = (source: { asset?: { _ref?: string } }) => {
   // Ensure that source image contains a valid reference
   if (!source?.asset?._ref) {
     return undefined;
   }
 
-  return imageBuilder?.image(source).auto("format").fit("max");
+  return imageBuilder?.image(source).auto('format').fit('max');
 };
 
-export function resolveOpenGraphImage(image: any, width = 1200, height = 627) {
+export function resolveOpenGraphImage(
+  image: { asset?: { _ref?: string }; alt?: string } | null,
+  width = 1200,
+  height = 627,
+) {
   if (!image) return;
-  const url = urlForImage(image)?.width(1200).height(627).fit("crop").url();
+  const url = urlForImage(image)?.width(1200).height(627).fit('crop').url();
   if (!url) return;
   return { url, alt: image?.alt as string, width, height };
 }
@@ -50,7 +54,7 @@ export function resolveOpenGraphImage(image: any, width = 1200, height = 627) {
 // }
 
 type DataAttributeConfig = CreateDataAttributeProps &
-  Required<Pick<CreateDataAttributeProps, "id" | "type" | "path">>;
+  Required<Pick<CreateDataAttributeProps, 'id' | 'type' | 'path'>>;
 
 export function dataAttr(config: DataAttributeConfig) {
   return createDataAttribute({

@@ -1,5 +1,5 @@
-"use client";
-import { LinkButton } from "./link-button";
+'use client';
+import { LinkButton } from './link-button';
 
 type Crumb = {
   label: string;
@@ -8,28 +8,28 @@ type Crumb = {
 
 export function Breadcrumbs({ items }: { items: Crumb[] }) {
   return (
-    <nav className="mb-4 text-sm" aria-label="Breadcrumb">
-      <ol className="list-reset md:flex">
+    <nav className='mb-4 text-sm' aria-label='Breadcrumb'>
+      <ol className='list-reset md:flex'>
         {items.map((item, idx) => {
           const isLast = idx === items.length - 1;
           return (
             <li
               key={idx}
-              className={isLast ? "font-semibold" : undefined}
-              aria-current={isLast ? "page" : undefined}
+              className={isLast ? 'font-semibold' : undefined}
+              aria-current={isLast ? 'page' : undefined}
             >
               {item.href && !isLast ? (
                 <LinkButton
-                  variant="text"
+                  variant='text'
                   href={item.href}
-                  className="font-normal opacity-80"
+                  className='font-normal opacity-80'
                 >
                   {item.label}
                 </LinkButton>
               ) : (
                 item.label
               )}
-              {idx < items.length - 1 && <span className="mx-2">/</span>}
+              {idx < items.length - 1 && <span className='mx-2'>/</span>}
             </li>
           );
         })}
