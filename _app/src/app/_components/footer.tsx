@@ -1,11 +1,22 @@
 import Container from '@/app/_components/container';
 import { LinkButton } from '@/app/_components/link-button';
 import { PAGES } from '@/lib/constants';
-import logoLight from '../../../public/se-logo-richblack.png';
 import Image from 'next/image';
 import Link from 'next/link';
+import logoLight from '../../../public/se-logo-richblack.png';
+import { sanityFetch } from '@/sanity/lib/live';
+import { contactInfoQuery } from '@/sanity/lib/queries';
 
-const Footer = () => {
+const Footer = async () => {
+  const { data: contactInfo } = await sanityFetch({
+    query: contactInfoQuery,
+  });
+
+  const phoneNumber = contactInfo?.phoneNumber || '';
+  const addressLine1 = contactInfo?.address.addressLine1 || '';
+  const addressLine2 = contactInfo?.address.addressLine2 || '';
+  const emailAddress = contactInfo?.emailAddress || '';
+
   return (
     <footer className='mt-auto py-12'>
       <Container>
@@ -36,13 +47,24 @@ const Footer = () => {
           <div>
             <h4 className='mb-4 text-lg font-semibold'>Contact Info</h4>
             <p className='text-sm text-gray-600'>
-              123 Main Street
+              {addressLine1}
               <br />
-              Phoenix, AZ 85001
+              {addressLine2}
               <br />
               <br />
-              <a href='tel' className='text-gray-800 hover:underline'>
-                (555) 123-4567
+              <a
+                href={`tel:${phoneNumber.replace(/\D/g, '')}`}
+                className='text-gray-800 hover:underline'
+              >
+                {phoneNumber}
+              </a>
+              <br />
+              <br />
+              <a
+                href={`mailto:${emailAddress}`}
+                className='text-gray-800 hover:underline'
+              >
+                {emailAddress}
               </a>
             </p>
           </div>
