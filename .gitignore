@@ -28,3 +28,7 @@ next-env.d.ts
 
 # VS Code
 .vscode
+
+# Ignore Sanity build + runtime files
+/studio/dist/
+/studio/.sanity/
