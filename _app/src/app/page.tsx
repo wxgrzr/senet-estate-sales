@@ -78,12 +78,12 @@ export default async function IndexPage() {
                 className='min-h-96'
                 images={[
                   {
-                    alt: 'Focused image of woman checking out at estate sale',
-                    url: '/large/estatesale28.jpeg',
-                  },
-                  {
                     alt: 'Active estate sale checkout table',
                     url: '/large/estate36.jpeg',
+                  },
+                  {
+                    alt: 'Two estate sale vendors pose for the camera',
+                    url: '/large/estate33.jpeg',
                   },
                   {
                     alt: 'People carrying items to checkout at estate sale',
@@ -179,8 +179,16 @@ export default async function IndexPage() {
                   className='min-h-96'
                   images={[
                     {
+                      alt: 'Table with many pieces of fine china',
+                      url: '/large/estate31.jpeg',
+                    },
+                    {
                       alt: 'Old film cameras on table',
                       url: 'https://images.unsplash.com/photo-1511737561643-649a082cd8a2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                    },
+                    {
+                      alt: 'Two men viewing items on table',
+                      url: '/large/estatesale24.jpeg',
                     },
                     {
                       alt: 'Records in crate',
@@ -189,10 +197,6 @@ export default async function IndexPage() {
                     {
                       alt: 'Misc. jewelry items',
                       url: 'https://images.unsplash.com/photo-1642415314611-3439fb991d14?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                    },
-                    {
-                      alt: 'Christmas decor',
-                      url: 'https://images.unsplash.com/photo-1641443631464-e2a3928b3f9c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                     },
                     {
                       alt: 'Collection of pins',
