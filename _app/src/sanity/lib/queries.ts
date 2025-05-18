@@ -2,6 +2,10 @@ import { defineQuery } from 'next-sanity';
 
 export const settingsQuery = defineQuery(`*[_type == "settings"][0]`);
 export const contactInfoQuery = defineQuery(`*[_type == "contactInfo"][0]`);
+export const faqQuery = defineQuery(`*[_type == "faq"] | order(order asc) {
+  question,
+  answer
+}`);
 
 // const postPreviewFields = /* groq */ `
 //   _id,

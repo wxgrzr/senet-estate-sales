@@ -1,20 +1,16 @@
 // pages/faq.tsx
 import Head from 'next/head';
-import { groq } from 'next-sanity';
 import { client } from '@/sanity/lib/client';
 import Container from '@/app/_components/container';
-
-const faqQuery = groq`*[_type == "faq"] | order(order asc) {
-  question,
-  answer
-}`;
+import { faqQuery } from '@/sanity/lib/queries';
+import { sanityFetch } from '@/sanity/lib/live';
 
 async function getFAQs() {
-  return client.fetch(faqQuery);
+  return sanityFetch({ query: faqQuery });
 }
 
 export default async function FAQ() {
-  const faqs = await getFAQs();
+  const { data: faqs = [] } = await getFAQs();
 
   return (
     <>
