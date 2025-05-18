@@ -35,7 +35,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       | undefined = 'monthly'; // Default value
     let url: string = ''; // Default value
 
-    for (const p of allPostsAndPages.data) {
+    for (const p of allPostsAndPages.data as Array<{
+      _type: 'page' | 'post';
+      slug: string;
+      _updatedAt?: string;
+    }>) {
       switch (p._type) {
         case 'page':
           priority = 0.8;

@@ -1,6 +1,5 @@
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
-import { visionTool } from '@sanity/vision';
 import { schemaTypes } from './src/schemas';
 import { deskStructure } from './structure';
 
@@ -13,7 +12,7 @@ export default defineConfig({
   title: 'senet-estate-sales-web',
   projectId,
   dataset,
-  plugins: [structureTool({ structure: deskStructure }), visionTool()],
+  plugins: [structureTool({ structure: deskStructure })],
   schema: {
     types: schemaTypes,
   },
