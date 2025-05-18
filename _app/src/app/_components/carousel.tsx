@@ -13,17 +13,15 @@ type CarouselProps = {
   className?: string;
 };
 
-const Carousel = ({ images, className }: CarouselProps) => {
+const Carousel = ({ images = [], className }: CarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  const items = Array.isArray(images) ? images : [];
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, [items.length]);
+  }, [images.length]);
 
   return (
     <div
@@ -32,7 +30,7 @@ const Carousel = ({ images, className }: CarouselProps) => {
         className ? className : '',
       )}
     >
-      {items.map((item, index) => (
+      {images.map((item, index) => (
         <Image
           key={index}
           src={item.url}
