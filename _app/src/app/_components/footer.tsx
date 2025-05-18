@@ -6,16 +6,21 @@ import Link from 'next/link';
 import logoLight from '../../../public/se-logo-richblack.png';
 import { sanityFetch } from '@/sanity/lib/live';
 import { contactInfoQuery } from '@/sanity/lib/queries';
+import { getContactInfo } from '@/app/_utils/getContactInfo';
 
 const Footer = async () => {
-  const { data: contactInfo } = await sanityFetch({
-    query: contactInfoQuery,
-  });
+  const {
+    phoneNumberSanitized,
+    phoneNumber,
+    addressLine1,
+    addressLine2,
+    emailAddress,
+  } = await getContactInfo();
 
-  const phoneNumber = contactInfo?.phoneNumber || '';
-  const addressLine1 = contactInfo?.address?.addressLine1 || '';
-  const addressLine2 = contactInfo?.address?.addressLine2 || '';
-  const emailAddress = contactInfo?.emailAddress || '';
+  // const phoneNumber = contactInfo?.phoneNumber || '';
+  // const addressLine1 = contactInfo?.address?.addressLine1 || '';
+  // const addressLine2 = contactInfo?.address?.addressLine2 || '';
+  // const emailAddress = contactInfo?.emailAddress || '';
 
   return (
     <footer className='mt-auto py-12'>
@@ -42,6 +47,11 @@ const Footer = async () => {
                   </LinkButton>
                 </li>
               ))}
+              <li>
+                <LinkButton variant='text' href='/privacy'>
+                  Privacy Policy
+                </LinkButton>
+              </li>
             </ul>
           </div>
           <div>
@@ -53,7 +63,7 @@ const Footer = async () => {
               <br />
               <br />
               <a
-                href={`tel:${phoneNumber.replace(/\D/g, '')}`}
+                href={`tel:${phoneNumberSanitized}`}
                 className='text-gray-800 hover:underline'
               >
                 {phoneNumber}
