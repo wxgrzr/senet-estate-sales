@@ -13,8 +13,8 @@ const Footer = async () => {
   });
 
   const phoneNumber = contactInfo?.phoneNumber || '';
-  const addressLine1 = contactInfo?.address.addressLine1 || '';
-  const addressLine2 = contactInfo?.address.addressLine2 || '';
+  const addressLine1 = contactInfo?.address?.addressLine1 || '';
+  const addressLine2 = contactInfo?.address?.addressLine2 || '';
   const emailAddress = contactInfo?.emailAddress || '';
 
   return (
