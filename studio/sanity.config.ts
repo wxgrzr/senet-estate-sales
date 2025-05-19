@@ -4,12 +4,11 @@ import { visionTool } from '@sanity/vision';
 import { schemaTypes } from './src/schemas';
 import { deskStructure } from './structure';
 import { googleMapsInput } from '@sanity/google-maps-input';
+import { googleMapsApiKey } from './environment';
 
 // Environment variables for project configuration
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'lc0v2d89';
 const dataset = process.env.SANITY_STUDIO_DATASET || 'production';
-const googleMapsKey =
-  process.env.GOOGLE_MAPS_API_KEY || 'AIzaSyC1f5tssWZe4E9HKVi5n6d7upUVoQ_wCTk';
 
 export default defineConfig({
   name: 'default',
@@ -20,11 +19,11 @@ export default defineConfig({
     ? [
         structureTool({ structure: deskStructure }),
         visionTool(),
-        googleMapsInput({ apiKey: googleMapsKey }),
+        googleMapsInput({ apiKey: googleMapsApiKey ?? '' }),
       ]
     : [
         structureTool({ structure: deskStructure }),
-        googleMapsInput({ apiKey: googleMapsKey }),
+        googleMapsInput({ apiKey: googleMapsApiKey ?? '' }),
       ],
   schema: {
     types: schemaTypes,
