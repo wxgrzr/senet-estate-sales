@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { Slug } from '~/sanity.types';
 
 type Props = {
   title: string;
   src: string;
-  slug?: string;
+  slug?: Slug;
 };
 
 const CoverImage = ({ title, src, slug }: Props) => {

@@ -1,16 +1,17 @@
-// pages/faq.tsx
 import Head from 'next/head';
-import { client } from '@/sanity/lib/client';
 import Container from '@/app/_components/container';
 import { faqQuery } from '@/sanity/lib/queries';
 import { sanityFetch } from '@/sanity/lib/live';
+import { getContactInfo } from '@/app/_utils/getContactInfo';
 
 async function getFAQs() {
   return sanityFetch({ query: faqQuery });
 }
 
-export default async function FAQ() {
+export default async function FAQPage() {
   const { data: faqs = [] } = await getFAQs();
+  const { phoneNumber, phoneNumberSanitized, emailAddress } =
+    await getContactInfo();
 
   return (
     <>
@@ -36,14 +37,17 @@ export default async function FAQ() {
                 <p>
                   Contact us at{' '}
                   <a
-                    href='mailto:paul@senetestatesales.com'
-                    className='text-blue-600 underline'
+                    href={`mailto:${emailAddress}`}
+                    className='text-ship-cove-300 underline'
                   >
-                    paul@senetestatesales.com
+                    {emailAddress}
                   </a>{' '}
                   or call{' '}
-                  <a href='tel:8105888175' className='text-blue-600 underline'>
-                    (810) 588-8175
+                  <a
+                    href={`tel${phoneNumberSanitized}`}
+                    className='text-ship-cove-300 underline'
+                  >
+                    {phoneNumber}
                   </a>
                   .
                 </p>

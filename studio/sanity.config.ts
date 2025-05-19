@@ -1,7 +1,10 @@
-import { defineConfig } from 'sanity';
+import { defineConfig, isDev } from 'sanity';
 import { structureTool } from 'sanity/structure';
+import { visionTool } from '@sanity/vision';
 import { schemaTypes } from './src/schemas';
 import { deskStructure } from './structure';
+import { googleMapsInput } from '@sanity/google-maps-input';
+import { googleMapsApiKey } from './environment';
 
 // Environment variables for project configuration
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'lc0v2d89';
@@ -12,7 +15,16 @@ export default defineConfig({
   title: 'senet-estate-sales-web',
   projectId,
   dataset,
-  plugins: [structureTool({ structure: deskStructure })],
+  plugins: isDev
+    ? [
+        structureTool({ structure: deskStructure }),
+        visionTool(),
+        googleMapsInput({ apiKey: googleMapsApiKey ?? '' }),
+      ]
+    : [
+        structureTool({ structure: deskStructure }),
+        googleMapsInput({ apiKey: googleMapsApiKey ?? '' }),
+      ],
   schema: {
     types: schemaTypes,
   },

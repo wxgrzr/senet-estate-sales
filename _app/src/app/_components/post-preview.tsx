@@ -2,13 +2,14 @@
 import Link from 'next/link';
 import CoverImage from './cover-image';
 import { DateRangeFormatter } from './date-formatter';
+import { Slug } from '~/sanity.types';
 
 type Props = {
   title: string;
   coverImage: string;
   dates: string[];
   fullAddress: string;
-  slug: string;
+  slug: Slug;
 };
 
 export function PostPreview({
