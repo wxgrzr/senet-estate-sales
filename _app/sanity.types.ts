@@ -340,13 +340,11 @@ export type SitemapDataResult = Array<{
   _updatedAt: string;
 }>;
 // Variable: allPostsQuery
-// Query: *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{firstName, lastName, picture},  }
+// Query: *[_type == "post" && defined(slug.current) && category == "upcoming"] |  order(date desc, _createdAt desc) {      _id,  title,  "slug": slug.current,  coverImage,  location,  eventDates  }
 export type AllPostsQueryResult = Array<{
   _id: string;
-  status: 'draft' | 'published';
   title: string;
   slug: string;
-  excerpt: null;
   coverImage: {
     asset?: {
       _ref: string;
@@ -359,17 +357,72 @@ export type AllPostsQueryResult = Array<{
     crop?: SanityImageCrop;
     _type: 'image';
   } | null;
-  date: string;
-  author: null;
+  location: {
+    fullAddress?: string;
+    streetAddress?: string;
+    city?: string;
+    state?:
+      | 'AK'
+      | 'AL'
+      | 'AR'
+      | 'AZ'
+      | 'CA'
+      | 'CO'
+      | 'CT'
+      | 'DE'
+      | 'FL'
+      | 'GA'
+      | 'HI'
+      | 'IA'
+      | 'ID'
+      | 'IL'
+      | 'IN'
+      | 'KS'
+      | 'KY'
+      | 'LA'
+      | 'MA'
+      | 'MD'
+      | 'ME'
+      | 'MI'
+      | 'MN'
+      | 'MO'
+      | 'MS'
+      | 'MT'
+      | 'NC'
+      | 'ND'
+      | 'NE'
+      | 'NH'
+      | 'NJ'
+      | 'NM'
+      | 'NV'
+      | 'NY'
+      | 'OH'
+      | 'OK'
+      | 'OR'
+      | 'PA'
+      | 'RI'
+      | 'SC'
+      | 'SD'
+      | 'TN'
+      | 'TX'
+      | 'UT'
+      | 'VA'
+      | 'VT'
+      | 'WA'
+      | 'WI'
+      | 'WV'
+      | 'WY';
+    zip?: string;
+    coordinates?: Geopoint;
+  };
+  eventDates: Array<string> | null;
 }>;
 // Variable: morePostsQuery
-// Query: *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{firstName, lastName, picture},  }
+// Query: *[_type == "post" && _id != $skip && defined(slug.current)]    | order(date desc, _updatedAt desc) [0...$limit] {      _id,  title,  "slug": slug.current,  coverImage,  location,  eventDates  }
 export type MorePostsQueryResult = Array<{
   _id: string;
-  status: 'draft' | 'published';
   title: string;
   slug: string;
-  excerpt: null;
   coverImage: {
     asset?: {
       _ref: string;
@@ -382,18 +435,73 @@ export type MorePostsQueryResult = Array<{
     crop?: SanityImageCrop;
     _type: 'image';
   } | null;
-  date: string;
-  author: null;
+  location: {
+    fullAddress?: string;
+    streetAddress?: string;
+    city?: string;
+    state?:
+      | 'AK'
+      | 'AL'
+      | 'AR'
+      | 'AZ'
+      | 'CA'
+      | 'CO'
+      | 'CT'
+      | 'DE'
+      | 'FL'
+      | 'GA'
+      | 'HI'
+      | 'IA'
+      | 'ID'
+      | 'IL'
+      | 'IN'
+      | 'KS'
+      | 'KY'
+      | 'LA'
+      | 'MA'
+      | 'MD'
+      | 'ME'
+      | 'MI'
+      | 'MN'
+      | 'MO'
+      | 'MS'
+      | 'MT'
+      | 'NC'
+      | 'ND'
+      | 'NE'
+      | 'NH'
+      | 'NJ'
+      | 'NM'
+      | 'NV'
+      | 'NY'
+      | 'OH'
+      | 'OK'
+      | 'OR'
+      | 'PA'
+      | 'RI'
+      | 'SC'
+      | 'SD'
+      | 'TN'
+      | 'TX'
+      | 'UT'
+      | 'VA'
+      | 'VT'
+      | 'WA'
+      | 'WI'
+      | 'WV'
+      | 'WY';
+    zip?: string;
+    coordinates?: Geopoint;
+  };
+  eventDates: Array<string> | null;
 }>;
 // Variable: postQuery
-// Query: *[_type == "post" && slug.current == $slug] [0] {    content[]{    ...,    markDefs[]{      ...,        _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }    }  },      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{firstName, lastName, picture},  }
+// Query: *[_type == "post" && slug.current == $slug] [0] {    content[]{    ...,    markDefs[]{      ...,        _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }    }  },      _id,  title,  "slug": slug.current,  coverImage,  location,  eventDates  }
 export type PostQueryResult = {
   content: null;
   _id: string;
-  status: 'draft' | 'published';
   title: string;
   slug: string;
-  excerpt: null;
   coverImage: {
     asset?: {
       _ref: string;
@@ -406,8 +514,65 @@ export type PostQueryResult = {
     crop?: SanityImageCrop;
     _type: 'image';
   } | null;
-  date: string;
-  author: null;
+  location: {
+    fullAddress?: string;
+    streetAddress?: string;
+    city?: string;
+    state?:
+      | 'AK'
+      | 'AL'
+      | 'AR'
+      | 'AZ'
+      | 'CA'
+      | 'CO'
+      | 'CT'
+      | 'DE'
+      | 'FL'
+      | 'GA'
+      | 'HI'
+      | 'IA'
+      | 'ID'
+      | 'IL'
+      | 'IN'
+      | 'KS'
+      | 'KY'
+      | 'LA'
+      | 'MA'
+      | 'MD'
+      | 'ME'
+      | 'MI'
+      | 'MN'
+      | 'MO'
+      | 'MS'
+      | 'MT'
+      | 'NC'
+      | 'ND'
+      | 'NE'
+      | 'NH'
+      | 'NJ'
+      | 'NM'
+      | 'NV'
+      | 'NY'
+      | 'OH'
+      | 'OK'
+      | 'OR'
+      | 'PA'
+      | 'RI'
+      | 'SC'
+      | 'SD'
+      | 'TN'
+      | 'TX'
+      | 'UT'
+      | 'VA'
+      | 'VT'
+      | 'WA'
+      | 'WI'
+      | 'WV'
+      | 'WY';
+    zip?: string;
+    coordinates?: Geopoint;
+  };
+  eventDates: Array<string> | null;
 } | null;
 // Variable: postPagesSlugs
 // Query: *[_type == "post" && defined(slug.current)]  {"slug": slug.current}
@@ -427,9 +592,9 @@ declare module '@sanity/client' {
     '*[_type == "faq"] | order(order asc) {\n  question,\n  answer\n}': FaqQueryResult;
     '\n  *[_type == \'page\' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    "pageBuilder": pageBuilder[]{\n      ...,\n      _type == "callToAction" => {\n        \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n      }\n,\n      },\n      _type == "infoSection" => {\n        content[]{\n          ...,\n          markDefs[]{\n            ...,\n            \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n          }\n        }\n      },\n    },\n  }\n': GetPageQueryResult;
     '\n  *[_type == "page" || _type == "post" && defined(slug.current)] | order(_type asc) {\n    "slug": slug.current,\n    _type,\n    _updatedAt,\n  }\n': SitemapDataResult;
-    '\n  *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n\n  }\n': AllPostsQueryResult;
-    '\n  *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n\n  }\n': MorePostsQueryResult;
-    '\n  *[_type == "post" && slug.current == $slug] [0] {\n    content[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n    }\n  },\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n\n  }\n': PostQueryResult;
+    '\n  *[_type == "post" && defined(slug.current) && category == "upcoming"] |\n  order(date desc, _createdAt desc) {\n    \n  _id,\n  title,\n  "slug": slug.current,\n  coverImage,\n  location,\n  eventDates\n\n  }\n': AllPostsQueryResult;
+    '\n  *[_type == "post" && _id != $skip && defined(slug.current)]\n    | order(date desc, _updatedAt desc) [0...$limit] {\n    \n  _id,\n  title,\n  "slug": slug.current,\n  coverImage,\n  location,\n  eventDates\n\n  }\n': MorePostsQueryResult;
+    '\n  *[_type == "post" && slug.current == $slug] [0] {\n    content[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n    }\n  },\n    \n  _id,\n  title,\n  "slug": slug.current,\n  coverImage,\n  location,\n  eventDates\n\n  }\n': PostQueryResult;
     '\n  *[_type == "post" && defined(slug.current)]\n  {"slug": slug.current}\n': PostPagesSlugsResult;
     '\n  *[_type == "page" && defined(slug.current)]\n  {"slug": slug.current}\n': PagesSlugsResult;
   }
