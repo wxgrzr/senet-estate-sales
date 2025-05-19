@@ -1,23 +1,34 @@
 import { PostPreview } from '@/app/_components/post-preview';
-import { Post } from '../../../../studio/sanity.types';
+import { Post as PostType } from '~/sanity.types';
 import { Breadcrumbs } from '@/app/_components/breadcrumbs';
 import { sanityFetch } from '@/sanity/lib/live';
 import { urlForImage } from '@/sanity/lib/utils';
 import Container from '@/app/_components/container';
+import { allPostsQuery } from '@/sanity/lib/queries';
 
-const POSTS_QUERY = `*[
-  _type == "post" && defined(slug.current) && category == "upcoming"
-]|order(_createdAt desc)[0...12]{_id, title, slug, coverImage, location, eventDates}`;
+const Post = ({ post }: { post: PostType }) => {
+  const { _id, title, coverImage, slug, eventDates, location } = post;
+  return (
+    <article key={_id}>
+      <PostPreview
+        title={title}
+        coverImage={
+          (coverImage &&
+            urlForImage(coverImage)?.width(550).height(310).url()) ||
+          ''
+        }
+        slug={slug}
+        dates={eventDates || []}
+        fullAddress={location.fullAddress as string}
+      />
+    </article>
+  );
+};
 
 export default async function UpcomingEstateSales() {
   const { data: posts } = await sanityFetch({
-    query: POSTS_QUERY,
+    query: allPostsQuery,
   });
-
-  const postImageUrl = (post: Post) =>
-    post?.coverImage
-      ? urlForImage(post.coverImage)?.width(550).height(310).url() || ''
-      : '';
 
   return (
     <main id='content'>
@@ -41,23 +52,16 @@ export default async function UpcomingEstateSales() {
               </h2>
             </div>
             <div className='grid gap-4 md:grid-cols-2'>
+              {/* Map */}
               <div className='flex h-[30lvh] items-center justify-center border md:h-full'>
                 <p>TODO: map area</p>
               </div>
-              <div className='grid grid-cols-subgrid gap-8 py-2 md:row-start-1 md:py-0 lg:grid-cols-2 lg:gap-4'>
-                {posts.map((post: Post) => {
-                  return (
-                    <div key={post._id}>
-                      <PostPreview
-                        title={post.title || ''}
-                        coverImage={postImageUrl(post) as string}
-                        slug={post?.slug?.current || ''}
-                        dates={post.eventDates || []}
-                        fullAddress={post?.location?.fullAddress as string}
-                      />
-                    </div>
-                  );
-                })}
+              {/* Posts */}
+              <div className='grid max-h-[50vh] grid-cols-subgrid gap-8 overflow-y-auto py-2 pr-2 md:row-start-1 md:py-0 lg:grid-cols-2 lg:gap-4'>
+                {posts &&
+                  posts.map((post: any) => {
+                    return <Post post={post} key={post._id} />;
+                  })}
               </div>
             </div>
           </div>

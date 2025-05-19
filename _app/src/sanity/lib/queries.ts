@@ -1,4 +1,4 @@
-import { defineQuery } from 'next-sanity';
+import { defineQuery, groq } from 'next-sanity';
 
 export const settingsQuery = defineQuery(`*[_type == "settings"][0]`);
 export const contactInfoQuery = defineQuery(`*[_type == "contactInfo"][0]`);
@@ -16,15 +16,24 @@ export const faqQuery = defineQuery(`*[_type == "faq"] | order(order asc) {
 //   eventDates,
 // `;
 
+// const postFields = /* groq */ `
+//   _id,
+//   "status": select(_originalId in path("drafts.**") => "draft", "published"),
+//   "title": coalesce(title, "Untitled"),
+//   "slug": slug.current,
+//   excerpt,
+//   coverImage,
+//   "date": coalesce(date, _updatedAt),
+//   "author": author->{firstName, lastName, picture},
+// `;
+
 const postFields = /* groq */ `
   _id,
-  "status": select(_originalId in path("drafts.**") => "draft", "published"),
-  "title": coalesce(title, "Untitled"),
+  title,
   "slug": slug.current,
-  excerpt,
   coverImage,
-  "date": coalesce(date, _updatedAt),
-  "author": author->{firstName, lastName, picture},
+  location,
+  eventDates
 `;
 
 const linkReference = /* groq */ `
@@ -76,13 +85,19 @@ export const sitemapData = defineQuery(`
 `);
 
 export const allPostsQuery = defineQuery(`
-  *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) {
+  *[_type == "post" && defined(slug.current) && category == "upcoming"] |
+  order(date desc, _createdAt desc) {
     ${postFields}
   }
 `);
 
+export const POSTS_QUERY = `*[
+  _type == "post" && defined(slug.current) && category == "upcoming"
+]|order(_createdAt desc)[0...12]{_id, title, slug, coverImage, location, eventDates}`;
+
 export const morePostsQuery = defineQuery(`
-  *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {
+  *[_type == "post" && _id != $skip && defined(slug.current)]
+    | order(date desc, _updatedAt desc) [0...$limit] {
     ${postFields}
   }
 `);

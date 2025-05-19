@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@sanity/image-url": "^1.1.0",
+    "@vis.gl/react-google-maps": "^1.5.2",
     "add-to-calendar-button-react": "^2.8.9",
     "autoprefixer": "^10.4.21",
     "classnames": "^2.5.1",

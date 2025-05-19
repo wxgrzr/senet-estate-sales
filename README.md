@@ -11,27 +11,35 @@ Now you can do the following things:
 ## TODO:
 
 - General:
-- [ ] Social buttons
-- [ ] Add photos from client
-- [ ] Animations (?)
+- [x] Add photos from client
+- [x] Animations (?)
 - [x] Menu closes on navigation
 - [x] Verify links
-- [ ] Swap in dynamic content
+- [x] Swap in dynamic content
+- [ ] SEO
+- Components:
+  - Footer
+    - [ ] Map link for address
+    - [ ] Social buttons
 - Pages:
-- [ ] Privacy policy
+  - [ ] Add Next/head for each page
+  - [ ] Metadata
+  - [ ] Title
+- [x] Privacy policy
 - [x] FAQ page
-- [ ] Home page:
+  - [x] Fetch email and phone number
+- [x] Home page:
   - [x] Update with longer content and better styles
   - [x] Add client feedback section
 - [x] FAQ page
-- [ ] Estate sales page:
-  - [ ] Map area (?)
-  - [ ] Perfect styles
-- [ ] Estate Sale Post page:
-  - [ ] Dates
-  - [ ] Add to calendar (?)
-  - [ ] Description scroll 
-  - [ ] Gallery zoom/fullscreen
-  - [ ] Pagination (load more...)
 - [x] Consultation page:
   - [x] Make form inputs darker for white bg
+- [ ] Estate sales page:
+  - [ ] Map area (?)
+  - [ ] Final styles
+- [ ] Estate Sale Post page:
+  - [ ] Dates in post
+  - [ ] Add to calendar button (?)
+  - [ ] Description height & y scrolling
+  - [ ] Gallery functionality (e.g. zoom, fullscreen, navigation controls)
+  - [ ] Pagination (load more...) or lazy loading
