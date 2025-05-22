@@ -33,7 +33,7 @@ export default async function UpcomingEstateSales() {
   return (
     <main id='content'>
       <Container>
-        <section className='py-8 md:py-12 lg:py-16'>
+        <section className='min-h-screen py-8 md:py-12 lg:py-16'>
           <div className='hidden md:block'>
             <Breadcrumbs
               items={[
@@ -45,6 +45,7 @@ export default async function UpcomingEstateSales() {
               ]}
             />
           </div>
+
           <div>
             <div className='mb-8'>
               <h2 className='text-5xl leading-tight font-bold tracking-tighter md:text-6xl lg:text-7xl'>
@@ -57,7 +58,7 @@ export default async function UpcomingEstateSales() {
                 <p>TODO: map area</p>
               </div>
               {/* Posts */}
-              <div className='grid max-h-[50vh] grid-cols-subgrid gap-8 overflow-y-auto py-2 pr-2 md:row-start-1 md:py-0 lg:grid-cols-2 lg:gap-4'>
+              <div className='grid max-h-[50vh] grid-cols-subgrid gap-8 overflow-y-auto py-2 pr-2 md:row-start-1 md:py-0 lg:grid-cols-2 lg:gap-6 lg:pr-4'>
                 {posts &&
                   posts.map((post: any) => {
                     return <Post post={post} key={post._id} />;
