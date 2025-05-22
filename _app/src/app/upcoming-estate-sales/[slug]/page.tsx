@@ -1,4 +1,3 @@
-import { AddToCalendarButton } from 'add-to-calendar-button-react';
 import { PortableText } from 'next-sanity';
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import Image from 'next/image';
@@ -9,6 +8,9 @@ import { notFound } from 'next/navigation';
 import { sanityFetch } from '@/sanity/lib/live';
 import Container from '@/app/_components/container';
 import Gallery from '@/app/_components/gallery-component';
+
+import { DateFormatter } from '@/app/_components/date-formatter';
+import { OpenInMapsButton } from '@/app/_components/open-in-maps-button';
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
 
@@ -48,14 +50,13 @@ export default async function Page({
     ? urlFor(post.coverImage)?.width(550).height(310).url()
     : null;
 
-  console.log('post', post);
-  const saleAddress = post?.location?.fullAddress || 'TBD';
-  const saleDates = post?.dates || 'TBD';
+  const address = post?.location?.fullAddress;
+  const eventDates = post?.eventDates || [];
 
   return (
     <Container>
-      <div className='flex min-h-screen flex-col py-12'>
-        <div className='mb-12 hidden md:block'>
+      <div className='relative flex flex-col py-12 md:py-8'>
+        <div className='mb-6 hidden md:block'>
           <Breadcrumbs
             items={[
               { label: 'Home', href: '/' },
@@ -76,23 +77,35 @@ export default async function Page({
 
         <div className='px-4'>
           <div className='grid gap-x-4 gap-y-8 md:grid-cols-2 md:grid-rows-2'>
-            {/* Row 1 Column 1: Details */}
-            <div className='flex flex-1 flex-col'>
-              <h1 className='text-4xl font-bold'>{post?.title}</h1>
-              <p className='mt-2 text-lg text-gray-600'>{saleAddress}</p>
-              <p className='text-md text-gray-500'>{saleDates}</p>
-              <div className='mt-4'>
-                <AddToCalendarButton
-                  name={post?.title || 'Estate Sale'}
-                  startDate='2025-05-01'
-                  endDate='2025-05-02'
-                  location={saleAddress}
-                  options={['Apple', 'Google', 'Outlook.com']}
-                  timeZone='America/Phoenix'
-                  trigger='click'
-                  size='small'
-                  inline
-                  label='Add to Calendar'
+            <div
+              id='event-details'
+              className='flex flex-1 flex-col justify-between'
+            >
+              <h1
+                id='event-title'
+                className='mb-4 text-4xl leading-tight font-bold tracking-tighter text-pretty'
+              >
+                {post.title}
+              </h1>
+              <div id='event-dates' className='mb-4'>
+                <h2 className='tracking-tighter'>
+                  <b>Event dates</b>
+                </h2>
+                <div className='text-md text-gray-500'>
+                  {eventDates.map((date: string, index: number) => (
+                    <p key={index}>
+                      <DateFormatter dateString={date} time />
+                    </p>
+                  ))}
+                </div>
+              </div>
+              <div id='event-location'>
+                <h2 className=''>
+                  <b>Get directions</b>
+                </h2>
+                <OpenInMapsButton
+                  address={address}
+                  className="text-md text-gray-500 transition duration-100 before:content-['📍'] hover:text-gray-300"
                 />
               </div>
             </div>
@@ -102,29 +115,26 @@ export default async function Page({
                 <Image
                   src={coverImage}
                   alt={post?.title}
-                  className='aspect-video rounded-xl object-cover'
+                  className='rounded-xl object-cover'
                   fill
                   priority
-                  // width={550}
-                  // height={310}
                 />
               </div>
             )}
             {/* Row 2 Column 1: Description (PortableText) */}
-            <div
-              className='prose max-h-80 overflow-y-auto rounded-lg bg-gray-50 p-4 shadow-inner'
-              style={{ minHeight: '16rem' }}
-            >
-              <p className='mb-2 text-sm text-gray-400'>
-                Updated: {new Date(post?._updatedAt).toLocaleDateString()}
-              </p>
-              {Array.isArray(post?.body) && <PortableText value={post.body} />}
+
+            <div>
+              <div className='prose max-h-96 min-h-50 overflow-y-auto rounded-lg bg-gray-50 px-4 py-2 shadow-inner'>
+                <p className='mb-2 text-sm text-gray-400'>
+                  Updated: {new Date(post?._updatedAt).toLocaleDateString()}
+                </p>
+                {Array.isArray(post?.body) && (
+                  <PortableText value={post.body} />
+                )}
+              </div>
             </div>
             {/* Row 2 Column 2: Gallery */}
-            <div
-              className='max-h-80 overflow-y-auto rounded-lg bg-gray-50 p-4 shadow-inner'
-              style={{ minHeight: '16rem' }}
-            >
+            <div className='max-h-96 min-h-50 overflow-y-auto rounded-lg bg-gray-50 p-4 shadow-inner'>
               {gallery?.length > 0 && <Gallery images={images} />}
             </div>
           </div>
