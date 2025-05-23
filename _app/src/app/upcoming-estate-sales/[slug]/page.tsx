@@ -37,8 +37,8 @@ export default async function Page({
             .height(1800)
             .auto('format')
             .quality(100)
-            .url(), // much higher-res for lightbox
-          thumbnail: urlFor(img)?.width(400).height(300).auto('format').url(), // low-res for grid
+            .url(),
+          thumbnail: urlFor(img)?.width(400).height(300).auto('format').url(),
           width: 2400,
           height: 1800,
           alt: `Gallery image ${i + 1}`,
@@ -55,7 +55,8 @@ export default async function Page({
 
   return (
     <Container>
-      <div className='relative flex flex-col py-12 md:py-8'>
+      <section className='relative flex flex-col py-12 md:py-8'>
+        {/* Breadcrumb links */}
         <div className='mb-6 hidden md:block'>
           <Breadcrumbs
             items={[
@@ -68,30 +69,26 @@ export default async function Page({
             ]}
           />
         </div>
-
-        <div className='mb-4 md:hidden'>
+        <div className='mb-8 md:hidden'>
           <LinkButton href='/upcoming-estate-sales' variant='text'>
             ← Back to Upcoming Estate Sales
           </LinkButton>
         </div>
-
+        {/* Grid Layout */}
         <div className='px-4'>
           <div className='grid gap-x-4 gap-y-8 md:grid-cols-2 md:grid-rows-2'>
-            <div
-              id='event-details'
-              className='flex flex-1 flex-col justify-between'
-            >
+            <div id='event-details' className='flex flex-1 flex-col'>
               <h1
                 id='event-title'
-                className='mb-4 text-4xl leading-tight font-bold tracking-tighter text-pretty'
+                className='mb-8 text-4xl font-bold tracking-tighter text-pretty md:text-5xl lg:text-6xl'
               >
                 {post.title}
               </h1>
-              <div id='event-dates' className='mb-4'>
-                <h2 className='tracking-tighter'>
+              <div id='event-dates' className='mb-8'>
+                <h2 className='mb-2 text-2xl tracking-tighter'>
                   <b>Event dates</b>
                 </h2>
-                <div className='text-md text-gray-500'>
+                <div className='text-lg text-gray-600'>
                   {eventDates.map((date: string, index: number) => (
                     <p key={index}>
                       <DateFormatter dateString={date} time />
@@ -100,12 +97,12 @@ export default async function Page({
                 </div>
               </div>
               <div id='event-location'>
-                <h2 className=''>
-                  <b>Get directions</b>
+                <h2 className='mb-2 text-2xl tracking-tighter'>
+                  <b>Google maps link</b>
                 </h2>
                 <OpenInMapsButton
                   address={address}
-                  className="text-md text-gray-500 transition duration-100 before:content-['📍'] hover:text-gray-300"
+                  className="text-lg before:content-['📍']"
                 />
               </div>
             </div>
@@ -122,7 +119,6 @@ export default async function Page({
               </div>
             )}
             {/* Row 2 Column 1: Description (PortableText) */}
-
             <div>
               <div className='prose max-h-96 min-h-50 overflow-y-auto rounded-lg bg-gray-50 px-4 py-2 shadow-inner'>
                 <p className='mb-2 text-sm text-gray-400'>
@@ -139,7 +135,7 @@ export default async function Page({
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </Container>
   );
 }

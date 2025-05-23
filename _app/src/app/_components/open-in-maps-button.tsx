@@ -27,7 +27,7 @@ export const OpenInMapsButton = ({
     <button
       type='button'
       className={cn(
-        'w-2/3 cursor-pointer text-left text-pretty focus:outline-none',
+        'cursor-pointer text-left text-pretty text-gray-500 transition duration-200 hover:text-gray-400 focus:outline-none',
         className,
       )}
       onClick={handleClick}
