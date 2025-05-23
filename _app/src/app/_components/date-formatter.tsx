@@ -1,13 +1,24 @@
+import React from 'react';
 import { parseISO, format } from 'date-fns';
 
 type DateStringType = {
   dateString: string;
+  time?: boolean;
 };
 
-export const DateFormatter = ({ dateString }: DateStringType) => {
+export function DateFormatter({
+  dateString,
+  time,
+}: DateStringType): React.ReactElement {
   const date = parseISO(dateString);
-  return <time dateTime={dateString}>{format(date, 'LLLL	d, yyyy')}</time>;
-};
+  return time ? (
+    <time dateTime={dateString}>
+      {format(date, 'LLLL d, yyyy')} at {format(date, ' h:mm a')}
+    </time>
+  ) : (
+    <time dateTime={dateString}>{format(date, 'LLLL d, yyyy')}</time>
+  );
+}
 
 type DateStringsType = {
   dateStrings: string[];
