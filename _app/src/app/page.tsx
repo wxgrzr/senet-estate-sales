@@ -1,78 +1,61 @@
-// import type { Post } from "../../../studio/sanity.types";
-// import { PostPreview } from "./_components/post-preview";
-// import { ArrowRightIcon } from "@sanity/icons";
 import Container from '@/app/_components/container';
-
 import { LinkButton } from '@/app/_components/link-button';
 import Carousel from '@/app/_components/carousel';
 import { OurServices } from '@/app/_components/our-services';
-// import { urlForImage } from "@/sanity/lib/utils";
-// import { sanityFetch } from "@/sanity/lib/live";
 import ConsultationForm from '@/app/_components/consultation-form';
 import { Reviews } from '@/app/_components/reviews';
 import Image from 'next/image';
-
-// const POSTS_QUERY = `*[
-//   _type == "post"
-//   && defined(slug.current) && category == "upcoming"
-// ]|order(_createdAt desc)[0...4]{_id, title, slug, coverImage, location, eventDates}`;
+import { RowSection } from './_components/row-section';
 
 export default async function IndexPage() {
-  // const { data: posts } = await sanityFetch({
-  //   query: POSTS_QUERY,
-  // });
-
-  // const postImageUrl = (post: Post) =>
-  //   post?.coverImage
-  //     ? urlForImage(post.coverImage)?.width(550).height(310).url() || ""
-  //     : "";
-
   return (
     <main id='content'>
-      <Container>
-        <section id='hero' className='py-6 sm:py-12 lg:py-16'>
-          {/* Content */}
-          <div className='grid grid-cols-2 items-center gap-4 md:gap-8'>
-            <div className='space-y-4 sm:space-y-8'>
-              <div className='sm:space-y-2'>
-                <h2 className='max-xs:text-xl max-xs:leading-5 mb-2 text-2xl leading-6 font-extrabold tracking-tighter sm:text-4xl sm:leading-8 md:text-5xl md:leading-12 lg:text-6xl lg:leading-14'>
-                  SENET
-                  <br />
-                  ESTATE SALES
-                </h2>
-                <p className='max-xs:text-[.8rem] text-xs tracking-tighter text-pretty sm:text-base md:text-lg lg:text-xl'>
-                  Professional liquidation services in <b>Southeastern MI</b>
-                </p>
+      <div id='hero'>
+        <Container>
+          <RowSection>
+            <div className='grid grid-cols-2 items-center gap-4 md:gap-8'>
+              <div className='space-y-4 sm:space-y-8'>
+                <div className='sm:space-y-2'>
+                  <h2 className='max-xs:text-xl max-xs:leading-5 mb-2 text-2xl leading-6 font-extrabold tracking-tighter sm:text-4xl sm:leading-8 md:text-5xl md:leading-12 lg:text-6xl lg:leading-14'>
+                    SENET
+                    <br />
+                    ESTATE SALES
+                  </h2>
+                  <p className='max-xs:text-[.8rem] text-xs tracking-tighter text-pretty sm:text-base md:text-lg lg:text-xl'>
+                    Professional liquidation services in <b>Southeastern MI</b>
+                  </p>
+                </div>
+                <LinkButton
+                  href='/upcoming-estate-sales'
+                  subvariant='solid'
+                  colors='secondary'
+                  className='max-xs:text-[0.65rem] text-[.8rem] sm:text-base'
+                >
+                  View Estate Sales
+                </LinkButton>
               </div>
-              <LinkButton
-                href='/upcoming-estate-sales'
-                subvariant='solid'
-                colors='secondary'
-                className='max-xs:text-[0.65rem] text-[.8rem] sm:text-base'
-              >
-                View Estate Sales
-              </LinkButton>
-            </div>
-            <div className='flex items-center justify-center'>
-              <div className='relative flex h-[21rem] w-[14rem] md:h-[28rem] md:w-[40rem]'>
-                <Image
-                  style={{ objectFit: 'cover' }}
-                  src={'/heroimg/heroimg@3x.webp'}
-                  fill
-                  alt=''
-                  className='rounded-2xl'
-                  priority
-                  quality={100}
-                  sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px'
-                />
+              <div className='flex items-center justify-center'>
+                <div className='relative flex h-[21rem] w-[14rem] md:h-[28rem] md:w-[40rem]'>
+                  <Image
+                    style={{ objectFit: 'cover' }}
+                    src={'/heroimg/heroimg@3x.webp'}
+                    fill
+                    alt=''
+                    className='rounded-2xl'
+                    priority
+                    quality={100}
+                    sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px'
+                  />
+                </div>
               </div>
             </div>
-          </div>
-        </section>
-      </Container>
+          </RowSection>
+        </Container>
+      </div>
+
       <div id='who-we-are'>
         <Container>
-          <section className='py-16 md:py-20 lg:py-24'>
+          <RowSection>
             <div className='grid items-center gap-8 md:grid-cols-2'>
               <Carousel
                 className='min-h-96'
@@ -119,60 +102,23 @@ export default async function IndexPage() {
                 </LinkButton>
               </div>
             </div>
-          </section>
+          </RowSection>
         </Container>
       </div>
 
-      <div className='bg-platinum'>
-        <Container>
-          <section className='py-16 md:py-20 lg:py-24'>
-            <Reviews />
-          </section>
-        </Container>
+      <div id='what-people-are-saying'>
+        <div tabIndex={-1} className='bg-platinum'>
+          <Container>
+            <RowSection>
+              <Reviews />
+            </RowSection>
+          </Container>
+        </div>
       </div>
-
-      {/* <div className="bg-platinum py-12" id="upcoming-estate-sales">
-        <Container>
-          <section className="relative">
-            <div className="flex justify-between">
-              <h2 className="mb-8 text-4xl leading-[0.9] font-bold tracking-tighter md:text-6xl">
-                Upcoming Estate Sales
-              </h2>
-            </div>
-            <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 lg:gap-6">
-              {posts.map((post: Post) => {
-                return (
-                  <div key={post._id}>
-                    <PostPreview
-                      title={post.title || ""}
-                      coverImage={postImageUrl(post) as string}
-                      slug={post.slug?.current || ""}
-                      dates={post?.eventDates || []}
-                      fullAddress={post.location?.fullAddress || ""}
-                    />
-                  </div>
-                );
-              })}
-            </div>
-            <div className="mt-8 flex justify-end">
-              <LinkButton
-                variant="text"
-                href="/upcoming-estate-sales"
-                className="group inline-flex"
-              >
-                View all upcoming estate sales
-                <span className="arrow-animate ml-1 transition-transform duration-200 group-hover:translate-x-1">
-                  <ArrowRightIcon width={24} height={24} />
-                </span>
-              </LinkButton>
-            </div>
-          </section>
-        </Container>
-      </div> */}
 
       <div id='ready-to-sell-with-us'>
         <Container>
-          <section className='py-16 md:py-20 lg:py-24'>
+          <RowSection>
             <div className='grid items-center gap-8 md:grid-cols-2'>
               <div className='md:order-2'>
                 <Carousel
@@ -226,30 +172,37 @@ export default async function IndexPage() {
                 </LinkButton>
               </div>
             </div>
-          </section>
+          </RowSection>
         </Container>
       </div>
 
-      <div id='our-services' tabIndex={-1} className='bg-platinum'>
-        <OurServices />
+      <div id='our-services'>
+        <div tabIndex={-1} className='bg-platinum'>
+          <Container>
+            <RowSection>
+              <OurServices />
+            </RowSection>
+          </Container>
+        </div>
       </div>
 
-      {/* Consultation Form */}
-      <Container>
-        <section className='py-16 md:py-20 lg:py-24'>
-          <div className='mx-auto max-w-screen-md px-4'>
-            <h2 className='mb-4 text-center text-4xl font-extrabold tracking-tight text-pretty'>
-              Schedule a Consultation
-            </h2>
-            <p className='mb-8 text-center font-light sm:text-xl lg:mb-16'>
-              Downsizing or managing a loved one’s estate? We’re here to guide
-              you with care and clarity. Schedule a consultation and let’s start
-              the conversation.
-            </p>
-            <ConsultationForm />
-          </div>
-        </section>
-      </Container>
+      <div id='schedule-consultation'>
+        <Container>
+          <RowSection>
+            <div className='mx-auto max-w-screen-md px-4'>
+              <h2 className='mb-4 text-center text-4xl font-extrabold tracking-tight text-pretty'>
+                Schedule a Consultation
+              </h2>
+              <p className='mb-8 text-center font-light sm:text-xl lg:mb-16'>
+                Downsizing or managing a loved one’s estate? We’re here to guide
+                you with care and clarity. Schedule a consultation and let’s
+                start the conversation.
+              </p>
+              <ConsultationForm />
+            </div>
+          </RowSection>
+        </Container>
+      </div>
     </main>
   );
 }

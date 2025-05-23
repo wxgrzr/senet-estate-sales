@@ -1,24 +1,6 @@
+import { TESTIMONIALS } from '@/lib/constants';
+
 export const Reviews = () => {
-  const testimonials = [
-    {
-      name: 'Amanda T.',
-      quote:
-        'The team treated my mother’s belongings with so much care. It wasn’t just a sale—it felt like a celebration of her life.',
-      stars: 5,
-    },
-    {
-      name: 'Jordan M.',
-      quote:
-        'I was overwhelmed at first, but Senet made it feel easy. Everything was handled with grace.',
-      stars: 5,
-    },
-    {
-      name: 'Chris L.',
-      quote:
-        "Professional, respectful, and kind. I couldn't have asked for a better partner during a hard time.",
-      stars: 5,
-    },
-  ];
   return (
     <div>
       <div className='mx-auto max-w-4xl text-center'>
@@ -31,7 +13,7 @@ export const Reviews = () => {
       </div>
 
       <div className='mt-12 grid gap-8 md:grid-cols-3'>
-        {testimonials.map(({ name, quote, stars }, i) => (
+        {TESTIMONIALS.map(({ name, quote, stars }, i) => (
           <div
             key={i}
             className='rounded-2xl border border-gray-200 bg-white p-6 text-left shadow-sm'
@@ -56,10 +38,3 @@ export const Reviews = () => {
     </div>
   );
 };
-// export default function ClientFeedback() {
-
-//   return (
-//     <section className="bg-gray-50 py-16 px-4 sm:px-8 lg:px-24">
-//     </section>
-//   );
-// }
