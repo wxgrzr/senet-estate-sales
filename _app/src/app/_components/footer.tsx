@@ -4,8 +4,6 @@ import { PAGES } from '@/lib/constants';
 import Image from 'next/image';
 import Link from 'next/link';
 import logoLight from '../../../public/se-logo-richblack.png';
-import { sanityFetch } from '@/sanity/lib/live';
-import { contactInfoQuery } from '@/sanity/lib/queries';
 import { getContactInfo } from '@/app/_utils/getContactInfo';
 
 const Footer = async () => {
@@ -16,11 +14,6 @@ const Footer = async () => {
     addressLine2,
     emailAddress,
   } = await getContactInfo();
-
-  // const phoneNumber = contactInfo?.phoneNumber || '';
-  // const addressLine1 = contactInfo?.address?.addressLine1 || '';
-  // const addressLine2 = contactInfo?.address?.addressLine2 || '';
-  // const emailAddress = contactInfo?.emailAddress || '';
 
   return (
     <footer className='mt-auto py-12'>
