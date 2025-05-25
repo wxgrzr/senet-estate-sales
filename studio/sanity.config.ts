@@ -7,7 +7,12 @@ import { googleMapsInput } from '@sanity/google-maps-input';
 import { googleMapsApiKey } from './environment';
 
 // Environment variables for project configuration
-const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'lc0v2d89';
+// senet-estate-sales_web
+// const projectId = 'lc0v2d89';
+// const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'lc0v2d89';
+
+// Senet estate sales LLC:
+const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'ma2ex8bh';
 const dataset = process.env.SANITY_STUDIO_DATASET || 'production';
 
 export default defineConfig({
