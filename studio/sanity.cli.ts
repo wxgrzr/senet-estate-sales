@@ -7,7 +7,9 @@
 
 import { defineCliConfig } from 'sanity/cli';
 
-const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'lc0v2d89';
+// const projectId =  'ma2ex8bh';
+// const projectId = 'lc0v2d89';
+const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'ma2ex8bh';
 const dataset = process.env.SANITY_STUDIO_DATASET || 'production';
 
 export default defineCliConfig({
@@ -15,6 +17,6 @@ export default defineCliConfig({
     projectId,
     dataset,
   },
-  studioHost: process.env.SANITY_STUDIO_STUDIO_HOST || 'senet-estate-sales', // Visit https://www.sanity.io/docs/environment-variables to learn more about using environment variables for local & production.
+  studioHost: 'senet-estate-sales-prod',
   autoUpdates: true,
 });
