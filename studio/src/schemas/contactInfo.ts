@@ -36,5 +36,10 @@ export default defineType({
       name: 'emailAddress',
       type: 'string',
     }),
+    defineField({
+      name: 'facebookUrl',
+      title: 'Facebook Profile URL',
+      type: 'url',
+    }),
   ],
 });

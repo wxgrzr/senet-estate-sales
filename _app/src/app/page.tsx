@@ -164,7 +164,7 @@ export default async function IndexPage() {
                   price, and sell it all with care.
                 </p>
                 <LinkButton
-                  href='/schedule-a-consultation'
+                  href='/request-estate-sale-consultation'
                   subvariant='solid'
                   colors='secondary'
                 >

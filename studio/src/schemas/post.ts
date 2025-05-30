@@ -85,7 +85,7 @@ export default defineType({
           name: 'coordinates',
           type: 'geopoint',
           title: 'Map Location',
-          description: 'For google maps integration',
+          description: 'Type in street address to set map marker',
         },
       ],
       validation: (rule) => rule.required(),
@@ -101,12 +101,7 @@ export default defineType({
         }),
       ],
       description: 'Add multiple dates and times for the estate sale event.',
-      validation: (rule) =>
-        rule
-          .min(1)
-          .error('At least one event date is required.')
-          .unique()
-          .error('Event dates must be unique.'),
+      validation: (rule) => rule.unique().error('Event dates must be unique.'),
     }),
     defineField({
       name: 'body',
