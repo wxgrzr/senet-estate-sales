@@ -4,7 +4,7 @@ import { Breadcrumbs } from '@/app/_components/breadcrumbs';
 import { sanityFetch } from '@/sanity/lib/live';
 import { urlForImage } from '@/sanity/lib/utils';
 import { allPostsQuery } from '@/sanity/lib/queries';
-import { LinkButton } from '../_components/link-button';
+import { LinkButton } from '@/app/_components/link-button';
 
 const Post = ({ post }: { post: PostType }) => {
   const { _id, title, coverImage, slug, eventDates, location } = post;
