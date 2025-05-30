@@ -321,12 +321,6 @@ export type ContactInfoQueryResult = {
   emailAddress?: string;
   facebookUrl?: string;
 } | null;
-// Variable: faqQuery
-// Query: *[_type == "faq"] | order(order asc) {  question,  answer}
-export type FaqQueryResult = Array<{
-  question: string;
-  answer: string;
-}>;
 // Variable: testimonialQuery
 // Query: *[_type == "reviews"][0]{  items[]{    rating,    review,    name  }}
 export type TestimonialQueryResult = {
@@ -336,20 +330,17 @@ export type TestimonialQueryResult = {
     name: string | null;
   }> | null;
 } | null;
-// Variable: getPageQuery
-// Query: *[_type == 'page' && slug.current == $slug][0]{    _id,    _type,    name,    slug,    heading,    subheading,    "pageBuilder": pageBuilder[]{      ...,      _type == "callToAction" => {          link {      ...,        _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }      },      },      _type == "infoSection" => {        content[]{          ...,          markDefs[]{            ...,              _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }          }        }      },    },  }
-export type GetPageQueryResult = null;
-// Variable: sitemapData
-// Query: *[_type == "page" || _type == "post" && defined(slug.current)] | order(_type asc) {    "slug": slug.current,    _type,    _updatedAt,  }
-export type SitemapDataResult = Array<{
-  slug: string;
-  _type: 'post';
-  _updatedAt: string;
+// Variable: faqQuery
+// Query: *[_type == "faq"] | order(order asc) {  question,  answer}
+export type FaqQueryResult = Array<{
+  question: string;
+  answer: string;
 }>;
 // Variable: allPostsQuery
-// Query: *[_type == "post" && defined(slug.current) && category == "upcoming"] |  order(date desc, _createdAt desc) {      _id,  title,  "slug": slug.current,  coverImage,  location,  eventDates  }
+// Query: *[_type == "post" && defined(slug.current) && category == "upcoming"] |  order(date desc, _createdAt desc) {      _id,  _updatedAt,  "title": coalesce(title, "Untitled Estate Sale"),  "slug": slug.current,  coverImage,  eventDates,  location {    fullAddress,    coordinates {      lat,      lng    }  }  }
 export type AllPostsQueryResult = Array<{
   _id: string;
+  _updatedAt: string;
   title: string;
   slug: string;
   coverImage: {
@@ -364,69 +355,18 @@ export type AllPostsQueryResult = Array<{
     crop?: SanityImageCrop;
     _type: 'image';
   } | null;
-  location: {
-    fullAddress?: string;
-    streetAddress?: string;
-    city?: string;
-    state?:
-      | 'AK'
-      | 'AL'
-      | 'AR'
-      | 'AZ'
-      | 'CA'
-      | 'CO'
-      | 'CT'
-      | 'DE'
-      | 'FL'
-      | 'GA'
-      | 'HI'
-      | 'IA'
-      | 'ID'
-      | 'IL'
-      | 'IN'
-      | 'KS'
-      | 'KY'
-      | 'LA'
-      | 'MA'
-      | 'MD'
-      | 'ME'
-      | 'MI'
-      | 'MN'
-      | 'MO'
-      | 'MS'
-      | 'MT'
-      | 'NC'
-      | 'ND'
-      | 'NE'
-      | 'NH'
-      | 'NJ'
-      | 'NM'
-      | 'NV'
-      | 'NY'
-      | 'OH'
-      | 'OK'
-      | 'OR'
-      | 'PA'
-      | 'RI'
-      | 'SC'
-      | 'SD'
-      | 'TN'
-      | 'TX'
-      | 'UT'
-      | 'VA'
-      | 'VT'
-      | 'WA'
-      | 'WI'
-      | 'WV'
-      | 'WY';
-    zip?: string;
-    coordinates?: Geopoint;
-  };
   eventDates: Array<string> | null;
+  location: {
+    fullAddress: string | null;
+    coordinates: {
+      lat: number | null;
+      lng: number | null;
+    } | null;
+  };
 }>;
-// Variable: POSTS_QUERY
+// Variable: slicedPostsQuery
 // Query: *[  _type == "post" && defined(slug.current) && category == "upcoming"]|order(_createdAt desc)[0...12]{_id, title, slug, coverImage, location, eventDates}
-export type POSTS_QUERYResult = Array<{
+export type SlicedPostsQueryResult = Array<{
   _id: string;
   title: string;
   slug: Slug;
@@ -503,9 +443,10 @@ export type POSTS_QUERYResult = Array<{
   eventDates: Array<string> | null;
 }>;
 // Variable: morePostsQuery
-// Query: *[_type == "post" && _id != $skip && defined(slug.current)]    | order(date desc, _updatedAt desc) [0...$limit] {      _id,  title,  "slug": slug.current,  coverImage,  location,  eventDates  }
+// Query: *[_type == "post" && _id != $skip && defined(slug.current)]    | order(date desc, _updatedAt desc) [0...$limit] {      _id,  _updatedAt,  "title": coalesce(title, "Untitled Estate Sale"),  "slug": slug.current,  coverImage,  eventDates,  location {    fullAddress,    coordinates {      lat,      lng    }  }  }
 export type MorePostsQueryResult = Array<{
   _id: string;
+  _updatedAt: string;
   title: string;
   slug: string;
   coverImage: {
@@ -520,153 +461,100 @@ export type MorePostsQueryResult = Array<{
     crop?: SanityImageCrop;
     _type: 'image';
   } | null;
-  location: {
-    fullAddress?: string;
-    streetAddress?: string;
-    city?: string;
-    state?:
-      | 'AK'
-      | 'AL'
-      | 'AR'
-      | 'AZ'
-      | 'CA'
-      | 'CO'
-      | 'CT'
-      | 'DE'
-      | 'FL'
-      | 'GA'
-      | 'HI'
-      | 'IA'
-      | 'ID'
-      | 'IL'
-      | 'IN'
-      | 'KS'
-      | 'KY'
-      | 'LA'
-      | 'MA'
-      | 'MD'
-      | 'ME'
-      | 'MI'
-      | 'MN'
-      | 'MO'
-      | 'MS'
-      | 'MT'
-      | 'NC'
-      | 'ND'
-      | 'NE'
-      | 'NH'
-      | 'NJ'
-      | 'NM'
-      | 'NV'
-      | 'NY'
-      | 'OH'
-      | 'OK'
-      | 'OR'
-      | 'PA'
-      | 'RI'
-      | 'SC'
-      | 'SD'
-      | 'TN'
-      | 'TX'
-      | 'UT'
-      | 'VA'
-      | 'VT'
-      | 'WA'
-      | 'WI'
-      | 'WV'
-      | 'WY';
-    zip?: string;
-    coordinates?: Geopoint;
-  };
   eventDates: Array<string> | null;
+  location: {
+    fullAddress: string | null;
+    coordinates: {
+      lat: number | null;
+      lng: number | null;
+    } | null;
+  };
 }>;
 // Variable: postQuery
-// Query: *[_type == "post" && slug.current == $slug] [0] {    content[]{    ...,    markDefs[]{      ...,        _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }    }  },      _id,  title,  "slug": slug.current,  coverImage,  location,  eventDates  }
+// Query: *[_type == "post" && slug.current == $slug] [0] {    body[]{...},    gallery[]{...},      _id,  _updatedAt,  "title": coalesce(title, "Untitled Estate Sale"),  "slug": slug.current,  coverImage,  eventDates,  location {    fullAddress,    coordinates {      lat,      lng    }  }  }
 export type PostQueryResult = {
-  content: null;
+  body: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: 'span';
+      _key: string;
+    }>;
+    style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal';
+    listItem?: 'bullet' | 'number';
+    markDefs?: Array<{
+      href?: string;
+      _type: 'link';
+      _key: string;
+    }>;
+    level?: number;
+    _type: 'block';
+    _key: string;
+  }> | null;
+  gallery: Array<{
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+    _key: string;
+  }> | null;
+  _id: string;
+  _updatedAt: string;
+  title: string;
+  slug: string;
+  coverImage: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  } | null;
+  eventDates: Array<string> | null;
+  location: {
+    fullAddress: string | null;
+    coordinates: {
+      lat: number | null;
+      lng: number | null;
+    } | null;
+  };
+} | null;
+// Variable: markerPostsQuery
+// Query: *[    _type == "post" &&    defined(slug.current) &&    category == "upcoming" &&    defined(location.coordinates.lat) &&    defined(location.coordinates.lng)  ]{    _id,    "title": coalesce(title, "Untitled Estate Sale"),    "slug": slug.current,    location {      fullAddress,      coordinates {        lat,        lng      }    }  }
+export type MarkerPostsQueryResult = Array<{
   _id: string;
   title: string;
   slug: string;
-  coverImage: {
-    asset?: {
-      _ref: string;
-      _type: 'reference';
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: 'image';
-  } | null;
   location: {
-    fullAddress?: string;
-    streetAddress?: string;
-    city?: string;
-    state?:
-      | 'AK'
-      | 'AL'
-      | 'AR'
-      | 'AZ'
-      | 'CA'
-      | 'CO'
-      | 'CT'
-      | 'DE'
-      | 'FL'
-      | 'GA'
-      | 'HI'
-      | 'IA'
-      | 'ID'
-      | 'IL'
-      | 'IN'
-      | 'KS'
-      | 'KY'
-      | 'LA'
-      | 'MA'
-      | 'MD'
-      | 'ME'
-      | 'MI'
-      | 'MN'
-      | 'MO'
-      | 'MS'
-      | 'MT'
-      | 'NC'
-      | 'ND'
-      | 'NE'
-      | 'NH'
-      | 'NJ'
-      | 'NM'
-      | 'NV'
-      | 'NY'
-      | 'OH'
-      | 'OK'
-      | 'OR'
-      | 'PA'
-      | 'RI'
-      | 'SC'
-      | 'SD'
-      | 'TN'
-      | 'TX'
-      | 'UT'
-      | 'VA'
-      | 'VT'
-      | 'WA'
-      | 'WI'
-      | 'WV'
-      | 'WY';
-    zip?: string;
-    coordinates?: Geopoint;
+    fullAddress: string | null;
+    coordinates: {
+      lat: number | null;
+      lng: number | null;
+    } | null;
   };
-  eventDates: Array<string> | null;
-} | null;
+}>;
 // Variable: postPagesSlugs
 // Query: *[_type == "post" && defined(slug.current)]  {"slug": slug.current}
 export type PostPagesSlugsResult = Array<{
   slug: string;
 }>;
-// Variable: pagesSlugs
-// Query: *[_type == "page" && defined(slug.current)]  {"slug": slug.current}
-export type PagesSlugsResult = Array<never>;
+// Variable: sitemapData
+// Query: *[_type == "post" && defined(slug.current)] | order(_type asc) {    "slug": slug.current,    _type,    _updatedAt,  }
+export type SitemapDataResult = Array<{
+  slug: string;
+  _type: 'post';
+  _updatedAt: string;
+}>;
 
 // Query TypeMap
 import '@sanity/client';
@@ -674,15 +562,14 @@ declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == "settings"][0]': SettingsQueryResult;
     '*[_type == "contactInfo"][0]': ContactInfoQueryResult;
-    '*[_type == "faq"] | order(order asc) {\n  question,\n  answer\n}': FaqQueryResult;
     '*[_type == "reviews"][0]{\n  items[]{\n    rating,\n    review,\n    name\n  }\n}': TestimonialQueryResult;
-    '\n  *[_type == \'page\' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    "pageBuilder": pageBuilder[]{\n      ...,\n      _type == "callToAction" => {\n        \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n      }\n,\n      },\n      _type == "infoSection" => {\n        content[]{\n          ...,\n          markDefs[]{\n            ...,\n            \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n          }\n        }\n      },\n    },\n  }\n': GetPageQueryResult;
-    '\n  *[_type == "page" || _type == "post" && defined(slug.current)] | order(_type asc) {\n    "slug": slug.current,\n    _type,\n    _updatedAt,\n  }\n': SitemapDataResult;
-    '\n  *[_type == "post" && defined(slug.current) && category == "upcoming"] |\n  order(date desc, _createdAt desc) {\n    \n  _id,\n  title,\n  "slug": slug.current,\n  coverImage,\n  location,\n  eventDates\n\n  }\n': AllPostsQueryResult;
-    '*[\n  _type == "post" && defined(slug.current) && category == "upcoming"\n]|order(_createdAt desc)[0...12]{_id, title, slug, coverImage, location, eventDates}': POSTS_QUERYResult;
-    '\n  *[_type == "post" && _id != $skip && defined(slug.current)]\n    | order(date desc, _updatedAt desc) [0...$limit] {\n    \n  _id,\n  title,\n  "slug": slug.current,\n  coverImage,\n  location,\n  eventDates\n\n  }\n': MorePostsQueryResult;
-    '\n  *[_type == "post" && slug.current == $slug] [0] {\n    content[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n    }\n  },\n    \n  _id,\n  title,\n  "slug": slug.current,\n  coverImage,\n  location,\n  eventDates\n\n  }\n': PostQueryResult;
+    '*[_type == "faq"] | order(order asc) {\n  question,\n  answer\n}': FaqQueryResult;
+    '\n  *[_type == "post" && defined(slug.current) && category == "upcoming"] |\n  order(date desc, _createdAt desc) {\n    \n  _id,\n  _updatedAt,\n  "title": coalesce(title, "Untitled Estate Sale"),\n  "slug": slug.current,\n  coverImage,\n  eventDates,\n  location {\n    fullAddress,\n    coordinates {\n      lat,\n      lng\n    }\n  }\n\n  }\n': AllPostsQueryResult;
+    '*[\n  _type == "post" && defined(slug.current) && category == "upcoming"\n]|order(_createdAt desc)[0...12]{_id, title, slug, coverImage, location, eventDates}': SlicedPostsQueryResult;
+    '\n  *[_type == "post" && _id != $skip && defined(slug.current)]\n    | order(date desc, _updatedAt desc) [0...$limit] {\n    \n  _id,\n  _updatedAt,\n  "title": coalesce(title, "Untitled Estate Sale"),\n  "slug": slug.current,\n  coverImage,\n  eventDates,\n  location {\n    fullAddress,\n    coordinates {\n      lat,\n      lng\n    }\n  }\n\n  }\n': MorePostsQueryResult;
+    '\n  *[_type == "post" && slug.current == $slug] [0] {\n    body[]{...},\n    gallery[]{...},\n    \n  _id,\n  _updatedAt,\n  "title": coalesce(title, "Untitled Estate Sale"),\n  "slug": slug.current,\n  coverImage,\n  eventDates,\n  location {\n    fullAddress,\n    coordinates {\n      lat,\n      lng\n    }\n  }\n\n  }\n': PostQueryResult;
+    '\n  *[\n    _type == "post" &&\n    defined(slug.current) &&\n    category == "upcoming" &&\n    defined(location.coordinates.lat) &&\n    defined(location.coordinates.lng)\n  ]{\n    _id,\n    "title": coalesce(title, "Untitled Estate Sale"),\n    "slug": slug.current,\n    location {\n      fullAddress,\n      coordinates {\n        lat,\n        lng\n      }\n    }\n  }\n': MarkerPostsQueryResult;
     '\n  *[_type == "post" && defined(slug.current)]\n  {"slug": slug.current}\n': PostPagesSlugsResult;
-    '\n  *[_type == "page" && defined(slug.current)]\n  {"slug": slug.current}\n': PagesSlugsResult;
+    '\n  *[_type == "post" && defined(slug.current)] | order(_type asc) {\n    "slug": slug.current,\n    _type,\n    _updatedAt,\n  }\n': SitemapDataResult;
   }
 }

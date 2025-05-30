@@ -5,6 +5,7 @@ import { sanityFetch } from '@/sanity/lib/live';
 import { urlForImage } from '@/sanity/lib/utils';
 import { allPostsQuery } from '@/sanity/lib/queries';
 import { LinkButton } from '@/app/_components/link-button';
+import GoogleMap from '@/app/_components/google-map';
 
 const Post = ({ post }: { post: PostType }) => {
   const { _id, title, coverImage, slug, eventDates, location } = post;
@@ -49,7 +50,6 @@ export default async function UpcomingEstateSales() {
         </LinkButton>
       </div>
 
-      {/* <section className='px-4 pb-16 lg:pb-24'> */}
       <section className='px-4'>
         <div>
           <div className='mb-8'>
@@ -58,8 +58,8 @@ export default async function UpcomingEstateSales() {
             </h2>
           </div>
           <div className='grid gap-4 md:grid-cols-2'>
-            <div className='flex h-[30lvh] items-center justify-center border md:h-full'>
-              <p>TODO: map area</p>
+            <div className='flex h-[30lvh] items-center justify-center md:h-full'>
+              <GoogleMap />
             </div>
             <div className='grid max-h-[70lvh] gap-8 overflow-y-auto rounded-lg bg-gray-50 p-4 shadow-inner md:row-start-1 lg:grid-cols-2'>
               {posts &&
