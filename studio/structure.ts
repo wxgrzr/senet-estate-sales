@@ -12,8 +12,17 @@ export const deskStructure = (S: StructureBuilder) =>
         .child(S.documentTypeList('post').title('Estate Sales')),
       ...S.documentTypeListItems().filter((listItem) => {
         const id = listItem.getId();
-        return id ? !['settings', 'contactInfo', 'post'].includes(id) : false;
+        return id ? !['reviews', 'contactInfo', 'post'].includes(id) : false;
       }),
+      S.listItem()
+        .title('Customer Reviews')
+        .schemaType('reviews')
+        .child(
+          S.editor()
+            .title('Customer Reviews')
+            .schemaType('reviews')
+            .documentId('reviews'),
+        ),
       S.divider(),
       S.listItem()
         .title('Contact Info')
@@ -23,15 +32,5 @@ export const deskStructure = (S: StructureBuilder) =>
             .title('Contact Info')
             .schemaType('contactInfo')
             .documentId('contactInfo'),
-        ),
-      S.divider(),
-      S.listItem()
-        .icon(CogIcon)
-        .title('Site Settings')
-        .child(
-          S.editor()
-            .title('Site Settings')
-            .schemaType('settings')
-            .documentId('settings'),
         ),
     ]);

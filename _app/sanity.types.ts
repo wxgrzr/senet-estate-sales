@@ -13,52 +13,18 @@
  */
 
 // Source: schema.json
-export type SanityImagePaletteSwatch = {
-  _type: 'sanity.imagePaletteSwatch';
-  background?: string;
-  foreground?: string;
-  population?: number;
-  title?: string;
-};
-
-export type SanityImagePalette = {
-  _type: 'sanity.imagePalette';
-  darkMuted?: SanityImagePaletteSwatch;
-  lightVibrant?: SanityImagePaletteSwatch;
-  darkVibrant?: SanityImagePaletteSwatch;
-  vibrant?: SanityImagePaletteSwatch;
-  dominant?: SanityImagePaletteSwatch;
-  lightMuted?: SanityImagePaletteSwatch;
-  muted?: SanityImagePaletteSwatch;
-};
-
-export type SanityImageDimensions = {
-  _type: 'sanity.imageDimensions';
-  height?: number;
-  width?: number;
-  aspectRatio?: number;
-};
-
-export type SanityFileAsset = {
+export type Reviews = {
   _id: string;
-  _type: 'sanity.fileAsset';
+  _type: 'reviews';
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  originalFilename?: string;
-  label?: string;
-  title?: string;
-  description?: string;
-  altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
-  uploadId?: string;
-  path?: string;
-  url?: string;
-  source?: SanityAssetSourceData;
+  items?: Array<{
+    name?: string;
+    rating: number;
+    review: string;
+    _key: string;
+  }>;
 };
 
 export type ContactInfo = {
@@ -73,16 +39,7 @@ export type ContactInfo = {
     addressLine2?: string;
   };
   emailAddress?: string;
-};
-
-export type Settings = {
-  _id: string;
-  _type: 'settings';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  description?: string;
+  facebookUrl?: string;
 };
 
 export type Faq = {
@@ -209,11 +166,38 @@ export type Post = {
   category: 'upcoming' | 'completed';
 };
 
-export type Geopoint = {
-  _type: 'geopoint';
-  lat?: number;
-  lng?: number;
-  alt?: number;
+export type SanityImagePaletteSwatch = {
+  _type: 'sanity.imagePaletteSwatch';
+  background?: string;
+  foreground?: string;
+  population?: number;
+  title?: string;
+};
+
+export type SanityImagePalette = {
+  _type: 'sanity.imagePalette';
+  darkMuted?: SanityImagePaletteSwatch;
+  lightVibrant?: SanityImagePaletteSwatch;
+  darkVibrant?: SanityImagePaletteSwatch;
+  vibrant?: SanityImagePaletteSwatch;
+  dominant?: SanityImagePaletteSwatch;
+  lightMuted?: SanityImagePaletteSwatch;
+  muted?: SanityImagePaletteSwatch;
+};
+
+export type SanityImageDimensions = {
+  _type: 'sanity.imageDimensions';
+  height?: number;
+  width?: number;
+  aspectRatio?: number;
+};
+
+export type SanityImageHotspot = {
+  _type: 'sanity.imageHotspot';
+  x?: number;
+  y?: number;
+  height?: number;
+  width?: number;
 };
 
 export type SanityImageCrop = {
@@ -224,12 +208,26 @@ export type SanityImageCrop = {
   right?: number;
 };
 
-export type SanityImageHotspot = {
-  _type: 'sanity.imageHotspot';
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
+export type SanityFileAsset = {
+  _id: string;
+  _type: 'sanity.fileAsset';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  originalFilename?: string;
+  label?: string;
+  title?: string;
+  description?: string;
+  altText?: string;
+  sha1hash?: string;
+  extension?: string;
+  mimeType?: string;
+  size?: number;
+  assetId?: string;
+  uploadId?: string;
+  path?: string;
+  url?: string;
+  source?: SanityAssetSourceData;
 };
 
 export type SanityImageAsset = {
@@ -255,13 +253,6 @@ export type SanityImageAsset = {
   source?: SanityAssetSourceData;
 };
 
-export type SanityAssetSourceData = {
-  _type: 'sanity.assetSourceData';
-  name?: string;
-  id?: string;
-  url?: string;
-};
-
 export type SanityImageMetadata = {
   _type: 'sanity.imageMetadata';
   location?: Geopoint;
@@ -273,41 +264,47 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
+export type Geopoint = {
+  _type: 'geopoint';
+  lat?: number;
+  lng?: number;
+  alt?: number;
+};
+
 export type Slug = {
   _type: 'slug';
   current: string;
   source?: string;
 };
 
+export type SanityAssetSourceData = {
+  _type: 'sanity.assetSourceData';
+  name?: string;
+  id?: string;
+  url?: string;
+};
+
 export type AllSanitySchemaTypes =
+  | Reviews
+  | ContactInfo
+  | Faq
+  | Post
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
-  | SanityFileAsset
-  | ContactInfo
-  | Settings
-  | Faq
-  | Post
-  | Geopoint
-  | SanityImageCrop
   | SanityImageHotspot
+  | SanityImageCrop
+  | SanityFileAsset
   | SanityImageAsset
-  | SanityAssetSourceData
   | SanityImageMetadata
-  | Slug;
+  | Geopoint
+  | Slug
+  | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: settingsQuery
 // Query: *[_type == "settings"][0]
-export type SettingsQueryResult = {
-  _id: string;
-  _type: 'settings';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  description?: string;
-} | null;
+export type SettingsQueryResult = null;
 // Variable: contactInfoQuery
 // Query: *[_type == "contactInfo"][0]
 export type ContactInfoQueryResult = {
@@ -322,6 +319,7 @@ export type ContactInfoQueryResult = {
     addressLine2?: string;
   };
   emailAddress?: string;
+  facebookUrl?: string;
 } | null;
 // Variable: faqQuery
 // Query: *[_type == "faq"] | order(order asc) {  question,  answer}
@@ -329,6 +327,15 @@ export type FaqQueryResult = Array<{
   question: string;
   answer: string;
 }>;
+// Variable: testimonialQuery
+// Query: *[_type == "reviews"][0]{  items[]{    rating,    review,    name  }}
+export type TestimonialQueryResult = {
+  items: Array<{
+    rating: number;
+    review: string;
+    name: string | null;
+  }> | null;
+} | null;
 // Variable: getPageQuery
 // Query: *[_type == 'page' && slug.current == $slug][0]{    _id,    _type,    name,    slug,    heading,    subheading,    "pageBuilder": pageBuilder[]{      ...,      _type == "callToAction" => {          link {      ...,        _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }      },      },      _type == "infoSection" => {        content[]{          ...,          markDefs[]{            ...,              _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }          }        }      },    },  }
 export type GetPageQueryResult = null;
@@ -345,6 +352,84 @@ export type AllPostsQueryResult = Array<{
   _id: string;
   title: string;
   slug: string;
+  coverImage: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  } | null;
+  location: {
+    fullAddress?: string;
+    streetAddress?: string;
+    city?: string;
+    state?:
+      | 'AK'
+      | 'AL'
+      | 'AR'
+      | 'AZ'
+      | 'CA'
+      | 'CO'
+      | 'CT'
+      | 'DE'
+      | 'FL'
+      | 'GA'
+      | 'HI'
+      | 'IA'
+      | 'ID'
+      | 'IL'
+      | 'IN'
+      | 'KS'
+      | 'KY'
+      | 'LA'
+      | 'MA'
+      | 'MD'
+      | 'ME'
+      | 'MI'
+      | 'MN'
+      | 'MO'
+      | 'MS'
+      | 'MT'
+      | 'NC'
+      | 'ND'
+      | 'NE'
+      | 'NH'
+      | 'NJ'
+      | 'NM'
+      | 'NV'
+      | 'NY'
+      | 'OH'
+      | 'OK'
+      | 'OR'
+      | 'PA'
+      | 'RI'
+      | 'SC'
+      | 'SD'
+      | 'TN'
+      | 'TX'
+      | 'UT'
+      | 'VA'
+      | 'VT'
+      | 'WA'
+      | 'WI'
+      | 'WV'
+      | 'WY';
+    zip?: string;
+    coordinates?: Geopoint;
+  };
+  eventDates: Array<string> | null;
+}>;
+// Variable: POSTS_QUERY
+// Query: *[  _type == "post" && defined(slug.current) && category == "upcoming"]|order(_createdAt desc)[0...12]{_id, title, slug, coverImage, location, eventDates}
+export type POSTS_QUERYResult = Array<{
+  _id: string;
+  title: string;
+  slug: Slug;
   coverImage: {
     asset?: {
       _ref: string;
@@ -590,9 +675,11 @@ declare module '@sanity/client' {
     '*[_type == "settings"][0]': SettingsQueryResult;
     '*[_type == "contactInfo"][0]': ContactInfoQueryResult;
     '*[_type == "faq"] | order(order asc) {\n  question,\n  answer\n}': FaqQueryResult;
+    '*[_type == "reviews"][0]{\n  items[]{\n    rating,\n    review,\n    name\n  }\n}': TestimonialQueryResult;
     '\n  *[_type == \'page\' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    "pageBuilder": pageBuilder[]{\n      ...,\n      _type == "callToAction" => {\n        \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n      }\n,\n      },\n      _type == "infoSection" => {\n        content[]{\n          ...,\n          markDefs[]{\n            ...,\n            \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n          }\n        }\n      },\n    },\n  }\n': GetPageQueryResult;
     '\n  *[_type == "page" || _type == "post" && defined(slug.current)] | order(_type asc) {\n    "slug": slug.current,\n    _type,\n    _updatedAt,\n  }\n': SitemapDataResult;
     '\n  *[_type == "post" && defined(slug.current) && category == "upcoming"] |\n  order(date desc, _createdAt desc) {\n    \n  _id,\n  title,\n  "slug": slug.current,\n  coverImage,\n  location,\n  eventDates\n\n  }\n': AllPostsQueryResult;
+    '*[\n  _type == "post" && defined(slug.current) && category == "upcoming"\n]|order(_createdAt desc)[0...12]{_id, title, slug, coverImage, location, eventDates}': POSTS_QUERYResult;
     '\n  *[_type == "post" && _id != $skip && defined(slug.current)]\n    | order(date desc, _updatedAt desc) [0...$limit] {\n    \n  _id,\n  title,\n  "slug": slug.current,\n  coverImage,\n  location,\n  eventDates\n\n  }\n': MorePostsQueryResult;
     '\n  *[_type == "post" && slug.current == $slug] [0] {\n    content[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n    }\n  },\n    \n  _id,\n  title,\n  "slug": slug.current,\n  coverImage,\n  location,\n  eventDates\n\n  }\n': PostQueryResult;
     '\n  *[_type == "post" && defined(slug.current)]\n  {"slug": slug.current}\n': PostPagesSlugsResult;

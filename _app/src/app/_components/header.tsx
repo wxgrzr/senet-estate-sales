@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { MenuIcon, CloseIcon } from '@sanity/icons';
 import Image from 'next/image';
-// import logoLight from '../../../public/se-logo-richblack.png';
 import { LinkButton } from '@/app/_components/link-button';
 import { PAGES } from '@/lib/constants';
 import { usePathname } from 'next/navigation'; // Add this import
