@@ -2,7 +2,6 @@ import cn from 'classnames';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import { HOME_OG_IMAGE_URL } from '@/lib/constants';
 import Header from '@/app/_components/header';
 import Footer from '@/app/_components/footer';
 import { SanityLive } from '@/sanity/lib/live';
