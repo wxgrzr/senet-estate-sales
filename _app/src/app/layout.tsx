@@ -14,37 +14,47 @@ const inter = Inter({
   display: 'swap',
 });
 
-export const metadata: Metadata = {
-  title: 'Senet Estate Sales | Michigan Estate Liquidation Experts',
+export const metadata = {
+  metadataBase: new URL('https://senetestatesales.com'),
+  title: {
+    default: 'Senet Estate Sales | Estate Sale Experts in Southeast Michigan',
+    template: '%s | Senet Estate Sales',
+  },
   description:
-    'Discover estate sales in Michigan with Senet Estate Sales. View listings, photos, and details for upcoming sales. Serving Michigan communities with trusted estate liquidation services.',
+    'Estate and downsizing sales with care and clarity. Serving Southeast Michigan including Bloomfield, Flint, and Grand Blanc. Schedule a consultation today.',
   keywords: [
-    'Michigan estate sales',
-    'estate sales near me',
+    'Estate Sales Michigan',
+    'Downsizing Services Michigan',
+    'Estate Liquidation',
+    'Estate Sale Company MI',
+    'Southeast Michigan Estate Sales',
     'Senet Estate Sales',
-    'estate liquidation Michigan',
-    'estate sale listings',
-    'estate auctions Michigan',
-    'estate sale company',
-    'home liquidation',
-    'estate sale services',
+    'Onsite Estate Sales',
   ],
   openGraph: {
-    title: 'Senet Estate Sales | Michigan Estate Liquidation Experts',
+    title: 'Senet Estate Sales | Southeast Michigan Estate Sales',
     description:
-      'Find local estate sales across Michigan. Browse current listings, image galleries, and more with Senet Estate Sales.',
-    url: 'https://www.senetestatesales.com',
+      'Compassionate, professional estate sales in Michigan. Schedule a consultation or browse upcoming sales.',
+    url: 'https://senetestatesales.com',
     siteName: 'Senet Estate Sales',
-    type: 'website',
     locale: 'en_US',
-    images: [HOME_OG_IMAGE_URL],
+    type: 'website',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Senet Estate Sales Logo',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Senet Estate Sales | Michigan Estate Liquidation Experts',
+    title: 'Senet Estate Sales',
     description:
-      'View upcoming estate sales in Michigan, including photos and contact details. Trust Senet Estate Sales for professional estate liquidation.',
-    creator: '@senet_sales', // Update if you have a real Twitter handle
+      'Estate and downsizing sales in Southeast Michigan. Trusted local provider.',
+    images: ['/og-image.jpg'],
+    creator: '@senet_estates',
   },
 };
 
@@ -55,39 +65,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <head>
-        <link
-          rel='apple-touch-icon'
-          sizes='180x180'
-          href='/favicon/apple-touch-icon.png'
-        />
-        <link
-          rel='icon'
-          type='image/png'
-          sizes='32x32'
-          href='/favicon/favicon-32x32.png'
-        />
-        <link
-          rel='icon'
-          type='image/png'
-          sizes='16x16'
-          href='/favicon/favicon-16x16.png'
-        />
-        <link rel='manifest' href='/favicon/site.webmanifest' />
-        <link
-          rel='mask-icon'
-          href='/favicon/safari-pinned-tab.svg'
-          color='#000000'
-        />
-        <link rel='shortcut icon' href='/favicon/favicon.ico' />
-        <meta name='msapplication-TileColor' content='#000000' />
-        <meta
-          name='msapplication-config'
-          content='/favicon/browserconfig.xml'
-        />
-        <meta name='theme-color' content='#000' />
-        <link rel='alternate' type='application/rss+xml' href='/feed.xml' />
-      </head>
       <body className={cn(inter.variable, 'antialiased')}>
         <div className='min-h-screen'>
           <Header />
