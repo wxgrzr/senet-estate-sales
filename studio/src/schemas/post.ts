@@ -16,13 +16,12 @@ export default defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
+      description: 'A slug is required for the post to show up in the preview',
       options: {
         source: 'title',
         isUnique: (value, context) => context.defaultIsUnique(value, context),
       },
-      validation: (rule) =>
-        rule.required().error(`Required to generate a page on the website.`),
-      hidden: ({ document }) => !document?.title,
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'coverImage',
@@ -31,6 +30,25 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text',
+          description:
+            'Important for SEO and accessibility. Describe the image using natural language.',
+          validation: (rule) => {
+            // Custom validation to ensure alt text is provided if the image is present. https://www.sanity.io/docs/validation
+            return rule.custom((alt, context) => {
+              if ((context.document?.coverImage as any)?.asset?._ref && !alt) {
+                return 'Required';
+              }
+              return true;
+            });
+          },
+        },
+      ],
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'gallery',
@@ -45,11 +63,23 @@ export default defineType({
       title: 'Location',
       type: 'object',
       fields: [
+        { name: 'streetAddress', type: 'string', title: 'Street Address' },
+        { name: 'city', type: 'string', title: 'City' },
+        {
+          name: 'state',
+          type: 'string',
+          title: 'State',
+          options: {
+            list: [...unitedStates],
+          },
+        },
+        { name: 'zip', type: 'string', title: 'ZIP' },
         {
           name: 'fullAddress',
           type: 'string',
           title: 'Full Address (for display)',
-          description: 'Auto-generated using the address fields below.',
+          description:
+            'Auto-generated using the address fields above. Do not edit.',
           components: {
             input: FullAddressInput,
           },
@@ -70,17 +100,6 @@ export default defineType({
             return `${streetAddress || ''}, ${city || ''}, ${state || ''} ${zip || ''}`;
           },
         },
-        { name: 'streetAddress', type: 'string', title: 'Street Address' },
-        { name: 'city', type: 'string', title: 'City' },
-        {
-          name: 'state',
-          type: 'string',
-          title: 'State',
-          options: {
-            list: [...unitedStates],
-          },
-        },
-        { name: 'zip', type: 'string', title: 'ZIP' },
         {
           name: 'coordinates',
           type: 'geopoint',
@@ -105,6 +124,8 @@ export default defineType({
     }),
     defineField({
       name: 'body',
+      title: 'Description',
+      description: 'Include notable items, notes, misc. text here.',
       type: 'array',
       of: [defineArrayMember({ type: 'block' })],
     }),

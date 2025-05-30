@@ -1,15 +1,7 @@
 'use client';
 
 import cn from 'classnames';
-
-export function openMapLink(address: string) {
-  if (!address) return '';
-  const encodedAddress = encodeURIComponent(address);
-  const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
-  if (typeof window !== 'undefined') {
-    window.open(googleMapsUrl, '_blank');
-  }
-}
+import { openMapButton } from '../_utils/openMapButton';
 
 export const OpenInMapsButton = ({
   address,
@@ -21,7 +13,7 @@ export const OpenInMapsButton = ({
 }) => {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    openMapLink(address);
+    openMapButton(address);
   };
   return (
     <button

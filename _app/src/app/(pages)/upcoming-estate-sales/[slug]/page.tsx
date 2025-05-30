@@ -6,13 +6,11 @@ import { Breadcrumbs } from '@/app/_components/breadcrumbs';
 import { LinkButton } from '@/app/_components/link-button';
 import { notFound } from 'next/navigation';
 import { sanityFetch } from '@/sanity/lib/live';
-import Container from '@/app/_components/container';
 import Gallery from '@/app/_components/gallery-component';
 
 import { DateFormatter } from '@/app/_components/date-formatter';
 import { OpenInMapsButton } from '@/app/_components/open-in-maps-button';
-
-const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
+import { postQuery } from '@/sanity/lib/queries';
 
 export default async function Page({
   params,
@@ -20,7 +18,7 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { data: post } = await sanityFetch({
-    query: POST_QUERY,
+    query: postQuery,
     params: await params,
   });
 
