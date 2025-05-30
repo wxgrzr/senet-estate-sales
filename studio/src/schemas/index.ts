@@ -1,6 +1,6 @@
 import contactInfo from './contactInfo';
 import faq from './faq';
 import post from './post';
-import siteSettings from './siteSettings';
+import reviews from './reviews';
 
-export const schemaTypes = [post, faq, siteSettings, contactInfo];
+export const schemaTypes = [post, faq, contactInfo, reviews];
