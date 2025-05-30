@@ -7,25 +7,13 @@ export const faqQuery = defineQuery(`*[_type == "faq"] | order(order asc) {
   answer
 }`);
 
-// const postPreviewFields = /* groq */ `
-//   _id,
-//   title,
-//   slug,
-//   coverImage,
-//   location,
-//   eventDates,
-// `;
-
-// const postFields = /* groq */ `
-//   _id,
-//   "status": select(_originalId in path("drafts.**") => "draft", "published"),
-//   "title": coalesce(title, "Untitled"),
-//   "slug": slug.current,
-//   excerpt,
-//   coverImage,
-//   "date": coalesce(date, _updatedAt),
-//   "author": author->{firstName, lastName, picture},
-// `;
+export const testimonialQuery = defineQuery(`*[_type == "reviews"][0]{
+  items[]{
+    rating,
+    review,
+    name
+  }
+}`);
 
 const postFields = /* groq */ `
   _id,
@@ -91,9 +79,9 @@ export const allPostsQuery = defineQuery(`
   }
 `);
 
-export const POSTS_QUERY = `*[
+export const POSTS_QUERY = defineQuery(`*[
   _type == "post" && defined(slug.current) && category == "upcoming"
-]|order(_createdAt desc)[0...12]{_id, title, slug, coverImage, location, eventDates}`;
+]|order(_createdAt desc)[0...12]{_id, title, slug, coverImage, location, eventDates}`);
 
 export const morePostsQuery = defineQuery(`
   *[_type == "post" && _id != $skip && defined(slug.current)]
