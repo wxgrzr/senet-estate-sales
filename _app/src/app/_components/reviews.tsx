@@ -19,7 +19,7 @@ export const Reviews = async () => {
         </p>
       </div>
 
-      <div className='mt-12 grid gap-8 md:grid-cols-3'>
+      <div className='mt-12 mb-8 grid gap-8 md:grid-cols-3'>
         {data
           ? data.items?.map(({ name, review, rating }, i: number) => (
               <div
