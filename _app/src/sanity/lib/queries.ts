@@ -1,12 +1,8 @@
-import { defineQuery, groq } from 'next-sanity';
+import { defineQuery } from 'next-sanity';
 
+// [0] for singleton docs
 export const settingsQuery = defineQuery(`*[_type == "settings"][0]`);
 export const contactInfoQuery = defineQuery(`*[_type == "contactInfo"][0]`);
-export const faqQuery = defineQuery(`*[_type == "faq"] | order(order asc) {
-  question,
-  answer
-}`);
-
 export const testimonialQuery = defineQuery(`*[_type == "reviews"][0]{
   items[]{
     rating,
@@ -15,62 +11,26 @@ export const testimonialQuery = defineQuery(`*[_type == "reviews"][0]{
   }
 }`);
 
+export const faqQuery = defineQuery(`*[_type == "faq"] | order(order asc) {
+  question,
+  answer
+}`);
+
 const postFields = /* groq */ `
   _id,
-  title,
+  _updatedAt,
+  "title": coalesce(title, "Untitled Estate Sale"),
   "slug": slug.current,
   coverImage,
-  location,
-  eventDates
-`;
-
-const linkReference = /* groq */ `
-  _type == "link" => {
-    "page": page->slug.current,
-    "post": post->slug.current
+  eventDates,
+  location {
+    fullAddress,
+    coordinates {
+      lat,
+      lng
+    }
   }
 `;
-
-const linkFields = /* groq */ `
-  link {
-      ...,
-      ${linkReference}
-      }
-`;
-
-export const getPageQuery = defineQuery(`
-  *[_type == 'page' && slug.current == $slug][0]{
-    _id,
-    _type,
-    name,
-    slug,
-    heading,
-    subheading,
-    "pageBuilder": pageBuilder[]{
-      ...,
-      _type == "callToAction" => {
-        ${linkFields},
-      },
-      _type == "infoSection" => {
-        content[]{
-          ...,
-          markDefs[]{
-            ...,
-            ${linkReference}
-          }
-        }
-      },
-    },
-  }
-`);
-
-export const sitemapData = defineQuery(`
-  *[_type == "page" || _type == "post" && defined(slug.current)] | order(_type asc) {
-    "slug": slug.current,
-    _type,
-    _updatedAt,
-  }
-`);
 
 export const allPostsQuery = defineQuery(`
   *[_type == "post" && defined(slug.current) && category == "upcoming"] |
@@ -79,7 +39,7 @@ export const allPostsQuery = defineQuery(`
   }
 `);
 
-export const POSTS_QUERY = defineQuery(`*[
+export const slicedPostsQuery = defineQuery(`*[
   _type == "post" && defined(slug.current) && category == "upcoming"
 ]|order(_createdAt desc)[0...12]{_id, title, slug, coverImage, location, eventDates}`);
 
@@ -92,14 +52,30 @@ export const morePostsQuery = defineQuery(`
 
 export const postQuery = defineQuery(`
   *[_type == "post" && slug.current == $slug] [0] {
-    content[]{
-    ...,
-    markDefs[]{
-      ...,
-      ${linkReference}
-    }
-  },
+    body[]{...},
+    gallery[]{...},
     ${postFields}
+  }
+`);
+
+export const markerPostsQuery = defineQuery(`
+  *[
+    _type == "post" &&
+    defined(slug.current) &&
+    category == "upcoming" &&
+    defined(location.coordinates.lat) &&
+    defined(location.coordinates.lng)
+  ]{
+    _id,
+    "title": coalesce(title, "Untitled Estate Sale"),
+    "slug": slug.current,
+    location {
+      fullAddress,
+      coordinates {
+        lat,
+        lng
+      }
+    }
   }
 `);
 
@@ -108,7 +84,10 @@ export const postPagesSlugs = defineQuery(`
   {"slug": slug.current}
 `);
 
-export const pagesSlugs = defineQuery(`
-  *[_type == "page" && defined(slug.current)]
-  {"slug": slug.current}
+export const sitemapData = defineQuery(`
+  *[_type == "post" && defined(slug.current)] | order(_type asc) {
+    "slug": slug.current,
+    _type,
+    _updatedAt,
+  }
 `);
