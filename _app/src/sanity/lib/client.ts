@@ -8,7 +8,7 @@ export const client = createClient({
   apiVersion,
   useCdn: true,
   perspective: 'published',
-  token,
+  // token,
   stega: {
     studioUrl,
     // Set logger to 'console' for more verbose logging

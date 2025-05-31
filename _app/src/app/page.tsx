@@ -1,8 +1,8 @@
+import Carousel from '@/app/_components/carousel';
+import ConsultationForm from '@/app/_components/consultation-form';
 import Container from '@/app/_components/container';
 import { LinkButton } from '@/app/_components/link-button';
-import Carousel from '@/app/_components/carousel';
 import { OurServices } from '@/app/_components/our-services';
-import ConsultationForm from '@/app/_components/consultation-form';
 import { Reviews } from '@/app/_components/reviews';
 import Image from 'next/image';
 import { RowSection } from './_components/row-section';
@@ -106,14 +106,12 @@ export default async function IndexPage() {
         </Container>
       </div>
 
-      <div id='what-people-are-saying'>
-        <div tabIndex={-1} className='bg-platinum'>
-          <Container>
-            <RowSection>
-              <Reviews />
-            </RowSection>
-          </Container>
-        </div>
+      <div id='what-people-are-saying' className='bg-platinum'>
+        <Container>
+          <RowSection>
+            <Reviews />
+          </RowSection>
+        </Container>
       </div>
 
       <div id='ready-to-sell-with-us'>
@@ -176,14 +174,13 @@ export default async function IndexPage() {
         </Container>
       </div>
 
-      <div id='our-services'>
-        <div tabIndex={-1} className='bg-platinum'>
-          <Container>
-            <RowSection>
-              <OurServices />
-            </RowSection>
-          </Container>
-        </div>
+      {/* This will remove keyboard tab focus and allow screen readers, etc. to have section focused upon scrolling via anchor link  */}
+      <div tabIndex={-1} id='our-services' className='bg-platinum'>
+        <Container>
+          <RowSection>
+            <OurServices />
+          </RowSection>
+        </Container>
       </div>
 
       <div id='schedule-consultation'>

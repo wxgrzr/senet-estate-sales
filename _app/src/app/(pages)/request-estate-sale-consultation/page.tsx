@@ -44,7 +44,6 @@ export default function ScheduleConsultation() {
           </div>
         </section>
       </Container>
-      <hr />
     </main>
   );
 }
