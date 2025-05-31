@@ -1,5 +1,11 @@
 import { HomeIcon, PackageIcon, SparklesIcon } from '@sanity/icons';
 
+const ServicesIcon = ({ children }: { children: React.ReactNode }) => (
+  <div className='text-richblack mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-md'>
+    {children}
+  </div>
+);
+
 export function OurServices() {
   return (
     <>
@@ -14,9 +20,9 @@ export function OurServices() {
       </div>
       <div className='grid gap-10 px-10 lg:grid-cols-3'>
         <div className='text-center'>
-          <div className='border-richblack mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border-2 bg-white'>
-            <HomeIcon height={50} width={50} className='text-richblack' />
-          </div>
+          <ServicesIcon>
+            <HomeIcon className='h-7 w-7' />
+          </ServicesIcon>
           <h3 className='mb-2 text-xl font-semibold text-gray-900'>
             Estate Sales
           </h3>
@@ -28,9 +34,9 @@ export function OurServices() {
         </div>
 
         <div className='text-center'>
-          <div className='border-richblack mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border-2 bg-white'>
-            <PackageIcon height={50} width={50} className='text-richblack' />
-          </div>
+          <ServicesIcon>
+            <PackageIcon className='h-7 w-7' />
+          </ServicesIcon>
           <h3 className='mb-2 text-xl font-semibold text-gray-900'>
             Downsizing Help
           </h3>
@@ -42,9 +48,9 @@ export function OurServices() {
         </div>
 
         <div className='text-center'>
-          <div className='border-richblack mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border-2 bg-white'>
-            <SparklesIcon height={50} width={50} className='text-richblack' />
-          </div>
+          <ServicesIcon>
+            <SparklesIcon className='h-7 w-7' />
+          </ServicesIcon>
           <h3 className='mb-2 text-xl font-semibold text-gray-900'>
             Clean-Out Services
           </h3>

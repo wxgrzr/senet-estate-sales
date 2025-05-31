@@ -30,6 +30,7 @@ export default async function IndexPage() {
                   subvariant='solid'
                   colors='secondary'
                   className='max-xs:text-[0.65rem] text-[.8rem] sm:text-base'
+                  arrow
                 >
                   View Estate Sales
                 </LinkButton>

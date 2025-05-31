@@ -1,6 +1,6 @@
-import { ButtonProps } from '@/lib/types';
+import { ButtonProps } from '@/types';
 import { ButtonStyles } from '@/lib/buttonStyles';
-import cn from 'classnames';
+import clsx from 'classnames';
 
 export const Button = ({
   type,
@@ -12,7 +12,7 @@ export const Button = ({
   return (
     <button
       type={type}
-      className={cn(
+      className={clsx(
         className ? className : '',
         ButtonStyles.baseStyles,
         ButtonStyles.subvariantStyles[subvariant],
