@@ -1,6 +1,6 @@
 import { ButtonStyles } from '@/lib/buttonStyles';
-import { LinkButtonProps } from '@/lib/types';
-import cn from 'classnames';
+import { LinkButtonProps } from '@/types';
+import clsx from 'classnames';
 import Link from 'next/link';
 
 export const LinkButton = ({
@@ -10,12 +10,13 @@ export const LinkButton = ({
   colors = 'primary',
   subvariant = 'solid',
   className,
+  arrow = false,
 }: LinkButtonProps) => {
   return (
     <Link
       href={href}
       role={variant === 'button' ? 'button' : ''}
-      className={cn(
+      className={clsx(
         variant === 'button' && ButtonStyles.baseStyles,
         ButtonStyles.variantStyles[variant],
         variant === 'button' ? ButtonStyles.subvariantStyles[subvariant] : '',
@@ -26,6 +27,7 @@ export const LinkButton = ({
       )}
     >
       {children}
+      {arrow ? <span className='ml-2 text-xl'>→</span> : null}
     </Link>
   );
 };

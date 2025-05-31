@@ -1,6 +1,6 @@
 'use client';
 
-import cn from 'classnames';
+import clsx from 'classnames';
 import { openMapButton } from '../_utils/openMapButton';
 
 export const OpenInMapsButton = ({
@@ -18,7 +18,7 @@ export const OpenInMapsButton = ({
   return (
     <button
       type='button'
-      className={cn(
+      className={clsx(
         'cursor-pointer text-left text-pretty text-gray-500 transition duration-200 hover:text-gray-400 focus:outline-none',
         className,
       )}

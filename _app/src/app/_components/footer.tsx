@@ -1,10 +1,11 @@
 import Container from '@/app/_components/container';
 import { LinkButton } from '@/app/_components/link-button';
-import { PAGES } from '@/lib/constants';
+import { PAGES } from '@/app/constants';
 import Image from 'next/image';
 import Link from 'next/link';
 import logoLight from '../../../public/se-logo-richblack.png';
 import { getContactInfo } from '@/app/_utils/getContactInfo';
+import { FaFacebook } from 'react-icons/fa';
 
 const Footer = async () => {
   const {
@@ -13,6 +14,7 @@ const Footer = async () => {
     addressLine1,
     addressLine2,
     emailAddress,
+    facebookUrl,
   } = await getContactInfo();
 
   return (
@@ -29,6 +31,11 @@ const Footer = async () => {
               Your trusted partner for estate sales and vintage finds in&nbsp;
               <b>Southeastern Michigan.</b>
             </p>
+            <div className='my-4'>
+              <Link href={facebookUrl}>
+                <FaFacebook fontSize={'1.75rem'} className='text-richblack' />
+              </Link>
+            </div>
           </div>
           <div>
             <h4 className='mb-4 text-lg font-semibold'>Quick Links</h4>

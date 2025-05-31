@@ -1,5 +1,5 @@
 'use client';
-import cn from 'classnames';
+import clsx from 'classnames';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
@@ -25,7 +25,7 @@ const Carousel = ({ images = [], className }: CarouselProps) => {
 
   return (
     <div
-      className={cn(
+      className={clsx(
         'relative overflow-hidden rounded-lg',
         className ? className : '',
       )}
@@ -37,7 +37,7 @@ const Carousel = ({ images = [], className }: CarouselProps) => {
           width='600'
           height='400'
           alt={item.alt}
-          className={cn(
+          className={clsx(
             'absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-in-out',
             index === currentIndex ? 'z-10 opacity-100' : 'z-0 opacity-0',
           )}

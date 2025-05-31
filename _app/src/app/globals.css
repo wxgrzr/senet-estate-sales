@@ -3,16 +3,20 @@
 :root {
   --background: #ffffff;
   --foreground: #04080f;
-  /* --foreground: #18181b; */
+  --richblack: #04080f;
+  --platinum: #d3dae3;
+  --indigodye: #18406b;
+  --dimgray: #6d6a75;
+  --softblack: #27262b;
 }
 
 @theme {
   --breakpoint-xs: 26rem;
-  --color-platinum: #d3dae3;
-  --color-indigodye: #18406b;
-  --color-dimgray: #6d6a75;
-  --color-richblack: #04080f;
-  --color-softblack: #27262b;
+  --color-platinum: var(--platinum);
+  --color-indigodye: var(--indigodye);
+  --color-dimgray: var(--dimgray);
+  --color-richblack: var(--richblack);
+  --color-softblack: var(--softblack);
   --color-ship-cove-50: #f8fafc;
   --color-ship-cove-100: #d7deec;
   --color-ship-cove-200: #b5c3db;

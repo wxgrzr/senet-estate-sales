@@ -1,15 +1,14 @@
+import { Breadcrumbs } from '@/app/_components/breadcrumbs';
+import { DateFormatter } from '@/app/_components/date-formatter';
+import Gallery from '@/app/_components/gallery-component';
+import { LinkButton } from '@/app/_components/link-button';
+import { OpenInMapsButton } from '@/app/_components/open-in-maps-button';
+import { sanityFetch } from '@/sanity/lib/live';
+import { postQuery } from '@/sanity/lib/queries';
+import { urlFor } from '@/lib/urlFor';
 import { PortableText } from 'next-sanity';
 import Image from 'next/image';
-import { urlFor } from '@/utils/urlFor';
-import { Breadcrumbs } from '@/app/_components/breadcrumbs';
-import { LinkButton } from '@/app/_components/link-button';
 import { notFound } from 'next/navigation';
-import { sanityFetch } from '@/sanity/lib/live';
-import Gallery from '@/app/_components/gallery-component';
-
-import { DateFormatter } from '@/app/_components/date-formatter';
-import { OpenInMapsButton } from '@/app/_components/open-in-maps-button';
-import { postQuery } from '@/sanity/lib/queries';
 
 export default async function Page({
   params,
@@ -94,23 +93,20 @@ export default async function Page({
                 )}
               </div>
             </div>
-            <div id='event-location'>
-              <h2 className='mb-2 text-2xl tracking-tighter'>
-                <b>Google maps link</b>
-              </h2>
-              {address ? (
-                address.length > 0 ? (
+            {address ? (
+              address.length > 0 ? (
+                <div id='event-location'>
+                  <h2 className='mb-2 text-2xl tracking-tighter'>
+                    <b>Get directions</b>
+                  </h2>
                   <OpenInMapsButton
                     address={address}
                     className="text-lg before:content-['📍']"
                   />
-                ) : (
-                  <span className='tracking-tighter italic'>TBD</span>
-                )
-              ) : (
-                ''
-              )}
-            </div>
+                </div>
+              ) : null
+            ) : // <span className='text-gray-500'>Address coming soon!</span>
+            null}
           </div>
           <div className='relative flex min-h-72 w-full shrink-0 items-center justify-center'>
             {coverImage && (
