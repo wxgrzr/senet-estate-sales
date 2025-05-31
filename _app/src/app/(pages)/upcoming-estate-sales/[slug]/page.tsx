@@ -1,5 +1,4 @@
 import { PortableText } from 'next-sanity';
-import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import Image from 'next/image';
 import { urlFor } from '@/utils/urlFor';
 import { Breadcrumbs } from '@/app/_components/breadcrumbs';
@@ -28,20 +27,18 @@ export default async function Page({
 
   const { gallery } = post;
   const images = Array.isArray(gallery)
-    ? gallery.map(
-        (img: { _id: string; asset: SanityImageSource }, i: number) => ({
-          src: urlFor(img)
-            ?.width(2400)
-            .height(1800)
-            .auto('format')
-            .quality(100)
-            .url(),
-          thumbnail: urlFor(img)?.width(400).height(300).auto('format').url(),
-          width: 2400,
-          height: 1800,
-          alt: `Gallery image ${i + 1}`,
-        }),
-      )
+    ? gallery.map((img, i) => ({
+        src: urlFor(img)
+          ?.width(2400)
+          .height(1800)
+          .auto('format')
+          .quality(100)
+          .url(),
+        thumbnail: urlFor(img)?.width(400).height(300).auto('format').url(),
+        width: 2400,
+        height: 1800,
+        alt: `Gallery image ${i + 1}`,
+      }))
     : [];
 
   const coverImage = post?.coverImage
@@ -101,13 +98,17 @@ export default async function Page({
               <h2 className='mb-2 text-2xl tracking-tighter'>
                 <b>Google maps link</b>
               </h2>
-              {address.length > 0 ? (
-                <OpenInMapsButton
-                  address={address}
-                  className="text-lg before:content-['📍']"
-                />
+              {address ? (
+                address.length > 0 ? (
+                  <OpenInMapsButton
+                    address={address}
+                    className="text-lg before:content-['📍']"
+                  />
+                ) : (
+                  <span className='tracking-tighter italic'>TBD</span>
+                )
               ) : (
-                <span className='tracking-tighter italic'>TBD</span>
+                ''
               )}
             </div>
           </div>
@@ -132,13 +133,13 @@ export default async function Page({
                   <PortableText value={post.body} />
                 )}
               </div>
-            ) : (
-              ''
-            )}
+            ) : null}
           </div>
           {/* Row 2 Column 2: Gallery */}
           <div className='max-h-96 min-h-50 overflow-y-auto rounded-lg bg-gray-50 p-4 shadow-inner'>
-            {gallery?.length > 0 && <Gallery images={images} />}
+            {gallery
+              ? gallery?.length > 0 && <Gallery images={images} />
+              : null}
           </div>
         </div>
       </section>
