@@ -7,6 +7,7 @@ type RenderedContactInfo = {
   emailAddress: string;
   addressLine1: string;
   addressLine2: string;
+  facebookUrl: string;
 };
 
 export async function getContactInfo(): Promise<RenderedContactInfo> {
@@ -19,5 +20,6 @@ export async function getContactInfo(): Promise<RenderedContactInfo> {
     emailAddress: contactInfo?.emailAddress || '',
     addressLine1: contactInfo?.address?.addressLine1 || '',
     addressLine2: contactInfo?.address?.addressLine2 || '',
+    facebookUrl: contactInfo?.facebookUrl || '',
   };
 }

@@ -39,7 +39,7 @@ export default defineType({
     defineField({
       name: 'facebookUrl',
       title: 'Facebook Profile URL',
-      type: 'url',
+      type: 'string',
     }),
   ],
 });

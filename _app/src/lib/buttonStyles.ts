@@ -1,6 +1,6 @@
 // Button variant styles
 export const baseStyles =
-  'inline-flex items-center justify-center rounded px-5 py-2 font-medium transition-colors duration-100';
+  'inline-flex items-center justify-center rounded px-5 py-2 font-medium tracking-tight transition-all duration-100';
 
 export const variantStyles = {
   button: 'cursor-pointer',
@@ -18,19 +18,19 @@ const colorStyles: Record<
 > = {
   primary: {
     solid:
-      'border-[color:var(--color-richblack)] bg-[color:var(--color-richblack)] text-white hover:bg-[color:var(--color-ship-cove-700)]',
+      'shadow-md hover:shadow-lg  border-[color:var(--color-richblack)] bg-[color:var(--color-richblack)] text-white hover:bg-[color:var(--color-ship-cove-700)]',
     outline:
       'border-[color:var(--color-richblack)] bg-transparent text-[color:var(--color-richblack)] hover:bg-[color:var(--color-richblack)] hover:text-white',
   },
   secondary: {
     solid:
-      'bg-ship-cove-600 border-ship-cove-600 hover:bg-ship-cove-700 text-white',
+      'shadow-md hover:shadow-lg  bg-ship-cove-600 border-ship-cove-600 hover:bg-ship-cove-700 text-white',
     outline:
       'text-ship-cove-600 border-ship-cove-600 hover:bg-ship-cove-600 bg-transparent hover:text-white',
   },
   indigodye: {
     solid:
-      'text-platinum bg-indigodye border-indigodye hover:bg-ship-cove-600 hover:text-white',
+      'shadow-md hover:shadow-lg  text-platinum bg-indigodye border-indigodye hover:bg-ship-cove-600 hover:text-white',
     outline:
       'text-indigodye border-indigodye hover:bg-indigodye hover:text-platinum bg-transparent',
   },

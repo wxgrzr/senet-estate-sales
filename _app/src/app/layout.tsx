@@ -1,4 +1,4 @@
-import cn from 'classnames';
+import clsx from 'classnames';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
@@ -64,7 +64,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={cn(inter.variable, 'antialiased')}>
+      <body className={clsx(inter.variable, 'antialiased')}>
         <div className='min-h-screen'>
           <Header />
           {children}

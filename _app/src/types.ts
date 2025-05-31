@@ -6,6 +6,7 @@ export type BtnStyleProps = {
   subvariant?: 'solid' | 'outline';
   className?: string;
   children?: React.ReactNode;
+  arrow?: boolean;
 };
 
 export type ButtonProps = BtnStyleProps &
