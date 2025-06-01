@@ -1,19 +1,17 @@
-import { sanityFetch } from '@/sanity/lib/live';
+import { client } from '@/sanity/lib/client';
 import { contactInfoQuery } from '@/sanity/lib/queries';
 
 type RenderedContactInfo = {
-  phoneNumberSanitized: string;
-  phoneNumber: string;
-  emailAddress: string;
-  addressLine1: string;
-  addressLine2: string;
-  facebookUrl: string;
+  phoneNumberSanitized?: string;
+  phoneNumber?: string;
+  emailAddress?: string;
+  addressLine1?: string;
+  addressLine2?: string;
+  facebookUrl?: string;
 };
 
 export async function getContactInfo(): Promise<RenderedContactInfo> {
-  const { data: contactInfo } = await sanityFetch({
-    query: contactInfoQuery,
-  });
+  const contactInfo = await client.fetch(contactInfoQuery);
   return {
     phoneNumberSanitized: contactInfo?.phoneNumber?.replace(/\D/g, '') || '',
     phoneNumber: contactInfo?.phoneNumber || '',

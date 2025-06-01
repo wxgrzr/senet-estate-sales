@@ -6,15 +6,8 @@ import { LinkButton } from './link-button';
 import { ArrowRightIcon } from '@sanity/icons';
 import { RowSection } from './row-section';
 
-// const POSTS_QUERY = `*[
-//   _type == "post"
-//   && defined(slug.current) && category == "upcoming"
-// ]|order(_createdAt desc)[0...4]{_id, title, slug, coverImage, location, eventDates}`;
-
+// Unused section, intended for landing page
 export const UpcomingEstateSalesSection = ({ posts }: { posts: Post[] }) => {
-  // const { data: posts } = await sanityFetch({
-  //   query: POSTS_QUERY,
-  // });
   const postImageUrl = (post: Post) =>
     post?.coverImage
       ? urlForImage(post.coverImage)?.width(550).height(310).url() || ''

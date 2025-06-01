@@ -1,4 +1,4 @@
-import { ButtonStyles } from '@/lib/buttonStyles';
+import { ButtonStyles } from '@/app/_utils/buttonStyles';
 import { LinkButtonProps } from '@/types';
 import clsx from 'classnames';
 import Link from 'next/link';

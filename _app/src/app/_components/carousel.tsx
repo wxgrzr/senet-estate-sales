@@ -24,12 +24,7 @@ const Carousel = ({ images = [], className }: CarouselProps) => {
   }, [images.length]);
 
   return (
-    <div
-      className={clsx(
-        'relative overflow-hidden rounded-lg',
-        className ? className : '',
-      )}
-    >
+    <div className={className}>
       {images.map((item, index) => (
         <Image
           key={index}

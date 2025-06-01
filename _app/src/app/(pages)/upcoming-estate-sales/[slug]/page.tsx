@@ -3,22 +3,92 @@ import { DateFormatter } from '@/app/_components/date-formatter';
 import Gallery from '@/app/_components/gallery-component';
 import { LinkButton } from '@/app/_components/link-button';
 import { OpenInMapsButton } from '@/app/_components/open-in-maps-button';
-import { sanityFetch } from '@/sanity/lib/live';
 import { postQuery } from '@/sanity/lib/queries';
-import { urlFor } from '@/lib/urlFor';
 import { PortableText } from 'next-sanity';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
+import { client } from '@/sanity/lib/client';
+import { urlForImage } from '@/sanity/lib/utils';
+import type { Metadata, ResolvingMetadata } from 'next';
 
-export default async function Page({
+export async function generateMetadata(
+  { params }: { params: { slug: string } },
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const post = await client.fetch(postQuery, { slug: params.slug });
+
+  if (!post) {
+    return {
+      title: 'Estate Sale Not Found',
+      description: 'This estate sale could not be found.',
+      alternates: {
+        canonical: `https://senetestatesales.com/upcoming-estate-sales/${params.slug}`,
+      },
+    };
+  }
+
+  const title = post.title || 'Estate Sale';
+  const description =
+    'Estate sale event located at ' +
+    post.location.fullAddress +
+    ' by Senet Estate Sales.';
+  const coverImage = post?.coverImage
+    ? urlForImage(post.coverImage)?.width(1200).height(630).url()
+    : '/og-image.jpg';
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `https://senetestatesales.com/upcoming-estate-sales/${params.slug}`,
+      siteName: 'Senet Estate Sales',
+      images: [
+        {
+          url: coverImage as string,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [coverImage ?? '/og-image.jpg'],
+    },
+    icons: {
+      icon: [
+        { url: '/favicon.ico' },
+        { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+        { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      ],
+      apple: '/apple-touch-icon.png',
+    },
+    manifest: '/site.webmanifest',
+    themeColor: '#ffffff',
+    alternates: {
+      canonical: `https://senetestatesales.com/upcoming-estate-sales/${params.slug}`,
+    },
+    other: {
+      'fb:page_id': '424849244049685',
+      'fb:profile_id': '61567003222290',
+      'og:see_also':
+        'https://www.facebook.com/people/Senet-Estate-Sales/61567003222290/',
+    },
+  };
+}
+
+export default async function EstateSalePostPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const { data: post } = await sanityFetch({
-    query: postQuery,
-    params: await params,
-  });
+  const { slug } = await params;
+  const post = await client.fetch(postQuery, { slug });
 
   if (!post) {
     notFound();
@@ -27,13 +97,17 @@ export default async function Page({
   const { gallery } = post;
   const images = Array.isArray(gallery)
     ? gallery.map((img, i) => ({
-        src: urlFor(img)
+        src: urlForImage(img)
           ?.width(2400)
           .height(1800)
           .auto('format')
           .quality(100)
           .url(),
-        thumbnail: urlFor(img)?.width(400).height(300).auto('format').url(),
+        thumbnail: urlForImage(img)
+          ?.width(400)
+          .height(300)
+          .auto('format')
+          .url(),
         width: 2400,
         height: 1800,
         alt: `Gallery image ${i + 1}`,
@@ -41,7 +115,7 @@ export default async function Page({
     : [];
 
   const coverImage = post?.coverImage
-    ? urlFor(post.coverImage)?.width(550).height(310).url()
+    ? urlForImage(post.coverImage)?.width(550).height(310).url()
     : null;
 
   const address = post?.location?.fullAddress;
@@ -105,8 +179,7 @@ export default async function Page({
                   />
                 </div>
               ) : null
-            ) : // <span className='text-gray-500'>Address coming soon!</span>
-            null}
+            ) : null}
           </div>
           <div className='relative flex min-h-72 w-full shrink-0 items-center justify-center'>
             {coverImage && (
