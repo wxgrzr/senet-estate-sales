@@ -26,6 +26,32 @@ export default function Head() {
       />
 
       <link rel='manifest' href='/site.webmanifest' />
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'LocalBusiness',
+            name: 'Senet Estate Sales',
+            image: 'https://senetestatesales.com/og-image.jpg',
+            url: 'https://senetestatesales.com',
+            telephone: '8105888175',
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: '14525 N Holly Rd',
+              addressLocality: 'Holly',
+              addressRegion: 'MI',
+              postalCode: '48442',
+              addressCountry: 'US',
+            },
+            description:
+              'Professional estate sale services in Southeastern MI. Compassionate, efficient, and tailored to your needs.',
+            sameAs: [
+              'https://www.facebook.com/people/Senet-Estate-Sales/61567003222290/',
+            ],
+          }),
+        }}
+      />
     </>
   );
 }

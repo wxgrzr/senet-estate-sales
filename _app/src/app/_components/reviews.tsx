@@ -1,12 +1,12 @@
-import { sanityFetch } from '@/sanity/lib/live';
+import { client } from '@/sanity/lib/client';
 import { testimonialQuery } from '@/sanity/lib/queries';
 
 async function getReviews() {
-  return sanityFetch({ query: testimonialQuery });
+  return client.fetch(testimonialQuery);
 }
 
 export const Reviews = async () => {
-  const { data } = await getReviews();
+  const data = await getReviews();
 
   return (
     <div>

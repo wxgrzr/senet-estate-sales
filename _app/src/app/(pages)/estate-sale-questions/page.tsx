@@ -1,15 +1,54 @@
 import Head from 'next/head';
 import Container from '@/app/_components/container';
 import { faqQuery } from '@/sanity/lib/queries';
-import { sanityFetch } from '@/sanity/lib/live';
 import { getContactInfo } from '@/app/_utils/getContactInfo';
+import { client } from '@/sanity/lib/client';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Frequently Asked Questions',
+  description:
+    'Find answers to common questions about estate sales, our process, and how Senet Estate Sales can help you in Southeast Michigan.',
+  alternates: {
+    canonical: 'https://senetestatesales.com/estate-sale-questions',
+  },
+  openGraph: {
+    title: 'Frequently Asked Questions',
+    description:
+      'Find answers to common questions about estate sales, our process, and how Senet Estate Sales can help you in Southeast Michigan.',
+    url: 'https://senetestatesales.com/estate-sale-questions',
+    siteName: 'Senet Estate Sales',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Senet Estate Sales',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Frequently Asked Questions',
+    description:
+      'Find answers to common questions about estate sales, our process, and how Senet Estate Sales can help you in Southeast Michigan.',
+    images: ['/og-image.jpg'],
+  },
+  other: {
+    'fb:page_id': '424849244049685',
+    'fb:profile_id': '61567003222290',
+    'og:see_also':
+      'https://www.facebook.com/people/Senet-Estate-Sales/61567003222290/',
+  },
+};
 
 async function getFAQs() {
-  return sanityFetch({ query: faqQuery });
+  return client.fetch(faqQuery);
 }
 
 export default async function FAQPage() {
-  const { data: faqs = [] } = await getFAQs();
+  const faqs = await getFAQs();
   const { phoneNumber, phoneNumberSanitized, emailAddress } =
     await getContactInfo();
 
