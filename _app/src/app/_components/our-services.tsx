@@ -10,7 +10,7 @@ export function OurServices() {
   return (
     <>
       <div className='mb-12 text-center'>
-        <h2 className='mb-4 text-3xl font-bold text-gray-900 md:text-4xl'>
+        <h2 className='mb-4 text-3xl font-bold tracking-tight text-gray-900 md:text-4xl'>
           Our Services
         </h2>
         <p className='mx-auto max-w-2xl pb-8 text-gray-600'>

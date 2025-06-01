@@ -151,7 +151,7 @@ const ConsultationForm = () => {
       <div className='relative flex items-start'>
         <label
           htmlFor='privacy-policy'
-          className='flex items-start gap-2 pr-4 text-xs leading-[1rem] tracking-tight'
+          className='flex items-start gap-2 pr-4 text-[0.7rem] leading-[.8rem] tracking-tight'
         >
           <input
             type='checkbox'
@@ -162,7 +162,7 @@ const ConsultationForm = () => {
             name='privacy-policy'
             className='checked:bg-ship-cove-600 mt-[0.15em]'
           />
-          <div className='inline-flex pr-10'>
+          <div className='inline-flex pr-10 max-sm:pr-0'>
             <div className='text-pretty'>
               I consent to the collection of personal data I have written in
               this form and I consent to the collection and use of this
@@ -180,7 +180,12 @@ const ConsultationForm = () => {
           </div>
         </label>
       </div>
-      <Button type='submit' colors='primary' subvariant='solid'>
+      <Button
+        type='submit'
+        colors='primary'
+        subvariant='solid'
+        className='max-sm:w-full'
+      >
         Send Message
       </Button>
 
