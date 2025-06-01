@@ -11,10 +11,10 @@ export const Reviews = async () => {
   return (
     <div>
       <div className='mx-auto max-w-4xl text-center'>
-        <h2 className='text-3xl font-semibold tracking-tight text-gray-900'>
+        <h2 className='text-3xl font-bold tracking-tight text-gray-900'>
           What People Are Saying
         </h2>
-        <p className='mt-2 text-lg text-gray-600'>
+        <p className='mt-2 text-lg text-pretty text-gray-600'>
           Real stories from clients we&apos;ve had the honor to work with.
         </p>
       </div>

@@ -5,7 +5,11 @@ import { LinkButton } from '@/app/_components/link-button';
 import { OurServices } from '@/app/_components/our-services';
 import { Reviews } from '@/app/_components/reviews';
 import Image from 'next/image';
-import { RowSection } from './_components/row-section';
+import { RowSection } from '@/app/_components/row-section';
+
+const SectionBodyCopy = ({ children }: { children: React.ReactNode }) => {
+  return <p className='mb-6 text-lg text-gray-700'>{children}</p>;
+};
 
 export default async function IndexPage() {
   return (
@@ -13,15 +17,16 @@ export default async function IndexPage() {
       <div id='hero'>
         <Container>
           <RowSection>
-            <div className='grid grid-cols-2 items-center gap-4 md:gap-8'>
-              <div className='space-y-4 sm:space-y-8'>
+            <div className='grid grid-cols-2 items-center gap-4 max-sm:grid-cols-4 md:gap-8'>
+              <div className='col-start-1 space-y-4 max-sm:col-span-4 sm:space-y-8'>
                 <div className='sm:space-y-2'>
-                  <h2 className='max-xs:text-xl max-xs:leading-5 mb-2 text-2xl leading-6 font-extrabold tracking-tighter sm:text-4xl sm:leading-8 md:text-5xl md:leading-12 lg:text-6xl lg:leading-14'>
+                  <h2 className='mb-2 text-5xl font-extrabold tracking-tighter'>
                     SENET
                     <br />
                     ESTATE SALES
                   </h2>
-                  <p className='max-xs:text-[.8rem] text-xs tracking-tighter text-pretty sm:text-base md:text-lg lg:text-xl'>
+                  {/* <p className='text-base tracking-tighter text-pretty sm:text-base md:text-lg lg:text-xl'> */}
+                  <p className='text-lg tracking-tight text-pretty'>
                     Professional liquidation services in <b>Southeastern MI</b>
                   </p>
                 </div>
@@ -29,14 +34,14 @@ export default async function IndexPage() {
                   href='/upcoming-estate-sales'
                   subvariant='solid'
                   colors='secondary'
-                  className='max-xs:text-[0.65rem] text-[.8rem] sm:text-base'
+                  // className='max-sm:absolute max-sm:z-10'
                   arrow
                 >
                   View Estate Sales
                 </LinkButton>
               </div>
-              <div className='flex items-center justify-center'>
-                <div className='relative flex h-[21rem] w-[14rem] md:h-[28rem] md:w-[40rem]'>
+              <div className='col-start-2 flex size-full items-center justify-center max-sm:col-span-4'>
+                <div className='relative flex size-full min-h-80 max-sm:top-2'>
                   <Image
                     style={{ objectFit: 'cover' }}
                     src={'/heroimg/heroimg@3x.webp'}
@@ -45,7 +50,7 @@ export default async function IndexPage() {
                     className='rounded-2xl'
                     priority
                     quality={100}
-                    sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px'
+                    sizes='(max-width: 768px) 100vw, 50vw'
                   />
                 </div>
               </div>
@@ -59,7 +64,7 @@ export default async function IndexPage() {
           <RowSection>
             <div className='grid items-center gap-8 md:grid-cols-2'>
               <Carousel
-                className='min-h-96'
+                className='min-h-80'
                 images={[
                   {
                     alt: 'Active estate sale checkout table',
@@ -83,16 +88,12 @@ export default async function IndexPage() {
                 <h2 className='mb-6 text-4xl font-extrabold tracking-tight'>
                   Who We Are
                 </h2>
-                <p className='mb-6 text-lg text-gray-700'>
-                  We’re a small but passionate team proudly serving Southeastern
-                  Michigan through thoughtfully run estate sales. From the front
-                  door greeting to the final checkout, our hands-on staff is
-                  organized, friendly, and committed to making the process
-                  easy—for both families and buyers. Whether we’re setting up
-                  jewelry displays, helping customers discover one-of-a-kind
-                  pieces, or answering questions at the register, we bring care
-                  and transparency to every sale.
-                </p>
+                <SectionBodyCopy>
+                  We’re a small, passionate team serving Southeastern Michigan
+                  with carefully run estate sales. From setup to checkout, our
+                  friendly staff makes the process easy and transparent for both
+                  families and buyers.
+                </SectionBodyCopy>
                 <LinkButton
                   href='#our-services'
                   variant='button'
@@ -121,7 +122,7 @@ export default async function IndexPage() {
             <div className='grid items-center gap-8 md:grid-cols-2'>
               <div className='md:order-2'>
                 <Carousel
-                  className='min-h-96'
+                  className='min-h-80'
                   images={[
                     {
                       alt: 'Table with many pieces of fine china',
@@ -152,16 +153,15 @@ export default async function IndexPage() {
               </div>
               <div className='space-y-4 md:order-1'>
                 <h2 className='mb-6 text-4xl font-extrabold tracking-tight text-pretty'>
-                  Start the Process with Confidence
+                  Start with a Free Consultation
                 </h2>
-                <p className='mb-6 text-lg text-gray-700'>
-                  Thinking about hosting a sale but not sure where to start?
-                  Schedule a free consultation and let us take a look. Whether
-                  it’s vintage records, collectibles, or rooms full of
-                  well-loved items, we’ll walk through the space with you, talk
-                  through your goals, and explain how we can help organize,
-                  price, and sell it all with care.
-                </p>
+                <SectionBodyCopy>
+                  We’ll walk through your space, learn your needs, and handle
+                  the rest — from organizing and pricing to the final sale. We
+                  make the estate sale process easy. Schedule a free
+                  consultation, and we’ll guide you every step of the way — with
+                  care and clarity.
+                </SectionBodyCopy>
                 <LinkButton
                   href='/request-estate-sale-consultation'
                   subvariant='solid'
@@ -189,12 +189,12 @@ export default async function IndexPage() {
           <RowSection>
             <div className='mx-auto max-w-screen-md px-4'>
               <h2 className='mb-4 text-center text-4xl font-extrabold tracking-tight text-pretty'>
-                Schedule a Consultation
+                Schedule a Free Consultation
               </h2>
-              <p className='mb-8 text-center font-light sm:text-xl lg:mb-16'>
+              <p className='mb-8 text-center font-light text-pretty sm:text-xl lg:mb-16'>
                 Downsizing or managing a loved one’s estate? We’re here to guide
-                you with care and clarity. Schedule a consultation and let’s
-                start the conversation.
+                you with compassion and experience. Schedule a consultation and
+                let’s talk.
               </p>
               <ConsultationForm />
             </div>
