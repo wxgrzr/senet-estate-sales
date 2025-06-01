@@ -3,7 +3,7 @@ import { LinkButton } from '@/app/_components/link-button';
 import { PAGES } from '@/app/constants';
 import Image from 'next/image';
 import Link from 'next/link';
-import logoLight from '../../../public/se-logo-richblack.png';
+import logoLight from '~/public/se-logo-richblack.png';
 import { getContactInfo } from '@/app/_utils/getContactInfo';
 import { FaFacebook } from 'react-icons/fa';
 
