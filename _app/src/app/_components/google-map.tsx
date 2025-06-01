@@ -33,24 +33,26 @@ export default function GoogleMap() {
           defaultCenter={{ lat: 42.59188895808414, lng: -83.87272507812857 }}
           disableDefaultUI={true}
         >
-          {markers.map((marker) => {
-            const coords = marker.location.coordinates;
-            if (!coords || coords.lat == null || coords.lng == null)
-              return null;
-            return (
-              <Marker
-                onClick={() => {
-                  if (marker.location.fullAddress)
-                    openMapButton(marker.location.fullAddress);
-                }}
-                key={marker._id}
-                position={{
-                  lat: coords.lat,
-                  lng: coords.lng,
-                }}
-              />
-            );
-          })}
+          {markers
+            ? markers.map((marker) => {
+                const coords = marker.location.coordinates;
+                if (!coords || coords.lat == null || coords.lng == null)
+                  return null;
+                return (
+                  <Marker
+                    onClick={() => {
+                      if (marker.location.fullAddress)
+                        openMapButton(marker.location.fullAddress);
+                    }}
+                    key={marker._id}
+                    position={{
+                      lat: coords.lat,
+                      lng: coords.lng,
+                    }}
+                  />
+                );
+              })
+            : markers}
         </Map>
       </APIProvider>
     </div>
