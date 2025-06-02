@@ -8,7 +8,7 @@ export function middleware(request: NextRequest) {
   if (process.env.NODE_ENV === 'production' && !isBot) {
     console.log('Creating 503 status');
     return new NextResponse(
-      'Service Unavailable: We’re working on updates. Please check back soon.',
+      "Service Unavailable: We're working on updates. Please check back soon.",
       {
         status: 503,
         headers: {
