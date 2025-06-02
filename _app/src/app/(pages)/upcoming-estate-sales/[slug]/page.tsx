@@ -11,18 +11,24 @@ import { client } from '@/sanity/lib/client';
 import { urlForImage } from '@/sanity/lib/utils';
 import type { Metadata, ResolvingMetadata } from 'next';
 
+type Props = {
+  params: Promise<{ slug: string }>;
+};
+
 export async function generateMetadata(
-  { params }: { params: { slug: string } },
+  { params }: Props,
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
-  const post = await client.fetch(postQuery, { slug: params.slug });
+  const { slug } = await params;
+  const post = await client.fetch(postQuery, { slug });
+  const previousImages = (await parent).openGraph?.images || [];
 
   if (!post) {
     return {
       title: 'Estate Sale Not Found',
       description: 'This estate sale could not be found.',
       alternates: {
-        canonical: `https://senetestatesales.com/upcoming-estate-sales/${params.slug}`,
+        canonical: `https://senetestatesales.com/upcoming-estate-sales/${slug}`,
       },
     };
   }
@@ -42,7 +48,7 @@ export async function generateMetadata(
     openGraph: {
       title,
       description,
-      url: `https://senetestatesales.com/upcoming-estate-sales/${params.slug}`,
+      url: `https://senetestatesales.com/upcoming-estate-sales/${slug}`,
       siteName: 'Senet Estate Sales',
       images: [
         {
@@ -51,6 +57,7 @@ export async function generateMetadata(
           height: 630,
           alt: title,
         },
+        ...previousImages,
       ],
       type: 'article',
     },
@@ -69,9 +76,8 @@ export async function generateMetadata(
       apple: '/apple-touch-icon.png',
     },
     manifest: '/site.webmanifest',
-    themeColor: '#ffffff',
     alternates: {
-      canonical: `https://senetestatesales.com/upcoming-estate-sales/${params.slug}`,
+      canonical: `https://senetestatesales.com/upcoming-estate-sales/${slug}`,
     },
     other: {
       'fb:page_id': '424849244049685',
@@ -82,11 +88,7 @@ export async function generateMetadata(
   };
 }
 
-export default async function EstateSalePostPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function EstateSalePostPage({ params }: Props) {
   const { slug } = await params;
   const post = await client.fetch(postQuery, { slug });
 
@@ -124,7 +126,6 @@ export default async function EstateSalePostPage({
 
   return (
     <div>
-      {/* Breadcrumb links */}
       <div className='mb-12 hidden md:block'>
         <Breadcrumbs
           items={[
@@ -142,7 +143,8 @@ export default async function EstateSalePostPage({
           ← Back to Upcoming Estate Sales
         </LinkButton>
       </div>
-      <section className='px-4 pb-16'>
+
+      <article className='px-4 pb-16'>
         <div className='grid gap-x-4 gap-y-8 md:grid-cols-2 md:grid-rows-2'>
           <div id='event-details' className='flex flex-1 flex-col'>
             <h1
@@ -211,7 +213,7 @@ export default async function EstateSalePostPage({
               : null}
           </div>
         </div>
-      </section>
+      </article>
     </div>
   );
 }
