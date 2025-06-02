@@ -1,8 +1,9 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, userAgent } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
-  if (process.env.NODE_ENV === 'production') {
+  const { isBot } = userAgent(request);
+  if (process.env.NODE_ENV === 'production' && !isBot) {
     return new NextResponse(
       'Service Unavailable: We’re working on updates. Please check back soon.',
       {
