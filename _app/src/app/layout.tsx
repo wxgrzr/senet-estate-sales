@@ -4,7 +4,11 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from '@/app/_components/header';
 import Footer from '@/app/_components/footer';
-import { SanityLive } from '@/sanity/lib/live';
+import type { Viewport } from 'next';
+
+export const viewport: Viewport = {
+  themeColor: '#ffffff',
+};
 
 const inter = Inter({
   subsets: ['latin'],
@@ -13,15 +17,20 @@ const inter = Inter({
   display: 'swap',
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   metadataBase: new URL('https://senetestatesales.com'),
   title: {
     default: 'Senet Estate Sales | Estate Sale Experts in Southeast Michigan',
     template: '%s | Senet Estate Sales',
   },
   description:
-    'Estate and downsizing sales with care and clarity. Serving Southeast Michigan including Bloomfield, Flint, and Grand Blanc. Schedule a consultation today.',
+    'Professional estate sale services in Southeastern MI. Compassionate, efficient, and tailored to your needs.',
   keywords: [
+    'estate sales',
+    'liquidation',
+    'senet',
+    'downsizing',
+    'Southeastern Michigan',
     'Estate Sales Michigan',
     'Downsizing Services Michigan',
     'Estate Liquidation',
@@ -31,9 +40,9 @@ export const metadata = {
     'Onsite Estate Sales',
   ],
   openGraph: {
-    title: 'Senet Estate Sales | Southeast Michigan Estate Sales',
+    title: 'Senet Estate Sales',
     description:
-      'Compassionate, professional estate sales in Michigan. Schedule a consultation or browse upcoming sales.',
+      'Compassionate, professional estate sales in Michigan. Schedule a consultation or browse our upcoming estate sales.',
     url: 'https://senetestatesales.com',
     siteName: 'Senet Estate Sales',
     locale: 'en_US',
@@ -55,6 +64,28 @@ export const metadata = {
     images: ['/og-image.jpg'],
     creator: '@senet_estates',
   },
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
+  manifest: '/site.webmanifest',
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -68,10 +99,8 @@ export default function RootLayout({
         <div className='min-h-screen'>
           <Header />
           {children}
-
           <Footer />
         </div>
-        <SanityLive />
       </body>
     </html>
   );

@@ -1,4 +1,43 @@
 import { getContactInfo } from '@/app/_utils/getContactInfo';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy',
+  description:
+    'Read the privacy policy for Senet Estate Sales. Learn how we protect your information and your rights as a visitor or client in Southeast Michigan.',
+  alternates: {
+    canonical: 'https://senetestatesales.com/privacy',
+  },
+  openGraph: {
+    title: 'Privacy Policy',
+    description:
+      'Read the privacy policy for Senet Estate Sales. Learn how we protect your information and your rights as a visitor or client in Southeast Michigan.',
+    url: 'https://senetestatesales.com/privacy',
+    siteName: 'Senet Estate Sales',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Senet Estate Sales',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Privacy Policy',
+    description:
+      'Read the privacy policy for Senet Estate Sales. Learn how we protect your information and your rights as a visitor or client in Southeast Michigan.',
+    images: ['/og-image.jpg'],
+  },
+  other: {
+    'fb:page_id': '424849244049685',
+    'fb:profile_id': '61567003222290',
+    'og:see_also':
+      'https://www.facebook.com/people/Senet-Estate-Sales/61567003222290/',
+  },
+};
 
 export default async function PrivacyPolicy() {
   const { emailAddress } = await getContactInfo();

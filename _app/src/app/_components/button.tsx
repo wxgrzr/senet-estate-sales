@@ -1,5 +1,5 @@
 import { ButtonProps } from '@/types';
-import { ButtonStyles } from '@/lib/buttonStyles';
+import { ButtonStyles } from '@/app/_utils/buttonStyles';
 import clsx from 'classnames';
 
 export const Button = ({
