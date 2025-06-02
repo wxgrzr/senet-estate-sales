@@ -12,14 +12,14 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Senet Estate Sales',
   description:
-    'Senet Estate Sales offers professional estate sale and liquidation services in Southeast Michigan. Schedule a consultation or browse our upcoming estate sales.',
+    'Senet Estate Sales offers professional estate sale and liquidation services in Northville, Bloomfield, Bay City, West Bloomfield Township, Grand Blanc, Rochester Hills, Birmingham, Huntington Woods, Flint, Fenton, and Southeast Michigan. Schedule a consultation or browse our upcoming estate sales.',
   alternates: {
     canonical: 'https://senetestatesales.com/',
   },
   openGraph: {
     title: 'Senet Estate Sales',
     description:
-      'Senet Estate Sales offers professional estate sale and liquidation services in Southeast Michigan. Schedule a consultation or browse our upcoming estate sales.',
+      'Senet Estate Sales offers professional estate sale and liquidation services in Northville, Bloomfield, Bay City, West Bloomfield Township, Grand Blanc, Rochester Hills, Birmingham, Huntington Woods, Flint, Fenton, and Southeast Michigan. Schedule a consultation or browse our upcoming estate sales.',
     url: 'https://senetestatesales.com/',
     siteName: 'Senet Estate Sales',
     images: [
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Senet Estate Sales',
     description:
-      'Senet Estate Sales offers professional estate sale and liquidation services in Southeast Michigan. Schedule a consultation or browse our upcoming estate sales.',
+      'Senet Estate Sales offers professional estate sale and liquidation services in Northville, Bloomfield, Bay City, West Bloomfield Township, Grand Blanc, Rochester Hills, Birmingham, Huntington Woods, Flint, Fenton, and Southeast Michigan. Schedule a consultation or browse our upcoming estate sales.',
     images: ['/og-image.jpg'],
   },
   other: {
@@ -45,6 +45,21 @@ export const metadata: Metadata = {
     'og:see_also':
       'https://www.facebook.com/people/Senet-Estate-Sales/61567003222290/',
   },
+  keywords: [
+    'estate sales',
+    'Northville MI',
+    'Bloomfield MI',
+    'Bay City MI',
+    'West Bloomfield Township MI',
+    'Grand Blanc MI',
+    'Rochester Hills MI',
+    'Birmingham MI',
+    'Huntington Woods MI',
+    'Flint MI',
+    'Fenton MI',
+    'Southeast Michigan',
+    'Senet Estate Sales',
+  ],
 };
 
 export default async function IndexPage() {

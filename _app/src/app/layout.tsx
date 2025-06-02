@@ -4,6 +4,11 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from '@/app/_components/header';
 import Footer from '@/app/_components/footer';
+import type { Viewport } from 'next';
+
+export const viewport: Viewport = {
+  themeColor: '#ffffff',
+};
 
 const inter = Inter({
   subsets: ['latin'],
@@ -12,7 +17,7 @@ const inter = Inter({
   display: 'swap',
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   metadataBase: new URL('https://senetestatesales.com'),
   title: {
     default: 'Senet Estate Sales | Estate Sale Experts in Southeast Michigan',
@@ -68,7 +73,6 @@ export const metadata = {
     apple: '/apple-touch-icon.png',
   },
   manifest: '/site.webmanifest',
-  themeColor: '#ffffff',
   robots: {
     index: true,
     follow: true,
