@@ -4,7 +4,10 @@ export default function Head() {
       <title>Senet Estate Sales</title>
       <meta name='theme-color' content='#ffffff' />
       <meta name='msapplication-TileColor' content='#ffffff' />
-
+      <meta
+        name='google-site-verification'
+        content='95CvEmWBbhA7-x_McBrMDbwbuz1ZiznS9dXyC3gP-4A'
+      />
       <link rel='icon' href='/favicon.ico' />
       <link
         rel='icon'
