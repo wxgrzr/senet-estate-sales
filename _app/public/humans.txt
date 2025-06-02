@@ -1,0 +1,24 @@
+/* TEAM */
+Developer: William Greer
+Site: https://will-greer.com
+GitHub: https://github.com/wxgrzr
+Instagram: @wxgrzr
+
+/* THANKS */
+Thanks to: React, Next.js, Vercel, Sanity, Tailwind CSS
+Hosting: Vercel
+Fonts: Google Fonts, Inter
+Icons: ReactIcons, @sanity/icons
+
+/* SITE */
+Standards: HTML5, CSS3, ECMAScript 2022
+Components: React, Tailwind, TypeScript
+CMS: Sanity.io
+Build tool: Next.js
+Deployed on: Vercel
+
+/* NOTE */
+Thank you Paul for your trust in making this site.
+The goal was to build it for scale, with performance and accessibility in mind.
+
+

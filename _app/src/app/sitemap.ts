@@ -9,52 +9,41 @@ import { client } from '@/sanity/lib/client';
  */
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const allPostsAndPages = await client.fetch(sitemapData);
+  const allPosts = await client.fetch(sitemapData);
   const headersList = await headers();
   const sitemap: MetadataRoute.Sitemap = [];
-  const domain: string = headersList.get('host') as string;
-  sitemap.push({
-    url: domain as string,
-    lastModified: new Date(),
-    priority: 1,
-    changeFrequency: 'monthly',
+  const domain: string = headersList.get('host')?.startsWith('http')
+    ? headersList.get('host')!
+    : `https://${headersList.get('host')}`;
+
+  // Add static pages manually
+  const staticPages = [
+    '/',
+    '/upcoming-estate-sales',
+    '/estate-sale-questions',
+    '/request-estate-sale-consultation',
+  ];
+  staticPages.forEach((path) => {
+    sitemap.push({
+      url: `${domain}${path}`,
+      lastModified: new Date(),
+      priority: 1,
+      changeFrequency: 'monthly',
+    });
   });
 
-  if (allPostsAndPages != null && allPostsAndPages.length != 0) {
-    let priority: number = 0; // Default value
-    let changeFrequency:
-      | 'monthly'
-      | 'always'
-      | 'hourly'
-      | 'daily'
-      | 'weekly'
-      | 'yearly'
-      | 'never'
-      | undefined = 'monthly'; // Default value
-    let url: string = ''; // Default value
-
-    for (const p of allPostsAndPages as Array<{
-      _type: 'page' | 'post';
+  // Add posts from Sanity
+  if (allPosts != null && allPosts.length !== 0) {
+    for (const p of allPosts as Array<{
+      _type: 'post';
       slug: string;
       _updatedAt?: string;
     }>) {
-      switch (p._type) {
-        case 'page':
-          priority = 0.8;
-          changeFrequency = 'monthly';
-          url = `${domain}/${p.slug}`;
-          break;
-        case 'post':
-          priority = 0.5;
-          changeFrequency = 'never';
-          url = `${domain}/posts/${p.slug}`;
-          break;
-      }
       sitemap.push({
+        url: `${domain}/upcoming-estate-sales/${p.slug}`,
         lastModified: p._updatedAt || new Date(),
-        priority,
-        changeFrequency,
-        url,
+        priority: 0.5,
+        changeFrequency: 'never',
       });
     }
   }
