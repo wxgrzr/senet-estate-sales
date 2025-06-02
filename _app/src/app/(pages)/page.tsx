@@ -6,9 +6,60 @@ import { OurServices } from '@/app/_components/our-services';
 import { Reviews } from '@/app/_components/reviews';
 import Image from 'next/image';
 import { RowSection } from '@/app/_components/row-section';
+import { MediaContainer } from '../_components/media-container';
+import { Metadata } from 'next';
 
-const SectionBodyCopy = ({ children }: { children: React.ReactNode }) => {
-  return <p className='mb-6 text-lg text-gray-700'>{children}</p>;
+export const metadata: Metadata = {
+  title: 'Senet Estate Sales',
+  description:
+    'Senet Estate Sales offers professional estate sale and liquidation services in Northville, Bloomfield, Bay City, West Bloomfield Township, Grand Blanc, Rochester Hills, Birmingham, Huntington Woods, Flint, Fenton, and Southeast Michigan. Schedule a consultation or browse our upcoming estate sales.',
+  alternates: {
+    canonical: 'https://senetestatesales.com/',
+  },
+  openGraph: {
+    title: 'Senet Estate Sales',
+    description:
+      'Senet Estate Sales offers professional estate sale and liquidation services in Northville, Bloomfield, Bay City, West Bloomfield Township, Grand Blanc, Rochester Hills, Birmingham, Huntington Woods, Flint, Fenton, and Southeast Michigan. Schedule a consultation or browse our upcoming estate sales.',
+    url: 'https://senetestatesales.com/',
+    siteName: 'Senet Estate Sales',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Senet Estate Sales',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Senet Estate Sales',
+    description:
+      'Senet Estate Sales offers professional estate sale and liquidation services in Northville, Bloomfield, Bay City, West Bloomfield Township, Grand Blanc, Rochester Hills, Birmingham, Huntington Woods, Flint, Fenton, and Southeast Michigan. Schedule a consultation or browse our upcoming estate sales.',
+    images: ['/og-image.jpg'],
+  },
+  other: {
+    'fb:page_id': '424849244049685',
+    'fb:profile_id': '61567003222290',
+    'og:see_also':
+      'https://www.facebook.com/people/Senet-Estate-Sales/61567003222290/',
+  },
+  keywords: [
+    'estate sales',
+    'Northville MI',
+    'Bloomfield MI',
+    'Bay City MI',
+    'West Bloomfield Township MI',
+    'Grand Blanc MI',
+    'Rochester Hills MI',
+    'Birmingham MI',
+    'Huntington Woods MI',
+    'Flint MI',
+    'Fenton MI',
+    'Southeast Michigan',
+    'Senet Estate Sales',
+  ],
 };
 
 export default async function IndexPage() {
@@ -17,6 +68,7 @@ export default async function IndexPage() {
       <div id='hero'>
         <Container>
           <RowSection>
+            {/* md:-mb-16 lg:-mb-20 */}
             <div className='grid grid-cols-2 items-center gap-4 max-sm:grid-cols-4 md:gap-8'>
               <div className='col-start-1 space-y-4 max-sm:col-span-4 sm:space-y-8'>
                 <div className='sm:space-y-2'>
@@ -25,7 +77,6 @@ export default async function IndexPage() {
                     <br />
                     ESTATE SALES
                   </h2>
-                  {/* <p className='text-base tracking-tighter text-pretty sm:text-base md:text-lg lg:text-xl'> */}
                   <p className='text-lg tracking-tight text-pretty'>
                     Professional liquidation services in <b>Southeastern MI</b>
                   </p>
@@ -34,14 +85,13 @@ export default async function IndexPage() {
                   href='/upcoming-estate-sales'
                   subvariant='solid'
                   colors='secondary'
-                  // className='max-sm:absolute max-sm:z-10'
                   arrow
                 >
                   View Estate Sales
                 </LinkButton>
               </div>
               <div className='col-start-2 flex size-full items-center justify-center max-sm:col-span-4'>
-                <div className='relative flex size-full min-h-80 max-sm:top-2'>
+                <MediaContainer className='relative size-full max-sm:mt-24'>
                   <Image
                     style={{ objectFit: 'cover' }}
                     src={'/heroimg/heroimg@3x.webp'}
@@ -52,7 +102,8 @@ export default async function IndexPage() {
                     quality={100}
                     sizes='(max-width: 768px) 100vw, 50vw'
                   />
-                </div>
+                </MediaContainer>
+                {/* </div> */}
               </div>
             </div>
           </RowSection>
@@ -63,27 +114,28 @@ export default async function IndexPage() {
         <Container>
           <RowSection>
             <div className='grid items-center gap-8 md:grid-cols-2'>
-              <Carousel
-                className='min-h-80'
-                images={[
-                  {
-                    alt: 'Active estate sale checkout table',
-                    url: '/large/estate36.jpeg',
-                  },
-                  {
-                    alt: 'Two estate sale vendors pose for the camera',
-                    url: '/large/estate33.jpeg',
-                  },
-                  {
-                    alt: 'People carrying items to checkout at estate sale',
-                    url: '/large/estatesale31.jpeg',
-                  },
-                  {
-                    alt: 'People viewing items at estate sale',
-                    url: '/large/estate34.jpeg',
-                  },
-                ]}
-              />
+              <MediaContainer className='max-sm:order-2'>
+                <Carousel
+                  images={[
+                    {
+                      alt: 'Active estate sale checkout table',
+                      url: '/large/estate36.jpeg',
+                    },
+                    {
+                      alt: 'Two estate sale vendors pose for the camera',
+                      url: '/large/estate33.jpeg',
+                    },
+                    {
+                      alt: 'People carrying items to checkout at estate sale',
+                      url: '/large/estatesale31.jpeg',
+                    },
+                    {
+                      alt: 'People viewing items at estate sale',
+                      url: '/large/estate34.jpeg',
+                    },
+                  ]}
+                />
+              </MediaContainer>
               <div>
                 <h2 className='mb-6 text-4xl font-extrabold tracking-tight'>
                   Who We Are
@@ -120,9 +172,8 @@ export default async function IndexPage() {
         <Container>
           <RowSection>
             <div className='grid items-center gap-8 md:grid-cols-2'>
-              <div className='md:order-2'>
+              <MediaContainer className='md:order-2'>
                 <Carousel
-                  className='min-h-80'
                   images={[
                     {
                       alt: 'Table with many pieces of fine china',
@@ -150,7 +201,7 @@ export default async function IndexPage() {
                     },
                   ]}
                 />
-              </div>
+              </MediaContainer>
               <div className='space-y-4 md:order-1'>
                 <h2 className='mb-6 text-4xl font-extrabold tracking-tight text-pretty'>
                   Start with a Free Consultation
@@ -204,3 +255,7 @@ export default async function IndexPage() {
     </main>
   );
 }
+
+const SectionBodyCopy = ({ children }: { children: React.ReactNode }) => {
+  return <p className='mb-6 text-lg text-gray-700'>{children}</p>;
+};

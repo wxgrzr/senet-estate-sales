@@ -32,7 +32,7 @@ const Footer = async () => {
               <b>Southeastern Michigan.</b>
             </p>
             <div className='my-4'>
-              <Link href={facebookUrl}>
+              <Link href={facebookUrl as string}>
                 <FaFacebook fontSize={'1.75rem'} className='text-richblack' />
               </Link>
             </div>

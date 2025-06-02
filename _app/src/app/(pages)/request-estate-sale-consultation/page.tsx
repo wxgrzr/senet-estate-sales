@@ -1,6 +1,45 @@
-import Carousel from '@/app/_components/carousel';
 import ConsultationForm from '@/app/_components/consultation-form';
 import Container from '@/app/_components/container';
+import Image from 'next/image';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Schedule a Consultation',
+  description:
+    'Schedule a free estate sale consultation with Senet Estate Sales. Compassionate, professional estate sale services in Southeast Michigan.',
+  alternates: {
+    canonical: 'https://senetestatesales.com/request-estate-sale-consultation',
+  },
+  openGraph: {
+    title: 'Schedule a Consultation',
+    description:
+      'Schedule a free estate sale consultation with Senet Estate Sales. Compassionate, professional estate sale services in Southeast Michigan.',
+    url: 'https://senetestatesales.com/request-estate-sale-consultation',
+    siteName: 'Senet Estate Sales',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Senet Estate Sales',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Schedule a Consultation',
+    description:
+      'Schedule a free estate sale consultation with Senet Estate Sales. Compassionate, professional estate sale services in Southeast Michigan.',
+    images: ['/og-image.jpg'],
+  },
+  other: {
+    'fb:page_id': '424849244049685',
+    'fb:profile_id': '61567003222290',
+    'og:see_also':
+      'https://www.facebook.com/people/Senet-Estate-Sales/61567003222290/',
+  },
+};
 
 export default function ScheduleConsultation() {
   return (
@@ -19,15 +58,18 @@ export default function ScheduleConsultation() {
                   seamless as possible.
                 </p>
               </div>
-              <Carousel
-                className='min-h-72 lg:mr-8 lg:w-3/4 lg:self-end'
-                images={[
-                  {
-                    url: 'https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                    alt: 'Traditional style home in neighborhood',
-                  },
-                ]}
-              />
+              <div className='relative min-h-72 lg:mr-8 lg:w-3/4 lg:self-end'>
+                <Image
+                  style={{ objectFit: 'cover' }}
+                  src={
+                    'https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                  }
+                  fill
+                  sizes='(min-width: 1024px) 75vw, 100vw'
+                  alt='Traditional family home front view'
+                  className='rounded-2xl'
+                />
+              </div>
             </div>
             <div className='m-auto flex w-full flex-1/2 flex-col justify-center py-8'>
               <div

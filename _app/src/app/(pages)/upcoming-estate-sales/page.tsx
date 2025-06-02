@@ -1,35 +1,68 @@
 import { PostPreview } from '@/app/_components/post-preview';
 import { Post as PostType } from '~/sanity.types';
 import { Breadcrumbs } from '@/app/_components/breadcrumbs';
-import { sanityFetch } from '@/sanity/lib/live';
 import { urlForImage } from '@/sanity/lib/utils';
 import { allPostsQuery } from '@/sanity/lib/queries';
 import { LinkButton } from '@/app/_components/link-button';
 import GoogleMap from '@/app/_components/google-map';
+import { client } from '@/sanity/lib/client';
+import { Metadata } from 'next';
 
-const Post = ({ post }: { post: PostType }) => {
-  const { _id, title, coverImage, slug, eventDates, location } = post;
-  return (
-    <article key={_id}>
-      <PostPreview
-        title={title}
-        coverImage={
-          (coverImage &&
-            urlForImage(coverImage)?.width(550).height(310).url()) ||
-          ''
-        }
-        slug={slug}
-        dates={eventDates || []}
-        fullAddress={location.fullAddress as string}
-      />
-    </article>
-  );
+export const metadata: Metadata = {
+  title: 'Upcoming Estate Sales',
+  description:
+    'Browse all upcoming estate sales in Northville, Bloomfield, Bay City, West Bloomfield Township, Grand Blanc, Rochester Hills, Birmingham, Huntington Woods, Flint, Fenton, and Southeast Michigan hosted by Senet Estate Sales. Find dates, locations, and details for each event.',
+  alternates: {
+    canonical: 'https://senetestatesales.com/upcoming-estate-sales',
+  },
+  openGraph: {
+    title: 'Upcoming Estate Sales',
+    description:
+      'Browse all upcoming estate sales in Northville, Bloomfield, Bay City, West Bloomfield Township, Grand Blanc, Rochester Hills, Birmingham, Huntington Woods, Flint, Fenton, and Southeast Michigan hosted by Senet Estate Sales. Find dates, locations, and details for each event.',
+    url: 'https://senetestatesales.com/upcoming-estate-sales',
+    siteName: 'Senet Estate Sales',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Senet Estate Sales',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Upcoming Estate Sales',
+    description:
+      'Browse all upcoming estate sales in Northville, Bloomfield, Bay City, West Bloomfield Township, Grand Blanc, Rochester Hills, Birmingham, Huntington Woods, Flint, Fenton, and Southeast Michigan hosted by Senet Estate Sales. Find dates, locations, and details for each event.',
+    images: ['/og-image.jpg'],
+  },
+  other: {
+    'fb:page_id': '424849244049685',
+    'fb:profile_id': '61567003222290',
+    'og:see_also':
+      'https://www.facebook.com/people/Senet-Estate-Sales/61567003222290/',
+  },
+  keywords: [
+    'estate sales',
+    'Northville MI',
+    'Bloomfield MI',
+    'Bay City MI',
+    'West Bloomfield Township MI',
+    'Grand Blanc MI',
+    'Rochester Hills MI',
+    'Birmingham MI',
+    'Huntington Woods MI',
+    'Flint MI',
+    'Fenton MI',
+    'Southeast Michigan',
+    'Senet Estate Sales',
+  ],
 };
 
 export default async function UpcomingEstateSales() {
-  const { data: posts } = await sanityFetch({
-    query: allPostsQuery,
-  });
+  const posts = await client.fetch(allPostsQuery);
 
   return (
     <div className='mb-16'>
@@ -58,7 +91,7 @@ export default async function UpcomingEstateSales() {
             </h2>
           </div>
           <div className='grid gap-4 md:grid-cols-2'>
-            <div className='mb-4 flex h-[40lvh] items-center justify-center md:h-full md:min-h-full'>
+            <div className='mb-4 flex h-[40lvh] items-center justify-center overflow-hidden rounded-xl md:h-full md:min-h-full'>
               <GoogleMap />
             </div>
             <div className='grid max-h-[70lvh] gap-8 overflow-y-auto rounded-lg bg-gray-50 p-4 shadow-inner md:row-start-1 lg:grid-cols-2'>
@@ -72,3 +105,22 @@ export default async function UpcomingEstateSales() {
     </div>
   );
 }
+
+const Post = ({ post }: { post: PostType }) => {
+  const { _id, title, coverImage, slug, eventDates, location } = post;
+  return (
+    <article key={_id}>
+      <PostPreview
+        title={title}
+        coverImage={
+          (coverImage &&
+            urlForImage(coverImage)?.width(550).height(310).url()) ||
+          ''
+        }
+        slug={slug}
+        dates={eventDates || []}
+        fullAddress={location.fullAddress as string}
+      />
+    </article>
+  );
+};
