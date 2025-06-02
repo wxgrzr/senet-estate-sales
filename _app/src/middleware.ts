@@ -2,8 +2,11 @@ import { NextResponse, userAgent } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
+  console.log('Middleware running in:', process.env.NODE_ENV);
   const { isBot } = userAgent(request);
+  console.log('isBot:', isBot);
   if (process.env.NODE_ENV === 'production' && !isBot) {
+    console.log('Creating 503 status');
     return new NextResponse(
       'Service Unavailable: We’re working on updates. Please check back soon.',
       {
