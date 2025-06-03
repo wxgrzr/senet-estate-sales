@@ -327,6 +327,13 @@
               },
               "optional": true
             },
+            "alt": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
+            },
             "_type": {
               "type": "objectAttribute",
               "value": {
@@ -336,7 +343,7 @@
             }
           }
         },
-        "optional": true
+        "optional": false
       },
       "gallery": {
         "type": "objectAttribute",
@@ -426,13 +433,6 @@
         "value": {
           "type": "object",
           "attributes": {
-            "fullAddress": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "string"
-              },
-              "optional": true
-            },
             "streetAddress": {
               "type": "objectAttribute",
               "value": {
@@ -657,6 +657,13 @@
               "optional": true
             },
             "zip": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
+            },
+            "fullAddress": {
               "type": "objectAttribute",
               "value": {
                 "type": "string"
