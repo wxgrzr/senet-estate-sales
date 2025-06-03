@@ -24,11 +24,15 @@ export default defineConfig({
     ? [
         structureTool({ structure: deskStructure }),
         visionTool(),
-        googleMapsInput({ apiKey: googleMapsApiKey ?? '' }),
+        googleMapsInput({
+          apiKey: 'AIzaSyBPqt_txCmQfNnQDRWUeEyZOdCRfejuXlc',
+        }),
       ]
     : [
         structureTool({ structure: deskStructure }),
-        googleMapsInput({ apiKey: googleMapsApiKey ?? '' }),
+        googleMapsInput({
+          apiKey: 'AIzaSyBPqt_txCmQfNnQDRWUeEyZOdCRfejuXlc',
+        }),
       ],
   schema: {
     types: schemaTypes,
