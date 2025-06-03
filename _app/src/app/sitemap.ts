@@ -19,7 +19,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Add static pages manually
   const staticPages = [
     '/',
-    '/upcoming-estate-sales',
     '/estate-sale-questions',
     '/request-estate-sale-consultation',
   ];
@@ -30,6 +29,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
       changeFrequency: 'monthly',
     });
+  });
+
+  sitemap.push({
+    url: domain + '/upcoming-estate-sales',
+    lastModified: new Date(),
+    priority: 1,
+    changeFrequency: 'weekly',
   });
 
   // Add posts from Sanity
@@ -43,7 +49,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         url: `${domain}/upcoming-estate-sales/${p.slug}`,
         lastModified: p._updatedAt || new Date(),
         priority: 0.5,
-        changeFrequency: 'never',
+        changeFrequency: 'weekly',
       });
     }
   }
