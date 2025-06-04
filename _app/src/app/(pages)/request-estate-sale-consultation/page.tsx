@@ -2,6 +2,7 @@ import ConsultationForm from '@/app/_components/consultation-form';
 import Container from '@/app/_components/container';
 import Image from 'next/image';
 import { Metadata } from 'next';
+import { AnimateInXL, AnimateInXR } from '@/app/_components/animate-in-x';
 
 export const metadata: Metadata = {
   title: 'Schedule a Consultation',
@@ -47,7 +48,10 @@ export default function ScheduleConsultation() {
       <Container>
         <section className='py-8 md:py-12'>
           <div className='flex flex-col md:flex-row md:gap-x-8'>
-            <div className='mx-auto flex h-full w-full flex-1/2 flex-col space-y-6 md:mt-20'>
+            <AnimateInXL
+              x={40}
+              className='mx-auto flex h-full w-full flex-1/2 flex-col space-y-6 md:mt-20'
+            >
               <h1 className='text-5xl font-bold tracking-tighter md:text-7xl'>
                 Schedule a Consultation
               </h1>
@@ -70,8 +74,11 @@ export default function ScheduleConsultation() {
                   className='rounded-2xl'
                 />
               </div>
-            </div>
-            <div className='m-auto flex w-full flex-1/2 flex-col justify-center py-8'>
+            </AnimateInXL>
+            <AnimateInXR
+              x={40}
+              className='m-auto flex w-full flex-1/2 flex-col justify-center py-8'
+            >
               <div
                 className='grid grid-cols-12 gap-4'
                 id='schedule-consultation-form-header'
@@ -82,7 +89,7 @@ export default function ScheduleConsultation() {
                 <div className='col-span-8 col-start-1 row-span-1 row-start-2 mb-8 border border-black' />
               </div>
               <ConsultationForm />
-            </div>
+            </AnimateInXR>
           </div>
         </section>
       </Container>

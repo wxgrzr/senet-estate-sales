@@ -8,6 +8,8 @@ import Image from 'next/image';
 import { RowSection } from '@/app/_components/row-section';
 import { MediaContainer } from '../_components/media-container';
 import { Metadata } from 'next';
+import { AnimateInXL, AnimateInXR } from '../_components/animate-in-x';
+import { AnimateInY } from '../_components/animate-in-y';
 
 export const metadata: Metadata = {
   title: 'Senet Estate Sales',
@@ -68,9 +70,11 @@ export default async function IndexPage() {
       <div id='hero'>
         <Container>
           <RowSection>
-            {/* md:-mb-16 lg:-mb-20 */}
             <div className='grid grid-cols-2 items-center gap-4 max-sm:grid-cols-4 md:gap-8'>
-              <div className='col-start-1 space-y-4 max-sm:col-span-4 sm:space-y-8'>
+              <AnimateInXL
+                x={40}
+                className='col-start-1 space-y-4 max-sm:col-span-4 sm:space-y-8'
+              >
                 <div className='sm:space-y-2'>
                   <h2 className='mb-2 text-5xl font-extrabold tracking-tighter'>
                     SENET
@@ -89,8 +93,12 @@ export default async function IndexPage() {
                 >
                   View Estate Sales
                 </LinkButton>
-              </div>
-              <div className='col-start-2 flex size-full items-center justify-center max-sm:col-span-4'>
+              </AnimateInXL>
+
+              <AnimateInXR
+                x={40}
+                className='col-start-2 flex size-full items-center justify-center max-sm:col-span-4'
+              >
                 <MediaContainer className='relative size-full max-sm:mt-24'>
                   <Image
                     style={{ objectFit: 'cover' }}
@@ -103,8 +111,7 @@ export default async function IndexPage() {
                     sizes='(max-width: 768px) 100vw, 50vw'
                   />
                 </MediaContainer>
-                {/* </div> */}
-              </div>
+              </AnimateInXR>
             </div>
           </RowSection>
         </Container>
@@ -114,29 +121,31 @@ export default async function IndexPage() {
         <Container>
           <RowSection>
             <div className='grid items-center gap-8 md:grid-cols-2'>
-              <MediaContainer className='max-sm:order-2'>
-                <Carousel
-                  images={[
-                    {
-                      alt: 'Active estate sale checkout table',
-                      url: '/large/estate36.jpeg',
-                    },
-                    {
-                      alt: 'Two estate sale vendors pose for the camera',
-                      url: '/large/estate33.jpeg',
-                    },
-                    {
-                      alt: 'People carrying items to checkout at estate sale',
-                      url: '/large/estatesale31.jpeg',
-                    },
-                    {
-                      alt: 'People viewing items at estate sale',
-                      url: '/large/estate34.jpeg',
-                    },
-                  ]}
-                />
-              </MediaContainer>
-              <div>
+              <AnimateInXL x={40}>
+                <MediaContainer className='max-sm:order-2'>
+                  <Carousel
+                    images={[
+                      {
+                        alt: 'Active estate sale checkout table',
+                        url: '/large/estate36.jpeg',
+                      },
+                      {
+                        alt: 'Two estate sale vendors pose for the camera',
+                        url: '/large/estate33.jpeg',
+                      },
+                      {
+                        alt: 'People carrying items to checkout at estate sale',
+                        url: '/large/estatesale31.jpeg',
+                      },
+                      {
+                        alt: 'People viewing items at estate sale',
+                        url: '/large/estate34.jpeg',
+                      },
+                    ]}
+                  />
+                </MediaContainer>
+              </AnimateInXL>
+              <AnimateInXR x={40}>
                 <h2 className='mb-6 text-4xl font-extrabold tracking-tight'>
                   Who We Are
                 </h2>
@@ -154,7 +163,7 @@ export default async function IndexPage() {
                 >
                   Our Services
                 </LinkButton>
-              </div>
+              </AnimateInXR>
             </div>
           </RowSection>
         </Container>
@@ -172,54 +181,58 @@ export default async function IndexPage() {
         <Container>
           <RowSection>
             <div className='grid items-center gap-8 md:grid-cols-2'>
-              <MediaContainer className='md:order-2'>
-                <Carousel
-                  images={[
-                    {
-                      alt: 'Table with many pieces of fine china',
-                      url: '/large/estate31.jpeg',
-                    },
-                    {
-                      alt: 'Old film cameras on table',
-                      url: 'https://images.unsplash.com/photo-1511737561643-649a082cd8a2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                    },
-                    {
-                      alt: 'Two men viewing items on table',
-                      url: '/large/estatesale24.jpeg',
-                    },
-                    {
-                      alt: 'Records in crate',
-                      url: 'https://images.unsplash.com/photo-1526714777143-799b30a29fdb?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                    },
-                    {
-                      alt: 'Misc. jewelry items',
-                      url: 'https://images.unsplash.com/photo-1642415314611-3439fb991d14?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                    },
-                    {
-                      alt: 'Collection of pins',
-                      url: 'https://images.unsplash.com/photo-1619984827929-a056b71e4a3b?q=80&w=2037&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                    },
-                  ]}
-                />
-              </MediaContainer>
+              <AnimateInXR x={40} className='md:order-2'>
+                <MediaContainer>
+                  <Carousel
+                    images={[
+                      {
+                        alt: 'Table with many pieces of fine china',
+                        url: '/large/estate31.jpeg',
+                      },
+                      {
+                        alt: 'Old film cameras on table',
+                        url: 'https://images.unsplash.com/photo-1511737561643-649a082cd8a2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                      },
+                      {
+                        alt: 'Two men viewing items on table',
+                        url: '/large/estatesale24.jpeg',
+                      },
+                      {
+                        alt: 'Records in crate',
+                        url: 'https://images.unsplash.com/photo-1526714777143-799b30a29fdb?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                      },
+                      {
+                        alt: 'Misc. jewelry items',
+                        url: 'https://images.unsplash.com/photo-1642415314611-3439fb991d14?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                      },
+                      {
+                        alt: 'Collection of pins',
+                        url: 'https://images.unsplash.com/photo-1619984827929-a056b71e4a3b?q=80&w=2037&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                      },
+                    ]}
+                  />
+                </MediaContainer>
+              </AnimateInXR>
               <div className='space-y-4 md:order-1'>
-                <h2 className='mb-6 text-4xl font-extrabold tracking-tight text-pretty'>
-                  Start with a Free Consultation
-                </h2>
-                <SectionBodyCopy>
-                  We’ll walk through your space, learn your needs, and handle
-                  the rest — from organizing and pricing to the final sale. We
-                  make the estate sale process easy. Schedule a free
-                  consultation, and we’ll guide you every step of the way — with
-                  care and clarity.
-                </SectionBodyCopy>
-                <LinkButton
-                  href='/request-estate-sale-consultation'
-                  subvariant='solid'
-                  colors='secondary'
-                >
-                  Schedule a Consultation
-                </LinkButton>
+                <AnimateInXL x={40}>
+                  <h2 className='mb-6 text-4xl font-extrabold tracking-tight text-pretty'>
+                    Start with a Free Consultation
+                  </h2>
+                  <SectionBodyCopy>
+                    We’ll walk through your space, learn your needs, and handle
+                    the rest — from organizing and pricing to the final sale. We
+                    make the estate sale process easy. Schedule a free
+                    consultation, and we’ll guide you every step of the way —
+                    with care and clarity.
+                  </SectionBodyCopy>
+                  <LinkButton
+                    href='/request-estate-sale-consultation'
+                    subvariant='solid'
+                    colors='secondary'
+                  >
+                    Schedule a Consultation
+                  </LinkButton>
+                </AnimateInXL>
               </div>
             </div>
           </RowSection>
@@ -238,17 +251,19 @@ export default async function IndexPage() {
       <div id='schedule-consultation'>
         <Container>
           <RowSection>
-            <div className='mx-auto max-w-screen-md px-4'>
-              <h2 className='mb-4 text-center text-4xl font-extrabold tracking-tight text-pretty'>
-                Schedule a Free Consultation
-              </h2>
-              <p className='mb-8 text-center font-light text-pretty sm:text-xl lg:mb-16'>
-                Downsizing or managing a loved one’s estate? We’re here to guide
-                you with compassion and experience. Schedule a consultation and
-                let’s talk.
-              </p>
-              <ConsultationForm />
-            </div>
+            <AnimateInY y={40}>
+              <div className='mx-auto max-w-screen-md px-4'>
+                <h2 className='mb-4 text-center text-4xl font-extrabold tracking-tight text-pretty'>
+                  Schedule a Free Consultation
+                </h2>
+                <p className='mb-8 text-center font-light text-pretty sm:text-xl lg:mb-16'>
+                  Downsizing or managing a loved one’s estate? We’re here to
+                  guide you with compassion and experience. Schedule a
+                  consultation and let’s talk.
+                </p>
+                <ConsultationForm />
+              </div>
+            </AnimateInY>
           </RowSection>
         </Container>
       </div>
