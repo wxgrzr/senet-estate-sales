@@ -84,22 +84,29 @@ export default async function UpcomingEstateSales() {
       </div>
 
       <section className='px-4'>
-        <div>
-          <div className='mb-4 md:mb-8'>
-            <h2 className='text-5xl font-bold tracking-tighter md:text-6xl lg:text-7xl'>
-              Upcoming Estate Sales
-            </h2>
-          </div>
-          <div className='grid gap-4 md:grid-cols-2'>
-            <div className='mb-4 flex h-[40lvh] items-center justify-center overflow-hidden rounded-xl md:h-full md:min-h-full'>
-              <GoogleMap />
-            </div>
-            <div className='grid max-h-[70lvh] gap-8 overflow-y-auto rounded-lg bg-gray-50 p-4 shadow-inner md:row-start-1 lg:grid-cols-2'>
-              {posts.map((post: any) => {
-                return <Post post={post} key={post._id} />;
-              })}
-            </div>
-          </div>
+        <div className='mb-4 md:mb-8'>
+          <h2 className='text-5xl font-bold tracking-tighter md:text-6xl lg:text-7xl'>
+            Upcoming Estate Sales
+          </h2>
+        </div>
+
+        <div className='grid gap-4 md:grid-cols-2'>
+          {posts.length > 0 ? (
+            <>
+              <div className='my-4 min-h-[40vh] overflow-hidden rounded-lg md:my-0 md:min-h-full'>
+                <GoogleMap />
+              </div>
+              <div className='grid max-h-[75vh] gap-6 overflow-y-auto rounded-lg bg-gray-50 p-6 shadow-inner md:row-start-1 lg:grid-cols-2'>
+                {posts.map((post: any) => {
+                  return <Post post={post} key={post._id} />;
+                })}
+              </div>
+            </>
+          ) : (
+            <p>
+              There are no upcoming sales at this time. Please check back soon!
+            </p>
+          )}
         </div>
       </section>
     </div>
