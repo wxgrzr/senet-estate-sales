@@ -11,7 +11,11 @@ async function getMarkers() {
   return client.fetch(markerPostsQuery);
 }
 
-export default function GoogleMap() {
+interface GoogleMapProps {
+  className?: string;
+}
+
+export default function GoogleMap({ className }: GoogleMapProps) {
   const API_KEY =
     (process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string) ??
     globalThis.GOOGLE_MAPS_API_KEY;
@@ -50,7 +54,7 @@ export default function GoogleMap() {
   }
 
   return (
-    <div className='size-full'>
+    <div className={`size-full${className ? ` ${className}` : ''}`}>
       <APIProvider apiKey={API_KEY}>
         <Map
           defaultZoom={6.8}

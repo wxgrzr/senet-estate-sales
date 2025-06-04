@@ -41,5 +41,10 @@ export default defineType({
       title: 'Facebook Profile URL',
       type: 'string',
     }),
+    defineField({
+      name: 'yelpUrl',
+      title: 'Yelp Profile URL',
+      type: 'string',
+    }),
   ],
 });

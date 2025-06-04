@@ -13,6 +13,19 @@
  */
 
 // Source: schema.json
+export type Faqs = {
+  _id: string;
+  _type: 'faqs';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  items?: Array<{
+    question: string;
+    answer: string;
+    _key: string;
+  }>;
+};
+
 export type Reviews = {
   _id: string;
   _type: 'reviews';
@@ -40,17 +53,7 @@ export type ContactInfo = {
   };
   emailAddress?: string;
   facebookUrl?: string;
-};
-
-export type Faq = {
-  _id: string;
-  _type: 'faq';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  question: string;
-  answer: string;
-  order: number;
+  yelpUrl?: string;
 };
 
 export type Post = {
@@ -87,7 +90,6 @@ export type Post = {
     _key: string;
   }>;
   location: {
-    fullAddress?: string;
     streetAddress?: string;
     city?: string;
     state?:
@@ -142,6 +144,7 @@ export type Post = {
       | 'WI'
       | 'WY';
     zip?: string;
+    fullAddress?: string;
     coordinates?: Geopoint;
   };
   eventDates?: Array<string>;
@@ -163,7 +166,7 @@ export type Post = {
     _type: 'block';
     _key: string;
   }>;
-  category: 'upcoming' | 'completed';
+  category: 'upcoming' | 'completed' | 'hidden';
 };
 
 export type SanityImagePaletteSwatch = {
@@ -285,9 +288,9 @@ export type SanityAssetSourceData = {
 };
 
 export type AllSanitySchemaTypes =
+  | Faqs
   | Reviews
   | ContactInfo
-  | Faq
   | Post
   | SanityImagePaletteSwatch
   | SanityImagePalette
@@ -320,6 +323,7 @@ export type ContactInfoQueryResult = {
   };
   emailAddress?: string;
   facebookUrl?: string;
+  yelpUrl?: string;
 } | null;
 // Variable: testimonialQuery
 // Query: *[_type == "reviews"][0]{  items[]{    rating,    review,    name  }}
@@ -331,11 +335,13 @@ export type TestimonialQueryResult = {
   }> | null;
 } | null;
 // Variable: faqQuery
-// Query: *[_type == "faq"] | order(order asc) {  question,  answer}
-export type FaqQueryResult = Array<{
-  question: string;
-  answer: string;
-}>;
+// Query: *[_type == "faqs"][0]{  items[] {    question,    answer  }}
+export type FaqQueryResult = {
+  items: Array<{
+    question: string;
+    answer: string;
+  }> | null;
+} | null;
 // Variable: allPostsQuery
 // Query: *[_type == "post" && defined(slug.current) && category == "upcoming"] |  order(date desc, _createdAt desc) {      _id,  _updatedAt,  "title": coalesce(title, "Untitled Estate Sale"),  "slug": slug.current,  coverImage,  eventDates,  location {    fullAddress,    coordinates {      lat,      lng    }  }  }
 export type AllPostsQueryResult = Array<{
@@ -383,7 +389,6 @@ export type SlicedPostsQueryResult = Array<{
     _type: 'image';
   } | null;
   location: {
-    fullAddress?: string;
     streetAddress?: string;
     city?: string;
     state?:
@@ -438,6 +443,7 @@ export type SlicedPostsQueryResult = Array<{
       | 'WV'
       | 'WY';
     zip?: string;
+    fullAddress?: string;
     coordinates?: Geopoint;
   };
   eventDates: Array<string> | null;
@@ -563,7 +569,7 @@ declare module '@sanity/client' {
     '*[_type == "settings"][0]': SettingsQueryResult;
     '*[_type == "contactInfo"][0]': ContactInfoQueryResult;
     '*[_type == "reviews"][0]{\n  items[]{\n    rating,\n    review,\n    name\n  }\n}': TestimonialQueryResult;
-    '*[_type == "faq"] | order(order asc) {\n  question,\n  answer\n}': FaqQueryResult;
+    '*[_type == "faqs"][0]{\n  items[] {\n    question,\n    answer\n  }\n}': FaqQueryResult;
     '\n  *[_type == "post" && defined(slug.current) && category == "upcoming"] |\n  order(date desc, _createdAt desc) {\n    \n  _id,\n  _updatedAt,\n  "title": coalesce(title, "Untitled Estate Sale"),\n  "slug": slug.current,\n  coverImage,\n  eventDates,\n  location {\n    fullAddress,\n    coordinates {\n      lat,\n      lng\n    }\n  }\n\n  }\n': AllPostsQueryResult;
     '*[\n  _type == "post" && defined(slug.current) && category == "upcoming"\n]|order(_createdAt desc)[0...12]{_id, title, slug, coverImage, location, eventDates}': SlicedPostsQueryResult;
     '\n  *[_type == "post" && _id != $skip && defined(slug.current)]\n    | order(date desc, _updatedAt desc) [0...$limit] {\n    \n  _id,\n  _updatedAt,\n  "title": coalesce(title, "Untitled Estate Sale"),\n  "slug": slug.current,\n  coverImage,\n  eventDates,\n  location {\n    fullAddress,\n    coordinates {\n      lat,\n      lng\n    }\n  }\n\n  }\n': MorePostsQueryResult;

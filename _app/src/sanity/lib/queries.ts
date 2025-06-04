@@ -11,9 +11,11 @@ export const testimonialQuery = defineQuery(`*[_type == "reviews"][0]{
   }
 }`);
 
-export const faqQuery = defineQuery(`*[_type == "faq"] | order(order asc) {
-  question,
-  answer
+export const faqQuery = defineQuery(`*[_type == "faqs"][0]{
+  items[] {
+    question,
+    answer
+  }
 }`);
 
 const postFields = /* groq */ `
