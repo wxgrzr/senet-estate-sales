@@ -48,7 +48,7 @@ async function getFAQs() {
 }
 
 export default async function FAQPage() {
-  const faqs = await getFAQs();
+  const faqsDoc = await getFAQs();
   const { phoneNumber, phoneNumberSanitized, emailAddress } =
     await getContactInfo();
 
@@ -65,11 +65,13 @@ export default async function FAQPage() {
             </h1>
 
             <div className='space-y-6'>
-              {faqs.map((faq: { question: string; answer: string }) => (
-                <FAQItem key={faq.question} question={faq.question}>
-                  {faq.answer}
-                </FAQItem>
-              ))}
+              {faqsDoc?.items?.map(
+                (faq: { question: string; answer: string }) => (
+                  <FAQItem key={faq.question} question={faq.question}>
+                    {faq.answer}
+                  </FAQItem>
+                ),
+              )}
 
               <div className='mt-10 text-center'>
                 <p className='text-lg font-medium'>Still have questions?</p>

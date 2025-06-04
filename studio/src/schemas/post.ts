@@ -30,25 +30,25 @@ export default defineType({
       options: {
         hotspot: true,
       },
-      fields: [
-        {
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative text',
-          description:
-            'Important for SEO and accessibility. Describe the image using natural language.',
-          validation: (rule) => {
-            // Custom validation to ensure alt text is provided if the image is present. https://www.sanity.io/docs/validation
-            return rule.custom((alt, context) => {
-              if ((context.document?.coverImage as any)?.asset?._ref && !alt) {
-                return 'Required';
-              }
-              return true;
-            });
-          },
-        },
-      ],
-      validation: (rule) => rule.required(),
+      // fields: [
+      //   {
+      //     name: 'alt',
+      //     type: 'string',
+      //     title: 'Alternative text',
+      //     description:
+      //       'Important for SEO and accessibility. Describe the image using natural language.',
+      //     validation: (rule) => {
+      //       // Custom validation to ensure alt text is provided if the image is present. https://www.sanity.io/docs/validation
+      //       return rule.custom((alt, context) => {
+      //         if ((context.document?.coverImage as any)?.asset?._ref && !alt) {
+      //           return 'Required';
+      //         }
+      //         return true;
+      //       });
+      //     },
+      //   },
+      // ],
+      // validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'gallery',
@@ -137,6 +137,7 @@ export default defineType({
         list: [
           { title: 'Upcoming', value: 'upcoming' },
           { title: 'Completed', value: 'completed' },
+          { title: 'Hidden', value: 'hidden' },
         ],
         layout: 'dropdown',
       },
