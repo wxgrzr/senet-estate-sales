@@ -1,4 +1,4 @@
-import { CogIcon, HomeIcon } from '@sanity/icons';
+import { CogIcon, HelpCircleIcon, HomeIcon } from '@sanity/icons';
 import type { StructureBuilder } from 'sanity/structure';
 
 export const deskStructure = (S: StructureBuilder) =>
@@ -12,7 +12,9 @@ export const deskStructure = (S: StructureBuilder) =>
         .child(S.documentTypeList('post').title('Estate Sales')),
       ...S.documentTypeListItems().filter((listItem) => {
         const id = listItem.getId();
-        return id ? !['reviews', 'contactInfo', 'post'].includes(id) : false;
+        return id
+          ? !['reviews', 'contactInfo', 'post', 'faqs'].includes(id)
+          : false;
       }),
       S.listItem()
         .title('Customer Reviews')
@@ -32,5 +34,15 @@ export const deskStructure = (S: StructureBuilder) =>
             .title('Contact Info')
             .schemaType('contactInfo')
             .documentId('contactInfo'),
+        ),
+      S.listItem()
+        .icon(HelpCircleIcon)
+        .title('Frequently Asked Questions')
+        .schemaType('faqs')
+        .child(
+          S.editor()
+            .title('Frequently Asked Questions')
+            .schemaType('faqs')
+            .documentId('faqs'), // Singleton document ID
         ),
     ]);
