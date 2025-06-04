@@ -1,5 +1,79 @@
 [
   {
+    "name": "faqs",
+    "type": "document",
+    "attributes": {
+      "_id": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_type": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string",
+          "value": "faqs"
+        }
+      },
+      "_createdAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_updatedAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_rev": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "items": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "array",
+          "of": {
+            "type": "object",
+            "attributes": {
+              "question": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": false
+              },
+              "answer": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": false
+              }
+            },
+            "rest": {
+              "type": "object",
+              "attributes": {
+                "_key": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "optional": true
+      }
+    }
+  },
+  {
     "name": "reviews",
     "type": "document",
     "attributes": {
@@ -158,64 +232,13 @@
           "type": "string"
         },
         "optional": true
-      }
-    }
-  },
-  {
-    "name": "faq",
-    "type": "document",
-    "attributes": {
-      "_id": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
       },
-      "_type": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string",
-          "value": "faq"
-        }
-      },
-      "_createdAt": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "_updatedAt": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "_rev": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "question": {
+      "yelpUrl": {
         "type": "objectAttribute",
         "value": {
           "type": "string"
         },
-        "optional": false
-      },
-      "answer": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        },
-        "optional": false
-      },
-      "order": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "number"
-        },
-        "optional": false
+        "optional": true
       }
     }
   },
@@ -327,13 +350,6 @@
               },
               "optional": true
             },
-            "alt": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "string"
-              },
-              "optional": true
-            },
             "_type": {
               "type": "objectAttribute",
               "value": {
@@ -343,7 +359,7 @@
             }
           }
         },
-        "optional": false
+        "optional": true
       },
       "gallery": {
         "type": "objectAttribute",
@@ -883,6 +899,10 @@
             {
               "type": "string",
               "value": "completed"
+            },
+            {
+              "type": "string",
+              "value": "hidden"
             }
           ]
         },

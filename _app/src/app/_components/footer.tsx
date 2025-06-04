@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import logoLight from '~/public/se-logo-richblack.png';
 import { getContactInfo } from '@/app/_utils/getContactInfo';
-import { FaFacebook } from 'react-icons/fa';
+import { FaFacebook, FaYelp } from 'react-icons/fa';
 
 const Footer = async () => {
   const {
@@ -15,6 +15,7 @@ const Footer = async () => {
     addressLine2,
     emailAddress,
     facebookUrl,
+    yelpUrl,
   } = await getContactInfo();
 
   return (
@@ -31,9 +32,23 @@ const Footer = async () => {
               Your trusted partner for estate sales and vintage finds in&nbsp;
               <b>Southeastern Michigan.</b>
             </p>
-            <div className='my-4'>
-              <Link href={facebookUrl as string}>
+            <div className='my-4 flex gap-4'>
+              <Link
+                href={facebookUrl as string}
+                aria-label='Facebook'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 <FaFacebook fontSize={'1.75rem'} className='text-richblack' />
+              </Link>
+              <Link
+                // href='https://www.yelp.com/biz/senet-estate-sales-northville'
+                href={yelpUrl as string}
+                aria-label='Yelp'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <FaYelp fontSize={'1.75rem'} className='text-richblack' />
               </Link>
             </div>
           </div>
