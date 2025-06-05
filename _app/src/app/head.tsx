@@ -8,7 +8,7 @@ export default function Head() {
         name='google-site-verification'
         content='95CvEmWBbhA7-x_McBrMDbwbuz1ZiznS9dXyC3gP-4A'
       />
-      <link rel='icon' href='/favicon.ico' />
+      <link rel='icon' href='/favicon.ico' type='image/x-icon' />
       <link
         rel='icon'
         type='image/png'
