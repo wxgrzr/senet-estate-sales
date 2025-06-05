@@ -20,14 +20,14 @@ export function PostPreview({
   slug,
 }: Props) {
   return (
-    <div className='flex h-full flex-col overflow-hidden rounded-md bg-white shadow-md transition-shadow duration-300 hover:shadow-lg'>
+    <div className='flex h-fit flex-col overflow-hidden rounded-lg bg-white shadow-md transition hover:shadow-lg'>
       {/* Cover Image */}
       <div className='relative h-auto'>
         <CoverImage slug={slug} title={title} src={coverImage} />
       </div>
 
       {/* Content */}
-      <div className='flex h-full flex-col justify-evenly p-4'>
+      <div className='flex h-full flex-col gap-1 p-4'>
         {/* Title */}
         <h3 className='mb-2 text-xl leading-tight font-semibold tracking-tight md:text-lg'>
           <Link
@@ -39,7 +39,7 @@ export function PostPreview({
         </h3>
 
         {/* Address */}
-        <p className='text-md text-richblack/55 mb-3 leading-tight font-normal md:text-base'>
+        <p className='text-md text-richblack/55 mb-2 leading-tight font-normal md:text-base'>
           {fullAddress}
         </p>
 
