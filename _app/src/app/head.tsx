@@ -28,7 +28,6 @@ export default function Head() {
         href='/apple-touch-icon.png'
       />
 
-      <link rel='manifest' href='/site.webmanifest' />
       <script
         type='application/ld+json'
         dangerouslySetInnerHTML={{
