@@ -65,7 +65,7 @@ export default async function UpcomingEstateSales() {
   const posts = await client.fetch(allPostsQuery);
 
   return (
-    <div className='mb-16'>
+    <div className='md:mb-8'>
       <div className='mb-6 hidden md:block'>
         <Breadcrumbs
           items={[
@@ -90,13 +90,13 @@ export default async function UpcomingEstateSales() {
           </h2>
         </div>
 
-        <div className='grid gap-4 md:grid-cols-2'>
+        <div className='grid h-full gap-4 md:grid-cols-2'>
           {posts.length > 0 ? (
             <>
-              <div className='my-4 min-h-[40vh] overflow-hidden rounded-lg md:my-0 md:min-h-full'>
+              <div className='my-4 min-h-[40vh] overflow-hidden rounded-lg md:my-0'>
                 <GoogleMap />
               </div>
-              <div className='grid max-h-[75vh] gap-6 overflow-y-auto rounded-lg bg-gray-50 p-6 shadow-inner md:row-start-1 lg:grid-cols-2'>
+              <div className='grid max-h-[75vh] min-h-[40vh] gap-6 overflow-y-auto rounded-lg bg-gray-50 p-6 shadow-inner md:row-start-1 md:min-h-[68vh] lg:grid-cols-2'>
                 {posts.map((post: any) => {
                   return <Post post={post} key={post._id} />;
                 })}

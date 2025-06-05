@@ -75,7 +75,6 @@ export async function generateMetadata(
       ],
       apple: '/apple-touch-icon.png',
     },
-    manifest: '/site.webmanifest',
     alternates: {
       canonical: `https://senetestatesales.com/upcoming-estate-sales/${slug}`,
     },
