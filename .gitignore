@@ -32,6 +32,7 @@ next-env.d.ts
 # Ignore Sanity build + runtime files
 /studio/dist/
 /studio/.sanity/
+studio/.config/sanity/
 
 *.tar.gz
 .env*.local
