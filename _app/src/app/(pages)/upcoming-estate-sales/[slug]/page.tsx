@@ -108,7 +108,7 @@ export default async function EstateSalePostPage({ params }: Props) {
       {
         '@type': 'ListItem',
         position: 2,
-        name: 'Estate Sales',
+        name: 'Michigan Estate Sales',
         item: 'https://senetestatesales.com/upcoming-estate-sales',
       },
       {
@@ -155,7 +155,7 @@ export default async function EstateSalePostPage({ params }: Props) {
           items={[
             { label: 'Home', href: '/' },
             {
-              label: 'Estate Sales',
+              label: 'Michigan Estate Sales',
               href: '/upcoming-estate-sales',
             },
             { label: post?.title || 'Estate Sale' },
@@ -164,7 +164,7 @@ export default async function EstateSalePostPage({ params }: Props) {
       </div>
       <div className='mb-8 md:hidden'>
         <LinkButton href='/upcoming-estate-sales' variant='text'>
-          ← Back to Estate Sales
+          ← Back to Michigan Estate Sales
         </LinkButton>
       </div>
 

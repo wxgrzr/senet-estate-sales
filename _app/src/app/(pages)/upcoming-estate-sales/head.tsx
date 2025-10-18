@@ -1,7 +1,7 @@
 export default function Head() {
   return (
     <>
-      <title>Estate Sales | Senet Estate Sales</title>
+      <title>Michigan Estate Sales | Senet Estate Sales</title>
       <script
         type='application/ld+json'
         dangerouslySetInnerHTML={{
@@ -18,7 +18,7 @@ export default function Head() {
               {
                 '@type': 'ListItem',
                 position: 2,
-                name: 'Estate Sales',
+                name: 'Michigan Estate Sales',
                 item: 'https://senetestatesales.com/upcoming-estate-sales',
               },
             ],

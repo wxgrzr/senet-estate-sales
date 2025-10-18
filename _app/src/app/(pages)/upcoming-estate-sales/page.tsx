@@ -9,16 +9,16 @@ import { client } from '@/sanity/lib/client';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Estate Sales',
+  title: 'Michigan Estate Sales',
   description:
-    'Browse all public estate sales in Northville, Bloomfield, Bay City, West Bloomfield Township, Grand Blanc, Rochester Hills, Birmingham, Huntington Woods, Flint, Fenton, and Southeast Michigan hosted by Senet Estate Sales. Find dates, locations, and details for each event.',
+    'Browse Michigan estate sales hosted by Senet Estate Sales, featuring upcoming events across Detroit, Ann Arbor, Flint, Bloomfield, Bay City, and Southeast Michigan.',
   alternates: {
     canonical: 'https://senetestatesales.com/upcoming-estate-sales',
   },
   openGraph: {
-    title: 'Estate Sales',
+    title: 'Michigan Estate Sales',
     description:
-      'Browse all public estate sales in Northville, Bloomfield, Bay City, West Bloomfield Township, Grand Blanc, Rochester Hills, Birmingham, Huntington Woods, Flint, Fenton, and Southeast Michigan hosted by Senet Estate Sales. Find dates, locations, and details for each event.',
+      'Browse Michigan estate sales hosted by Senet Estate Sales, featuring upcoming events across Detroit, Ann Arbor, Flint, Bloomfield, Bay City, and Southeast Michigan.',
     url: 'https://senetestatesales.com/upcoming-estate-sales',
     siteName: 'Senet Estate Sales',
     images: [
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Estate Sales',
+    title: 'Michigan Estate Sales',
     description:
-      'Browse all public estate sales in Northville, Bloomfield, Bay City, West Bloomfield Township, Grand Blanc, Rochester Hills, Birmingham, Huntington Woods, Flint, Fenton, and Southeast Michigan hosted by Senet Estate Sales. Find dates, locations, and details for each event.',
+      'Upcoming Michigan estate sales and liquidation events handled by Senet Estate Sales across Detroit, Ann Arbor, Flint, and Southeast Michigan.',
     images: ['/og-image.jpg'],
   },
   other: {
@@ -46,6 +46,10 @@ export const metadata: Metadata = {
   },
   keywords: [
     'estate sales',
+    'Michigan estate sales',
+    'Michigan cleanout services',
+    'Detroit estate auctions',
+    'Flint estate liquidators',
     'Northville MI',
     'Bloomfield MI',
     'Bay City MI',
@@ -67,15 +71,15 @@ export default async function UpcomingEstateSales() {
   return (
     <div className='md:mb-8'>
       <div className='mb-6 hidden md:block'>
-        <Breadcrumbs
-          items={[
-            { label: 'Home', href: '/' },
-            {
-              label: 'Estate Sales',
-              href: '/upcoming-estate-sales',
-            },
-          ]}
-        />
+          <Breadcrumbs
+            items={[
+              { label: 'Home', href: '/' },
+              {
+                label: 'Michigan Estate Sales',
+                href: '/upcoming-estate-sales',
+              },
+            ]}
+          />
       </div>
       <div className='mb-8 md:hidden'>
         <LinkButton href='/' variant='text'>
@@ -86,8 +90,15 @@ export default async function UpcomingEstateSales() {
       <section className='px-4'>
         <div className='mb-4 md:mb-8'>
           <h2 className='text-5xl font-bold tracking-tighter md:text-6xl lg:text-7xl'>
-            Estate Sales
+            Michigan Estate Sales
           </h2>
+          <p className='mt-4 max-w-3xl text-lg text-gray-700'>
+            Explore our upcoming estate liquidation events, featuring curated
+            sales throughout Metro Detroit, Ann Arbor, Flint, Bloomfield, Bay
+            City, and more. Every listing is managed by our Michigan estate sale
+            and clean-out specialists to ensure homes are market-ready and
+            cherished collections find new owners.
+          </p>
         </div>
 
         <div className='grid h-full gap-4 md:grid-cols-2'>
