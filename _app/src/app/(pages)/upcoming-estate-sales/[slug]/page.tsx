@@ -20,7 +20,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const { slug } = await params;
-  const post = await client.fetch(postQuery, { slug });
+  const post = await client.fetch(postQuery, { slug }, { cache: 'no-store' });
   const previousImages = (await parent).openGraph?.images || [];
 
   if (!post) {
@@ -89,7 +89,7 @@ export async function generateMetadata(
 
 export default async function EstateSalePostPage({ params }: Props) {
   const { slug } = await params;
-  const post = await client.fetch(postQuery, { slug });
+  const post = await client.fetch(postQuery, { slug }, { cache: 'no-store' });
 
   if (!post) {
     notFound();
@@ -108,7 +108,7 @@ export default async function EstateSalePostPage({ params }: Props) {
       {
         '@type': 'ListItem',
         position: 2,
-        name: 'Upcoming Estate Sales',
+        name: 'Estate Sales',
         item: 'https://senetestatesales.com/upcoming-estate-sales',
       },
       {
@@ -155,7 +155,7 @@ export default async function EstateSalePostPage({ params }: Props) {
           items={[
             { label: 'Home', href: '/' },
             {
-              label: 'Upcoming Estate Sales',
+              label: 'Estate Sales',
               href: '/upcoming-estate-sales',
             },
             { label: post?.title || 'Estate Sale' },
@@ -164,7 +164,7 @@ export default async function EstateSalePostPage({ params }: Props) {
       </div>
       <div className='mb-8 md:hidden'>
         <LinkButton href='/upcoming-estate-sales' variant='text'>
-          ← Back to Upcoming Estate Sales
+          ← Back to Estate Sales
         </LinkButton>
       </div>
 

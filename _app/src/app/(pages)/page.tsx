@@ -14,14 +14,14 @@ import { AnimateInY } from '../_components/animate-in-y';
 export const metadata: Metadata = {
   title: 'Senet Estate Sales',
   description:
-    'Senet Estate Sales offers professional estate sale and liquidation services in Northville, Bloomfield, Bay City, West Bloomfield Township, Grand Blanc, Rochester Hills, Birmingham, Huntington Woods, Flint, Fenton, and Southeast Michigan. Schedule a consultation or browse our upcoming estate sales.',
+    'Senet Estate Sales offers professional estate sale and liquidation services in Northville, Bloomfield, Bay City, West Bloomfield Township, Grand Blanc, Rochester Hills, Birmingham, Huntington Woods, Flint, Fenton, and Southeast Michigan. Schedule a consultation or browse our estate sales.',
   alternates: {
     canonical: 'https://senetestatesales.com/',
   },
   openGraph: {
     title: 'Senet Estate Sales',
     description:
-      'Senet Estate Sales offers professional estate sale and liquidation services in Northville, Bloomfield, Bay City, West Bloomfield Township, Grand Blanc, Rochester Hills, Birmingham, Huntington Woods, Flint, Fenton, and Southeast Michigan. Schedule a consultation or browse our upcoming estate sales.',
+      'Senet Estate Sales offers professional estate sale and liquidation services in Northville, Bloomfield, Bay City, West Bloomfield Township, Grand Blanc, Rochester Hills, Birmingham, Huntington Woods, Flint, Fenton, and Southeast Michigan. Schedule a consultation or browse our estate sales.',
     url: 'https://senetestatesales.com/',
     siteName: 'Senet Estate Sales',
     images: [
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Senet Estate Sales',
     description:
-      'Senet Estate Sales offers professional estate sale and liquidation services in Northville, Bloomfield, Bay City, West Bloomfield Township, Grand Blanc, Rochester Hills, Birmingham, Huntington Woods, Flint, Fenton, and Southeast Michigan. Schedule a consultation or browse our upcoming estate sales.',
+      'Senet Estate Sales offers professional estate sale and liquidation services in Northville, Bloomfield, Bay City, West Bloomfield Township, Grand Blanc, Rochester Hills, Birmingham, Huntington Woods, Flint, Fenton, and Southeast Michigan. Schedule a consultation or browse our estate sales.',
     images: ['/og-image.jpg'],
   },
   other: {

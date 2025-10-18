@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Senet Estate Sales',
     description:
-      'Compassionate, professional estate sales in Michigan. Schedule a consultation or browse our upcoming estate sales.',
+      'Compassionate, professional estate sales in Michigan. Schedule a consultation or browse our estate sales.',
     url: 'https://senetestatesales.com',
     siteName: 'Senet Estate Sales',
     locale: 'en_US',

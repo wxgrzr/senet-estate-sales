@@ -129,24 +129,5 @@ export default defineType({
       type: 'array',
       of: [defineArrayMember({ type: 'block' })],
     }),
-    defineField({
-      name: 'category',
-      type: 'string',
-      initialValue: 'upcoming',
-      options: {
-        list: [
-          { title: 'Upcoming', value: 'upcoming' },
-          { title: 'Completed', value: 'completed' },
-          { title: 'Hidden', value: 'hidden' },
-        ],
-        layout: 'dropdown',
-      },
-      validation: (rule) =>
-        rule
-          .required()
-          .error(
-            `If no category is selected, the post won't show up on the website.`,
-          ),
-    }),
   ],
 });

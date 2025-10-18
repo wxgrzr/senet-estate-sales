@@ -9,16 +9,16 @@ import { client } from '@/sanity/lib/client';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Upcoming Estate Sales',
+  title: 'Estate Sales',
   description:
-    'Browse all upcoming estate sales in Northville, Bloomfield, Bay City, West Bloomfield Township, Grand Blanc, Rochester Hills, Birmingham, Huntington Woods, Flint, Fenton, and Southeast Michigan hosted by Senet Estate Sales. Find dates, locations, and details for each event.',
+    'Browse all public estate sales in Northville, Bloomfield, Bay City, West Bloomfield Township, Grand Blanc, Rochester Hills, Birmingham, Huntington Woods, Flint, Fenton, and Southeast Michigan hosted by Senet Estate Sales. Find dates, locations, and details for each event.',
   alternates: {
     canonical: 'https://senetestatesales.com/upcoming-estate-sales',
   },
   openGraph: {
-    title: 'Upcoming Estate Sales',
+    title: 'Estate Sales',
     description:
-      'Browse all upcoming estate sales in Northville, Bloomfield, Bay City, West Bloomfield Township, Grand Blanc, Rochester Hills, Birmingham, Huntington Woods, Flint, Fenton, and Southeast Michigan hosted by Senet Estate Sales. Find dates, locations, and details for each event.',
+      'Browse all public estate sales in Northville, Bloomfield, Bay City, West Bloomfield Township, Grand Blanc, Rochester Hills, Birmingham, Huntington Woods, Flint, Fenton, and Southeast Michigan hosted by Senet Estate Sales. Find dates, locations, and details for each event.',
     url: 'https://senetestatesales.com/upcoming-estate-sales',
     siteName: 'Senet Estate Sales',
     images: [
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Upcoming Estate Sales',
+    title: 'Estate Sales',
     description:
-      'Browse all upcoming estate sales in Northville, Bloomfield, Bay City, West Bloomfield Township, Grand Blanc, Rochester Hills, Birmingham, Huntington Woods, Flint, Fenton, and Southeast Michigan hosted by Senet Estate Sales. Find dates, locations, and details for each event.',
+      'Browse all public estate sales in Northville, Bloomfield, Bay City, West Bloomfield Township, Grand Blanc, Rochester Hills, Birmingham, Huntington Woods, Flint, Fenton, and Southeast Michigan hosted by Senet Estate Sales. Find dates, locations, and details for each event.',
     images: ['/og-image.jpg'],
   },
   other: {
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
 };
 
 export default async function UpcomingEstateSales() {
-  const posts = await client.fetch(allPostsQuery);
+  const posts = await client.fetch(allPostsQuery, {}, { cache: 'no-store' });
 
   return (
     <div className='md:mb-8'>
@@ -71,7 +71,7 @@ export default async function UpcomingEstateSales() {
           items={[
             { label: 'Home', href: '/' },
             {
-              label: 'Upcoming Estate Sales',
+              label: 'Estate Sales',
               href: '/upcoming-estate-sales',
             },
           ]}
@@ -86,7 +86,7 @@ export default async function UpcomingEstateSales() {
       <section className='px-4'>
         <div className='mb-4 md:mb-8'>
           <h2 className='text-5xl font-bold tracking-tighter md:text-6xl lg:text-7xl'>
-            Upcoming Estate Sales
+            Estate Sales
           </h2>
         </div>
 
@@ -104,7 +104,8 @@ export default async function UpcomingEstateSales() {
             </>
           ) : (
             <p>
-              There are no upcoming sales at this time. Please check back soon!
+              There are no published estate sales at this time. Please check
+              back soon!
             </p>
           )}
         </div>
