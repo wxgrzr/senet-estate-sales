@@ -18,5 +18,7 @@ export default defineCliConfig({
     dataset,
   },
   studioHost: 'senet-estate-sales-prod',
+
   autoUpdates: false,
+
 });
