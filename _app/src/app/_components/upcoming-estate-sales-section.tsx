@@ -20,7 +20,7 @@ export const UpcomingEstateSalesSection = ({ posts }: { posts: Post[] }) => {
             <section className='relative'>
               <div className='flex justify-between'>
                 <h2 className='mb-8 text-4xl leading-[0.9] font-bold tracking-tighter md:text-6xl'>
-                  Upcoming Estate Sales
+                  Estate Sales
                 </h2>
               </div>
               <div className='grid gap-8 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 lg:gap-6'>
@@ -44,7 +44,7 @@ export const UpcomingEstateSalesSection = ({ posts }: { posts: Post[] }) => {
                   href='/upcoming-estate-sales'
                   className='group inline-flex'
                 >
-                  View all upcoming estate sales
+                  View all estate sales
                   <span className='arrow-animate ml-1 transition-transform duration-200 group-hover:translate-x-1'>
                     <ArrowRightIcon width={24} height={24} />
                   </span>

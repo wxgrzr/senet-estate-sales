@@ -171,7 +171,6 @@ export type Post = {
     _type: 'block';
     _key: string;
   }>;
-  category?: 'upcoming' | 'completed';
 };
 
 export type Geopoint = {
