@@ -14,14 +14,14 @@ import { AnimateInY } from '../_components/animate-in-y';
 export const metadata: Metadata = {
   title: 'Senet Estate Sales',
   description:
-    'Senet Estate Sales offers professional estate sale and liquidation services in Northville, Bloomfield, Bay City, West Bloomfield Township, Grand Blanc, Rochester Hills, Birmingham, Huntington Woods, Flint, Fenton, and Southeast Michigan. Schedule a consultation or browse our upcoming estate sales.',
+    'Senet Estate Sales delivers full-service estate sales, home clean-outs, and downsizing support throughout Southeast Michigan, including Detroit, Ann Arbor, Flint, Bloomfield, and Bay City.',
   alternates: {
     canonical: 'https://senetestatesales.com/',
   },
   openGraph: {
     title: 'Senet Estate Sales',
     description:
-      'Senet Estate Sales offers professional estate sale and liquidation services in Northville, Bloomfield, Bay City, West Bloomfield Township, Grand Blanc, Rochester Hills, Birmingham, Huntington Woods, Flint, Fenton, and Southeast Michigan. Schedule a consultation or browse our upcoming estate sales.',
+      'Trusted Michigan estate liquidation, house clean-out, and downsizing services for families in Detroit, Ann Arbor, Flint, Bloomfield, Bay City, and neighboring communities.',
     url: 'https://senetestatesales.com/',
     siteName: 'Senet Estate Sales',
     images: [
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Senet Estate Sales',
     description:
-      'Senet Estate Sales offers professional estate sale and liquidation services in Northville, Bloomfield, Bay City, West Bloomfield Township, Grand Blanc, Rochester Hills, Birmingham, Huntington Woods, Flint, Fenton, and Southeast Michigan. Schedule a consultation or browse our upcoming estate sales.',
+      'Michigan estate sale and clean-out specialists serving Detroit, Ann Arbor, Flint, and Southeast Michigan with compassionate liquidation support.',
     images: ['/og-image.jpg'],
   },
   other: {
@@ -49,6 +49,11 @@ export const metadata: Metadata = {
   },
   keywords: [
     'estate sales',
+    'Michigan estate services',
+    'Michigan cleanout services',
+    'Detroit estate sale company',
+    'Flint estate clean-out',
+    'Ann Arbor estate sales',
     'Northville MI',
     'Bloomfield MI',
     'Bay City MI',
@@ -75,14 +80,21 @@ export default async function IndexPage() {
                 x={40}
                 className='col-start-1 space-y-4 max-sm:col-span-4 sm:space-y-8'
               >
-                <div className='sm:space-y-2'>
-                  <h2 className='mb-2 text-5xl font-extrabold tracking-tighter'>
+                <div className='sm:space-y-3'>
+                  <h1 className='mb-2 text-5xl font-extrabold tracking-tighter text-pretty'>
                     SENET
                     <br />
                     ESTATE SALES
-                  </h2>
-                  <p className='text-lg tracking-tight text-pretty'>
-                    Professional liquidation services in <b>Southeastern MI</b>
+                  </h1>
+                  <p className='text-lg font-semibold tracking-tight text-pretty text-gray-800'>
+                    Michigan estate sale &amp; clean-out specialists serving
+                    Metro Detroit, Ann Arbor, Flint, and the surrounding
+                    communities.
+                  </p>
+                  <p className='max-w-xl text-base text-gray-600'>
+                    From in-home estate auctions to complete house cleanouts, we
+                    help Michigan families liquidate, organize, and donate with
+                    care.
                   </p>
                 </div>
                 <LinkButton
@@ -150,10 +162,11 @@ export default async function IndexPage() {
                   Who We Are
                 </h2>
                 <SectionBodyCopy>
-                  We’re a small, passionate team serving Southeastern Michigan
-                  with carefully run estate sales. From setup to checkout, our
-                  friendly staff makes the process easy and transparent for both
-                  families and buyers.
+                  We’re a Michigan-based estate sale and clean-out team focused
+                  on compassionate service. From valuing collections in Detroit
+                  bungalows to coordinating Flint home cleanouts and Ann Arbor
+                  downsizing projects, our staff makes every step transparent for
+                  families and buyers alike.
                 </SectionBodyCopy>
                 <LinkButton
                   href='#our-services'
@@ -219,11 +232,12 @@ export default async function IndexPage() {
                     Start with a Free Consultation
                   </h2>
                   <SectionBodyCopy>
-                    We’ll walk through your space, learn your needs, and handle
-                    the rest — from organizing and pricing to the final sale. We
-                    make the estate sale process easy. Schedule a free
-                    consultation, and we’ll guide you every step of the way —
-                    with care and clarity.
+                    We’ll walk through your Michigan property, learn your
+                    priorities, and handle the rest — pricing valuables, staging
+                    estate sales, coordinating donations, and providing full
+                    clean-out services. Schedule a free consultation and we’ll
+                    guide you from the first walkthrough to the final broom-swept
+                    handoff.
                   </SectionBodyCopy>
                   <LinkButton
                     href='/request-estate-sale-consultation'
@@ -257,9 +271,11 @@ export default async function IndexPage() {
                   Schedule a Free Consultation
                 </h2>
                 <p className='mb-8 text-center font-light text-pretty sm:text-xl lg:mb-16'>
-                  Downsizing or managing a loved one’s estate? We’re here to
-                  guide you with compassion and experience. Schedule a
-                  consultation and let’s talk.
+                  Downsizing, relocating, or managing a loved one’s Michigan
+                  estate? From Detroit estate sales to Flint clean-outs and Ann
+                  Arbor donation coordination, we offer local expertise with
+                  compassion. Schedule a consultation and let’s plan the next
+                  steps together.
                 </p>
                 <ConsultationForm />
               </div>

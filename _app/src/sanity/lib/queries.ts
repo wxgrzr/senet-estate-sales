@@ -35,14 +35,14 @@ const postFields = /* groq */ `
 `;
 
 export const allPostsQuery = defineQuery(`
-  *[_type == "post" && defined(slug.current) && category == "upcoming"] |
+  *[_type == "post" && defined(slug.current)] |
   order(date desc, _createdAt desc) {
     ${postFields}
   }
 `);
 
 export const slicedPostsQuery = defineQuery(`*[
-  _type == "post" && defined(slug.current) && category == "upcoming"
+  _type == "post" && defined(slug.current)
 ]|order(_createdAt desc)[0...12]{_id, title, slug, coverImage, location, eventDates}`);
 
 export const morePostsQuery = defineQuery(`
@@ -64,7 +64,6 @@ export const markerPostsQuery = defineQuery(`
   *[
     _type == "post" &&
     defined(slug.current) &&
-    category == "upcoming" &&
     defined(location.coordinates.lat) &&
     defined(location.coordinates.lng)
   ]{

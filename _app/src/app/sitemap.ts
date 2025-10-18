@@ -9,7 +9,7 @@ import { client } from '@/sanity/lib/client';
  */
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const allPosts = await client.fetch(sitemapData);
+  const allPosts = await client.fetch(sitemapData, {}, { cache: 'no-store' });
   const headersList = await headers();
   const sitemap: MetadataRoute.Sitemap = [];
   const domain: string = headersList.get('host')?.startsWith('http')

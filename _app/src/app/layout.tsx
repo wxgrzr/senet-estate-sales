@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: '%s | Senet Estate Sales',
   },
   description:
-    'Professional estate sale services in Southeastern MI. Compassionate, efficient, and tailored to your needs.',
+    'Michigan estate sale specialists delivering full-service liquidation, clean-out, and downsizing solutions across Southeast Michigan, Detroit, Ann Arbor, Flint, and surrounding communities.',
   keywords: [
     'estate sales',
     'liquidation',
@@ -38,11 +38,14 @@ export const metadata: Metadata = {
     'Southeast Michigan Estate Sales',
     'Senet Estate Sales',
     'Onsite Estate Sales',
+    'Michigan cleanout services',
+    'Flint clean-out company',
+    'Detroit estate services',
   ],
   openGraph: {
     title: 'Senet Estate Sales',
     description:
-      'Compassionate, professional estate sales in Michigan. Schedule a consultation or browse our upcoming estate sales.',
+      'Full-service Michigan estate sales, home clean-out services, and liquidation support for families in Detroit, Ann Arbor, Flint, and Southeast Michigan.',
     url: 'https://senetestatesales.com',
     siteName: 'Senet Estate Sales',
     locale: 'en_US',
