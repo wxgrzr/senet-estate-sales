@@ -6,10 +6,11 @@ import { deskStructure } from './structure';
 import { googleMapsInput } from '@sanity/google-maps-input';
 import { googleMapsApiKey } from './environment';
 
-// Environment variables for project configuration
-// senet-estate-sales_web
-// const projectId = 'lc0v2d89';
-// const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'lc0v2d89';
+if (!googleMapsApiKey) {
+  throw new Error(
+    'Missing environment variable: SANITY_STUDIO_GOOGLE_MAPS_API_KEY',
+  );
+}
 
 // Senet estate sales LLC:
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'ma2ex8bh';
@@ -25,13 +26,13 @@ export default defineConfig({
         structureTool({ structure: deskStructure }),
         visionTool(),
         googleMapsInput({
-          apiKey: 'AIzaSyBPqt_txCmQfNnQDRWUeEyZOdCRfejuXlc',
+          apiKey: googleMapsApiKey,
         }),
       ]
     : [
         structureTool({ structure: deskStructure }),
         googleMapsInput({
-          apiKey: 'AIzaSyBPqt_txCmQfNnQDRWUeEyZOdCRfejuXlc',
+          apiKey: googleMapsApiKey,
         }),
       ],
   schema: {
