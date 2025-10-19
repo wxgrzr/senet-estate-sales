@@ -48,6 +48,7 @@ export default function Header() {
                 alt='Logo'
                 width={272}
                 height={90}
+                priority
               />
             </div>
           </Link>
