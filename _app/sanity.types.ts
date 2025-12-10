@@ -166,7 +166,14 @@ export type Post = {
     _type: 'block';
     _key: string;
   }>;
-  category: 'upcoming' | 'completed' | 'hidden';
+};
+
+export type GeopointRadius = {
+  _type: 'geopointRadius';
+  lat: number;
+  lng: number;
+  alt?: number;
+  radius: number;
 };
 
 export type SanityImagePaletteSwatch = {
@@ -292,6 +299,7 @@ export type AllSanitySchemaTypes =
   | Reviews
   | ContactInfo
   | Post
+  | GeopointRadius
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
