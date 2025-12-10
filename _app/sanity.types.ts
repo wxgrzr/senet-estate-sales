@@ -166,6 +166,7 @@ export type Post = {
     _type: 'block';
     _key: string;
   }>;
+  category: 'upcoming' | 'completed' | 'hidden';
 };
 
 export type SanityImagePaletteSwatch = {
@@ -342,7 +343,7 @@ export type FaqQueryResult = {
   }> | null;
 } | null;
 // Variable: allPostsQuery
-// Query: *[_type == "post" && defined(slug.current) && category == "upcoming"] |  order(date desc, _createdAt desc) {      _id,  _updatedAt,  "title": coalesce(title, "Untitled Estate Sale"),  "slug": slug.current,  coverImage,  eventDates,  location {    fullAddress,    coordinates {      lat,      lng    }  }  }
+// Query: *[_type == "post" && defined(slug.current)] |  order(date desc, _createdAt desc) {      _id,  _updatedAt,  "title": coalesce(title, "Untitled Estate Sale"),  "slug": slug.current,  coverImage,  eventDates,  location {    fullAddress,    coordinates {      lat,      lng    }  }  }
 export type AllPostsQueryResult = Array<{
   _id: string;
   _updatedAt: string;
@@ -370,7 +371,7 @@ export type AllPostsQueryResult = Array<{
   };
 }>;
 // Variable: slicedPostsQuery
-// Query: *[  _type == "post" && defined(slug.current) && category == "upcoming"]|order(_createdAt desc)[0...12]{_id, title, slug, coverImage, location, eventDates}
+// Query: *[  _type == "post" && defined(slug.current)]|order(_createdAt desc)[0...12]{_id, title, slug, coverImage, location, eventDates}
 export type SlicedPostsQueryResult = Array<{
   _id: string;
   title: string;
@@ -535,7 +536,7 @@ export type PostQueryResult = {
   };
 } | null;
 // Variable: markerPostsQuery
-// Query: *[    _type == "post" &&    defined(slug.current) &&    category == "upcoming" &&    defined(location.coordinates.lat) &&    defined(location.coordinates.lng)  ]{    _id,    "title": coalesce(title, "Untitled Estate Sale"),    "slug": slug.current,    location {      fullAddress,      coordinates {        lat,        lng      }    }  }
+// Query: *[    _type == "post" &&    defined(slug.current) &&    defined(location.coordinates.lat) &&    defined(location.coordinates.lng)  ]{    _id,    "title": coalesce(title, "Untitled Estate Sale"),    "slug": slug.current,    location {      fullAddress,      coordinates {        lat,        lng      }    }  }
 export type MarkerPostsQueryResult = Array<{
   _id: string;
   title: string;
@@ -569,11 +570,11 @@ declare module '@sanity/client' {
     '*[_type == "contactInfo"][0]': ContactInfoQueryResult;
     '*[_type == "reviews"][0]{\n  items[]{\n    rating,\n    review,\n    name\n  }\n}': TestimonialQueryResult;
     '*[_type == "faqs"][0]{\n  items[] {\n    question,\n    answer\n  }\n}': FaqQueryResult;
-    '\n  *[_type == "post" && defined(slug.current) && category == "upcoming"] |\n  order(date desc, _createdAt desc) {\n    \n  _id,\n  _updatedAt,\n  "title": coalesce(title, "Untitled Estate Sale"),\n  "slug": slug.current,\n  coverImage,\n  eventDates,\n  location {\n    fullAddress,\n    coordinates {\n      lat,\n      lng\n    }\n  }\n\n  }\n': AllPostsQueryResult;
-    '*[\n  _type == "post" && defined(slug.current) && category == "upcoming"\n]|order(_createdAt desc)[0...12]{_id, title, slug, coverImage, location, eventDates}': SlicedPostsQueryResult;
+    '\n  *[_type == "post" && defined(slug.current)] |\n  order(date desc, _createdAt desc) {\n    \n  _id,\n  _updatedAt,\n  "title": coalesce(title, "Untitled Estate Sale"),\n  "slug": slug.current,\n  coverImage,\n  eventDates,\n  location {\n    fullAddress,\n    coordinates {\n      lat,\n      lng\n    }\n  }\n\n  }\n': AllPostsQueryResult;
+    '*[\n  _type == "post" && defined(slug.current)\n]|order(_createdAt desc)[0...12]{_id, title, slug, coverImage, location, eventDates}': SlicedPostsQueryResult;
     '\n  *[_type == "post" && _id != $skip && defined(slug.current)]\n    | order(date desc, _updatedAt desc) [0...$limit] {\n    \n  _id,\n  _updatedAt,\n  "title": coalesce(title, "Untitled Estate Sale"),\n  "slug": slug.current,\n  coverImage,\n  eventDates,\n  location {\n    fullAddress,\n    coordinates {\n      lat,\n      lng\n    }\n  }\n\n  }\n': MorePostsQueryResult;
     '\n  *[_type == "post" && slug.current == $slug] [0] {\n    body[]{...},\n    gallery[]{...},\n    \n  _id,\n  _updatedAt,\n  "title": coalesce(title, "Untitled Estate Sale"),\n  "slug": slug.current,\n  coverImage,\n  eventDates,\n  location {\n    fullAddress,\n    coordinates {\n      lat,\n      lng\n    }\n  }\n\n  }\n': PostQueryResult;
-    '\n  *[\n    _type == "post" &&\n    defined(slug.current) &&\n    category == "upcoming" &&\n    defined(location.coordinates.lat) &&\n    defined(location.coordinates.lng)\n  ]{\n    _id,\n    "title": coalesce(title, "Untitled Estate Sale"),\n    "slug": slug.current,\n    location {\n      fullAddress,\n      coordinates {\n        lat,\n        lng\n      }\n    }\n  }\n': MarkerPostsQueryResult;
+    '\n  *[\n    _type == "post" &&\n    defined(slug.current) &&\n    defined(location.coordinates.lat) &&\n    defined(location.coordinates.lng)\n  ]{\n    _id,\n    "title": coalesce(title, "Untitled Estate Sale"),\n    "slug": slug.current,\n    location {\n      fullAddress,\n      coordinates {\n        lat,\n        lng\n      }\n    }\n  }\n': MarkerPostsQueryResult;
     '\n  *[_type == "post" && defined(slug.current)]\n  {"slug": slug.current}\n': PostPagesSlugsResult;
     '\n  *[_type == "post" && defined(slug.current)] | order(_type asc) {\n    "slug": slug.current,\n    _type,\n    _updatedAt,\n  }\n': SitemapDataResult;
   }

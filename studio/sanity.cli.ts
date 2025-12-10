@@ -6,11 +6,7 @@
  */
 
 import { defineCliConfig } from 'sanity/cli';
-
-// const projectId =  'ma2ex8bh';
-// const projectId = 'lc0v2d89';
-const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'ma2ex8bh';
-const dataset = process.env.SANITY_STUDIO_DATASET || 'production';
+import { dataset, projectId } from './environment';
 
 export default defineCliConfig({
   api: {
@@ -18,7 +14,5 @@ export default defineCliConfig({
     dataset,
   },
   studioHost: 'senet-estate-sales-prod',
-
   autoUpdates: false,
-
 });

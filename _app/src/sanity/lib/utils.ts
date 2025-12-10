@@ -1,10 +1,9 @@
 import createImageUrlBuilder from '@sanity/image-url';
-import { dataset, projectId, studioUrl } from '@/sanity/lib/api';
-import { createDataAttribute, CreateDataAttributeProps } from 'next-sanity';
+import { dataset, projectId } from '@/sanity/lib/api';
 
 const imageBuilder = createImageUrlBuilder({
-  projectId: projectId || '',
-  dataset: dataset || '',
+  projectId: projectId,
+  dataset: dataset,
 });
 
 export const urlForImage = (source: { asset?: { _ref?: string } }) => {
@@ -25,15 +24,4 @@ export function resolveOpenGraphImage(
   const url = urlForImage(image)?.width(1200).height(627).fit('crop').url();
   if (!url) return;
   return { url, alt: image?.alt as string, width, height };
-}
-
-type DataAttributeConfig = CreateDataAttributeProps &
-  Required<Pick<CreateDataAttributeProps, 'id' | 'type' | 'path'>>;
-
-export function dataAttr(config: DataAttributeConfig) {
-  return createDataAttribute({
-    projectId,
-    dataset,
-    baseUrl: studioUrl,
-  }).combine(config);
 }
