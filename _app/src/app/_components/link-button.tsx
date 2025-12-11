@@ -1,6 +1,6 @@
 import { ButtonStyles } from '@/app/_utils/buttonStyles';
 import { LinkButtonProps } from '@/types';
-import clsx from 'classnames';
+import clsx from 'clsx';
 import Link from 'next/link';
 
 export const LinkButton = ({
