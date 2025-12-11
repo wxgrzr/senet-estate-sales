@@ -1,4 +1,4 @@
-import type { Metadata, OpenGraph, TwitterMetadata } from 'next';
+import type { Metadata } from 'next';
 import { siteDefaults } from './site';
 import { buildCanonicalUrl, mergeKeywords, mergeMetadata } from './utils';
 import { createOpenGraphMetadata, createTwitterMetadata } from './presets';
@@ -11,7 +11,7 @@ export interface MetadataOptions {
   description: string;
   path?: string; // Used to generate canonical URL
   keywords?: string[];
-  openGraph?: Partial<OpenGraph> | {
+  openGraph?:  {
     title?: string;
     description?: string;
     url?: string;
@@ -19,7 +19,7 @@ export interface MetadataOptions {
     image?: string | { url: string; width?: number; height?: number; alt?: string };
     type?: 'website' | 'article';
   };
-  twitter?: Partial<TwitterMetadata> | {
+  twitter?: {
     title?: string;
     description?: string;
     image?: string | string[];
@@ -36,7 +36,7 @@ export interface MetadataOptions {
 /**
  * Creates a complete Metadata object with site defaults automatically merged
  */
-export function createMetadata(options: MetadataOptions): Metadata {
+export function createMetadata(options: any): Metadata {
   const {
     title,
     description,
