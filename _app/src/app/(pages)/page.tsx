@@ -10,6 +10,7 @@ import { MediaContainer } from '../_components/media-container';
 import { createMetadata } from '@/app/_metadata';
 import { AnimateInXL, AnimateInXR } from '../_components/animate-in-x';
 import { AnimateInY } from '../_components/animate-in-y';
+import { Routes } from '@/app/constants';
 
 export const metadata = createMetadata({
   title: 'Senet Estate Sales',
@@ -63,29 +64,22 @@ export default function IndexPage() {
                 className='col-start-1 space-y-4 max-sm:col-span-4 sm:space-y-8'
               >
                 <div className='sm:space-y-3'>
-                  <h1 className='mb-2 text-5xl font-extrabold tracking-tighter text-pretty'>
-                    SENET
-                    <br />
-                    ESTATE SALES
-                  </h1>
-                  <p className='text-lg font-semibold tracking-tight text-pretty text-gray-800'>
-                    Michigan estate sale &amp; clean-out specialists serving
-                    Metro Detroit, Ann Arbor, Flint, and the surrounding
-                    communities.
+                  <h1 className='mb-2 text-5xl font-extrabold tracking-tighter text-pretty'>Moving You Forward</h1>
+                  <p className='text-lg font-semibold tracking-tight text-pretty text-gray-800 max-w-lg'>
+                    Your trusted estate sale &amp; clean-out specialists.
                   </p>
-                  <p className='max-w-xl text-base text-gray-600'>
-                    From in-home estate auctions to complete house cleanouts, we
-                    help Michigan families liquidate, organize, and donate with
-                    care.
+                  <p className='max-w-lg text-base text-gray-600'>
+                    Proudly serving Metro Detroit, Ann Arbor, Flint and the surrounding
+                    communities of <b>Southeastern Michigan.</b> 
                   </p>
                 </div>
                 <LinkButton
-                  href='/upcoming-estate-sales'
+                  href={Routes.OurEstateSales}
                   subvariant='solid'
                   colors='secondary'
                   arrow
                 >
-                  View Estate Sales
+                  Our Estate Sales
                 </LinkButton>
               </AnimateInXL>
 
@@ -222,7 +216,7 @@ export default function IndexPage() {
                     broom-swept handoff.
                   </BodyParagraph>
                   <LinkButton
-                    href='/request-estate-sale-consultation'
+                    href={Routes.ScheduleConsultaion}
                     subvariant='solid'
                     colors='secondary'
                   >
@@ -248,7 +242,7 @@ export default function IndexPage() {
         <Container>
           <RowSection>
             <AnimateInY y={40}>
-              <div className='mx-auto max-w-screen-md px-4'>
+              <div className='mx-auto max-w-3xl px-4'>
                 <h2 className='mb-4 text-center text-4xl font-extrabold tracking-tight text-pretty'>
                   Schedule a Free Consultation
                 </h2>

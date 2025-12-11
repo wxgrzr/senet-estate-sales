@@ -1,10 +1,11 @@
 import { createMetadata } from '@/app/_metadata';
+import { Routes } from '@/app/constants';
 
 export const metadata = createMetadata({
   title: 'Michigan Estate Sales',
   description:
     'Browse Michigan estate sales hosted by Senet Estate Sales, featuring upcoming events across Detroit, Ann Arbor, Flint, Bloomfield, Bay City, and Southeast Michigan.',
-  path: '/upcoming-estate-sales',
+  path: Routes.OurEstateSales,
   keywords: [
     'Detroit estate auctions',
     'Flint estate liquidators',

@@ -7,7 +7,7 @@ export const BASE_URL = 'https://senetestatesales.com';
 
 /**
  * Builds a canonical URL from a path
- * @param path - The path (e.g., '/', '/about', '/upcoming-estate-sales')
+ * @param path - The path (e.g., '/', '/about', '/our-estate-sales')
  * @returns Full canonical URL
  */
 export function buildCanonicalUrl(path: string = '/'): string {
@@ -46,10 +46,13 @@ function deepMerge<T extends Record<string, any>>(
       target[key] !== null
     ) {
       // Recursively merge nested objects
-      output[key] = deepMerge(target[key] || {}, source[key] || {});
+      output[key as keyof T] = deepMerge(
+        target[key as keyof T] as Record<string, any>,
+        source[key as keyof T] as Record<string, any>
+      ) as T[typeof key];
     } else {
       // Overwrite with source value
-      output[key] = source[key] as any;
+      output[key] = source[key] as T[typeof key];
     }
   }
 
