@@ -8,46 +8,36 @@ import Image from 'next/image';
 import { RowSection } from '@/app/_components/row-section';
 import { MediaContainer } from '../_components/media-container';
 import { Metadata } from 'next';
+import { siteDefaults } from '@/app/_metadata/site';
 import { AnimateInXL, AnimateInXR } from '../_components/animate-in-x';
 import { AnimateInY } from '../_components/animate-in-y';
 
 export const metadata: Metadata = {
+  ...(siteDefaults as Partial<Metadata>),
   title: 'Senet Estate Sales',
   description:
     'Senet Estate Sales delivers full-service estate sales, home clean-outs, and downsizing support throughout Southeast Michigan, including Detroit, Ann Arbor, Flint, Bloomfield, and Bay City.',
-  alternates: {
-    canonical: 'https://senetestatesales.com/',
-  },
+  alternates: { canonical: 'https://senetestatesales.com/' },
   openGraph: {
+    ...(siteDefaults.openGraph || {}),
     title: 'Senet Estate Sales',
     description:
       'Trusted Michigan estate liquidation, house clean-out, and downsizing services for families in Detroit, Ann Arbor, Flint, Bloomfield, Bay City, and neighboring communities.',
     url: 'https://senetestatesales.com/',
-    siteName: 'Senet Estate Sales',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Senet Estate Sales',
-      },
-    ],
-    type: 'website',
   },
   twitter: {
-    card: 'summary_large_image',
+    ...(siteDefaults.twitter || {}),
     title: 'Senet Estate Sales',
     description:
       'Michigan estate sale and clean-out specialists serving Detroit, Ann Arbor, Flint, and Southeast Michigan with compassionate liquidation support.',
-    images: ['/og-image.jpg'],
   },
   other: {
-    'fb:page_id': '424849244049685',
-    'fb:profile_id': '61567003222290',
+    ...(siteDefaults.other || {}),
     'og:see_also':
       'https://www.facebook.com/people/Senet-Estate-Sales/61567003222290/',
   },
   keywords: [
+    ...((siteDefaults.keywords as string[]) || []),
     'estate sales',
     'Michigan estate services',
     'Michigan cleanout services',
@@ -65,7 +55,6 @@ export const metadata: Metadata = {
     'Flint MI',
     'Fenton MI',
     'Southeast Michigan',
-    'Senet Estate Sales',
   ],
 };
 

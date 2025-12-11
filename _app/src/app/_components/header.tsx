@@ -44,10 +44,11 @@ export default function Header() {
             <div className='inline-flex h-auto items-center gap-x-2 py-2 text-xl font-bold'>
               <Image
                 className='h-auto w-35'
-                src='/Logo@2x.png'
+                src='/senet-logo@2x.png'
                 alt='Logo'
                 width={272}
                 height={90}
+                priority
               />
             </div>
           </Link>

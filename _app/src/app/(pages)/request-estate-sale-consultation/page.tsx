@@ -1,46 +1,8 @@
 import ConsultationForm from '@/app/_components/consultation-form';
 import Container from '@/app/_components/container';
 import Image from 'next/image';
-import { Metadata } from 'next';
 import { AnimateInXL, AnimateInXR } from '@/app/_components/animate-in-x';
-
-export const metadata: Metadata = {
-  title: 'Schedule a Consultation',
-  description:
-    'Schedule a free estate sale consultation with Senet Estate Sales. Compassionate, professional estate sale services in Southeast Michigan.',
-  alternates: {
-    canonical: 'https://senetestatesales.com/request-estate-sale-consultation',
-  },
-  openGraph: {
-    title: 'Schedule a Consultation',
-    description:
-      'Schedule a free estate sale consultation with Senet Estate Sales. Compassionate, professional estate sale services in Southeast Michigan.',
-    url: 'https://senetestatesales.com/request-estate-sale-consultation',
-    siteName: 'Senet Estate Sales',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Senet Estate Sales',
-      },
-    ],
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Schedule a Consultation',
-    description:
-      'Schedule a free estate sale consultation with Senet Estate Sales. Compassionate, professional estate sale services in Southeast Michigan.',
-    images: ['/og-image.jpg'],
-  },
-  other: {
-    'fb:page_id': '424849244049685',
-    'fb:profile_id': '61567003222290',
-    'og:see_also':
-      'https://www.facebook.com/people/Senet-Estate-Sales/61567003222290/',
-  },
-};
+export { metadata } from './metadata';
 
 export default function ScheduleConsultation() {
   return (

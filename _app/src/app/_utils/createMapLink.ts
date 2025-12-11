@@ -1,5 +1,5 @@
 export function createMapLink(address: string) {
-  if (!address) return '';
+  if (!address) return;
   const encodedAddress = encodeURIComponent(address);
   const appleMapsUrl = `https://maps.apple.com/?q=${encodedAddress}`;
   const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
