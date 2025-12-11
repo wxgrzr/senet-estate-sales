@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Slug } from '~/sanity.types';
+import { Routes } from '@/app/constants';
 
 type Props = {
   title: string;
@@ -20,7 +21,7 @@ const CoverImage = ({ title, src, slug }: Props) => {
   return (
     <div className='sm:mx-0'>
       {slug ? (
-        <Link href={`/upcoming-estate-sales/${slug}`} aria-label={title}>
+        <Link href={`${Routes.OurEstateSales}/${slug}`} aria-label={title}>
           {image}
         </Link>
       ) : (

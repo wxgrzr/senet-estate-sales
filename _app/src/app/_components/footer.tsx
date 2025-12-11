@@ -1,9 +1,9 @@
 import Container from '@/app/_components/container';
 import { LinkButton } from '@/app/_components/link-button';
-import { PAGES } from '@/app/constants';
+import { PAGES, Routes } from '@/app/constants';
 import Image from 'next/image';
 import Link from 'next/link';
-import logoLight from '~/public/se-logo-richblack.png';
+import logoLight from '~/public/senet-logo@1x.png';
 import { getContactInfo } from '@/app/_utils/getContactInfo';
 import { FaFacebook, FaYelp } from 'react-icons/fa';
 
@@ -24,7 +24,7 @@ const Footer = async () => {
         <div className='grid gap-8 md:grid-cols-3'>
           <div>
             <div className='mb-4'>
-              <Link href='/' aria-label='Brand'>
+              <Link href={Routes.Home} aria-label='Brand'>
                 <Image src={logoLight} alt='Logo' width={100} />
               </Link>
             </div>
@@ -63,7 +63,7 @@ const Footer = async () => {
                 </li>
               ))}
               <li>
-                <LinkButton variant='text' href='/privacy'>
+                <LinkButton variant='text' href={Routes.Privacy}>
                   Privacy Policy
                 </LinkButton>
               </li>

@@ -3,7 +3,8 @@ import { Breadcrumbs } from '@/app/_components/breadcrumbs';
 import { allPostsQuery } from '@/sanity/lib/queries';
 import { LinkButton } from '@/app/_components/link-button';
 import { client } from '@/sanity/lib/client';
-import PostCard from '@/app/(pages)/upcoming-estate-sales/post-card';
+import PostCard from '@/app/(pages)/our-estate-sales/post-card';
+import { Routes } from '@/app/constants';
 export { metadata } from './metadata';
 
 // TODO: Add "sold out" badge to posts where eventDates are in the past
@@ -16,16 +17,16 @@ export default async function UpcomingEstateSales() {
         <div className='mb-6 hidden md:block'>
           <Breadcrumbs
             items={[
-              { label: 'Home', href: '/' },
+              { label: 'Home', href: Routes.Home },
               {
                 label: 'Michigan Estate Sales',
-                href: '/upcoming-estate-sales',
+                href: Routes.OurEstateSales,
               },
             ]}
           />
         </div>
         <div className='mb-8 md:hidden'>
-          <LinkButton href='/' variant='text'>
+          <LinkButton href={Routes.Home} variant='text'>
             ← Back to Home
           </LinkButton>
         </div>
@@ -47,16 +48,16 @@ export default async function UpcomingEstateSales() {
       <div className='mb-6 hidden md:block'>
         <Breadcrumbs
           items={[
-            { label: 'Home', href: '/' },
+            { label: 'Home', href: Routes.Home },
             {
               label: 'Michigan Estate Sales',
-              href: '/upcoming-estate-sales',
+              href: Routes.OurEstateSales,
             },
           ]}
         />
       </div>
       <div className='mb-8 md:hidden'>
-        <LinkButton href='/' variant='text'>
+        <LinkButton href={Routes.Home} variant='text'>
           ← Back to Home
         </LinkButton>
       </div>

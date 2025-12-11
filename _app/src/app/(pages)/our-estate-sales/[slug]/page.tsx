@@ -11,6 +11,7 @@ import { client } from '@/sanity/lib/client';
 import { urlForImage } from '@/sanity/lib/utils';
 import type { Metadata, ResolvingMetadata } from 'next';
 import { createMetadata } from '@/app/_metadata';
+import { Routes } from '@/app/constants';
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -28,7 +29,7 @@ export async function generateMetadata(
     return createMetadata({
       title: 'Estate Sale Not Found',
       description: 'This estate sale could not be found.',
-      path: `/upcoming-estate-sales/${slug}`,
+      path: `${Routes.OurEstateSales}/${slug}`,
     });
   }
 
@@ -60,7 +61,7 @@ export async function generateMetadata(
   return createMetadata({
     title,
     description,
-    path: `/upcoming-estate-sales/${slug}`,
+    path: `${Routes.OurEstateSales}/${slug}`,
     openGraph: {
       title,
       description,
@@ -148,17 +149,17 @@ export default async function EstateSalePostPage({ params }: Props) {
       <div className='mb-12 hidden md:block'>
         <Breadcrumbs
           items={[
-            { label: 'Home', href: '/' },
+            { label: 'Home', href: Routes.Home },
             {
               label: 'Michigan Estate Sales',
-              href: '/upcoming-estate-sales',
+              href: Routes.OurEstateSales,
             },
             { label: post?.title || 'Estate Sale' },
           ]}
         />
       </div>
       <div className='mb-8 md:hidden'>
-        <LinkButton href='/upcoming-estate-sales' variant='text'>
+        <LinkButton href={Routes.OurEstateSales} variant='text'>
           ← Back to Michigan Estate Sales
         </LinkButton>
       </div>
@@ -215,7 +216,7 @@ export default async function EstateSalePostPage({ params }: Props) {
           </div>
           <div>
             {post.body ? (
-              <div className='prose max-h-96 min-h-50 overflow-y-auto rounded-lg bg-gray-50 px-4 py-2 shadow-inner'>
+              <div className='prose max-h-96 min-h-full overflow-y-auto rounded-lg bg-gray-50 px-4 py-2 shadow-inner'>
                 <p className='mb-2 text-sm text-gray-400'>
                   Updated: {new Date(post?._updatedAt).toLocaleDateString()}
                 </p>
@@ -226,7 +227,7 @@ export default async function EstateSalePostPage({ params }: Props) {
             ) : null}
           </div>
           {/* Row 2 Column 2: Gallery */}
-          <div className='max-h-96 min-h-50 overflow-y-auto rounded-lg bg-gray-50 p-4 shadow-inner'>
+          <div className='max-h-96 min-h-full overflow-y-auto rounded-lg bg-gray-50 p-4 shadow-inner'>
             {gallery
               ? gallery?.length > 0 && <Gallery images={images} />
               : null}
