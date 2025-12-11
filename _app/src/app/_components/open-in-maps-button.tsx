@@ -1,6 +1,6 @@
 'use client';
 
-import clsx from 'classnames';
+import clsx from 'clsx';
 import { openMapButton } from '../_utils/openMapButton';
 
 export const OpenInMapsButton = ({
