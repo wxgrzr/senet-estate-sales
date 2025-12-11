@@ -7,37 +7,16 @@ import { Reviews } from '@/app/_components/reviews';
 import Image from 'next/image';
 import { RowSection } from '@/app/_components/row-section';
 import { MediaContainer } from '../_components/media-container';
-import { Metadata } from 'next';
-import { siteDefaults } from '@/app/_metadata/site';
+import { createMetadata } from '@/app/_metadata';
 import { AnimateInXL, AnimateInXR } from '../_components/animate-in-x';
 import { AnimateInY } from '../_components/animate-in-y';
 
-export const metadata: Metadata = {
-  ...(siteDefaults as Partial<Metadata>),
+export const metadata = createMetadata({
   title: 'Senet Estate Sales',
   description:
     'Senet Estate Sales delivers full-service estate sales, home clean-outs, and downsizing support throughout Southeast Michigan, including Detroit, Ann Arbor, Flint, Bloomfield, and Bay City.',
-  alternates: { canonical: 'https://senetestatesales.com/' },
-  openGraph: {
-    ...(siteDefaults.openGraph || {}),
-    title: 'Senet Estate Sales',
-    description:
-      'Trusted Michigan estate liquidation, house clean-out, and downsizing services for families in Detroit, Ann Arbor, Flint, Bloomfield, Bay City, and neighboring communities.',
-    url: 'https://senetestatesales.com/',
-  },
-  twitter: {
-    ...(siteDefaults.twitter || {}),
-    title: 'Senet Estate Sales',
-    description:
-      'Michigan estate sale and clean-out specialists serving Detroit, Ann Arbor, Flint, and Southeast Michigan with compassionate liquidation support.',
-  },
-  other: {
-    ...(siteDefaults.other || {}),
-    'og:see_also':
-      'https://www.facebook.com/people/Senet-Estate-Sales/61567003222290/',
-  },
+  path: '/',
   keywords: [
-    ...((siteDefaults.keywords as string[]) || []),
     'estate sales',
     'Michigan estate services',
     'Michigan cleanout services',
@@ -56,9 +35,23 @@ export const metadata: Metadata = {
     'Fenton MI',
     'Southeast Michigan',
   ],
-};
+  openGraph: {
+    title: 'Senet Estate Sales',
+    description:
+      'Trusted Michigan estate liquidation, house clean-out, and downsizing services for families in Detroit, Ann Arbor, Flint, Bloomfield, Bay City, and neighboring communities.',
+  },
+  twitter: {
+    title: 'Senet Estate Sales',
+    description:
+      'Michigan estate sale and clean-out specialists serving Detroit, Ann Arbor, Flint, and Southeast Michigan with compassionate liquidation support.',
+  },
+  other: {
+    'og:see_also':
+      'https://www.facebook.com/people/Senet-Estate-Sales/61567003222290/',
+  },
+});
 
-export default async function IndexPage() {
+export default function IndexPage() {
   return (
     <main id='content'>
       <div id='hero'>
@@ -108,7 +101,7 @@ export default async function IndexPage() {
                     alt=''
                     className='rounded-2xl'
                     priority
-                    quality={100}
+                    quality={80}
                     sizes='(max-width: 768px) 100vw, 50vw'
                   />
                 </MediaContainer>
@@ -150,13 +143,13 @@ export default async function IndexPage() {
                 <h2 className='mb-6 text-4xl font-extrabold tracking-tight'>
                   Who We Are
                 </h2>
-                <SectionBodyCopy>
+                <BodyParagraph>
                   We’re a Michigan-based estate sale and clean-out team focused
                   on compassionate service. From valuing collections in Detroit
                   bungalows to coordinating Flint home cleanouts and Ann Arbor
-                  downsizing projects, our staff makes every step transparent for
-                  families and buyers alike.
-                </SectionBodyCopy>
+                  downsizing projects, our staff makes every step transparent
+                  for families and buyers alike.
+                </BodyParagraph>
                 <LinkButton
                   href='#our-services'
                   variant='button'
@@ -220,14 +213,14 @@ export default async function IndexPage() {
                   <h2 className='mb-6 text-4xl font-extrabold tracking-tight text-pretty'>
                     Start with a Free Consultation
                   </h2>
-                  <SectionBodyCopy>
+                  <BodyParagraph>
                     We’ll walk through your Michigan property, learn your
                     priorities, and handle the rest — pricing valuables, staging
                     estate sales, coordinating donations, and providing full
                     clean-out services. Schedule a free consultation and we’ll
-                    guide you from the first walkthrough to the final broom-swept
-                    handoff.
-                  </SectionBodyCopy>
+                    guide you from the first walkthrough to the final
+                    broom-swept handoff.
+                  </BodyParagraph>
                   <LinkButton
                     href='/request-estate-sale-consultation'
                     subvariant='solid'
@@ -276,6 +269,6 @@ export default async function IndexPage() {
   );
 }
 
-const SectionBodyCopy = ({ children }: { children: React.ReactNode }) => {
+const BodyParagraph = ({ children }: { children: React.ReactNode }) => {
   return <p className='mb-6 text-lg text-gray-700'>{children}</p>;
 };

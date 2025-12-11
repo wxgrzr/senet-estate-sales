@@ -10,6 +10,7 @@ import { notFound } from 'next/navigation';
 import { client } from '@/sanity/lib/client';
 import { urlForImage } from '@/sanity/lib/utils';
 import type { Metadata, ResolvingMetadata } from 'next';
+import { createMetadata } from '@/app/_metadata';
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -24,48 +25,52 @@ export async function generateMetadata(
   const previousImages = (await parent).openGraph?.images || [];
 
   if (!post) {
-    return {
+    return createMetadata({
       title: 'Estate Sale Not Found',
       description: 'This estate sale could not be found.',
-      alternates: {
-        canonical: `https://senetestatesales.com/upcoming-estate-sales/${slug}`,
-      },
-    };
+      path: `/upcoming-estate-sales/${slug}`,
+    });
   }
 
   const title = post.title || 'Estate Sale';
   const description =
     'Estate sale event located at ' +
-    post.location.fullAddress +
+    post?.location?.fullAddress +
     ' by Senet Estate Sales.';
   const coverImage = post?.coverImage
     ? urlForImage(post.coverImage)?.width(1200).height(630).url()
-    : '/og-image.jpg';
+    : undefined;
 
-  return {
+  const coverImageObj = coverImage
+    ? {
+        url: coverImage,
+        width: 1200,
+        height: 630,
+        alt: title,
+      }
+    : undefined;
+
+  // Build images array: cover image first, then previous images from parent
+  const ogImages = coverImageObj
+    ? [coverImageObj, ...previousImages]
+    : previousImages.length > 0
+      ? previousImages
+      : undefined;
+
+  return createMetadata({
     title,
     description,
+    path: `/upcoming-estate-sales/${slug}`,
     openGraph: {
       title,
       description,
-      url: `https://senetestatesales.com/upcoming-estate-sales/${slug}`,
-      siteName: 'Senet Estate Sales',
-      images: [
-        {
-          url: coverImage as string,
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-        ...previousImages,
-      ],
       type: 'article',
+      ...(ogImages ? { images: ogImages } : coverImageObj ? { image: coverImageObj } : {}),
     },
     twitter: {
-      card: 'summary_large_image',
       title,
       description,
-      images: [coverImage ?? '/og-image.jpg'],
+      image: coverImage ? [coverImage] : undefined,
     },
     icons: {
       icon: [
@@ -75,16 +80,7 @@ export async function generateMetadata(
       ],
       apple: '/apple-touch-icon.png',
     },
-    alternates: {
-      canonical: `https://senetestatesales.com/upcoming-estate-sales/${slug}`,
-    },
-    other: {
-      'fb:page_id': '424849244049685',
-      'fb:profile_id': '61567003222290',
-      'og:see_also':
-        'https://www.facebook.com/people/Senet-Estate-Sales/61567003222290/',
-    },
-  };
+  });
 }
 
 export default async function EstateSalePostPage({ params }: Props) {
@@ -146,7 +142,6 @@ export default async function EstateSalePostPage({ params }: Props) {
 
   const address = post?.location?.fullAddress;
   const eventDates = post?.eventDates || [];
-  console.log(address);
 
   return (
     <div>
