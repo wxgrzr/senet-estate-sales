@@ -25,10 +25,7 @@ export function PostPreview({
       <div className='relative h-auto'>
         <CoverImage slug={slug} title={title} src={coverImage} />
       </div>
-
-      {/* Content */}
       <div className='flex h-full flex-col gap-1 p-4'>
-        {/* Title */}
         <h3 className='mb-2 text-xl leading-tight font-semibold tracking-tight md:text-lg'>
           <Link
             href={`/upcoming-estate-sales/${slug}`}
@@ -37,13 +34,9 @@ export function PostPreview({
             {title}
           </Link>
         </h3>
-
-        {/* Address */}
         <p className='text-md text-richblack/55 mb-2 leading-tight font-normal md:text-base'>
           {fullAddress}
         </p>
-
-        {/* Dates */}
         <div className='text-richblack/80 mt-auto text-base font-medium md:text-base'>
           <DateRangeFormatter dateStrings={dates} />
         </div>

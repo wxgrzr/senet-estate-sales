@@ -13,7 +13,7 @@ export const MediaContainer: React.FC<MediaContainerProps> = ({
 }) => (
   <div
     className={clsx(
-      'relative size-full min-h-80 overflow-hidden rounded-lg sm:min-h-96 md:min-h-[24rem] lg:min-h-[28rem]',
+      'relative size-full min-h-80 overflow-hidden rounded-lg sm:min-h-96 md:min-h-96 lg:min-h-112',
       className,
     )}
     {...rest}

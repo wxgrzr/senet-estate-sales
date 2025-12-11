@@ -32,7 +32,7 @@ export default function Header() {
       className={`sticky top-0 z-50 flex w-full flex-wrap py-3 text-sm transition-shadow md:flex-nowrap md:justify-start ${scrolled ? 'shadow-md' : 'shadow-none'} bg-background`}
     >
       <nav
-        className='mx-auto w-full max-w-[82rem] px-4 md:flex md:items-center md:justify-between'
+        className='mx-auto w-full max-w-328 px-4 md:flex md:items-center md:justify-between'
         aria-label='Global'
       >
         <div className='flex items-center justify-between'>

@@ -2,13 +2,15 @@ export const siteDefaults = {
   siteName: 'Senet Estate Sales',
   defaultImage: '/og-image.jpg',
   twitterCard: 'summary_large_image',
-  // Common default description for pages to fall back to
   description:
-    'Browse Michigan estate sales hosted by Senet Estate Sales, featuring upcoming events across Detroit, Ann Arbor, Flint, Bloomfield, Bay City, and Southeast Michigan.',
+    'Browse new and previously held Michigan estate sales hosted by Senet Estate Sales, featuring upcoming events across Detroit, Ann Arbor, Flint, Bloomfield, Bay City, and Southeast Michigan.',
   // Canonical base (route-specific pages should append their path)
   alternates: { canonical: 'https://senetestatesales.com' },
   openGraph: {
     siteName: 'Senet Estate Sales',
+    description:
+      'Trusted Michigan estate liquidation, house clean-out, and downsizing services for families in Detroit, Ann Arbor, Flint, Bloomfield, Bay City, and neighboring communities.',
+    url: 'https://senetestatesales.com/',
     images: [
       {
         url: '/og-image.jpg',
@@ -22,15 +24,42 @@ export const siteDefaults = {
   twitter: {
     card: 'summary_large_image',
     images: ['/og-image.jpg'],
+    title: 'Senet Estate Sales',
+    description:
+      'Michigan estate sale and clean-out specialists serving Detroit, Ann Arbor, Flint, and Southeast Michigan with compassionate liquidation support.',
   },
   other: {
     'fb:page_id': '424849244049685',
     'fb:profile_id': '61567003222290',
   },
   keywords: [
-    'estate sales',
-    'Michigan estate sales',
-    'Michigan cleanout services',
+    'Senet',
     'Senet Estate Sales',
+    'estate sales',
+    'estate sale company',
+    'estate sale services',
+    'estate liquidation',
+    'downsizing services',
+    'home clean-out services',
+    'liquidation services',
+    'Detroit estate sales',
+    'Ann Arbor estate sales',
+    'Flint estate sales',
+    'Michigan estate services',
+    'Michigan cleanout services',
+    'Detroit estate sale company',
+    'Flint estate clean-out',
+    'Ann Arbor estate sales',
+    'Northville MI',
+    'Bloomfield MI',
+    'Bay City MI',
+    'West Bloomfield Township MI',
+    'Grand Blanc MI',
+    'Rochester Hills MI',
+    'Birmingham MI',
+    'Huntington Woods MI',
+    'Flint MI',
+    'Fenton MI',
+    'Southeast Michigan',
   ],
 };

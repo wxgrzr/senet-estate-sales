@@ -14,48 +14,20 @@ import { AnimateInY } from '../_components/animate-in-y';
 
 export const metadata: Metadata = {
   ...(siteDefaults as Partial<Metadata>),
-  title: 'Senet Estate Sales',
   description:
     'Senet Estate Sales delivers full-service estate sales, home clean-outs, and downsizing support throughout Southeast Michigan, including Detroit, Ann Arbor, Flint, Bloomfield, and Bay City.',
-  alternates: { canonical: 'https://senetestatesales.com/' },
   openGraph: {
     ...(siteDefaults.openGraph || {}),
-    title: 'Senet Estate Sales',
-    description:
-      'Trusted Michigan estate liquidation, house clean-out, and downsizing services for families in Detroit, Ann Arbor, Flint, Bloomfield, Bay City, and neighboring communities.',
-    url: 'https://senetestatesales.com/',
   },
   twitter: {
     ...(siteDefaults.twitter || {}),
-    title: 'Senet Estate Sales',
-    description:
-      'Michigan estate sale and clean-out specialists serving Detroit, Ann Arbor, Flint, and Southeast Michigan with compassionate liquidation support.',
   },
   other: {
     ...(siteDefaults.other || {}),
     'og:see_also':
       'https://www.facebook.com/people/Senet-Estate-Sales/61567003222290/',
   },
-  keywords: [
-    ...((siteDefaults.keywords as string[]) || []),
-    'estate sales',
-    'Michigan estate services',
-    'Michigan cleanout services',
-    'Detroit estate sale company',
-    'Flint estate clean-out',
-    'Ann Arbor estate sales',
-    'Northville MI',
-    'Bloomfield MI',
-    'Bay City MI',
-    'West Bloomfield Township MI',
-    'Grand Blanc MI',
-    'Rochester Hills MI',
-    'Birmingham MI',
-    'Huntington Woods MI',
-    'Flint MI',
-    'Fenton MI',
-    'Southeast Michigan',
-  ],
+  keywords: [...((siteDefaults.keywords as string[]) || [])],
 };
 
 export default async function IndexPage() {
@@ -154,8 +126,8 @@ export default async function IndexPage() {
                   We’re a Michigan-based estate sale and clean-out team focused
                   on compassionate service. From valuing collections in Detroit
                   bungalows to coordinating Flint home cleanouts and Ann Arbor
-                  downsizing projects, our staff makes every step transparent for
-                  families and buyers alike.
+                  downsizing projects, our staff makes every step transparent
+                  for families and buyers alike.
                 </SectionBodyCopy>
                 <LinkButton
                   href='#our-services'
@@ -225,8 +197,8 @@ export default async function IndexPage() {
                     priorities, and handle the rest — pricing valuables, staging
                     estate sales, coordinating donations, and providing full
                     clean-out services. Schedule a free consultation and we’ll
-                    guide you from the first walkthrough to the final broom-swept
-                    handoff.
+                    guide you from the first walkthrough to the final
+                    broom-swept handoff.
                   </SectionBodyCopy>
                   <LinkButton
                     href='/request-estate-sale-consultation'

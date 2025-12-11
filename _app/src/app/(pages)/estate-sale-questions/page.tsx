@@ -15,9 +15,9 @@ export default async function FAQPage() {
 
   return (
     <>
-      <Head>
+      {/* <Head>
         <title>FAQ – Senet Estate Sales</title>
-      </Head>
+      </Head> */}
       <Container>
         <section className='py-8 md:py-12 lg:py-16'>
           <div className='mx-auto max-w-4xl'>

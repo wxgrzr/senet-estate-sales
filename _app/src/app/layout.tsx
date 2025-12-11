@@ -1,5 +1,6 @@
 import clsx from 'classnames';
 import type { Metadata } from 'next';
+import { siteDefaults } from '@/app/_metadata/siteDefaults';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from '@/app/_components/header';
@@ -18,54 +19,20 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://senetestatesales.com'),
+  metadataBase: new URL(siteDefaults.alternates?.canonical || 'https://senetestatesales.com'),
   title: {
-    default: 'Senet Estate Sales | Estate Sale Experts in Southeast Michigan',
-    template: '%s | Senet Estate Sales',
+    default: siteDefaults.siteName || 'Senet Estate Sales',
+    template: `%s | ${siteDefaults.siteName || 'Senet Estate Sales'}`,
   },
-  description:
-    'Michigan estate sale specialists delivering full-service liquidation, clean-out, and downsizing solutions across Southeast Michigan, Detroit, Ann Arbor, Flint, and surrounding communities.',
-  keywords: [
-    'estate sales',
-    'liquidation',
-    'senet',
-    'downsizing',
-    'Southeastern Michigan',
-    'Estate Sales Michigan',
-    'Downsizing Services Michigan',
-    'Estate Liquidation',
-    'Estate Sale Company MI',
-    'Southeast Michigan Estate Sales',
-    'Senet Estate Sales',
-    'Onsite Estate Sales',
-    'Michigan cleanout services',
-    'Flint clean-out company',
-    'Detroit estate services',
-  ],
+  description: siteDefaults.description,
+  keywords: (siteDefaults.keywords as string[]) || [],
   openGraph: {
-    title: 'Senet Estate Sales',
-    description:
-      'Full-service Michigan estate sales, home clean-out services, and liquidation support for families in Detroit, Ann Arbor, Flint, and Southeast Michigan.',
-    url: 'https://senetestatesales.com',
-    siteName: 'Senet Estate Sales',
-    locale: 'en_US',
-    type: 'website',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Senet Estate Sales Logo',
-      },
-    ],
+    ...(siteDefaults.openGraph || {}),
+    title: siteDefaults.siteName,
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Senet Estate Sales',
-    description:
-      'Estate and downsizing sales in Southeast Michigan. Trusted local provider.',
-    images: ['/og-image.jpg'],
-    creator: '@senet_estates',
+    ...(siteDefaults.twitter || {}),
+    creator: siteDefaults.twitter?.creator || '@senet_estates',
   },
   icons: {
     icon: [
