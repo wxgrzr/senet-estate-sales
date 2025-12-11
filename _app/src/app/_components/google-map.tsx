@@ -17,8 +17,9 @@ interface GoogleMapProps {
 
 export default function GoogleMap({ className }: GoogleMapProps) {
   const API_KEY =
-    (process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string) ??
-    globalThis.GOOGLE_MAPS_API_KEY;
+    (process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string) ||
+    (typeof globalThis !== 'undefined' && globalThis.GOOGLE_MAPS_API_KEY) ||
+    '';
 
   const [markers, setMarkers] = useState<MarkerPostsQueryResult>([]);
   const [loading, setLoading] = useState(true);
@@ -92,7 +93,7 @@ export default function GoogleMap({ className }: GoogleMapProps) {
           >
             {markers.map((marker) => {
               const coords = marker.location.coordinates;
-              if (!coords || coords.lat == null || coords.lng == null)
+              if (!coords || coords.lat === null || coords.lat === undefined || coords.lng === null || coords.lng === undefined)
                 return null;
               return (
                 <Marker

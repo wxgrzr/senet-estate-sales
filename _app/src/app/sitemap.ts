@@ -2,6 +2,7 @@ import { MetadataRoute } from 'next';
 import { sitemapData } from '@/sanity/lib/queries';
 import { headers } from 'next/headers';
 import { client } from '@/sanity/lib/client';
+import { Routes } from '@/app/constants';
 
 /**
  * This file creates a sitemap (sitemap.xml) for the application. Learn more about sitemaps in Next.js here: https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap
@@ -16,11 +17,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ? headersList.get('host')!
     : `https://${headersList.get('host')}`;
 
-  // Add static pages manually
   const staticPages = [
-    '/',
-    '/estate-sale-questions',
-    '/request-estate-sale-consultation',
+    Routes.Home,
+    Routes.Faq,
+    Routes.ScheduleConsultaion,
+    Routes.Privacy
   ];
   staticPages.forEach((path) => {
     sitemap.push({
@@ -32,10 +33,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   });
 
   sitemap.push({
-    url: domain + '/upcoming-estate-sales',
+    url: `${domain}${Routes.OurEstateSales}`,
     lastModified: new Date(),
     priority: 1,
-    changeFrequency: 'weekly',
+    changeFrequency: 'daily',
   });
 
   // Add posts from Sanity
@@ -46,10 +47,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       _updatedAt?: string;
     }>) {
       sitemap.push({
-        url: `${domain}/upcoming-estate-sales/${p.slug}`,
+        url: `${domain}${Routes.OurEstateSales}/${p.slug}`,
         lastModified: p._updatedAt || new Date(),
         priority: 0.5,
-        changeFrequency: 'weekly',
+        changeFrequency: 'daily',
       });
     }
   }

@@ -10,8 +10,8 @@ import { dataset, projectId } from './environment';
 
 export default defineCliConfig({
   api: {
-    projectId,
-    dataset,
+    projectId: projectId || 'ma2ex8bh',
+    dataset: dataset || 'production',
   },
   studioHost: 'senet-estate-sales-prod',
   autoUpdates: false,

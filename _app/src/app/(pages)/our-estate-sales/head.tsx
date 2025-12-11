@@ -19,7 +19,7 @@ export default function Head() {
                 '@type': 'ListItem',
                 position: 2,
                 name: 'Michigan Estate Sales',
-                item: 'https://senetestatesales.com/upcoming-estate-sales',
+                item: 'https://senetestatesales.com/our-estate-sales',
               },
             ],
           }),

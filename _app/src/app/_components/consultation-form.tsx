@@ -1,7 +1,7 @@
 'use client';
 import { Button } from '@/app/_components/button';
 import PhoneInput from 'react-phone-number-input/input';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
 
@@ -17,12 +17,43 @@ const userInputInitialState: ConsultationFormState = {
   message: '',
 };
 
+function assertEmailJsConfig(): {
+  serviceId: string;
+  templateId: string;
+  userId: string;
+} {
+  const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+  const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+  const userId = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+  if (!serviceId || !templateId || !userId) {
+    throw new Error(
+      'EmailJS configuration is missing. Please contact support if this error persists.',
+    );
+  }
+
+  return { serviceId, templateId, userId };
+}
+
 const ConsultationForm = () => {
   const [checked, setChecked] = useState(false);
   const [userInput, setUserInput] = useState<ConsultationFormState>(
     userInputInitialState,
   );
   const [userPhoneInput, setUserPhoneInput] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [configError, setConfigError] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Validate configuration on mount
+    try {
+      assertEmailJsConfig();
+    } catch (error) {
+      setConfigError(
+        error instanceof Error ? error.message : 'Configuration error',
+      );
+    }
+  }, []);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -43,34 +74,46 @@ const ConsultationForm = () => {
   ): Promise<void> {
     e.preventDefault();
 
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '';
-    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '';
-    const userId = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '';
+    if (isSubmitting) {
+      return;
+    }
+
+    setIsSubmitting(true);
 
     try {
+      const { serviceId, templateId, userId } = assertEmailJsConfig();
+
       const emailParams = {
         name: userInput.name,
         phone: userPhoneInput,
         email: userInput.email,
         message: userInput.message,
       };
+
       const res = await emailjs.send(serviceId, templateId, emailParams, {
         publicKey: userId,
       });
+
       if (res.status === 200) {
         toast.success(
           'Message sent successfully! We will reach out to you shortly.',
         );
-        setUserInput({
-          name: '',
-          email: '',
-          message: '',
-        });
+        setUserInput(userInputInitialState);
         setUserPhoneInput('');
+        setChecked(false);
+      } else {
+        throw new Error(`Unexpected response status: ${res.status}`);
       }
     } catch (err) {
+      const errorMessage =
+        err instanceof Error ? err.message : 'Unknown error occurred';
       toast.error('Failed to send message. Please try again later.');
-      console.log(err);
+      // Log error for debugging (in development only)
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Form submission error:', errorMessage, err);
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -180,13 +223,20 @@ const ConsultationForm = () => {
           </div>
         </label>
       </div>
+      {configError && (
+        <div className='rounded-lg border border-red-300 bg-red-50 p-3 text-sm text-red-800'>
+          {configError}
+        </div>
+      )}
+
       <Button
         type='submit'
         colors='primary'
         subvariant='solid'
         className='max-sm:w-full'
+        disabled={isSubmitting || !!configError}
       >
-        Send Message
+        {isSubmitting ? 'Sending...' : 'Send Message'}
       </Button>
 
       <ToastContainer position='bottom-right' />
