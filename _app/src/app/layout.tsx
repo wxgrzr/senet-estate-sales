@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
 import Header from '@/app/_components/header';
 import Footer from '@/app/_components/footer';
@@ -103,6 +104,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </div>
+        <SpeedInsights />
       </body>
     </html>
   );
