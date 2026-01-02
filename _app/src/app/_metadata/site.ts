@@ -4,9 +4,9 @@ export const siteDefaults = {
   twitterCard: 'summary_large_image',
   // Common default description for pages to fall back to
   description:
-    'Browse Michigan estate sales hosted by Senet Estate Sales, featuring upcoming events across Detroit, Ann Arbor, Flint, Bloomfield, Bay City, and Southeast Michigan.',
+    'Senet Estate Sales delivers full-service estate sales, clean-outs, and downsizing support across Southeast Michigan from Detroit to Bay City.',
   // Canonical base (route-specific pages should append their path)
-  alternates: { canonical: 'https://senetestatesales.com' },
+  alternates: { canonical: 'https://www.senetestatesales.com' },
   openGraph: {
     siteName: 'Senet Estate Sales',
     images: [

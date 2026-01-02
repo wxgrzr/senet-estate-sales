@@ -35,8 +35,8 @@ export default function Head() {
             '@context': 'https://schema.org',
             '@type': 'LocalBusiness',
             name: 'Senet Estate Sales',
-            image: 'https://senetestatesales.com/og-image.jpg',
-            url: 'https://senetestatesales.com',
+            image: 'https://www.senetestatesales.com/og-image.jpg',
+            url: 'https://www.senetestatesales.com',
             telephone: '8105888175',
             address: {
               '@type': 'PostalAddress',

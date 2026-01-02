@@ -53,7 +53,7 @@ const Footer = async () => {
             </div>
           </div>
           <div>
-            <h4 className='mb-4 text-lg font-semibold'>Quick Links</h4>
+            <h2 className='mb-4 text-lg font-semibold'>Quick Links</h2>
             <ul className='space-y-2 text-sm text-gray-600'>
               {PAGES.map(({ label, href }) => (
                 <li key={label}>

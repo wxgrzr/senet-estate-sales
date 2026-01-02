@@ -24,19 +24,19 @@ export function OurServices() {
       icon: <HomeIcon className='h-7 w-7' />,
       title: 'Estate Sales',
       description:
-        'We organize, price, and stage Michigan estate sales that honor your items and attract the right buyers. Our specialists handle Detroit, Ann Arbor, Flint, and Metro Detroit properties with professional marketing and crowd management.',
+        'We organize, price, and stage Michigan estate sales that respect your items and attract buyers across Detroit, Ann Arbor, Flint, and Metro Detroit.',
     },
     {
       icon: <PackageIcon className='h-7 w-7' />,
       title: 'Downsizing Help',
       description:
-        "Whether you're relocating or simplifying, we help sort, sell, and rehome belongings with care. Our team supports condo cleanouts, estate transitions, and senior moves across Southeast Michigan.",
+        'We guide relocations and downsizing projects, sorting, selling, and rehoming belongings for condos, estates, and senior moves across Southeast Michigan.',
     },
     {
       icon: <SparklesIcon className='h-7 w-7' />,
       title: 'Clean-Out Services',
       description:
-        'We leave homes broom-swept and ready for the next chapter. Our Michigan clean-out crews sort, recycle, donate, or dispose of items so Flint, Detroit, and suburban properties are market-ready fast.',
+        'We leave homes broom-swept and market ready by sorting, recycling, donating, or disposing of items so Detroit, Flint, and nearby properties sell faster.',
     },
   ];
 
@@ -47,11 +47,9 @@ export function OurServices() {
           Michigan Estate &amp; Clean-Out Services
         </h2>
         <p className='mx-auto max-w-2xl pb-8 text-gray-600'>
-          With compassion and care, we help Michigan families navigate life&#39;s
-          transitions through estate liquidation, house clean-outs, and
-          downsizing solutions tailored to Detroit, Ann Arbor, Flint, and beyond.
-          Our MI estate services team manages every detail so you can focus on
-          what matters most.
+          We guide Michigan families through estate liquidation, clean-outs, and
+          downsizing across Detroit, Ann Arbor, Flint, and nearby towns with
+          compassion.
         </p>
       </div>
       {isMobile ? (

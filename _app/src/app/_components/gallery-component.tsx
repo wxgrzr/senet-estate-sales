@@ -121,23 +121,34 @@ function renderNextImage(
 
 export default function Gallery({ images }: any) {
   const [index, setIndex] = useState(-1);
+  const photoItems = images.map((img: any, i: number) => ({
+    src: img.thumbnail, // use low-res for grid
+    width: 400,
+    height: 300,
+    alt: img.alt,
+    key:
+      img._id ??
+      img.id ??
+      img.key ??
+      `${img.thumbnail ?? img.src ?? 'img'}-${i}`,
+  }));
+
+  const slideItems = images.map((img: any, i: number) => ({
+    ...img,
+    key: img._id ?? img.id ?? img.key ?? `slide-${i}`,
+  }));
 
   return (
     <div style={{ width: '100%' }}>
       <RowsPhotoAlbum
-        photos={images.map((img: { thumbnail: string; alt: string }) => ({
-          src: img.thumbnail, // use low-res for grid
-          width: 400,
-          height: 300,
-          alt: img.alt,
-        }))}
+        photos={photoItems}
         render={{ image: renderNextImage }}
         targetRowHeight={110}
         onClick={({ index: current }) => setIndex(current)}
       />
       <Lightbox
         index={index}
-        slides={images} // use high-res for lightbox
+        slides={slideItems} // use high-res for lightbox
         open={index >= 0}
         close={() => setIndex(-1)}
         render={{ slide: NextJsImage }}

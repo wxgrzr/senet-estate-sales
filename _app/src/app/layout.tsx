@@ -18,13 +18,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://senetestatesales.com'),
+  metadataBase: new URL('https://www.senetestatesales.com'),
   title: {
     default: 'Senet Estate Sales | Estate Sale Experts in Southeast Michigan',
     template: '%s | Senet Estate Sales',
   },
   description:
-    'Michigan estate sale specialists delivering full-service liquidation, clean-out, and downsizing solutions across Southeast Michigan, Detroit, Ann Arbor, Flint, and surrounding communities.',
+    'Senet Estate Sales delivers full-service estate sales, clean-outs, and downsizing support across Southeast Michigan from Detroit to Bay City.',
   keywords: [
     'estate sales',
     'liquidation',
@@ -45,8 +45,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Senet Estate Sales',
     description:
-      'Full-service Michigan estate sales, home clean-out services, and liquidation support for families in Detroit, Ann Arbor, Flint, and Southeast Michigan.',
-    url: 'https://senetestatesales.com',
+      'Full-service Michigan estate sales, clean-outs, and liquidation help for families in Detroit, Ann Arbor, Flint, and Southeast Michigan.',
+    url: 'https://www.senetestatesales.com',
     siteName: 'Senet Estate Sales',
     locale: 'en_US',
     type: 'website',
@@ -98,7 +98,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={clsx(inter.variable, 'antialiased')}>
-        <div className='min-h-screen'>
+        <div className='min-h-screen' tabIndex={-1}>
           <Header />
           {children}
           <Footer />

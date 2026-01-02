@@ -1,4 +1,4 @@
-# senetestatesales.com
+# www.senetestatesales.com
 
 Monorepo for the Senet Estate Sales website — a Next.js frontend in `_app` and a Sanity Studio in `studio`.
 

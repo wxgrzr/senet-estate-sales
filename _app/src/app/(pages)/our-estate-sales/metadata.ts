@@ -4,7 +4,7 @@ import { Routes } from '@/app/constants';
 export const metadata = createMetadata({
   title: 'Michigan Estate Sales',
   description:
-    'Browse Michigan estate sales hosted by Senet Estate Sales, featuring upcoming events across Detroit, Ann Arbor, Flint, Bloomfield, Bay City, and Southeast Michigan.',
+    'Explore upcoming Michigan estate sales hosted by Senet Estate Sales across Detroit, Ann Arbor, Flint, Bloomfield, Bay City, and nearby communities.',
   path: Routes.OurEstateSales,
   keywords: [
     'Detroit estate auctions',
@@ -18,7 +18,7 @@ export const metadata = createMetadata({
   openGraph: {
     title: 'Michigan Estate Sales',
     description:
-      'Browse Michigan estate sales hosted by Senet Estate Sales, featuring upcoming events across Detroit, Ann Arbor, Flint, Bloomfield, Bay City, and Southeast Michigan.',
+      'Explore upcoming Michigan estate sales hosted by Senet Estate Sales across Detroit, Ann Arbor, Flint, Bloomfield, Bay City, and nearby communities.',
   },
   twitter: {
     title: 'Michigan Estate Sales',

@@ -231,8 +231,6 @@ const ConsultationForm = () => {
 
       <Button
         type='submit'
-        colors='primary'
-        subvariant='solid'
         className='max-sm:w-full'
         disabled={isSubmitting || !!configError}
       >
