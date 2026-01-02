@@ -13,7 +13,9 @@ import { AnimateInY } from '../_components/animate-in-y';
 import { Routes } from '@/app/constants';
 
 export const metadata = createMetadata({
-  title: { absolute: 'Senet Estate Sales | Estate Sale Experts in Southeast Michigan' },
+  title: {
+    absolute: 'Senet Estate Sales | Estate Sale Experts in Southeast Michigan',
+  },
   description:
     'Senet Estate Sales delivers full-service estate sales, home clean-outs, and downsizing support throughout Southeast Michigan, including Detroit, Ann Arbor, Flint, Bloomfield, and Bay City.',
   path: '/',
@@ -64,13 +66,15 @@ export default function IndexPage() {
                 className='col-start-1 space-y-4 max-sm:col-span-4 sm:space-y-8'
               >
                 <div className='sm:space-y-3'>
-                  <h1 className='mb-2 text-5xl font-extrabold tracking-tighter text-pretty'>Moving You Forward</h1>
-                  <p className='text-lg font-semibold tracking-tight text-pretty text-gray-800 max-w-lg'>
+                  <h1 className='mb-2 text-5xl font-extrabold tracking-tighter text-pretty'>
+                    Moving You Forward
+                  </h1>
+                  <p className='max-w-lg text-lg font-semibold tracking-tight text-pretty text-gray-800'>
                     Your trusted estate sale &amp; clean-out specialists.
                   </p>
                   <p className='max-w-lg text-base text-gray-600'>
-                    Proudly serving Metro Detroit, Ann Arbor, Flint and the surrounding
-                    communities of <b>Southeastern Michigan.</b> 
+                    Proudly serving Metro Detroit, Ann Arbor, Flint and the
+                    surrounding communities of <b>Southeastern Michigan.</b>
                   </p>
                 </div>
                 <LinkButton
@@ -143,10 +147,7 @@ export default function IndexPage() {
                   downsizing projects, our staff makes every step transparent
                   for families and buyers alike.
                 </BodyParagraph>
-                <LinkButton
-                  href='#our-services'
-                  variant='secondary'
-                >
+                <LinkButton href='#our-services' variant='secondary'>
                   Our Services
                 </LinkButton>
               </AnimateInXR>

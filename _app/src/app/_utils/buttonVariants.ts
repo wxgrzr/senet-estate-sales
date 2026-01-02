@@ -16,6 +16,4 @@ const textVariant =
   'inline-flex items-center gap-1 text-subtext font-medium transition-colors duration-200 hover:text-gray-500 focus-visible:text-gray-500 focus-visible:outline-hidden';
 
 export const buttonClasses = (variant: ButtonVariant = 'primary') =>
-  variant === 'text'
-    ? textVariant
-    : `${buttonBase} ${solidVariants[variant]}`;
+  variant === 'text' ? textVariant : `${buttonBase} ${solidVariants[variant]}`;

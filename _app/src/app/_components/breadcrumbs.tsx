@@ -22,7 +22,7 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
                 <LinkButton
                   variant='text'
                   href={item.href}
-                  className='font-normal text-subtext'
+                  className='text-subtext font-normal'
                 >
                   {item.label}
                 </LinkButton>

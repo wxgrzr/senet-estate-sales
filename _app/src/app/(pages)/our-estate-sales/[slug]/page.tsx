@@ -66,12 +66,16 @@ export async function generateMetadata(
       title,
       description,
       type: 'article',
-      ...(ogImages ? { images: ogImages } : coverImageObj ? { image: coverImageObj } : {}),
+      ...(ogImages
+        ? { images: ogImages }
+        : coverImageObj
+          ? { image: coverImageObj }
+          : {}),
     },
     twitter: {
       title,
       description,
-      image: coverImage ? [coverImage] : undefined,
+      images: coverImage ? [coverImage] : undefined,
     },
     icons: {
       icon: [
@@ -106,13 +110,13 @@ export default async function EstateSalePostPage({ params }: Props) {
         '@type': 'ListItem',
         position: 2,
         name: 'Michigan Estate Sales',
-        item: 'https://www.senetestatesales.com/upcoming-estate-sales',
+        item: 'https://www.senetestatesales.com/our-estate-sales',
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: post.title,
-        item: `https://www.senetestatesales.com/upcoming-estate-sales/${post.slug}`,
+        item: `https://www.senetestatesales.com/our-estate-sales/${post.slug}`,
       },
     ],
   };

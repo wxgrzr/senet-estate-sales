@@ -17,7 +17,7 @@ export const Button = ({
       className={clsx(
         buttonClasses(variant),
         className ? className : '',
-        disabled && 'opacity-50 cursor-not-allowed',
+        disabled && 'cursor-not-allowed opacity-50',
       )}
       {...rest}
     >

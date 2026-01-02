@@ -15,7 +15,9 @@ export interface MetadataOptions {
   description: string;
   path?: string; // Used to generate canonical URL
   keywords?: string[];
-  image?: string | { url: string; width?: number; height?: number; alt?: string };
+  image?:
+    | string
+    | { url: string; width?: number; height?: number; alt?: string };
   openGraph?: Metadata['openGraph'];
   twitter?: Metadata['twitter'];
   other?: Record<string, string>;
@@ -37,16 +39,15 @@ function resolveTitle(title: Metadata['title']): string {
 
   if (typeof title === 'object') {
     const templateTitle = title as { absolute?: string; default?: string };
-    return templateTitle.absolute || templateTitle.default || siteDefaults.siteName;
+    return (
+      templateTitle.absolute || templateTitle.default || siteDefaults.siteName
+    );
   }
 
   return siteDefaults.siteName;
 }
 
-function buildOpenGraphImage(
-  image: MetadataOptions['image'],
-  alt: string,
-) {
+function buildOpenGraphImage(image: MetadataOptions['image'], alt: string) {
   if (!image) return undefined;
   if (typeof image === 'string') {
     return { url: image, alt, ...DEFAULT_OG_DIMENSIONS };
@@ -103,9 +104,7 @@ export function createMetadata(options: MetadataOptions): Metadata {
     ? undefined
     : buildOpenGraphImage(image, resolvedTitle);
 
-  const twitterImages = twitter?.images
-    ? undefined
-    : buildTwitterImages(image);
+  const twitterImages = twitter?.images ? undefined : buildTwitterImages(image);
 
   const defaultOpenGraphImages =
     (ogImage
@@ -122,7 +121,7 @@ export function createMetadata(options: MetadataOptions): Metadata {
   };
 
   const defaultTwitterImages =
-    (twitterImages || siteDefaults.twitter?.images) || undefined;
+    twitterImages || siteDefaults.twitter?.images || undefined;
 
   const finalTwitter: Metadata['twitter'] = {
     ...(siteDefaults.twitter || {}),

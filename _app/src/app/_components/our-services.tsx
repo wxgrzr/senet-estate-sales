@@ -47,11 +47,11 @@ export function OurServices() {
           Michigan Estate &amp; Clean-Out Services
         </h2>
         <p className='mx-auto max-w-2xl pb-8 text-gray-600'>
-          With compassion and care, we help Michigan families navigate life&#39;s
-          transitions through estate liquidation, house clean-outs, and
-          downsizing solutions tailored to Detroit, Ann Arbor, Flint, and beyond.
-          Our MI estate services team manages every detail so you can focus on
-          what matters most.
+          With compassion and care, we help Michigan families navigate
+          life&#39;s transitions through estate liquidation, house clean-outs,
+          and downsizing solutions tailored to Detroit, Ann Arbor, Flint, and
+          beyond. Our MI estate services team manages every detail so you can
+          focus on what matters most.
         </p>
       </div>
       {isMobile ? (

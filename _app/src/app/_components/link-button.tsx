@@ -15,10 +15,7 @@ export const LinkButton = ({
     <Link
       href={href}
       role={isTextVariant ? undefined : 'button'}
-      className={clsx(
-        buttonClasses(variant),
-        className ? className : '',
-      )}
+      className={clsx(buttonClasses(variant), className ? className : '')}
     >
       {children}
       {arrow ? <span className='ml-2 text-xl'>→</span> : null}
