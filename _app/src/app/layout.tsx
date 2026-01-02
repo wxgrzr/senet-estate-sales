@@ -98,7 +98,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={clsx(inter.variable, 'antialiased')}>
-        <div className='min-h-screen'>
+        <div className='min-h-screen' tabIndex={-1}>
           <Header />
           {children}
           <Footer />
