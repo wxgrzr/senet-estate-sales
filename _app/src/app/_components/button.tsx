@@ -1,12 +1,11 @@
+import { buttonClasses } from '@/app/_utils/buttonVariants';
 import { ButtonProps } from '@/types';
-import { ButtonStyles } from '@/app/_utils/buttonStyles';
 import clsx from 'clsx';
 
 export const Button = ({
   type,
   children,
-  colors = 'primary',
-  subvariant = 'solid',
+  variant = 'primary',
   className,
   disabled,
   ...rest
@@ -16,10 +15,8 @@ export const Button = ({
       type={type}
       disabled={disabled}
       className={clsx(
+        buttonClasses(variant),
         className ? className : '',
-        ButtonStyles.baseStyles,
-        ButtonStyles.subvariantStyles[subvariant],
-        ButtonStyles.colorStyles[colors][subvariant],
         disabled && 'opacity-50 cursor-not-allowed',
       )}
       {...rest}

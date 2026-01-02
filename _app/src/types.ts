@@ -1,9 +1,9 @@
 import { ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react';
 
+export type ButtonVariant = 'primary' | 'secondary' | 'indigodye' | 'text';
+
 export type BtnStyleProps = {
-  colors?: 'primary' | 'secondary' | 'indigodye';
-  variant?: 'button' | 'text';
-  subvariant?: 'solid' | 'outline';
+  variant?: ButtonVariant;
   className?: string;
   children?: React.ReactNode;
   arrow?: boolean;

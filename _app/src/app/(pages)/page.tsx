@@ -75,8 +75,7 @@ export default function IndexPage() {
                 </div>
                 <LinkButton
                   href={Routes.OurEstateSales}
-                  subvariant='solid'
-                  colors='secondary'
+                  variant='secondary'
                   arrow
                 >
                   Our Estate Sales
@@ -146,9 +145,7 @@ export default function IndexPage() {
                 </BodyParagraph>
                 <LinkButton
                   href='#our-services'
-                  variant='button'
-                  colors='secondary'
-                  subvariant='solid'
+                  variant='secondary'
                 >
                   Our Services
                 </LinkButton>
@@ -217,8 +214,7 @@ export default function IndexPage() {
                   </BodyParagraph>
                   <LinkButton
                     href={Routes.ScheduleConsultaion}
-                    subvariant='solid'
-                    colors='secondary'
+                    variant='secondary'
                   >
                     Schedule a Consultation
                   </LinkButton>

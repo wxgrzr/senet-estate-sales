@@ -7,6 +7,7 @@
   --platinum: #d3dae3;
   --indigodye: #18406b;
   --dimgray: #6d6a75;
+  --subtext: #404550;
   --softblack: #27262b;
 }
 
@@ -17,6 +18,7 @@
   --color-dimgray: var(--dimgray);
   --color-richblack: var(--richblack);
   --color-softblack: var(--softblack);
+  --color-subtext: var(--subtext);
   --color-ship-cove-50: #f8fafc;
   --color-ship-cove-100: #d7deec;
   --color-ship-cove-200: #b5c3db;

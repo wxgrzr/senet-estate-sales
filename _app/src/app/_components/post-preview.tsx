@@ -33,7 +33,7 @@ export function PostPreview({
             {title}
           </Link>
         </h3>
-        <p className='text-md text-richblack/55 mb-2 leading-tight font-normal md:text-base'>
+        <p className='text-md text-subtext mb-2 leading-tight font-normal md:text-base'>
           {fullAddress}
         </p>
         <div className='text-richblack/80 mt-auto text-base font-medium md:text-base'>
