@@ -7,9 +7,14 @@ import PostCard from '@/app/(pages)/our-estate-sales/post-card';
 import { Routes } from '@/app/constants';
 export { metadata } from './metadata';
 
-// TODO: Add "sold out" badge to posts where eventDates are in the past
+// TODO: Add "sold out" badge to posts where eventDates are in the past ??
+// or filter them out entirely?
 export default async function UpcomingEstateSales() {
-  const posts = await client.fetch<PostType[]>(allPostsQuery, {}, { cache: 'no-store' });
+  const posts = await client.fetch<PostType[]>(
+    allPostsQuery,
+    {},
+    { cache: 'no-store' },
+  );
 
   if (!posts || posts.length === 0) {
     return (
@@ -37,7 +42,10 @@ export default async function UpcomingEstateSales() {
               Michigan Estate Sales
             </h2>
           </div>
-          <p>There are no published estate sales at this time. Please check back soon!</p>
+          <p>
+            There are no published estate sales at this time. Please check back
+            soon!
+          </p>
         </section>
       </div>
     );
@@ -85,4 +93,3 @@ export default async function UpcomingEstateSales() {
     </div>
   );
 }
-

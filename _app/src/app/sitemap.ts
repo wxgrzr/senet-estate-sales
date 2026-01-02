@@ -21,7 +21,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     Routes.Home,
     Routes.Faq,
     Routes.ScheduleConsultaion,
-    Routes.Privacy
+    Routes.Privacy,
   ];
   staticPages.forEach((path) => {
     sitemap.push({

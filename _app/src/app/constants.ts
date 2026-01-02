@@ -4,7 +4,7 @@ export enum Routes {
   Faq = '/faq',
   ScheduleConsultaion = '/schedule-consultation',
   Privacy = '/privacy',
-}  
+}
 
 export const PAGES = [
   { label: 'Home', href: Routes.Home },
@@ -15,4 +15,3 @@ export const PAGES = [
     href: Routes.ScheduleConsultaion,
   },
 ];
-

@@ -26,16 +26,24 @@ export default async function FAQPage() {
               FAQS
             </h1>
 
-            <div className=' pt-6'>
+            <div className='pt-6'>
               {faqsDoc?.items?.map(
                 (faq: { question?: string; answer: string }, index: number) => (
-                  <FAQItem key={faq.question} question={faq.question} className={clsx('group border-b border-gray-300 py-4', index === (faqsDoc?.items?.length || 0) - 1 && 'border-b-0 last:border-b-0')}>
+                  <FAQItem
+                    key={faq.question}
+                    question={faq.question}
+                    className={clsx(
+                      'group border-b border-gray-300 py-4',
+                      index === (faqsDoc?.items?.length || 0) - 1 &&
+                        'border-b-0 last:border-b-0',
+                    )}
+                  >
                     {faq.answer}
                   </FAQItem>
                 ),
               )}
 
-              <div className='mt-12  border-gray-300 pt-8'>
+              <div className='mt-12 border-gray-300 pt-8'>
                 <p className='text-lg font-medium'>Still have questions?</p>
                 <p className='mt-2'>
                   Contact us at{' '}
@@ -74,9 +82,9 @@ function FAQItem({
 }) {
   return (
     <details className={className}>
-      <summary className='flex cursor-pointer items-start justify-between text-left text-lg font-semibold text-gray-900 hover:text-gray-700 list-none [&::-webkit-details-marker]:hidden'>
+      <summary className='flex cursor-pointer list-none items-start justify-between text-left text-lg font-semibold text-gray-900 hover:text-gray-700 [&::-webkit-details-marker]:hidden'>
         <span className='flex-1 pr-4'>{question}</span>
-        <span className='text-2xl font-light text-gray-600 transition-transform duration-200 group-open:rotate-45 flex-shrink-0'>
+        <span className='flex-shrink-0 text-2xl font-light text-gray-600 transition-transform duration-200 group-open:rotate-45'>
           +
         </span>
       </summary>

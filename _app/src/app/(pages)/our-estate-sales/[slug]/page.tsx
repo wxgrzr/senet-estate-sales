@@ -17,6 +17,14 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
+const MAX_DESCRIPTION_LENGTH = 155;
+
+const clampDescription = (value: string): string => {
+  return value.length <= MAX_DESCRIPTION_LENGTH
+    ? value
+    : `${value.slice(0, MAX_DESCRIPTION_LENGTH - 3).trimEnd()}...`;
+};
+
 export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata,
@@ -28,16 +36,24 @@ export async function generateMetadata(
   if (!post) {
     return createMetadata({
       title: 'Estate Sale Not Found',
-      description: 'This estate sale could not be found.',
+      description:
+        'This estate sale could not be found. Please browse other Southeast Michigan estate events hosted by Senet Estate Sales.',
       path: `${Routes.OurEstateSales}/${slug}`,
     });
   }
 
   const title = post.title || 'Estate Sale';
-  const description =
-    'Estate sale event located at ' +
-    post?.location?.fullAddress +
-    ' by Senet Estate Sales.';
+  const description = clampDescription(
+    [
+      `${title} estate sale`,
+      post?.location?.fullAddress
+        ? `at ${post.location.fullAddress}`
+        : null,
+      'hosted by Senet Estate Sales with curated finds and onsite support in Southeast Michigan.',
+    ]
+      .filter((part): part is string => Boolean(part))
+      .join(' '),
+  );
   const coverImage = post?.coverImage
     ? urlForImage(post.coverImage)?.width(1200).height(630).url()
     : undefined;
@@ -66,12 +82,16 @@ export async function generateMetadata(
       title,
       description,
       type: 'article',
-      ...(ogImages ? { images: ogImages } : coverImageObj ? { image: coverImageObj } : {}),
+      ...(ogImages
+        ? { images: ogImages }
+        : coverImageObj
+          ? { image: coverImageObj }
+          : {}),
     },
     twitter: {
       title,
       description,
-      image: coverImage ? [coverImage] : undefined,
+      images: coverImage ? [coverImage] : undefined,
     },
     icons: {
       icon: [
@@ -100,19 +120,19 @@ export default async function EstateSalePostPage({ params }: Props) {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://senetestatesales.com/',
+        item: 'https://www.senetestatesales.com/',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Michigan Estate Sales',
-        item: 'https://senetestatesales.com/upcoming-estate-sales',
+        item: 'https://www.senetestatesales.com/our-estate-sales',
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: post.title,
-        item: `https://senetestatesales.com/upcoming-estate-sales/${post.slug}`,
+        item: `https://www.senetestatesales.com/our-estate-sales/${post.slug}`,
       },
     ],
   };

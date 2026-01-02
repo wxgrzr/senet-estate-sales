@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://senetestatesales.com/sitemap.xml
+Sitemap: https://www.senetestatesales.com/sitemap.xml

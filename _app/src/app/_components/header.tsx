@@ -79,11 +79,9 @@ export default function Header() {
               if (label === 'Schedule a Consultation') {
                 return (
                   <LinkButton
-                    variant={isOpen ? 'text' : 'button'}
+                    variant={isOpen ? 'text' : 'secondary'}
                     key={label}
                     href={href}
-                    subvariant='solid'
-                    colors='secondary'
                     className={isOpen ? '' : 'md:ml-2'}
                   >
                     {label}

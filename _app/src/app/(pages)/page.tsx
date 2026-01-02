@@ -13,9 +13,11 @@ import { AnimateInY } from '../_components/animate-in-y';
 import { Routes } from '@/app/constants';
 
 export const metadata = createMetadata({
-  title: 'Senet Estate Sales',
+  title: {
+    absolute: 'Senet Estate Sales | Estate Sale Experts in Southeast Michigan',
+  },
   description:
-    'Senet Estate Sales delivers full-service estate sales, home clean-outs, and downsizing support throughout Southeast Michigan, including Detroit, Ann Arbor, Flint, Bloomfield, and Bay City.',
+    'Senet Estate Sales delivers full-service estate sales, clean-outs, and downsizing support across Southeast Michigan from Detroit to Bay City.',
   path: '/',
   keywords: [
     'estate sales',
@@ -39,7 +41,7 @@ export const metadata = createMetadata({
   openGraph: {
     title: 'Senet Estate Sales',
     description:
-      'Trusted Michigan estate liquidation, house clean-out, and downsizing services for families in Detroit, Ann Arbor, Flint, Bloomfield, Bay City, and neighboring communities.',
+      'Estate liquidation, clean-outs, and downsizing help for Detroit, Ann Arbor, Flint, Bloomfield, Bay City, and neighboring Southeast Michigan communities.',
   },
   twitter: {
     title: 'Senet Estate Sales',
@@ -64,19 +66,20 @@ export default function IndexPage() {
                 className='col-start-1 space-y-4 max-sm:col-span-4 sm:space-y-8'
               >
                 <div className='sm:space-y-3'>
-                  <h1 className='mb-2 text-5xl font-extrabold tracking-tighter text-pretty'>Moving You Forward</h1>
-                  <p className='text-lg font-semibold tracking-tight text-pretty text-gray-800 max-w-lg'>
+                  <h1 className='mb-2 text-5xl font-extrabold tracking-tighter text-pretty'>
+                    Moving You Forward
+                  </h1>
+                  <p className='max-w-lg text-lg font-semibold tracking-tight text-pretty text-gray-800'>
                     Your trusted estate sale &amp; clean-out specialists.
                   </p>
                   <p className='max-w-lg text-base text-gray-600'>
-                    Proudly serving Metro Detroit, Ann Arbor, Flint and the surrounding
-                    communities of <b>Southeastern Michigan.</b> 
+                    Proudly serving Metro Detroit, Ann Arbor, Flint and the
+                    surrounding communities of <b>Southeastern Michigan.</b>
                   </p>
                 </div>
                 <LinkButton
                   href={Routes.OurEstateSales}
-                  subvariant='solid'
-                  colors='secondary'
+                  variant='secondary'
                   arrow
                 >
                   Our Estate Sales
@@ -144,12 +147,7 @@ export default function IndexPage() {
                   downsizing projects, our staff makes every step transparent
                   for families and buyers alike.
                 </BodyParagraph>
-                <LinkButton
-                  href='#our-services'
-                  variant='button'
-                  colors='secondary'
-                  subvariant='solid'
-                >
+                <LinkButton href='#our-services' variant='secondary'>
                   Our Services
                 </LinkButton>
               </AnimateInXR>
@@ -217,8 +215,7 @@ export default function IndexPage() {
                   </BodyParagraph>
                   <LinkButton
                     href={Routes.ScheduleConsultaion}
-                    subvariant='solid'
-                    colors='secondary'
+                    variant='secondary'
                   >
                     Schedule a Consultation
                   </LinkButton>

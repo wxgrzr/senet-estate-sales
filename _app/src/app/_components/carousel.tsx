@@ -27,7 +27,7 @@ const Carousel = ({ images = [], className }: CarouselProps) => {
     <div className={className}>
       {images.map((item, index) => (
         <Image
-          key={index}
+          key={item.url ?? index}
           src={item.url}
           width='600'
           height='400'

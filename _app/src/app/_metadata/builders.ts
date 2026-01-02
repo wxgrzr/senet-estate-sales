@@ -1,30 +1,25 @@
 import type { Metadata } from 'next';
 import { siteDefaults } from './site';
-import { buildCanonicalUrl, mergeKeywords, mergeMetadata } from './utils';
-import { createOpenGraphMetadata, createTwitterMetadata } from './presets';
+import { buildCanonicalUrl, mergeKeywords } from './utils';
+
+const DEFAULT_OG_DIMENSIONS = {
+  width: 1200,
+  height: 630,
+};
 
 /**
  * Options for creating metadata
  */
 export interface MetadataOptions {
-  title: string;
+  title: Metadata['title'];
   description: string;
   path?: string; // Used to generate canonical URL
   keywords?: string[];
-  openGraph?:  {
-    title?: string;
-    description?: string;
-    url?: string;
-    path?: string;
-    image?: string | { url: string; width?: number; height?: number; alt?: string };
-    type?: 'website' | 'article';
-  };
-  twitter?: {
-    title?: string;
-    description?: string;
-    image?: string | string[];
-    card?: 'summary' | 'summary_large_image' | 'app' | 'player';
-  };
+  image?:
+    | string
+    | { url: string; width?: number; height?: number; alt?: string };
+  openGraph?: Metadata['openGraph'];
+  twitter?: Metadata['twitter'];
   other?: Record<string, string>;
   alternates?: Metadata['alternates'];
   icons?: Metadata['icons'];
@@ -33,15 +28,61 @@ export interface MetadataOptions {
   [key: string]: any;
 }
 
+function resolveTitle(title: Metadata['title']): string {
+  if (!title) {
+    return siteDefaults.siteName;
+  }
+
+  if (typeof title === 'string') {
+    return title;
+  }
+
+  if (typeof title === 'object') {
+    const templateTitle = title as { absolute?: string; default?: string };
+    return (
+      templateTitle.absolute || templateTitle.default || siteDefaults.siteName
+    );
+  }
+
+  return siteDefaults.siteName;
+}
+
+function buildOpenGraphImage(image: MetadataOptions['image'], alt: string) {
+  if (!image) return undefined;
+  if (typeof image === 'string') {
+    return { url: image, alt, ...DEFAULT_OG_DIMENSIONS };
+  }
+
+  if (!image.url) return undefined;
+
+  return {
+    url: image.url,
+    alt: image.alt || alt,
+    width: image.width || DEFAULT_OG_DIMENSIONS.width,
+    height: image.height || DEFAULT_OG_DIMENSIONS.height,
+  };
+}
+
+function buildTwitterImages(image: MetadataOptions['image']) {
+  if (!image) return undefined;
+
+  if (typeof image === 'string') {
+    return [image];
+  }
+
+  return image.url ? [image.url] : undefined;
+}
+
 /**
  * Creates a complete Metadata object with site defaults automatically merged
  */
-export function createMetadata(options: any): Metadata {
+export function createMetadata(options: MetadataOptions): Metadata {
   const {
     title,
     description,
     path,
     keywords = [],
+    image,
     openGraph,
     twitter,
     other,
@@ -51,111 +92,73 @@ export function createMetadata(options: any): Metadata {
     ...rest
   } = options;
 
-  // Build canonical URL if path is provided
+  const resolvedTitle = resolveTitle(title);
   const canonicalUrl = path ? buildCanonicalUrl(path) : undefined;
 
-  // Merge keywords with site defaults
   const mergedKeywords = mergeKeywords(
     (siteDefaults.keywords as string[]) || [],
     keywords,
   );
 
-  // Build OpenGraph metadata
-  let finalOpenGraph: Metadata['openGraph'];
-  if (openGraph) {
-    // Check if it's a simple object (using preset-friendly format) or full OpenGraph object
-    const isSimpleFormat =
-      ('title' in openGraph || 'description' in openGraph || 'image' in openGraph || 'path' in openGraph) &&
-      !('images' in openGraph && Array.isArray(openGraph.images));
+  const ogImage = openGraph?.images
+    ? undefined
+    : buildOpenGraphImage(image, resolvedTitle);
 
-    if (isSimpleFormat) {
-      // Use preset for simple format
-      finalOpenGraph = createOpenGraphMetadata({
-        title: openGraph.title || title,
-        description: openGraph.description || description,
-        url: 'url' in openGraph ? openGraph.url : undefined,
-        path: 'path' in openGraph ? openGraph.path : path,
-        image: 'image' in openGraph ? openGraph.image : undefined,
-        type: 'type' in openGraph ? openGraph.type : undefined,
-        siteName: 'siteName' in openGraph ? openGraph.siteName : undefined,
-      });
-      // Merge any additional OpenGraph fields that weren't handled by preset
-      const presetKeys = ['title', 'description', 'url', 'path', 'image', 'type', 'siteName'];
-      const additionalFields = Object.fromEntries(
-        Object.entries(openGraph).filter(([key]) => !presetKeys.includes(key))
-      );
-      if (Object.keys(additionalFields).length > 0) {
-        finalOpenGraph = { ...finalOpenGraph, ...additionalFields };
-      }
-    } else {
-      // Full OpenGraph object - merge with defaults
-      const baseOpenGraph = siteDefaults.openGraph || {};
-      finalOpenGraph = { ...baseOpenGraph, ...openGraph };
-    }
-  } else {
-    // Use preset with defaults
-    finalOpenGraph = createOpenGraphMetadata({
-      title,
-      description,
-      path,
-    });
-  }
+  const twitterImages = twitter?.images ? undefined : buildTwitterImages(image);
 
-  // Build Twitter metadata
-  let finalTwitter: Metadata['twitter'];
-  if (twitter) {
-    // If twitter is a simple object with title/description, use preset
-    if ('title' in twitter || 'description' in twitter) {
-      finalTwitter = createTwitterMetadata({
-        title: twitter.title || title,
-        description: twitter.description || description,
-        image: 'image' in twitter ? twitter.image : undefined,
-        card: 'card' in twitter ? twitter.card : undefined,
-      });
-      // Merge any additional Twitter fields
-      if (Object.keys(twitter).length > 0) {
-        finalTwitter = { ...finalTwitter, ...twitter };
-      }
-    } else {
-      // Otherwise merge with defaults
-      const baseTwitter = siteDefaults.twitter || {};
-      finalTwitter = { ...baseTwitter, ...twitter };
-    }
-  } else {
-    // Use preset with defaults
-    finalTwitter = createTwitterMetadata({
-      title,
-      description,
-    });
-  }
+  const defaultOpenGraphImages =
+    (ogImage
+      ? [ogImage, ...(siteDefaults.openGraph?.images || [])]
+      : siteDefaults.openGraph?.images) || undefined;
 
-  // Merge other metadata
-  const mergedOther = {
-    ...(siteDefaults.other || {}),
-    ...(other || {}),
+  const finalOpenGraph: Metadata['openGraph'] = {
+    ...(siteDefaults.openGraph || {}),
+    ...(canonicalUrl && { url: canonicalUrl }),
+    ...(defaultOpenGraphImages && { images: defaultOpenGraphImages }),
+    title: resolvedTitle,
+    description,
+    ...openGraph,
   };
 
-  // Build final metadata object
+  const defaultTwitterImages =
+    twitterImages || siteDefaults.twitter?.images || undefined;
+
+  const finalTwitter: Metadata['twitter'] = {
+    ...(siteDefaults.twitter || {}),
+    ...(defaultTwitterImages && { images: defaultTwitterImages }),
+    title: resolvedTitle,
+    description,
+    ...twitter,
+  };
+
+  const finalAlternates =
+    canonicalUrl || alternates || siteDefaults.alternates
+      ? {
+          ...(siteDefaults.alternates || {}),
+          ...(canonicalUrl && { canonical: canonicalUrl }),
+          ...(alternates || {}),
+        }
+      : undefined;
+
   const metadata: Metadata = {
     title,
     description,
     ...(mergedKeywords.length > 0 && { keywords: mergedKeywords }),
-    ...(canonicalUrl && {
-      alternates: {
-        canonical: canonicalUrl,
-        ...alternates,
-      },
-    }),
-    ...(alternates && !canonicalUrl && { alternates }),
+    ...(finalAlternates && { alternates: finalAlternates }),
     openGraph: finalOpenGraph,
     twitter: finalTwitter,
-    ...(Object.keys(mergedOther).length > 0 && { other: mergedOther }),
+    ...(siteDefaults.other || other
+      ? {
+          other: {
+            ...(siteDefaults.other || {}),
+            ...(other || {}),
+          },
+        }
+      : {}),
     ...(icons && { icons }),
     ...(robots && { robots }),
     ...rest,
   };
 
-  // Merge with site defaults (for any fields not explicitly set)
-  return mergeMetadata(siteDefaults as Partial<Metadata>, metadata);
+  return metadata;
 }
-
