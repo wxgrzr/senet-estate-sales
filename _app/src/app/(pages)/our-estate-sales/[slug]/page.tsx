@@ -100,19 +100,19 @@ export default async function EstateSalePostPage({ params }: Props) {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://senetestatesales.com/',
+        item: 'https://www.senetestatesales.com/',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Michigan Estate Sales',
-        item: 'https://senetestatesales.com/upcoming-estate-sales',
+        item: 'https://www.senetestatesales.com/upcoming-estate-sales',
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: post.title,
-        item: `https://senetestatesales.com/upcoming-estate-sales/${post.slug}`,
+        item: `https://www.senetestatesales.com/upcoming-estate-sales/${post.slug}`,
       },
     ],
   };

@@ -18,7 +18,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://senetestatesales.com'),
+  metadataBase: new URL('https://www.senetestatesales.com'),
   title: {
     default: 'Senet Estate Sales | Estate Sale Experts in Southeast Michigan',
     template: '%s | Senet Estate Sales',
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     title: 'Senet Estate Sales',
     description:
       'Full-service Michigan estate sales, home clean-out services, and liquidation support for families in Detroit, Ann Arbor, Flint, and Southeast Michigan.',
-    url: 'https://senetestatesales.com',
+    url: 'https://www.senetestatesales.com',
     siteName: 'Senet Estate Sales',
     locale: 'en_US',
     type: 'website',

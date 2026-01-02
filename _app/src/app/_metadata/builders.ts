@@ -7,7 +7,7 @@ import { createOpenGraphMetadata, createTwitterMetadata } from './presets';
  * Options for creating metadata
  */
 export interface MetadataOptions {
-  title: string;
+  title: Metadata['title'];
   description: string;
   path?: string; // Used to generate canonical URL
   keywords?: string[];
@@ -33,10 +33,27 @@ export interface MetadataOptions {
   [key: string]: any;
 }
 
+function resolveTitle(title: Metadata['title']): string {
+  if (!title) {
+    return siteDefaults.siteName;
+  }
+
+  if (typeof title === 'string') {
+    return title;
+  }
+
+  if (typeof title === 'object') {
+    const templateTitle = title as { absolute?: string; default?: string };
+    return templateTitle.absolute || templateTitle.default || siteDefaults.siteName;
+  }
+
+  return siteDefaults.siteName;
+}
+
 /**
  * Creates a complete Metadata object with site defaults automatically merged
  */
-export function createMetadata(options: any): Metadata {
+export function createMetadata(options: MetadataOptions): Metadata {
   const {
     title,
     description,
@@ -50,6 +67,8 @@ export function createMetadata(options: any): Metadata {
     robots,
     ...rest
   } = options;
+
+  const resolvedTitle = resolveTitle(title);
 
   // Build canonical URL if path is provided
   const canonicalUrl = path ? buildCanonicalUrl(path) : undefined;
@@ -71,7 +90,7 @@ export function createMetadata(options: any): Metadata {
     if (isSimpleFormat) {
       // Use preset for simple format
       finalOpenGraph = createOpenGraphMetadata({
-        title: openGraph.title || title,
+        title: openGraph.title || resolvedTitle,
         description: openGraph.description || description,
         url: 'url' in openGraph ? openGraph.url : undefined,
         path: 'path' in openGraph ? openGraph.path : path,
@@ -95,7 +114,7 @@ export function createMetadata(options: any): Metadata {
   } else {
     // Use preset with defaults
     finalOpenGraph = createOpenGraphMetadata({
-      title,
+      title: resolvedTitle,
       description,
       path,
     });
@@ -107,7 +126,7 @@ export function createMetadata(options: any): Metadata {
     // If twitter is a simple object with title/description, use preset
     if ('title' in twitter || 'description' in twitter) {
       finalTwitter = createTwitterMetadata({
-        title: twitter.title || title,
+        title: twitter.title || resolvedTitle,
         description: twitter.description || description,
         image: 'image' in twitter ? twitter.image : undefined,
         card: 'card' in twitter ? twitter.card : undefined,
@@ -124,7 +143,7 @@ export function createMetadata(options: any): Metadata {
   } else {
     // Use preset with defaults
     finalTwitter = createTwitterMetadata({
-      title,
+      title: resolvedTitle,
       description,
     });
   }
@@ -137,7 +156,7 @@ export function createMetadata(options: any): Metadata {
 
   // Build final metadata object
   const metadata: Metadata = {
-    title,
+    title: title || resolvedTitle,
     description,
     ...(mergedKeywords.length > 0 && { keywords: mergedKeywords }),
     ...(canonicalUrl && {
@@ -158,4 +177,3 @@ export function createMetadata(options: any): Metadata {
   // Merge with site defaults (for any fields not explicitly set)
   return mergeMetadata(siteDefaults as Partial<Metadata>, metadata);
 }
-

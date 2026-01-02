@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 /**
  * Base URL for the site
  */
-export const BASE_URL = 'https://senetestatesales.com';
+export const BASE_URL = 'https://www.senetestatesales.com';
 
 /**
  * Builds a canonical URL from a path
@@ -79,4 +79,3 @@ export function mergeMetadata<T extends Partial<Metadata>>(
 ): T {
   return deepMerge(base, overrides) as T;
 }
-

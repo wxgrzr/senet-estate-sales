@@ -13,7 +13,7 @@ import { AnimateInY } from '../_components/animate-in-y';
 import { Routes } from '@/app/constants';
 
 export const metadata = createMetadata({
-  title: 'Senet Estate Sales',
+  title: { absolute: 'Senet Estate Sales | Estate Sale Experts in Southeast Michigan' },
   description:
     'Senet Estate Sales delivers full-service estate sales, home clean-outs, and downsizing support throughout Southeast Michigan, including Detroit, Ann Arbor, Flint, Bloomfield, and Bay City.',
   path: '/',
