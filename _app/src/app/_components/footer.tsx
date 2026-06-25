@@ -70,7 +70,7 @@ const Footer = async () => {
             </ul>
           </div>
           <div>
-            <h4 className='mb-4 text-lg font-semibold'>Contact Info</h4>
+            <h2 className='mb-4 text-lg font-semibold'>Contact Info</h2>
             <p className='text-sm text-gray-600'>
               {addressLine1}
               <br />

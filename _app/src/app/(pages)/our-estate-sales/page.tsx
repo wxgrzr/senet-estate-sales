@@ -38,9 +38,9 @@ export default async function UpcomingEstateSales() {
 
         <section className='px-4'>
           <div className='mb-4 md:mb-8'>
-            <h2 className='text-5xl font-bold tracking-tighter md:text-6xl lg:text-7xl'>
+            <h1 className='text-5xl font-bold tracking-tighter md:text-6xl lg:text-7xl'>
               Michigan Estate Sales
-            </h2>
+            </h1>
           </div>
           <p>
             There are no published estate sales at this time. Please check back
@@ -72,9 +72,9 @@ export default async function UpcomingEstateSales() {
 
       <section className='px-4'>
         <div className='mb-4 md:mb-8'>
-          <h2 className='text-5xl font-bold tracking-tighter md:text-6xl lg:text-7xl'>
+          <h1 className='text-5xl font-bold tracking-tighter md:text-6xl lg:text-7xl'>
             Michigan Estate Sales
-          </h2>
+          </h1>
           <p className='mt-4 max-w-3xl text-lg text-gray-700'>
             Explore our upcoming estate liquidation events, featuring curated
             sales throughout Metro Detroit, Ann Arbor, Flint, Bloomfield, Bay
