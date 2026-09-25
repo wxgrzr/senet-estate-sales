@@ -6,6 +6,6 @@ export const metadata = createMetadata({
   // and the sitelink label shown on brand searches.
   title: 'Michigan Estate Sales',
   description:
-    'Photos, dates, and addresses from estate sales run by Senet Estate Sales around Holly, MI. New sales are announced first on our Facebook page.',
+    'Photos, dates, and addresses from estate sales run by Senet Estate Sales in Holly, Fenton, Grand Blanc & nearby. New sales are posted first on Facebook.',
   path: Routes.OurEstateSales,
 });

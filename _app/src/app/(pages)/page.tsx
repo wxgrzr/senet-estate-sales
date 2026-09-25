@@ -17,7 +17,7 @@ export const metadata = createMetadata({
     absolute: 'Senet Estate Sales | Estate Sales & Clean-Outs in Holly, MI',
   },
   description:
-    'Full-service estate sales, clean-outs, and downsizing help based in Holly, MI, serving Oakland, Genesee & Livingston counties. Schedule a free consultation.',
+    'Full-service estate sales, clean-outs, and downsizing help based in Holly, MI, serving Fenton, Grand Blanc, Flint, Davisburg, Ortonville & nearby towns.',
   path: Routes.Home,
 });
 
