@@ -1,4 +1,5 @@
 import { getContactInfo } from '@/app/_utils/getContactInfo';
+
 export { metadata } from './metadata';
 
 export default async function PrivacyPolicy() {

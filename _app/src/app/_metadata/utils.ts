@@ -13,13 +13,3 @@ export function buildCanonicalUrl(path: string = '/'): string {
   return `${BASE_URL}${normalizedPath}`;
 }
 
-/**
- * Merges keywords arrays, deduplicating values
- */
-export function mergeKeywords(
-  baseKeywords: string[] = [],
-  additionalKeywords: string[] = [],
-): string[] {
-  const combined = [...baseKeywords, ...additionalKeywords];
-  return Array.from(new Set(combined));
-}

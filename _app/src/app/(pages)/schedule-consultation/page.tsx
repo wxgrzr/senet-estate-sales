@@ -2,6 +2,7 @@ import ConsultationForm from '@/app/_components/consultation-form';
 import Container from '@/app/_components/container';
 import Image from 'next/image';
 import { AnimateInXL, AnimateInXR } from '@/app/_components/animate-in-x';
+
 export { metadata } from './metadata';
 
 export default function ScheduleConsultation() {

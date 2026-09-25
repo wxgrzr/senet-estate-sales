@@ -1,9 +1,5 @@
-/**
- * Public API for metadata utilities
- */
-
 // Core utilities
-export { buildCanonicalUrl, mergeKeywords, BASE_URL } from './utils';
+export { buildCanonicalUrl, BASE_URL } from './utils';
 
 // Main builder
 export { createMetadata, type MetadataOptions } from './builders';

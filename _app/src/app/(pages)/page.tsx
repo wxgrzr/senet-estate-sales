@@ -19,25 +19,6 @@ export const metadata = createMetadata({
   description:
     'Senet Estate Sales delivers full-service estate sales, clean-outs, and downsizing support across Southeast Michigan from Detroit to Bay City.',
   path: '/',
-  keywords: [
-    'estate sales',
-    'Michigan estate services',
-    'Michigan cleanout services',
-    'Detroit estate sale company',
-    'Flint estate clean-out',
-    'Ann Arbor estate sales',
-    'Northville MI',
-    'Bloomfield MI',
-    'Bay City MI',
-    'West Bloomfield Township MI',
-    'Grand Blanc MI',
-    'Rochester Hills MI',
-    'Birmingham MI',
-    'Huntington Woods MI',
-    'Flint MI',
-    'Fenton MI',
-    'Southeast Michigan',
-  ],
   openGraph: {
     title: 'Senet Estate Sales',
     description:
@@ -214,7 +195,7 @@ export default function IndexPage() {
                     broom-swept handoff.
                   </BodyParagraph>
                   <LinkButton
-                    href={Routes.ScheduleConsultaion}
+                    href={Routes.ScheduleConsultation}
                     variant='secondary'
                   >
                     Schedule a Consultation

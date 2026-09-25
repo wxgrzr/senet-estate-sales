@@ -4,6 +4,8 @@ import { getContactInfo } from '@/app/_utils/getContactInfo';
 import { client } from '@/sanity/lib/client';
 import clsx from 'clsx';
 
+export { metadata } from './metadata';
+
 async function getFAQs() {
   return client.fetch(faqQuery);
 }

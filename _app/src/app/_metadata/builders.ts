@@ -1,20 +1,16 @@
 import type { Metadata } from 'next';
 import { siteDefaults } from './site';
-import { buildCanonicalUrl, mergeKeywords } from './utils';
+import { buildCanonicalUrl } from './utils';
+import type { PathType } from '@/app/constants';
 
 const DEFAULT_OG_DIMENSIONS = {
   width: 1200,
   height: 630,
 };
-
-/**
- * Options for creating metadata
- */
 export interface MetadataOptions {
   title: Metadata['title'];
   description: string;
-  path?: string; // Used to generate canonical URL
-  keywords?: string[];
+  path?: PathType;
   image?:
     | string
     | { url: string; width?: number; height?: number; alt?: string };
@@ -24,7 +20,6 @@ export interface MetadataOptions {
   alternates?: Metadata['alternates'];
   icons?: Metadata['icons'];
   robots?: Metadata['robots'];
-  // Allow any other Metadata fields
   [key: string]: any;
 }
 
@@ -73,15 +68,11 @@ function buildTwitterImages(image: MetadataOptions['image']) {
   return image.url ? [image.url] : undefined;
 }
 
-/**
- * Creates a complete Metadata object with site defaults automatically merged
- */
 export function createMetadata(options: MetadataOptions): Metadata {
   const {
     title,
     description,
     path,
-    keywords = [],
     image,
     openGraph,
     twitter,
@@ -94,11 +85,6 @@ export function createMetadata(options: MetadataOptions): Metadata {
 
   const resolvedTitle = resolveTitle(title);
   const canonicalUrl = path ? buildCanonicalUrl(path) : undefined;
-
-  const mergedKeywords = mergeKeywords(
-    (siteDefaults.keywords as string[]) || [],
-    keywords,
-  );
 
   const ogImage = openGraph?.images
     ? undefined
@@ -143,7 +129,6 @@ export function createMetadata(options: MetadataOptions): Metadata {
   const metadata: Metadata = {
     title,
     description,
-    ...(mergedKeywords.length > 0 && { keywords: mergedKeywords }),
     ...(finalAlternates && { alternates: finalAlternates }),
     openGraph: finalOpenGraph,
     twitter: finalTwitter,
