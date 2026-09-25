@@ -18,8 +18,6 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
-const MAX_DESCRIPTION_LENGTH = 155;
-
 // Matches the effective freshness before generateMetadata and the page shared a fetch.
 const POST_REVALIDATE_SECONDS = 600;
 
@@ -32,43 +30,23 @@ const getPost = cache((slug: string) =>
   ),
 );
 
-const clampDescription = (value: string): string => {
-  return value.length <= MAX_DESCRIPTION_LENGTH
-    ? value
-    : `${value.slice(0, MAX_DESCRIPTION_LENGTH - 3).trimEnd()}...`;
-};
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPost(slug);
   const path = `${Routes.OurEstateSales}/${slug}` as const;
 
   if (!post) {
-    return createMetadata({
-      title: 'Estate Sale Not Found',
-      description:
-        'This estate sale could not be found. Please browse other Southeast Michigan estate events hosted by Senet Estate Sales.',
-      path,
-    });
+    return createMetadata({ title: 'Estate Sale Not Found', path });
   }
 
+  // No description: Google builds the snippet from the sale's own content.
   const title = post.title || 'Estate Sale';
-  const description = clampDescription(
-    [
-      `${title} estate sale`,
-      post?.location?.fullAddress ? `at ${post.location.fullAddress}` : null,
-      'hosted by Senet Estate Sales with curated finds and onsite support in Southeast Michigan.',
-    ]
-      .filter((part): part is string => Boolean(part))
-      .join(' '),
-  );
   const coverImage = post?.coverImage
     ? urlForImage(post.coverImage)?.width(1200).height(630).url()
     : undefined;
 
   return createMetadata({
     title,
-    description,
     path,
     image: coverImage,
     openGraph: { type: 'article' },

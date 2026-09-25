@@ -557,6 +557,12 @@ export type MarkerPostsQueryResult = Array<{
     } | null;
   };
 }>;
+// Variable: sitemapData
+// Query: *[_type == "post" && defined(slug.current)] {    "slug": slug.current,    _updatedAt,  }
+export type SitemapDataResult = Array<{
+  slug: string;
+  _updatedAt: string;
+}>;
 // Variable: postPagesSlugs
 // Query: *[_type == "post" && defined(slug.current)]  {"slug": slug.current}
 export type PostPagesSlugsResult = Array<{
@@ -576,6 +582,7 @@ declare module '@sanity/client' {
     '\n  *[_type == "post" && _id != $skip && defined(slug.current)]\n    | order(date desc, _updatedAt desc) [0...$limit] {\n    \n  _id,\n  _updatedAt,\n  "title": coalesce(title, "Untitled Estate Sale"),\n  "slug": slug.current,\n  coverImage,\n  eventDates,\n  location {\n    fullAddress,\n    coordinates {\n      lat,\n      lng\n    }\n  }\n\n  }\n': MorePostsQueryResult;
     '\n  *[_type == "post" && slug.current == $slug] [0] {\n    body[]{...},\n    gallery[]{...},\n    \n  _id,\n  _updatedAt,\n  "title": coalesce(title, "Untitled Estate Sale"),\n  "slug": slug.current,\n  coverImage,\n  eventDates,\n  location {\n    fullAddress,\n    coordinates {\n      lat,\n      lng\n    }\n  }\n\n  }\n': PostQueryResult;
     '\n  *[\n    _type == "post" &&\n    defined(slug.current) &&\n    defined(location.coordinates.lat) &&\n    defined(location.coordinates.lng)\n  ]{\n    _id,\n    "title": coalesce(title, "Untitled Estate Sale"),\n    "slug": slug.current,\n    location {\n      fullAddress,\n      coordinates {\n        lat,\n        lng\n      }\n    }\n  }\n': MarkerPostsQueryResult;
+    '\n  *[_type == "post" && defined(slug.current)] {\n    "slug": slug.current,\n    _updatedAt,\n  }\n': SitemapDataResult;
     '\n  *[_type == "post" && defined(slug.current)]\n  {"slug": slug.current}\n': PostPagesSlugsResult;
   }
 }

@@ -14,21 +14,11 @@ import { Routes } from '@/app/constants';
 
 export const metadata = createMetadata({
   title: {
-    absolute: 'Senet Estate Sales | Estate Sale Experts in Southeast Michigan',
+    absolute: 'Senet Estate Sales | Estate Sales & Clean-Outs in Holly, MI',
   },
   description:
-    'Senet Estate Sales delivers full-service estate sales, clean-outs, and downsizing support across Southeast Michigan from Detroit to Bay City.',
+    'Full-service estate sales, clean-outs, and downsizing help based in Holly, MI, serving Oakland, Genesee & Livingston counties. Schedule a free consultation.',
   path: Routes.Home,
-  openGraph: {
-    title: 'Senet Estate Sales',
-    description:
-      'Estate liquidation, clean-outs, and downsizing help for Detroit, Ann Arbor, Flint, Bloomfield, Bay City, and neighboring Southeast Michigan communities.',
-  },
-  twitter: {
-    title: 'Senet Estate Sales',
-    description:
-      'Michigan estate sale and clean-out specialists serving Detroit, Ann Arbor, Flint, and Southeast Michigan with compassionate liquidation support.',
-  },
 });
 
 export default function IndexPage() {

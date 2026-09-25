@@ -4,6 +4,6 @@ import { Routes } from '@/app/constants';
 export const metadata = createMetadata({
   title: 'Frequently Asked Questions',
   description:
-    'Find answers to common questions about estate sales, our process, and how Senet Estate Sales can help you in Southeast Michigan.',
+    'Estate sale fees, prep time, selling vehicles, and clean-outs that leave the home ready to list: answers from Senet Estate Sales in Holly, MI.',
   path: Routes.Faq,
 });

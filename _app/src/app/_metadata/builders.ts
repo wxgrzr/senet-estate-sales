@@ -12,7 +12,7 @@ type MetadataImage = {
 
 export interface MetadataOptions extends Omit<Metadata, 'title' | 'description'> {
   title: Metadata['title'];
-  description: string;
+  description?: string;
   path: PathType;
   image?: string | MetadataImage;
   other?: Record<string, string>;
@@ -53,10 +53,12 @@ export function createMetadata(options: MetadataOptions): Metadata {
   const resolvedTitle = resolveTitle(title);
   const canonicalUrl = buildCanonicalUrl(path);
   const ogImage = image && normalizeImage(image, resolvedTitle);
+  // Pages without a description let Google build the snippet from page content.
+  const descriptionFields = description ? { description } : {};
 
   return {
     title,
-    description,
+    ...descriptionFields,
     alternates: { canonical: canonicalUrl, ...alternates },
     openGraph: {
       ...siteDefaults.openGraph,
@@ -65,14 +67,14 @@ export function createMetadata(options: MetadataOptions): Metadata {
         images: [ogImage, ...siteDefaults.openGraph.images],
       }),
       title: resolvedTitle,
-      description,
+      ...descriptionFields,
       ...openGraph,
     },
     twitter: {
       ...siteDefaults.twitter,
       ...(ogImage && { images: [ogImage.url] }),
       title: resolvedTitle,
-      description,
+      ...descriptionFields,
       ...twitter,
     },
     other: { ...siteDefaults.other, ...other },

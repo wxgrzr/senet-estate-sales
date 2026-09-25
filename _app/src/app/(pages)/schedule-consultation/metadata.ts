@@ -4,6 +4,6 @@ import { Routes } from '@/app/constants';
 export const metadata = createMetadata({
   title: 'Schedule a Consultation',
   description:
-    'Schedule a free estate sale consultation with Senet Estate Sales. Compassionate, professional estate sale services in Southeast Michigan.',
+    "Request a free, no-obligation estate sale consultation with Senet Estate Sales in Holly, MI. We'll walk through the home and plan your sale or clean-out.",
   path: Routes.ScheduleConsultation,
 });

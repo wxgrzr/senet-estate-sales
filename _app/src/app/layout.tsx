@@ -24,13 +24,9 @@ export const metadata: Metadata = {
     default: 'Senet Estate Sales | Estate Sale Experts in Southeast Michigan',
     template: '%s | Senet Estate Sales',
   },
-  description:
-    'Senet Estate Sales delivers full-service estate sales, clean-outs, and downsizing support across Southeast Michigan from Detroit to Bay City.',
+  // No site-wide description, og:url, or og/twitter title: child pages inherit
+  // any field they don't set, so these belong on individual pages only.
   openGraph: {
-    title: 'Senet Estate Sales',
-    description:
-      'Full-service Michigan estate sales, clean-outs, and liquidation help for families in Detroit, Ann Arbor, Flint, and Southeast Michigan.',
-    url: BASE_URL,
     siteName: 'Senet Estate Sales',
     locale: 'en_US',
     type: 'website',
@@ -45,9 +41,6 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Senet Estate Sales',
-    description:
-      'Estate and downsizing sales in Southeast Michigan. Trusted local provider.',
     images: ['/og-image.jpg'],
     creator: '@senet_estates',
   },
@@ -96,6 +89,9 @@ export default function RootLayout({
               name: 'Senet Estate Sales',
               image: buildCanonicalUrl('/og-image.jpg'),
               url: BASE_URL,
+              // TODO(human): confirm the phone number with the owner. The site uses
+              // 810-588-8175, but Google Business Profile and Yelp list 810-553-7698.
+              // Name/address/phone should match everywhere for local ranking.
               telephone: '8105888175',
               address: {
                 '@type': 'PostalAddress',
