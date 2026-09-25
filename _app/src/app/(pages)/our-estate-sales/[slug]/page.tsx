@@ -11,7 +11,6 @@ import { client } from '@/sanity/lib/client';
 import { urlForImage } from '@/sanity/lib/utils';
 import type { Metadata } from 'next';
 import { cache } from 'react';
-import { buildCanonicalUrl, createMetadata } from '@/app/_metadata';
 import { Routes } from '@/app/constants';
 
 type Props = {
@@ -33,24 +32,7 @@ const getPost = cache((slug: string) =>
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPost(slug);
-  const path = `${Routes.OurEstateSales}/${slug}` as const;
-
-  if (!post) {
-    return createMetadata({ title: 'Estate Sale Not Found', path });
-  }
-
-  // No description: Google builds the snippet from the sale's own content.
-  const title = post.title || 'Estate Sale';
-  const coverImage = post?.coverImage
-    ? urlForImage(post.coverImage)?.width(1200).height(630).url()
-    : undefined;
-
-  return createMetadata({
-    title,
-    path,
-    image: coverImage,
-    openGraph: { type: 'article' },
-  });
+  return { title: post?.title || 'Estate Sale Not Found' };
 }
 
 export default async function EstateSalePostPage({ params }: Props) {
@@ -69,17 +51,6 @@ export default async function EstateSalePostPage({ params }: Props) {
       href: `${Routes.OurEstateSales}/${post.slug}`,
     },
   ];
-
-  const breadcrumbJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: crumbs.map((crumb, i) => ({
-      '@type': 'ListItem',
-      position: i + 1,
-      name: crumb.label,
-      item: buildCanonicalUrl(crumb.href),
-    })),
-  };
 
   const { gallery } = post;
   const images = Array.isArray(gallery)
@@ -190,10 +161,6 @@ export default async function EstateSalePostPage({ params }: Props) {
           </div>
         </div>
       </article>
-      <script
-        type='application/ld+json'
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-      />
     </div>
   );
 }

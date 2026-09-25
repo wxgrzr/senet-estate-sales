@@ -1,6 +1,9 @@
+import type { Metadata } from 'next';
 import { getContactInfo } from '@/app/_utils/getContactInfo';
 
-export { metadata } from './metadata';
+export const metadata: Metadata = {
+  title: 'Privacy Policy',
+};
 
 export default async function PrivacyPolicy() {
   const { emailAddress } = await getContactInfo();

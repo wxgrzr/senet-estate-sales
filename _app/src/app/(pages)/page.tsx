@@ -7,19 +7,18 @@ import { Reviews } from '@/app/_components/reviews';
 import Image from 'next/image';
 import { RowSection } from '@/app/_components/row-section';
 import { MediaContainer } from '../_components/media-container';
-import { createMetadata } from '@/app/_metadata';
+import type { Metadata } from 'next';
 import { AnimateInXL, AnimateInXR } from '../_components/animate-in-x';
 import { AnimateInY } from '../_components/animate-in-y';
 import { Routes } from '@/app/constants';
 
-export const metadata = createMetadata({
+export const metadata: Metadata = {
   title: {
     absolute: 'Senet Estate Sales | Estate Sales & Clean-Outs in Holly, MI',
   },
   description:
-    'Full-service estate sales, clean-outs, and downsizing help based in Holly, MI, serving Fenton, Grand Blanc, Flint, Davisburg, Ortonville & nearby towns.',
-  path: Routes.Home,
-});
+    'Full-service estate sales, clean-outs, and downsizing help based in Holly, MI, serving Fenton, Grand Blanc, Flint, Davisburg, Ortonville & surrounding cities.',
+};
 
 export default function IndexPage() {
   return (

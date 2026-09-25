@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { Post as PostType } from '~/sanity.types';
 import { Breadcrumbs } from '@/app/_components/breadcrumbs';
 import { allPostsQuery } from '@/sanity/lib/queries';
@@ -6,7 +7,12 @@ import { client } from '@/sanity/lib/client';
 import PostCard from '@/app/(pages)/our-estate-sales/post-card';
 import { Routes } from '@/app/constants';
 
-export { metadata } from './metadata';
+export const metadata: Metadata = {
+  // Keep this title stable: it's the sitelink label on brand searches.
+  title: 'Michigan Estate Sales',
+  description:
+    'Explore our estate sales hosted across Holly, Fenton, Flint, Grand Blanc & nearby. New sales are posted on our Facebook page.',
+};
 
 // TODO: Add "sold out" badge to posts where eventDates are in the past ??
 // or filter them out entirely?
