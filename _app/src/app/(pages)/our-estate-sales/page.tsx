@@ -79,8 +79,7 @@ export default async function OurEstateSales() {
           {/* TODO: add facebook link */}
           <p className='mt-4 max-w-3xl text-lg text-gray-700'>
             Explore our past estate liquidation events, featuring curated
-            sales throughout Metro Detroit, Ann Arbor, Flint, Bloomfield, Bay
-            City, and more.
+            sales in Holly, Fenton, Grand Blanc, Flint, and nearby towns.
           </p>
         </div>
 

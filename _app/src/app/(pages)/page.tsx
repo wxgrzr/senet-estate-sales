@@ -40,8 +40,8 @@ export default function IndexPage() {
                     Your trusted estate sale &amp; clean-out specialists.
                   </p>
                   <p className='max-w-lg text-base text-gray-600'>
-                    Proudly serving Metro Detroit, Ann Arbor, Flint and the
-                    surrounding communities of <b>Southeastern Michigan.</b>
+                    Based in <b>Holly, MI</b> and proudly serving Fenton, Grand
+                    Blanc, Flint, Davisburg, Ortonville, and nearby towns.
                   </p>
                 </div>
                 <LinkButton
@@ -106,11 +106,11 @@ export default function IndexPage() {
                   Who We Are
                 </h2>
                 <BodyParagraph>
-                  We’re a Michigan-based estate sale and clean-out team focused
-                  on compassionate service. From valuing collections in Detroit
-                  bungalows to coordinating Flint home cleanouts and Ann Arbor
-                  downsizing projects, our staff makes every step transparent
-                  for families and buyers alike.
+                  We’re a Holly-based estate sale and clean-out team focused on
+                  compassionate service. From pricing collections in Fenton to
+                  Grand Blanc downsizing moves and Flint home clean-outs, our
+                  staff makes every step transparent for families and buyers
+                  alike.
                 </BodyParagraph>
                 <LinkButton href='#our-services' variant='secondary'>
                   Our Services
@@ -209,11 +209,11 @@ export default function IndexPage() {
                   Schedule a Free Consultation
                 </h2>
                 <p className='mb-8 text-center font-light text-pretty sm:text-xl lg:mb-16'>
-                  Downsizing, relocating, or managing a loved one’s Michigan
-                  estate? From Detroit estate sales to Flint clean-outs and Ann
-                  Arbor donation coordination, we offer local expertise with
-                  compassion. Schedule a consultation and let’s plan the next
-                  steps together.
+                  Downsizing, relocating, or managing a loved one’s estate? From
+                  Holly and Fenton to Grand Blanc, Ortonville, and Flint, we
+                  handle estate sales, clean-outs, and donations with local
+                  expertise and compassion. Schedule a consultation and let’s
+                  plan the next steps together.
                 </p>
                 <ConsultationForm />
               </div>

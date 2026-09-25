@@ -24,19 +24,19 @@ export function OurServices() {
       icon: <HomeIcon className='h-7 w-7' />,
       title: 'Estate Sales',
       description:
-        'We organize, price, and stage Michigan estate sales that respect your items and attract buyers across Detroit, Ann Arbor, Flint, and Metro Detroit.',
+        'We organize, price, and stage Michigan estate sales that respect your items and attract buyers from Holly, Fenton, Grand Blanc, Flint, and beyond.',
     },
     {
       icon: <PackageIcon className='h-7 w-7' />,
       title: 'Downsizing Help',
       description:
-        'We guide relocations and downsizing projects, sorting, selling, and rehoming belongings for condos, estates, and senior moves across Southeast Michigan.',
+        'We guide relocations and downsizing projects, sorting, selling, and rehoming belongings for condos, estates, and senior moves around Holly and nearby towns.',
     },
     {
       icon: <SparklesIcon className='h-7 w-7' />,
       title: 'Clean-Out Services',
       description:
-        'We leave homes broom-swept and market ready by sorting, recycling, donating, or disposing of items so Detroit, Flint, and nearby properties sell faster.',
+        'We leave homes broom-swept and market ready by sorting, recycling, donating, or disposing of items so homes in Holly, Fenton, and nearby towns sell faster.',
     },
   ];
 
@@ -47,9 +47,9 @@ export function OurServices() {
           Michigan Estate &amp; Clean-Out Services
         </h2>
         <p className='mx-auto max-w-2xl pb-8 text-gray-600'>
-          We guide Michigan families through estate liquidation, clean-outs, and
-          downsizing across Detroit, Ann Arbor, Flint, and nearby towns with
-          compassion.
+          We guide families through estate liquidation, clean-outs, and
+          downsizing in Holly, Fenton, Grand Blanc, Davisburg, Ortonville,
+          Flint, and nearby towns with compassion.
         </p>
       </div>
       {isMobile ? (
