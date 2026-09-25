@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import Container from '@/app/_components/container';
 import { faqQuery } from '@/sanity/lib/queries';
 import { getContactInfo } from '@/app/_utils/getContactInfo';
@@ -16,9 +15,6 @@ export default async function FAQPage() {
 
   return (
     <>
-      <Head>
-        <title>FAQ – Senet Estate Sales</title>
-      </Head>
       <Container>
         <section className='py-8 md:py-12 lg:py-16'>
           <div className='mx-auto max-w-4xl'>

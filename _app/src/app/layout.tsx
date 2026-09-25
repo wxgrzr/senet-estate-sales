@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
 import Header from '@/app/_components/header';
 import Footer from '@/app/_components/footer';
@@ -26,23 +25,6 @@ export const metadata: Metadata = {
   },
   description:
     'Senet Estate Sales delivers full-service estate sales, clean-outs, and downsizing support across Southeast Michigan from Detroit to Bay City.',
-  keywords: [
-    'estate sales',
-    'liquidation',
-    'senet',
-    'downsizing',
-    'Southeastern Michigan',
-    'Estate Sales Michigan',
-    'Downsizing Services Michigan',
-    'Estate Liquidation',
-    'Estate Sale Company MI',
-    'Southeast Michigan Estate Sales',
-    'Senet Estate Sales',
-    'Onsite Estate Sales',
-    'Michigan cleanout services',
-    'Flint clean-out company',
-    'Detroit estate services',
-  ],
   openGraph: {
     title: 'Senet Estate Sales',
     description:
@@ -104,7 +86,32 @@ export default function RootLayout({
           {children}
           <Footer />
         </div>
-        <SpeedInsights />
+        <script
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'LocalBusiness',
+              name: 'Senet Estate Sales',
+              image: 'https://www.senetestatesales.com/og-image.jpg',
+              url: 'https://www.senetestatesales.com',
+              telephone: '8105888175',
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: '14525 N Holly Rd',
+                addressLocality: 'Holly',
+                addressRegion: 'MI',
+                postalCode: '48442',
+                addressCountry: 'US',
+              },
+              description:
+                'Professional estate sale services in Southeastern MI. Compassionate, efficient, and tailored to your needs.',
+              sameAs: [
+                'https://www.facebook.com/people/Senet-Estate-Sales/61567003222290/',
+              ],
+            }),
+          }}
+        />
       </body>
     </html>
   );
