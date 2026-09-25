@@ -2,7 +2,13 @@ import { Post as PostType } from '~/sanity.types';
 import { PostPreview } from '@/app/_components/post-preview';
 import { urlForImage } from '@/sanity/lib/utils';
 
-export default function PostCard({ post }: { post: PostType }) {
+export default function PostCard({
+  post,
+  priority,
+}: {
+  post: PostType;
+  priority?: boolean;
+}) {
   const { _id, title, coverImage, slug, eventDates, location } = post;
 
   const imageUrl =
@@ -14,6 +20,7 @@ export default function PostCard({ post }: { post: PostType }) {
         title={title}
         coverImage={imageUrl}
         slug={slug}
+        priority={priority}
         dates={eventDates || []}
         fullAddress={(location?.fullAddress as string) || ''}
       />

@@ -208,9 +208,9 @@ export default function IndexPage() {
                 </h2>
                 <p className='mb-8 text-center font-light text-pretty sm:text-xl lg:mb-16'>
                   Downsizing, relocating, or managing a loved one’s estate?
-                  We'll help guide you through the process from start to finish.
-                  We know how difficult it can be to get started, so we're here
-                  to help.
+                  We&apos;ll help guide you through the process from start to
+                  finish. We know how difficult it can be to get started, so
+                  we&apos;re here to help.
                 </p>
                 <ConsultationForm />
               </div>

@@ -90,8 +90,12 @@ export default async function OurEstateSales() {
         </div>
 
         <div className='grid h-full gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6'>
-          {posts.map((post) => (
-            <PostCard post={post} key={post._id} />
+          {posts.map((post, index) => (
+            <PostCard
+              post={post}
+              key={post._id}
+              priority={index < 2 ? true : false}
+            />
           ))}
         </div>
       </section>
