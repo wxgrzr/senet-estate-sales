@@ -40,7 +40,7 @@ export default function IndexPage() {
                   </p>
                   <p className='max-w-lg text-base text-gray-600'>
                     Based in <b>Holly, MI</b> and proudly serving Fenton, Grand
-                    Blanc, Flint, Davisburg, Ortonville, and nearby towns.
+                    Blanc, Flint, Davisburg, Ortonville, and more.
                   </p>
                 </div>
                 <LinkButton
@@ -52,8 +52,8 @@ export default function IndexPage() {
                 </LinkButton>
               </AnimateInXL>
 
-              <div className='col-start-2 flex size-full items-center justify-center max-sm:col-span-4'>
-                <MediaContainer className='relative size-full max-sm:mt-24'>
+              <div className='col-start-2 flex size-full items-center justify-center max-sm:order-first max-sm:col-span-4'>
+                <MediaContainer className='relative size-full max-sm:mb-8'>
                   <Image
                     style={{ objectFit: 'cover' }}
                     src={'/heroimg/heroimg@3x.webp'}
@@ -105,11 +105,10 @@ export default function IndexPage() {
                   Who We Are
                 </h2>
                 <BodyParagraph>
-                  We’re a Holly-based estate sale and clean-out team focused on
-                  compassionate service. From pricing collections in Fenton to
-                  Grand Blanc downsizing moves and Flint home clean-outs, our
-                  staff makes every step transparent for families and buyers
-                  alike.
+                  We’re an estate sale and clean-out team focused on
+                  compassionate service. From pricing out your collections to
+                  downsizing your next move, our staff makes every step simple
+                  and transparent for families and buyers alike.
                 </BodyParagraph>
                 <LinkButton href='#our-services' variant='secondary'>
                   Our Services
@@ -170,11 +169,11 @@ export default function IndexPage() {
                     Start with a Free Consultation
                   </h2>
                   <BodyParagraph>
-                    We’ll walk through your Michigan property, learn your
-                    priorities, and handle the rest — pricing valuables, staging
-                    estate sales, coordinating donations, and providing full
-                    clean-out services. Schedule a free consultation and we’ll
-                    guide you from the first walkthrough to the final
+                    We’ll talk through your needs, learn your priorities, and
+                    handle the rest — pricing antiques & valuables, staging your
+                    sale, coordinating donations, or providing full clean-out
+                    services. Schedule a free, no obligations consultation and
+                    we’ll help guide you from first walkthrough to the final
                     broom-swept handoff.
                   </BodyParagraph>
                   <LinkButton
@@ -208,11 +207,10 @@ export default function IndexPage() {
                   Schedule a Free Consultation
                 </h2>
                 <p className='mb-8 text-center font-light text-pretty sm:text-xl lg:mb-16'>
-                  Downsizing, relocating, or managing a loved one’s estate? From
-                  Holly and Fenton to Grand Blanc, Ortonville, and Flint, we
-                  handle estate sales, clean-outs, and donations with local
-                  expertise and compassion. Schedule a consultation and let’s
-                  plan the next steps together.
+                  Downsizing, relocating, or managing a loved one’s estate?
+                  We'll help guide you through the process from start to finish.
+                  We know how difficult it can be to get started, so we're here
+                  to help.
                 </p>
                 <ConsultationForm />
               </div>

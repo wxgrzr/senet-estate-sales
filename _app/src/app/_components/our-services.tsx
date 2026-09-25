@@ -24,19 +24,19 @@ export function OurServices() {
       icon: <HomeIcon className='h-7 w-7' />,
       title: 'Estate Sales',
       description:
-        'We organize, price, and stage Michigan estate sales that respect your items and attract buyers from Holly, Fenton, Grand Blanc, Flint, and beyond.',
+        'We organize, price, and stage estate sales throughout Southeastern Michigan tailored to suit your needs, and attract buyers from Holly, Fenton, Grand Blanc, Flint & beyond.',
     },
     {
       icon: <PackageIcon className='h-7 w-7' />,
       title: 'Downsizing Help',
       description:
-        'We guide relocations and downsizing projects, sorting, selling, and rehoming belongings for condos, estates, and senior moves around Holly and nearby towns.',
+        'We help guide our clients through difficult relocations and downsizing projects, sorting, selling, and rehoming belongings for condos, estates, and senior moves.',
     },
     {
       icon: <SparklesIcon className='h-7 w-7' />,
       title: 'Clean-Out Services',
       description:
-        'We leave homes broom-swept and market ready by sorting, recycling, donating, or disposing of items so homes in Holly, Fenton, and nearby towns sell faster.',
+        "We'll assist you in cleaning out your space to make it market ready by sorting, recycling, donating, or disposing of items to ensure your home sells faster.",
     },
   ];
 
@@ -47,9 +47,9 @@ export function OurServices() {
           Michigan Estate &amp; Clean-Out Services
         </h2>
         <p className='mx-auto max-w-2xl pb-8 text-gray-600'>
-          We guide families through estate liquidation, clean-outs, and
-          downsizing in Holly, Fenton, Grand Blanc, Davisburg, Ortonville,
-          Flint, and nearby towns with compassion.
+          We guide families through <b>estate liquidation</b>, home{' '}
+          <b>clean-outs</b>, or assisting in <b>downsizing</b> throughout Holly, Fenton,
+          Grand Blanc, Davisburg, Ortonville, Flint & surrounding cities.
         </p>
       </div>
       {isMobile ? (

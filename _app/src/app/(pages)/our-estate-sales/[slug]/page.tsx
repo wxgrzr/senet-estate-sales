@@ -45,7 +45,7 @@ export default async function EstateSalePostPage({ params }: Props) {
 
   const crumbs = [
     { label: 'Home', href: Routes.Home },
-    { label: 'Michigan Estate Sales', href: Routes.OurEstateSales },
+    { label: 'Estate Sales', href: Routes.OurEstateSales },
     {
       label: post.title || 'Estate Sale',
       href: `${Routes.OurEstateSales}/${post.slug}`,
@@ -55,22 +55,22 @@ export default async function EstateSalePostPage({ params }: Props) {
   const { gallery } = post;
   const images = Array.isArray(gallery)
     ? gallery.map((img, i) => ({
-      key: img._key,
-      src: urlForImage(img)
-        ?.width(2400)
-        .height(1800)
-        .auto('format')
-        .quality(100)
-        .url(),
-      thumbnail: urlForImage(img)
-        ?.width(400)
-        .height(300)
-        .auto('format')
-        .url(),
-      width: 2400,
-      height: 1800,
-      alt: `Gallery image ${i + 1}`,
-    }))
+        key: img._key,
+        src: urlForImage(img)
+          ?.width(2400)
+          .height(1800)
+          .auto('format')
+          .quality(100)
+          .url(),
+        thumbnail: urlForImage(img)
+          ?.width(400)
+          .height(300)
+          .auto('format')
+          .url(),
+        width: 2400,
+        height: 1800,
+        alt: `Gallery image ${i + 1}`,
+      }))
     : [];
 
   const coverImage = post?.coverImage
@@ -87,7 +87,7 @@ export default async function EstateSalePostPage({ params }: Props) {
       </div>
       <div className='mb-8 md:hidden'>
         <LinkButton href={Routes.OurEstateSales} variant='text'>
-          ← Back to Michigan Estate Sales
+          ← Estate Sales
         </LinkButton>
       </div>
 

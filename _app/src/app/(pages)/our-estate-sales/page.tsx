@@ -31,7 +31,7 @@ export default async function OurEstateSales() {
             items={[
               { label: 'Home', href: Routes.Home },
               {
-                label: 'Michigan Estate Sales',
+                label: 'Estate Sales',
                 href: Routes.OurEstateSales,
               },
             ]}
@@ -39,14 +39,14 @@ export default async function OurEstateSales() {
         </div>
         <div className='mb-8 md:hidden'>
           <LinkButton href={Routes.Home} variant='text'>
-            ← Back to Home
+            ← Home
           </LinkButton>
         </div>
 
         <section className='px-4'>
           <div className='mb-4 md:mb-8'>
             <h1 className='text-5xl font-bold tracking-tighter md:text-6xl lg:text-7xl'>
-              Michigan Estate Sales
+              Estate Sales
             </h1>
           </div>
           <p>
@@ -65,7 +65,7 @@ export default async function OurEstateSales() {
           items={[
             { label: 'Home', href: Routes.Home },
             {
-              label: 'Michigan Estate Sales',
+              label: 'Estate Sales',
               href: Routes.OurEstateSales,
             },
           ]}
@@ -73,19 +73,19 @@ export default async function OurEstateSales() {
       </div>
       <div className='mb-8 md:hidden'>
         <LinkButton href={Routes.Home} variant='text'>
-          ← Back to Home
+          ← Home
         </LinkButton>
       </div>
 
       <section className='px-4'>
         <div className='mb-4 md:mb-8'>
           <h1 className='text-5xl font-bold tracking-tighter md:text-6xl lg:text-7xl'>
-            Michigan Estate Sales
+            Estate Sales
           </h1>
           {/* TODO: add facebook link */}
           <p className='mt-4 max-w-3xl text-lg text-gray-700'>
-            Explore our past estate liquidation events, featuring curated
-            sales in Holly, Fenton, Grand Blanc, Flint, and nearby towns.
+            Explore our estate liquidation events, featuring curated sales
+            throughout Southeastern MI.
           </p>
         </div>
 
