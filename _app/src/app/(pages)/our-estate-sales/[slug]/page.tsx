@@ -30,7 +30,11 @@ export async function generateMetadata(
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const { slug } = await params;
-  const post = await client.fetch(postQuery, { slug }, { cache: 'no-store' });
+  const post = await client.fetch(
+    postQuery,
+    { slug },
+    { next: { revalidate: 600 } },
+  );
   const previousImages = (await parent).openGraph?.images || [];
 
   if (!post) {
@@ -106,7 +110,7 @@ export async function generateMetadata(
 
 export default async function EstateSalePostPage({ params }: Props) {
   const { slug } = await params;
-  const post = await client.fetch(postQuery, { slug }, { cache: 'no-store' });
+  const post = await client.fetch(postQuery, { slug }, { next: { revalidate: 300 } });
 
   if (!post) {
     notFound();

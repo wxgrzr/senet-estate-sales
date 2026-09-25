@@ -13,7 +13,7 @@ export default async function UpcomingEstateSales() {
   const posts = await client.fetch<PostType[]>(
     allPostsQuery,
     {},
-    { cache: 'no-store' },
+    { next: { revalidate: 300 } }
   );
 
   if (!posts || posts.length === 0) {
