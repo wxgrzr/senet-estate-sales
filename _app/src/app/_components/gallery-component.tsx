@@ -121,21 +121,12 @@ function renderNextImage(
 
 export default function Gallery({ images }: any) {
   const [index, setIndex] = useState(-1);
-  const photoItems = images.map((img: any, i: number) => ({
+  const photoItems = images.map((img: any) => ({
     src: img.thumbnail, // use low-res for grid
     width: 400,
     height: 300,
     alt: img.alt,
-    key:
-      img._id ??
-      img.id ??
-      img.key ??
-      `${img.thumbnail ?? img.src ?? 'img'}-${i}`,
-  }));
-
-  const slideItems = images.map((img: any, i: number) => ({
-    ...img,
-    key: img._id ?? img.id ?? img.key ?? `slide-${i}`,
+    key: img.key,
   }));
 
   return (
@@ -148,7 +139,7 @@ export default function Gallery({ images }: any) {
       />
       <Lightbox
         index={index}
-        slides={slideItems} // use high-res for lightbox
+        slides={images} // use high-res for lightbox
         open={index >= 0}
         close={() => setIndex(-1)}
         render={{ slide: NextJsImage }}

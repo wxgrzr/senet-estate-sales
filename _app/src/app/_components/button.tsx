@@ -16,7 +16,7 @@ export const Button = ({
       disabled={disabled}
       className={clsx(
         buttonClasses(variant),
-        className ? className : '',
+        className,
         disabled && 'cursor-not-allowed opacity-50',
       )}
       {...rest}

@@ -5,6 +5,7 @@ import './globals.css';
 import Header from '@/app/_components/header';
 import Footer from '@/app/_components/footer';
 import type { Viewport } from 'next';
+import { BASE_URL, buildCanonicalUrl } from '@/app/_metadata';
 
 export const viewport: Viewport = {
   themeColor: '#ffffff',
@@ -18,7 +19,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.senetestatesales.com'),
+  metadataBase: new URL(BASE_URL),
   title: {
     default: 'Senet Estate Sales | Estate Sale Experts in Southeast Michigan',
     template: '%s | Senet Estate Sales',
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
     title: 'Senet Estate Sales',
     description:
       'Full-service Michigan estate sales, clean-outs, and liquidation help for families in Detroit, Ann Arbor, Flint, and Southeast Michigan.',
-    url: 'https://www.senetestatesales.com',
+    url: BASE_URL,
     siteName: 'Senet Estate Sales',
     locale: 'en_US',
     type: 'website',
@@ -93,8 +94,8 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'LocalBusiness',
               name: 'Senet Estate Sales',
-              image: 'https://www.senetestatesales.com/og-image.jpg',
-              url: 'https://www.senetestatesales.com',
+              image: buildCanonicalUrl('/og-image.jpg'),
+              url: BASE_URL,
               telephone: '8105888175',
               address: {
                 '@type': 'PostalAddress',

@@ -93,14 +93,7 @@ export default function GoogleMap({ className }: GoogleMapProps) {
           >
             {markers.map((marker) => {
               const coords = marker.location.coordinates;
-              if (
-                !coords ||
-                coords.lat === null ||
-                coords.lat === undefined ||
-                coords.lng === null ||
-                coords.lng === undefined
-              )
-                return null;
+              if (coords?.lat == null || coords.lng == null) return null;
               return (
                 <Marker
                   onClick={() => {

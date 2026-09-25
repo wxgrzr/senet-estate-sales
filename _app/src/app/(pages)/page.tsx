@@ -18,7 +18,7 @@ export const metadata = createMetadata({
   },
   description:
     'Senet Estate Sales delivers full-service estate sales, clean-outs, and downsizing support across Southeast Michigan from Detroit to Bay City.',
-  path: '/',
+  path: Routes.Home,
   openGraph: {
     title: 'Senet Estate Sales',
     description:
@@ -28,10 +28,6 @@ export const metadata = createMetadata({
     title: 'Senet Estate Sales',
     description:
       'Michigan estate sale and clean-out specialists serving Detroit, Ann Arbor, Flint, and Southeast Michigan with compassionate liquidation support.',
-  },
-  other: {
-    'og:see_also':
-      'https://www.facebook.com/people/Senet-Estate-Sales/61567003222290/',
   },
 });
 

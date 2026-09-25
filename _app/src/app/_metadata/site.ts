@@ -1,12 +1,7 @@
+import type { Metadata } from 'next';
+
 export const siteDefaults = {
   siteName: 'Senet Estate Sales',
-  defaultImage: '/og-image.jpg',
-  twitterCard: 'summary_large_image',
-  // Common default description for pages to fall back to
-  description:
-    'Senet Estate Sales delivers full-service estate sales, clean-outs, and downsizing support across Southeast Michigan from Detroit to Bay City.',
-  // Canonical base (route-specific pages should append their path)
-  alternates: { canonical: 'https://www.senetestatesales.com' },
   openGraph: {
     siteName: 'Senet Estate Sales',
     images: [
@@ -26,11 +21,12 @@ export const siteDefaults = {
   other: {
     'fb:page_id': '424849244049685',
     'fb:profile_id': '61567003222290',
+    'og:see_also':
+      'https://www.facebook.com/people/Senet-Estate-Sales/61567003222290/',
   },
-  keywords: [
-    'estate sales',
-    'Michigan estate sales',
-    'Michigan cleanout services',
-    'Senet Estate Sales',
-  ],
+} satisfies {
+  siteName: string;
+  openGraph: Metadata['openGraph'];
+  twitter: Metadata['twitter'];
+  other: Record<string, string>;
 };

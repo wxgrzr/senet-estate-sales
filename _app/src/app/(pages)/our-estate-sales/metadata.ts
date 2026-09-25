@@ -16,8 +16,4 @@ export const metadata = createMetadata({
     description:
       'Upcoming Michigan estate sales and liquidation events handled by Senet Estate Sales across Detroit, Ann Arbor, Flint, and Southeast Michigan.',
   },
-  other: {
-    'og:see_also':
-      'https://www.facebook.com/people/Senet-Estate-Sales/61567003222290/',
-  },
 });
