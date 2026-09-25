@@ -67,10 +67,7 @@ export default function IndexPage() {
                 </LinkButton>
               </AnimateInXL>
 
-              <AnimateInXR
-                x={40}
-                className='col-start-2 flex size-full items-center justify-center max-sm:col-span-4'
-              >
+              <div className='col-start-2 flex size-full items-center justify-center max-sm:col-span-4'>
                 <MediaContainer className='relative size-full max-sm:mt-24'>
                   <Image
                     style={{ objectFit: 'cover' }}
@@ -79,11 +76,12 @@ export default function IndexPage() {
                     alt=''
                     className='rounded-2xl'
                     priority
+                    fetchPriority='high'
                     quality={80}
                     sizes='(max-width: 768px) 100vw, 50vw'
                   />
                 </MediaContainer>
-              </AnimateInXR>
+              </div>
             </div>
           </RowSection>
         </Container>

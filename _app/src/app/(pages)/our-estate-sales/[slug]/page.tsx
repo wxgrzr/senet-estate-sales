@@ -50,9 +50,7 @@ export async function generateMetadata(
   const description = clampDescription(
     [
       `${title} estate sale`,
-      post?.location?.fullAddress
-        ? `at ${post.location.fullAddress}`
-        : null,
+      post?.location?.fullAddress ? `at ${post.location.fullAddress}` : null,
       'hosted by Senet Estate Sales with curated finds and onsite support in Southeast Michigan.',
     ]
       .filter((part): part is string => Boolean(part))
@@ -110,7 +108,11 @@ export async function generateMetadata(
 
 export default async function EstateSalePostPage({ params }: Props) {
   const { slug } = await params;
-  const post = await client.fetch(postQuery, { slug }, { next: { revalidate: 300 } });
+  const post = await client.fetch(
+    postQuery,
+    { slug },
+    { next: { revalidate: 300 } },
+  );
 
   if (!post) {
     notFound();
