@@ -34,19 +34,18 @@ export default function Header() {
     >
       <nav
         className='mx-auto w-full max-w-[82rem] px-4 md:flex md:items-center md:justify-between'
-        aria-label='Global'
+        aria-label='Main'
       >
         <div className='flex items-center justify-between'>
           <Link
             href='/'
             className='flex-none text-xl font-semibold focus:opacity-80 focus:outline-hidden'
-            aria-label='Brand'
           >
             <div className='inline-flex h-auto items-center gap-x-2 py-2 text-xl font-bold'>
               <Image
                 className='h-auto w-35'
                 src='/senet-logo@2x.png'
-                alt='Logo'
+                alt='Senet Estate Sales home'
                 width={272}
                 height={90}
                 priority

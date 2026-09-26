@@ -25,8 +25,12 @@ const Footer = async () => {
         <div className='grid gap-8 md:grid-cols-3'>
           <div>
             <div className='mb-4'>
-              <Link href={Routes.Home} aria-label='Brand'>
-                <Image src={logoLight} alt='Logo' width={100} />
+              <Link href={Routes.Home}>
+                <Image
+                  src={logoLight}
+                  alt='Senet Estate Sales home'
+                  width={100}
+                />
               </Link>
             </div>
             <p className='text-sm text-gray-600'>
