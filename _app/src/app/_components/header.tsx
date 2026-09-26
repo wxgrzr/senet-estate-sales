@@ -5,7 +5,8 @@ import { useEffect, useState } from 'react';
 import { MenuIcon, CloseIcon } from '@sanity/icons';
 import Image from 'next/image';
 import { LinkButton } from '@/app/_components/link-button';
-import { PAGES } from '@/app/constants';
+import { Routes } from '@/app/constants';
+import { NavLinks } from '@/app/_components/shared/nav-links';
 import { usePathname } from 'next/navigation'; // Add this import
 
 export default function Header() {
@@ -74,27 +75,22 @@ export default function Header() {
           id='navbar-collapse'
           className={`${isOpen ? 'block' : 'hidden'} grow basis-full overflow-hidden transition-all duration-300 md:block`}
         >
-          <div className='mt-5 mb-3 flex flex-col items-start gap-5 md:mt-0 md:mb-0 md:flex-row md:items-center md:justify-end md:ps-5'>
-            {PAGES.map(({ label, href }) => {
-              if (label === 'Schedule a Consultation') {
-                return (
-                  <LinkButton
-                    variant={isOpen ? 'text' : 'secondary'}
-                    key={label}
-                    href={href}
-                    className={isOpen ? '' : 'md:ml-2'}
-                  >
-                    {label}
-                  </LinkButton>
-                );
-              }
-              return (
-                <LinkButton variant='text' key={label} href={href}>
-                  {label}
-                </LinkButton>
-              );
-            })}
-          </div>
+          <ul className='mt-5 mb-3 flex flex-col items-start gap-5 md:mt-0 md:mb-0 md:flex-row md:items-center md:justify-end md:ps-5'>
+            <NavLinks />
+            <li className='md:hidden'>
+              <LinkButton variant='text' href={Routes.ScheduleConsultation}>
+                Schedule a Consultation
+              </LinkButton>
+            </li>
+            <li className='hidden md:ml-2 md:block'>
+              <LinkButton
+                variant='secondary'
+                href={Routes.ScheduleConsultation}
+              >
+                Schedule a Consultation
+              </LinkButton>
+            </li>
+          </ul>
         </div>
       </nav>
     </header>
