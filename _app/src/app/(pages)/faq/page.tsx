@@ -26,7 +26,7 @@ export default async function FAQPage() {
         <section className='py-8 md:py-12 lg:py-16'>
           <div className='mx-auto max-w-4xl'>
             <h1 className='mb-6 text-left text-5xl font-bold tracking-tight'>
-              FAQS
+              Frequently Asked Questions
             </h1>
 
             <div className='pt-6'>
