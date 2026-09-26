@@ -2,6 +2,9 @@
   "name": "senet-estate-sales_nextapp",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=20.19"
+  },
   "scripts": {
     "predev": "npm run typegen",
     "prebuild": "npm run typegen",
