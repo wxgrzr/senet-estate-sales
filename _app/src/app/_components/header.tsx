@@ -73,7 +73,7 @@ export default function Header() {
         </div>
         <div
           id='navbar-collapse'
-          className={`${isOpen ? 'block' : 'hidden'} grow basis-full overflow-hidden transition-all duration-300 md:block`}
+          className={`${isOpen ? 'block' : 'hidden'} grow basis-full overflow-hidden transition-all duration-300 max-md:absolute max-md:inset-x-0 max-md:top-full max-md:bg-background max-md:px-4 max-md:pb-4 max-md:shadow-md md:block`}
         >
           <ul className='mt-5 mb-3 flex flex-col items-start gap-5 md:mt-0 md:mb-0 md:flex-row md:items-center md:justify-end md:ps-5'>
             <NavLinks />
