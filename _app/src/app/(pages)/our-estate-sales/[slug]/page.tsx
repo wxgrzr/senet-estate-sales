@@ -82,15 +82,6 @@ export default async function EstateSalePostPage({ params }: Props) {
 
   return (
     <div>
-      <div className='mb-12 hidden md:block'>
-        <Breadcrumbs items={crumbs} />
-      </div>
-      <div className='mb-8 md:hidden'>
-        <LinkButton href={Routes.OurEstateSales} variant='text'>
-          ← Estate Sales
-        </LinkButton>
-      </div>
-
       <article className='px-4 pb-16'>
         <div className='grid gap-x-4 gap-y-8 md:grid-cols-2 md:grid-rows-2'>
           <div id='event-details' className='flex flex-1 flex-col'>

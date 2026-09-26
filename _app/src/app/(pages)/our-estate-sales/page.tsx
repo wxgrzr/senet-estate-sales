@@ -1,15 +1,11 @@
 import type { Metadata } from 'next';
 import { Post as PostType } from '~/sanity.types';
-import { Breadcrumbs } from '@/app/_components/breadcrumbs';
 import { allPostsQuery } from '@/sanity/lib/queries';
-import { LinkButton } from '@/app/_components/link-button';
 import { client } from '@/sanity/lib/client';
 import PostCard from '@/app/(pages)/our-estate-sales/post-card';
-import { Routes } from '@/app/constants';
 
 export const metadata: Metadata = {
-  // Keep this title stable: it's the sitelink label on brand searches.
-  title: 'Michigan Estate Sales',
+  title: 'Our Estate Sales',
   description:
     'Explore our estate sales hosted across Holly, Fenton, Flint, Grand Blanc & nearby. New sales are posted on our Facebook page.',
 };
@@ -23,26 +19,9 @@ export default async function OurEstateSales() {
     { next: { revalidate: 300 } },
   );
 
-  if (!posts || posts.length === 0) {
+  if (!posts?.length) {
     return (
       <div className='md:mb-8'>
-        <div className='mb-6 hidden md:block'>
-          <Breadcrumbs
-            items={[
-              { label: 'Home', href: Routes.Home },
-              {
-                label: 'Estate Sales',
-                href: Routes.OurEstateSales,
-              },
-            ]}
-          />
-        </div>
-        <div className='mb-8 md:hidden'>
-          <LinkButton href={Routes.Home} variant='text'>
-            ← Home
-          </LinkButton>
-        </div>
-
         <section className='px-4'>
           <div className='mb-4 md:mb-8'>
             <h1 className='text-5xl font-bold tracking-tighter md:text-6xl lg:text-7xl'>
@@ -60,27 +39,10 @@ export default async function OurEstateSales() {
 
   return (
     <div className='md:mb-8'>
-      <div className='mb-6 hidden md:block'>
-        <Breadcrumbs
-          items={[
-            { label: 'Home', href: Routes.Home },
-            {
-              label: 'Estate Sales',
-              href: Routes.OurEstateSales,
-            },
-          ]}
-        />
-      </div>
-      <div className='mb-8 md:hidden'>
-        <LinkButton href={Routes.Home} variant='text'>
-          ← Home
-        </LinkButton>
-      </div>
-
       <section className='px-4'>
         <div className='mb-4 md:mb-8'>
           <h1 className='text-5xl font-bold tracking-tighter md:text-6xl lg:text-7xl'>
-            Estate Sales
+            Our Estate Sales
           </h1>
           {/* TODO: add facebook link */}
           <p className='mt-4 max-w-3xl text-lg text-gray-700'>
