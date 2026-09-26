@@ -25,7 +25,7 @@ export default function IndexPage() {
     <main id='content'>
       <div id='hero'>
         <Container>
-          <RowSection>
+          <RowSection id='hero-content'>
             <div className='grid grid-cols-2 items-center gap-4 max-sm:grid-cols-4 md:gap-8'>
               <AnimateInXL
                 x={40}

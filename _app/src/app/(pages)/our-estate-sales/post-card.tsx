@@ -2,6 +2,7 @@ import { Post as PostType } from '~/sanity.types';
 import { PostPreview } from '@/app/_components/post-preview';
 import { urlForImage } from '@/sanity/lib/utils';
 
+// TODO (human): if SOLD OUT, remove address
 export default function PostCard({
   post,
   priority,

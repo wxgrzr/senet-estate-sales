@@ -47,7 +47,6 @@ const Footer = async () => {
                 <FaFacebook fontSize={'1.75rem'} className='text-richblack' />
               </Link>
               <Link
-                // href='https://www.yelp.com/biz/senet-estate-sales-northville'
                 href={yelpUrl as string}
                 aria-label='Yelp'
                 target='_blank'
