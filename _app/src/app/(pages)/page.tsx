@@ -7,59 +7,25 @@ import { Reviews } from '@/app/_components/reviews';
 import Image from 'next/image';
 import { RowSection } from '@/app/_components/row-section';
 import { MediaContainer } from '../_components/media-container';
-import { createMetadata } from '@/app/_metadata';
+import type { Metadata } from 'next';
 import { AnimateInXL, AnimateInXR } from '../_components/animate-in-x';
 import { AnimateInY } from '../_components/animate-in-y';
 import { Routes } from '@/app/constants';
 
-export const metadata = createMetadata({
+export const metadata: Metadata = {
   title: {
-    absolute: 'Senet Estate Sales | Estate Sale Experts in Southeast Michigan',
+    absolute: 'Senet Estate Sales | Estate Sales & Clean-Outs in Holly, MI',
   },
   description:
-    'Senet Estate Sales delivers full-service estate sales, clean-outs, and downsizing support across Southeast Michigan from Detroit to Bay City.',
-  path: '/',
-  keywords: [
-    'estate sales',
-    'Michigan estate services',
-    'Michigan cleanout services',
-    'Detroit estate sale company',
-    'Flint estate clean-out',
-    'Ann Arbor estate sales',
-    'Northville MI',
-    'Bloomfield MI',
-    'Bay City MI',
-    'West Bloomfield Township MI',
-    'Grand Blanc MI',
-    'Rochester Hills MI',
-    'Birmingham MI',
-    'Huntington Woods MI',
-    'Flint MI',
-    'Fenton MI',
-    'Southeast Michigan',
-  ],
-  openGraph: {
-    title: 'Senet Estate Sales',
-    description:
-      'Estate liquidation, clean-outs, and downsizing help for Detroit, Ann Arbor, Flint, Bloomfield, Bay City, and neighboring Southeast Michigan communities.',
-  },
-  twitter: {
-    title: 'Senet Estate Sales',
-    description:
-      'Michigan estate sale and clean-out specialists serving Detroit, Ann Arbor, Flint, and Southeast Michigan with compassionate liquidation support.',
-  },
-  other: {
-    'og:see_also':
-      'https://www.facebook.com/people/Senet-Estate-Sales/61567003222290/',
-  },
-});
+    'Full-service estate sales, clean-outs, and downsizing help based in Holly, MI, serving Fenton, Grand Blanc, Flint, Davisburg, Ortonville & surrounding cities.',
+};
 
 export default function IndexPage() {
   return (
     <main id='content'>
       <div id='hero'>
         <Container>
-          <RowSection>
+          <RowSection id='hero-content'>
             <div className='grid grid-cols-2 items-center gap-4 max-sm:grid-cols-4 md:gap-8'>
               <AnimateInXL
                 x={40}
@@ -73,8 +39,8 @@ export default function IndexPage() {
                     Your trusted estate sale &amp; clean-out specialists.
                   </p>
                   <p className='max-w-lg text-base text-gray-600'>
-                    Proudly serving Metro Detroit, Ann Arbor, Flint and the
-                    surrounding communities of <b>Southeastern Michigan.</b>
+                    Based in <b>Holly, MI</b> and proudly serving Fenton, Grand
+                    Blanc, Flint, Davisburg, Ortonville, and more.
                   </p>
                 </div>
                 <LinkButton
@@ -85,12 +51,8 @@ export default function IndexPage() {
                   Our Estate Sales
                 </LinkButton>
               </AnimateInXL>
-
-              <AnimateInXR
-                x={40}
-                className='col-start-2 flex size-full items-center justify-center max-sm:col-span-4'
-              >
-                <MediaContainer className='relative size-full max-sm:mt-24'>
+              <div className='flex size-full items-center justify-center max-sm:order-first max-sm:col-span-4 sm:col-start-2'>
+                <MediaContainer className='relative size-full max-sm:mb-8'>
                   <Image
                     style={{ objectFit: 'cover' }}
                     src={'/heroimg/heroimg@3x.webp'}
@@ -98,11 +60,12 @@ export default function IndexPage() {
                     alt=''
                     className='rounded-2xl'
                     priority
+                    fetchPriority='high'
                     quality={80}
                     sizes='(max-width: 768px) 100vw, 50vw'
                   />
                 </MediaContainer>
-              </AnimateInXR>
+              </div>
             </div>
           </RowSection>
         </Container>
@@ -141,11 +104,10 @@ export default function IndexPage() {
                   Who We Are
                 </h2>
                 <BodyParagraph>
-                  We’re a Michigan-based estate sale and clean-out team focused
-                  on compassionate service. From valuing collections in Detroit
-                  bungalows to coordinating Flint home cleanouts and Ann Arbor
-                  downsizing projects, our staff makes every step transparent
-                  for families and buyers alike.
+                  We’re an estate sale and clean-out team focused on
+                  compassionate service. From pricing out your collections to
+                  downsizing your next move, our staff makes every step simple
+                  and transparent for families and buyers alike.
                 </BodyParagraph>
                 <LinkButton href='#our-services' variant='secondary'>
                   Our Services
@@ -206,15 +168,15 @@ export default function IndexPage() {
                     Start with a Free Consultation
                   </h2>
                   <BodyParagraph>
-                    We’ll walk through your Michigan property, learn your
-                    priorities, and handle the rest — pricing valuables, staging
-                    estate sales, coordinating donations, and providing full
-                    clean-out services. Schedule a free consultation and we’ll
-                    guide you from the first walkthrough to the final
+                    We’ll talk through your needs, learn your priorities, and
+                    handle the rest — pricing antiques & valuables, staging your
+                    sale, coordinating donations, or providing full clean-out
+                    services. Schedule a free, no obligations consultation and
+                    we’ll help guide you from first walkthrough to the final
                     broom-swept handoff.
                   </BodyParagraph>
                   <LinkButton
-                    href={Routes.ScheduleConsultaion}
+                    href={Routes.ScheduleConsultation}
                     variant='secondary'
                   >
                     Schedule a Consultation
@@ -244,11 +206,10 @@ export default function IndexPage() {
                   Schedule a Free Consultation
                 </h2>
                 <p className='mb-8 text-center font-light text-pretty sm:text-xl lg:mb-16'>
-                  Downsizing, relocating, or managing a loved one’s Michigan
-                  estate? From Detroit estate sales to Flint clean-outs and Ann
-                  Arbor donation coordination, we offer local expertise with
-                  compassion. Schedule a consultation and let’s plan the next
-                  steps together.
+                  Downsizing, relocating, or managing a loved one’s estate?
+                  We&apos;ll help guide you through the process from start to
+                  finish. We know how difficult it can be to get started, so
+                  we&apos;re here to help.
                 </p>
                 <ConsultationForm />
               </div>

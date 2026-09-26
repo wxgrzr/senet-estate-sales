@@ -7,7 +7,7 @@ type RowSectionProps = {
 
 export function RowSection({ children, id }: RowSectionProps) {
   return (
-    <section id={id} className='py-16 md:py-20 lg:py-24'>
+    <section id={id} className='py-12 md:py-20 lg:py-24'>
       {children}
     </section>
   );

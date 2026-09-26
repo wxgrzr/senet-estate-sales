@@ -84,11 +84,3 @@ export const postPagesSlugs = defineQuery(`
   *[_type == "post" && defined(slug.current)]
   {"slug": slug.current}
 `);
-
-export const sitemapData = defineQuery(`
-  *[_type == "post" && defined(slug.current)] | order(_type asc) {
-    "slug": slug.current,
-    _type,
-    _updatedAt,
-  }
-`);

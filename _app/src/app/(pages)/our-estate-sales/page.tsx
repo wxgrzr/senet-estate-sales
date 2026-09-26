@@ -1,45 +1,31 @@
+import type { Metadata } from 'next';
 import { Post as PostType } from '~/sanity.types';
-import { Breadcrumbs } from '@/app/_components/breadcrumbs';
 import { allPostsQuery } from '@/sanity/lib/queries';
-import { LinkButton } from '@/app/_components/link-button';
 import { client } from '@/sanity/lib/client';
 import PostCard from '@/app/(pages)/our-estate-sales/post-card';
-import { Routes } from '@/app/constants';
-export { metadata } from './metadata';
+
+export const metadata: Metadata = {
+  title: 'Our Estate Sales',
+  description:
+    'Explore our estate sales hosted across Holly, Fenton, Flint, Grand Blanc & nearby. New sales are posted on our Facebook page.',
+};
 
 // TODO: Add "sold out" badge to posts where eventDates are in the past ??
 // or filter them out entirely?
-export default async function UpcomingEstateSales() {
+export default async function OurEstateSales() {
   const posts = await client.fetch<PostType[]>(
     allPostsQuery,
     {},
-    { cache: 'no-store' },
+    { next: { revalidate: 300 } },
   );
 
-  if (!posts || posts.length === 0) {
+  if (!posts?.length) {
     return (
       <div className='md:mb-8'>
-        <div className='mb-6 hidden md:block'>
-          <Breadcrumbs
-            items={[
-              { label: 'Home', href: Routes.Home },
-              {
-                label: 'Michigan Estate Sales',
-                href: Routes.OurEstateSales,
-              },
-            ]}
-          />
-        </div>
-        <div className='mb-8 md:hidden'>
-          <LinkButton href={Routes.Home} variant='text'>
-            ← Back to Home
-          </LinkButton>
-        </div>
-
         <section className='px-4'>
           <div className='mb-4 md:mb-8'>
             <h1 className='text-5xl font-bold tracking-tighter md:text-6xl lg:text-7xl'>
-              Michigan Estate Sales
+              Estate Sales
             </h1>
           </div>
           <p>
@@ -53,40 +39,25 @@ export default async function UpcomingEstateSales() {
 
   return (
     <div className='md:mb-8'>
-      <div className='mb-6 hidden md:block'>
-        <Breadcrumbs
-          items={[
-            { label: 'Home', href: Routes.Home },
-            {
-              label: 'Michigan Estate Sales',
-              href: Routes.OurEstateSales,
-            },
-          ]}
-        />
-      </div>
-      <div className='mb-8 md:hidden'>
-        <LinkButton href={Routes.Home} variant='text'>
-          ← Back to Home
-        </LinkButton>
-      </div>
-
       <section className='px-4'>
         <div className='mb-4 md:mb-8'>
           <h1 className='text-5xl font-bold tracking-tighter md:text-6xl lg:text-7xl'>
-            Michigan Estate Sales
+            Our Estate Sales
           </h1>
+          {/* TODO: add facebook link */}
           <p className='mt-4 max-w-3xl text-lg text-gray-700'>
-            Explore our upcoming estate liquidation events, featuring curated
-            sales throughout Metro Detroit, Ann Arbor, Flint, Bloomfield, Bay
-            City, and more. Every listing is managed by our Michigan estate sale
-            and clean-out specialists to ensure homes are market-ready and
-            cherished collections find new owners.
+            Explore our estate liquidation events, featuring curated sales
+            throughout Southeastern MI.
           </p>
         </div>
 
         <div className='grid h-full gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6'>
-          {posts.map((post) => (
-            <PostCard post={post} key={post._id} />
+          {posts.map((post, index) => (
+            <PostCard
+              post={post}
+              key={post._id}
+              priority={index < 2 ? true : false}
+            />
           ))}
         </div>
       </section>

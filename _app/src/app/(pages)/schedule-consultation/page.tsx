@@ -1,8 +1,14 @@
+import type { Metadata } from 'next';
 import ConsultationForm from '@/app/_components/consultation-form';
 import Container from '@/app/_components/container';
 import Image from 'next/image';
 import { AnimateInXL, AnimateInXR } from '@/app/_components/animate-in-x';
-export { metadata } from './metadata';
+
+export const metadata: Metadata = {
+  title: 'Schedule a Consultation',
+  description:
+    "Request a free, no-obligation estate sale consultation with us. We'll answer questions you may have and help walk you through the process from start to finish.",
+};
 
 export default function ScheduleConsultation() {
   return (

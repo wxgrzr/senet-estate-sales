@@ -1,9 +1,15 @@
-import Head from 'next/head';
+import type { Metadata } from 'next';
 import Container from '@/app/_components/container';
 import { faqQuery } from '@/sanity/lib/queries';
 import { getContactInfo } from '@/app/_utils/getContactInfo';
 import { client } from '@/sanity/lib/client';
 import clsx from 'clsx';
+
+export const metadata: Metadata = {
+  title: 'Frequently Asked Questions',
+  description:
+    'Estate sale fees, prep time, selling vehicles, and clean-outs that leave the home ready to list: answers from Senet Estate Sales in Holly, MI.',
+};
 
 async function getFAQs() {
   return client.fetch(faqQuery);
@@ -16,9 +22,6 @@ export default async function FAQPage() {
 
   return (
     <>
-      <Head>
-        <title>FAQ – Senet Estate Sales</title>
-      </Head>
       <Container>
         <section className='py-8 md:py-12 lg:py-16'>
           <div className='mx-auto max-w-4xl'>

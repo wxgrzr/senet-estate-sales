@@ -7,15 +7,21 @@ type Props = {
   title: string;
   src: string;
   slug?: Slug;
+  priority?: boolean;
 };
 
-const CoverImage = ({ title, src, slug }: Props) => {
+const CoverImage = ({ title, src, slug, priority = false }: Props) => {
   const image = (
     <Image
       src={src}
       alt={`Cover Image for ${title}`}
-      width={1300}
-      height={630}
+      // Matches the 550x310 crop requested from Sanity in post-card.tsx.
+      width={550}
+      height={310}
+      className='h-auto w-full'
+      // Card width in the 1 / 2 / 3 column grid on our-estate-sales.
+      sizes='(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw'
+      priority={priority}
     />
   );
   return (

@@ -10,6 +10,7 @@ type Props = {
   dates: string[];
   fullAddress: string;
   slug: Slug;
+  priority?: boolean;
 };
 
 export function PostPreview({
@@ -18,11 +19,17 @@ export function PostPreview({
   dates,
   fullAddress,
   slug,
+  priority,
 }: Props) {
   return (
     <div className='flex h-fit flex-col overflow-hidden rounded-lg bg-white shadow-md transition hover:shadow-lg'>
       <div className='relative h-auto'>
-        <CoverImage slug={slug} title={title} src={coverImage} />
+        <CoverImage
+          slug={slug}
+          title={title}
+          src={coverImage}
+          priority={priority}
+        />
       </div>
       <div className='flex h-full flex-col gap-1 p-4'>
         <h3 className='mb-2 text-xl leading-tight font-semibold tracking-tight md:text-lg'>

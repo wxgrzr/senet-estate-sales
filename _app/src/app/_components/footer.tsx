@@ -1,11 +1,12 @@
 import Container from '@/app/_components/container';
 import { LinkButton } from '@/app/_components/link-button';
-import { PAGES, Routes } from '@/app/constants';
+import { Routes } from '@/app/constants';
 import Image from 'next/image';
 import Link from 'next/link';
 import logoLight from '~/public/senet-logo@1x.png';
 import { getContactInfo } from '@/app/_utils/getContactInfo';
 import { FaFacebook, FaYelp } from 'react-icons/fa';
+import { NavLinks } from '@/app/_components/shared/nav-links';
 
 const Footer = async () => {
   const {
@@ -24,8 +25,12 @@ const Footer = async () => {
         <div className='grid gap-8 md:grid-cols-3'>
           <div>
             <div className='mb-4'>
-              <Link href={Routes.Home} aria-label='Brand'>
-                <Image src={logoLight} alt='Logo' width={100} />
+              <Link href={Routes.Home}>
+                <Image
+                  src={logoLight}
+                  alt='Senet Estate Sales home'
+                  width={100}
+                />
               </Link>
             </div>
             <p className='text-sm text-gray-600'>
@@ -42,7 +47,6 @@ const Footer = async () => {
                 <FaFacebook fontSize={'1.75rem'} className='text-richblack' />
               </Link>
               <Link
-                // href='https://www.yelp.com/biz/senet-estate-sales-northville'
                 href={yelpUrl as string}
                 aria-label='Yelp'
                 target='_blank'
@@ -55,13 +59,12 @@ const Footer = async () => {
           <div>
             <h2 className='mb-4 text-lg font-semibold'>Quick Links</h2>
             <ul className='space-y-2 text-sm text-gray-600'>
-              {PAGES.map(({ label, href }) => (
-                <li key={label}>
-                  <LinkButton variant='text' key={label} href={href}>
-                    {label}
-                  </LinkButton>
-                </li>
-              ))}
+              <NavLinks />
+              <li>
+                <LinkButton variant='text' href={Routes.ScheduleConsultation}>
+                  Schedule a Consultation
+                </LinkButton>
+              </li>
               <li>
                 <LinkButton variant='text' href={Routes.Privacy}>
                   Privacy Policy

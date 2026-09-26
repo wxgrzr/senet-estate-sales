@@ -20,53 +20,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.senetestatesales.com'),
   title: {
-    default: 'Senet Estate Sales | Estate Sale Experts in Southeast Michigan',
+    default: 'Senet Estate Sales',
     template: '%s | Senet Estate Sales',
   },
-  description:
-    'Senet Estate Sales delivers full-service estate sales, clean-outs, and downsizing support across Southeast Michigan from Detroit to Bay City.',
-  keywords: [
-    'estate sales',
-    'liquidation',
-    'senet',
-    'downsizing',
-    'Southeastern Michigan',
-    'Estate Sales Michigan',
-    'Downsizing Services Michigan',
-    'Estate Liquidation',
-    'Estate Sale Company MI',
-    'Southeast Michigan Estate Sales',
-    'Senet Estate Sales',
-    'Onsite Estate Sales',
-    'Michigan cleanout services',
-    'Flint clean-out company',
-    'Detroit estate services',
-  ],
-  openGraph: {
-    title: 'Senet Estate Sales',
-    description:
-      'Full-service Michigan estate sales, clean-outs, and liquidation help for families in Detroit, Ann Arbor, Flint, and Southeast Michigan.',
-    url: 'https://www.senetestatesales.com',
-    siteName: 'Senet Estate Sales',
-    locale: 'en_US',
-    type: 'website',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Senet Estate Sales Logo',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Senet Estate Sales',
-    description:
-      'Estate and downsizing sales in Southeast Michigan. Trusted local provider.',
-    images: ['/og-image.jpg'],
-    creator: '@senet_estates',
-  },
+  // Preview image when a link is shared on Facebook or in a text message.
+  openGraph: { images: '/og-image.jpg' },
   icons: {
     icon: [
       { url: '/favicon.ico' },
@@ -74,19 +32,6 @@ export const metadata: Metadata = {
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
     ],
     apple: '/apple-touch-icon.png',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    nocache: false,
-    googleBot: {
-      index: true,
-      follow: true,
-      noimageindex: false,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
   },
 };
 
@@ -98,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={clsx(inter.variable, 'antialiased')}>
-        <div className='min-h-screen' tabIndex={-1}>
+        <div className='min-h-screen overflow-x-clip' tabIndex={-1}>
           <Header />
           {children}
           <Footer />

@@ -9,137 +9,53 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { client } from '@/sanity/lib/client';
 import { urlForImage } from '@/sanity/lib/utils';
-import type { Metadata, ResolvingMetadata } from 'next';
-import { createMetadata } from '@/app/_metadata';
+import type { Metadata } from 'next';
+import { cache } from 'react';
 import { Routes } from '@/app/constants';
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
 
-const MAX_DESCRIPTION_LENGTH = 155;
+// Matches the effective freshness before generateMetadata and the page shared a fetch.
+const POST_REVALIDATE_SECONDS = 600;
 
-const clampDescription = (value: string): string => {
-  return value.length <= MAX_DESCRIPTION_LENGTH
-    ? value
-    : `${value.slice(0, MAX_DESCRIPTION_LENGTH - 3).trimEnd()}...`;
-};
+// Shared by generateMetadata and the page so both read the same cached post.
+const getPost = cache((slug: string) =>
+  client.fetch(
+    postQuery,
+    { slug },
+    { next: { revalidate: POST_REVALIDATE_SECONDS } },
+  ),
+);
 
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = await client.fetch(postQuery, { slug }, { cache: 'no-store' });
-  const previousImages = (await parent).openGraph?.images || [];
-
-  if (!post) {
-    return createMetadata({
-      title: 'Estate Sale Not Found',
-      description:
-        'This estate sale could not be found. Please browse other Southeast Michigan estate events hosted by Senet Estate Sales.',
-      path: `${Routes.OurEstateSales}/${slug}`,
-    });
-  }
-
-  const title = post.title || 'Estate Sale';
-  const description = clampDescription(
-    [
-      `${title} estate sale`,
-      post?.location?.fullAddress
-        ? `at ${post.location.fullAddress}`
-        : null,
-      'hosted by Senet Estate Sales with curated finds and onsite support in Southeast Michigan.',
-    ]
-      .filter((part): part is string => Boolean(part))
-      .join(' '),
-  );
-  const coverImage = post?.coverImage
-    ? urlForImage(post.coverImage)?.width(1200).height(630).url()
-    : undefined;
-
-  const coverImageObj = coverImage
-    ? {
-        url: coverImage,
-        width: 1200,
-        height: 630,
-        alt: title,
-      }
-    : undefined;
-
-  // Build images array: cover image first, then previous images from parent
-  const ogImages = coverImageObj
-    ? [coverImageObj, ...previousImages]
-    : previousImages.length > 0
-      ? previousImages
-      : undefined;
-
-  return createMetadata({
-    title,
-    description,
-    path: `${Routes.OurEstateSales}/${slug}`,
-    openGraph: {
-      title,
-      description,
-      type: 'article',
-      ...(ogImages
-        ? { images: ogImages }
-        : coverImageObj
-          ? { image: coverImageObj }
-          : {}),
-    },
-    twitter: {
-      title,
-      description,
-      images: coverImage ? [coverImage] : undefined,
-    },
-    icons: {
-      icon: [
-        { url: '/favicon.ico' },
-        { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-        { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      ],
-      apple: '/apple-touch-icon.png',
-    },
-  });
+  const post = await getPost(slug);
+  return { title: post?.title || 'Estate Sale Not Found' };
 }
 
 export default async function EstateSalePostPage({ params }: Props) {
   const { slug } = await params;
-  const post = await client.fetch(postQuery, { slug }, { cache: 'no-store' });
+  const post = await getPost(slug);
 
   if (!post) {
     notFound();
   }
 
-  const breadcrumbJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: 'https://www.senetestatesales.com/',
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Michigan Estate Sales',
-        item: 'https://www.senetestatesales.com/our-estate-sales',
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: post.title,
-        item: `https://www.senetestatesales.com/our-estate-sales/${post.slug}`,
-      },
-    ],
-  };
+  const crumbs = [
+    { label: 'Home', href: Routes.Home },
+    { label: 'Estate Sales', href: Routes.OurEstateSales },
+    {
+      label: post.title || 'Estate Sale',
+      href: `${Routes.OurEstateSales}/${post.slug}`,
+    },
+  ];
 
   const { gallery } = post;
   const images = Array.isArray(gallery)
     ? gallery.map((img, i) => ({
+        key: img._key,
         src: urlForImage(img)
           ?.width(2400)
           .height(1800)
@@ -166,24 +82,6 @@ export default async function EstateSalePostPage({ params }: Props) {
 
   return (
     <div>
-      <div className='mb-12 hidden md:block'>
-        <Breadcrumbs
-          items={[
-            { label: 'Home', href: Routes.Home },
-            {
-              label: 'Michigan Estate Sales',
-              href: Routes.OurEstateSales,
-            },
-            { label: post?.title || 'Estate Sale' },
-          ]}
-        />
-      </div>
-      <div className='mb-8 md:hidden'>
-        <LinkButton href={Routes.OurEstateSales} variant='text'>
-          ← Back to Michigan Estate Sales
-        </LinkButton>
-      </div>
-
       <article className='px-4 pb-16'>
         <div className='grid gap-x-4 gap-y-8 md:grid-cols-2 md:grid-rows-2'>
           <div id='event-details' className='flex flex-1 flex-col'>
@@ -254,10 +152,6 @@ export default async function EstateSalePostPage({ params }: Props) {
           </div>
         </div>
       </article>
-      <script
-        type='application/ld+json'
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-      />
     </div>
   );
 }

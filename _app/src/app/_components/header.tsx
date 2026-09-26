@@ -5,7 +5,8 @@ import { useEffect, useState } from 'react';
 import { MenuIcon, CloseIcon } from '@sanity/icons';
 import Image from 'next/image';
 import { LinkButton } from '@/app/_components/link-button';
-import { PAGES } from '@/app/constants';
+import { Routes } from '@/app/constants';
+import { NavLinks } from '@/app/_components/shared/nav-links';
 import { usePathname } from 'next/navigation'; // Add this import
 
 export default function Header() {
@@ -33,19 +34,18 @@ export default function Header() {
     >
       <nav
         className='mx-auto w-full max-w-[82rem] px-4 md:flex md:items-center md:justify-between'
-        aria-label='Global'
+        aria-label='Main'
       >
         <div className='flex items-center justify-between'>
           <Link
             href='/'
             className='flex-none text-xl font-semibold focus:opacity-80 focus:outline-hidden'
-            aria-label='Brand'
           >
             <div className='inline-flex h-auto items-center gap-x-2 py-2 text-xl font-bold'>
               <Image
                 className='h-auto w-35'
                 src='/senet-logo@2x.png'
-                alt='Logo'
+                alt='Senet Estate Sales home'
                 width={272}
                 height={90}
                 priority
@@ -72,29 +72,24 @@ export default function Header() {
         </div>
         <div
           id='navbar-collapse'
-          className={`${isOpen ? 'block' : 'hidden'} grow basis-full overflow-hidden transition-all duration-300 md:block`}
+          className={`${isOpen ? 'block' : 'hidden'} grow basis-full overflow-hidden transition-all duration-300 max-md:absolute max-md:inset-x-0 max-md:top-full max-md:bg-background max-md:px-4 max-md:pb-4 max-md:shadow-md md:block`}
         >
-          <div className='mt-5 mb-3 flex flex-col items-start gap-5 md:mt-0 md:mb-0 md:flex-row md:items-center md:justify-end md:ps-5'>
-            {PAGES.map(({ label, href }) => {
-              if (label === 'Schedule a Consultation') {
-                return (
-                  <LinkButton
-                    variant={isOpen ? 'text' : 'secondary'}
-                    key={label}
-                    href={href}
-                    className={isOpen ? '' : 'md:ml-2'}
-                  >
-                    {label}
-                  </LinkButton>
-                );
-              }
-              return (
-                <LinkButton variant='text' key={label} href={href}>
-                  {label}
-                </LinkButton>
-              );
-            })}
-          </div>
+          <ul className='mt-5 mb-3 flex flex-col items-start gap-5 md:mt-0 md:mb-0 md:flex-row md:items-center md:justify-end md:ps-5'>
+            <NavLinks />
+            <li className='md:hidden'>
+              <LinkButton variant='text' href={Routes.ScheduleConsultation}>
+                Schedule a Consultation
+              </LinkButton>
+            </li>
+            <li className='hidden md:ml-2 md:block'>
+              <LinkButton
+                variant='secondary'
+                href={Routes.ScheduleConsultation}
+              >
+                Schedule a Consultation
+              </LinkButton>
+            </li>
+          </ul>
         </div>
       </nav>
     </header>
