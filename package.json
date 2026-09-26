@@ -6,6 +6,9 @@
     "dev:next": "npm run dev --workspace=_app",
     "dev:studio": "npm run dev --workspace=studio"
   },
+  "engines": {
+    "node": ">=20.19"
+  },
   "workspaces": [
     "studio",
     "_app"
