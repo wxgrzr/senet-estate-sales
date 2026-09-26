@@ -51,8 +51,7 @@ export default function IndexPage() {
                   Our Estate Sales
                 </LinkButton>
               </AnimateInXL>
-
-              <div className='col-start-2 flex size-full items-center justify-center max-sm:order-first max-sm:col-span-4'>
+              <div className='flex size-full items-center justify-center max-sm:order-first max-sm:col-span-4 sm:col-start-2'>
                 <MediaContainer className='relative size-full max-sm:mb-8'>
                   <Image
                     style={{ objectFit: 'cover' }}

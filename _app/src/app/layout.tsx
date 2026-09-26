@@ -43,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={clsx(inter.variable, 'antialiased')}>
-        <div className='min-h-screen' tabIndex={-1}>
+        <div className='min-h-screen overflow-x-clip' tabIndex={-1}>
           <Header />
           {children}
           <Footer />
